@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/advanced-header",
+  "title": "Header System (Wrapper)",
+  "category": "modern-core",
+  "icon": "layout",
+  "description": "The master container for your customizable header system. Drop rows and elements inside.",
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "customClassName": true
+  },
+  "attributes": {
+    "isSticky": { "type": "boolean", "default": true },
+    "transparentOnLoad": { "type": "boolean", "default": false },
+    "autoHideOnScroll": { "type": "boolean", "default": false }
+  },
+  
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-header-js",
+  "render": "file:./render.php"
+}

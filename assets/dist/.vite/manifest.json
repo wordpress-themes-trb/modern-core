@@ -1,0 +1,438 @@
+{
+  "assets/src/js/main.js": {
+    "file": "js/main-C1iMhbdL.js",
+    "name": "main",
+    "src": "assets/src/js/main.js",
+    "isEntry": true
+  },
+  "assets/src/scss/editor.scss": {
+    "file": "css/editor-Dyu5JM8t.css",
+    "src": "assets/src/scss/editor.scss",
+    "isEntry": true
+  },
+  "assets/src/scss/main.scss": {
+    "file": "css/style-Dazmlcxh.css",
+    "src": "assets/src/scss/main.scss",
+    "isEntry": true
+  },
+  "blocks/advanced-footer/index.js": {
+    "file": "blocks/advanced-footer/index.js",
+    "name": "advanced-footer/index",
+    "src": "blocks/advanced-footer/index.js",
+    "isEntry": true
+  },
+  "blocks/advanced-header/index.js": {
+    "file": "blocks/advanced-header/index.js",
+    "name": "advanced-header/index",
+    "src": "blocks/advanced-header/index.js",
+    "isEntry": true
+  },
+  "blocks/announcement-bar/index.js": {
+    "file": "blocks/announcement-bar/index.js",
+    "name": "announcement-bar/index",
+    "src": "blocks/announcement-bar/index.js",
+    "isEntry": true
+  },
+  "blocks/back-in-stock/index.js": {
+    "file": "blocks/back-in-stock/index.js",
+    "name": "back-in-stock/index",
+    "src": "blocks/back-in-stock/index.js",
+    "isEntry": true
+  },
+  "blocks/bundle-upsell/index.js": {
+    "file": "blocks/bundle-upsell/index.js",
+    "name": "bundle-upsell/index",
+    "src": "blocks/bundle-upsell/index.js",
+    "isEntry": true
+  },
+  "blocks/cart-items/index.js": {
+    "file": "blocks/cart-items/index.js",
+    "name": "cart-items/index",
+    "src": "blocks/cart-items/index.js",
+    "isEntry": true
+  },
+  "blocks/cart-page/index.js": {
+    "file": "blocks/cart-page/index.js",
+    "name": "cart-page/index",
+    "src": "blocks/cart-page/index.js",
+    "isEntry": true
+  },
+  "blocks/category-carousel/index.js": {
+    "file": "blocks/category-carousel/index.js",
+    "name": "category-carousel/index",
+    "src": "blocks/category-carousel/index.js",
+    "isEntry": true
+  },
+  "blocks/category-grid/index.js": {
+    "file": "blocks/category-grid/index.js",
+    "name": "category-grid/index",
+    "src": "blocks/category-grid/index.js",
+    "isEntry": true
+  },
+  "blocks/checkout-page/index.js": {
+    "file": "blocks/checkout-page/index.js",
+    "name": "checkout-page/index",
+    "src": "blocks/checkout-page/index.js",
+    "isEntry": true
+  },
+  "blocks/columns-builder/index.js": {
+    "file": "blocks/columns-builder/index.js",
+    "name": "columns-builder/index",
+    "src": "blocks/columns-builder/index.js",
+    "isEntry": true
+  },
+  "blocks/compare-table/index.js": {
+    "file": "blocks/compare-table/index.js",
+    "name": "compare-table/index",
+    "src": "blocks/compare-table/index.js",
+    "isEntry": true
+  },
+  "blocks/content-tabs/index.js": {
+    "file": "blocks/content-tabs/index.js",
+    "name": "content-tabs/index",
+    "src": "blocks/content-tabs/index.js",
+    "isEntry": true
+  },
+  "blocks/cookie-consent/index.js": {
+    "file": "blocks/cookie-consent/index.js",
+    "name": "cookie-consent/index",
+    "src": "blocks/cookie-consent/index.js",
+    "isEntry": true
+  },
+  "blocks/countdown-banner/index.js": {
+    "file": "blocks/countdown-banner/index.js",
+    "name": "countdown-banner/index",
+    "src": "blocks/countdown-banner/index.js",
+    "isEntry": true
+  },
+  "blocks/countdown/index.js": {
+    "file": "blocks/countdown/index.js",
+    "name": "countdown/index",
+    "src": "blocks/countdown/index.js",
+    "isEntry": true
+  },
+  "blocks/exit-popup/index.js": {
+    "file": "blocks/exit-popup/index.js",
+    "name": "exit-popup/index",
+    "src": "blocks/exit-popup/index.js",
+    "isEntry": true
+  },
+  "blocks/faq-accordion/index.js": {
+    "file": "blocks/faq-accordion/index.js",
+    "name": "faq-accordion/index",
+    "src": "blocks/faq-accordion/index.js",
+    "isEntry": true
+  },
+  "blocks/featured-product/index.js": {
+    "file": "blocks/featured-product/index.js",
+    "name": "featured-product/index",
+    "src": "blocks/featured-product/index.js",
+    "isEntry": true
+  },
+  "blocks/filter-sidebar/index.js": {
+    "file": "blocks/filter-sidebar/index.js",
+    "name": "filter-sidebar/index",
+    "src": "blocks/filter-sidebar/index.js",
+    "isEntry": true
+  },
+  "blocks/hamburger/index.js": {
+    "file": "blocks/hamburger/index.js",
+    "name": "hamburger/index",
+    "src": "blocks/hamburger/index.js",
+    "isEntry": true
+  },
+  "blocks/header-icons/index.js": {
+    "file": "blocks/header-icons/index.js",
+    "name": "header-icons/index",
+    "src": "blocks/header-icons/index.js",
+    "isEntry": true
+  },
+  "blocks/hero-layout/index.js": {
+    "file": "blocks/hero-layout/index.js",
+    "name": "hero-layout/index",
+    "src": "blocks/hero-layout/index.js",
+    "isEntry": true
+  },
+  "blocks/hero/index.js": {
+    "file": "blocks/hero/index.js",
+    "name": "hero/index",
+    "src": "blocks/hero/index.js",
+    "isEntry": true
+  },
+  "blocks/icon-feature-list/index.js": {
+    "file": "blocks/icon-feature-list/index.js",
+    "name": "icon-feature-list/index",
+    "src": "blocks/icon-feature-list/index.js",
+    "isEntry": true
+  },
+  "blocks/icon/index.js": {
+    "file": "blocks/icon/index.js",
+    "name": "icon/index",
+    "src": "blocks/icon/index.js",
+    "isEntry": true
+  },
+  "blocks/live-sales-popup/index.js": {
+    "file": "blocks/live-sales-popup/index.js",
+    "name": "live-sales-popup/index",
+    "src": "blocks/live-sales-popup/index.js",
+    "isEntry": true
+  },
+  "blocks/logo/index.js": {
+    "file": "blocks/logo/index.js",
+    "name": "logo/index",
+    "src": "blocks/logo/index.js",
+    "isEntry": true
+  },
+  "blocks/lookbook/index.js": {
+    "file": "blocks/lookbook/index.js",
+    "name": "lookbook/index",
+    "src": "blocks/lookbook/index.js",
+    "isEntry": true
+  },
+  "blocks/marquee/index.js": {
+    "file": "blocks/marquee/index.js",
+    "name": "marquee/index",
+    "src": "blocks/marquee/index.js",
+    "isEntry": true
+  },
+  "blocks/mega-menu/index.js": {
+    "file": "blocks/mega-menu/index.js",
+    "name": "mega-menu/index",
+    "src": "blocks/mega-menu/index.js",
+    "isEntry": true
+  },
+  "blocks/mini-cart/index.js": {
+    "file": "blocks/mini-cart/index.js",
+    "name": "mini-cart/index",
+    "src": "blocks/mini-cart/index.js",
+    "isEntry": true
+  },
+  "blocks/mobile-sticky-bar/index.js": {
+    "file": "blocks/mobile-sticky-bar/index.js",
+    "name": "mobile-sticky-bar/index",
+    "src": "blocks/mobile-sticky-bar/index.js",
+    "isEntry": true
+  },
+  "blocks/my-account/index.js": {
+    "file": "blocks/my-account/index.js",
+    "name": "my-account/index",
+    "src": "blocks/my-account/index.js",
+    "isEntry": true
+  },
+  "blocks/navigation/index.js": {
+    "file": "blocks/navigation/index.js",
+    "name": "navigation/index",
+    "src": "blocks/navigation/index.js",
+    "isEntry": true
+  },
+  "blocks/newsletter/index.js": {
+    "file": "blocks/newsletter/index.js",
+    "name": "newsletter/index",
+    "src": "blocks/newsletter/index.js",
+    "isEntry": true
+  },
+  "blocks/off-canvas/index.js": {
+    "file": "blocks/off-canvas/index.js",
+    "name": "off-canvas/index",
+    "src": "blocks/off-canvas/index.js",
+    "isEntry": true
+  },
+  "blocks/order-confirmation/index.js": {
+    "file": "blocks/order-confirmation/index.js",
+    "name": "order-confirmation/index",
+    "src": "blocks/order-confirmation/index.js",
+    "isEntry": true
+  },
+  "blocks/pagination/index.js": {
+    "file": "blocks/pagination/index.js",
+    "name": "pagination/index",
+    "src": "blocks/pagination/index.js",
+    "isEntry": true
+  },
+  "blocks/payment-icons/index.js": {
+    "file": "blocks/payment-icons/index.js",
+    "name": "payment-icons/index",
+    "src": "blocks/payment-icons/index.js",
+    "isEntry": true
+  },
+  "blocks/posts-grid/index.js": {
+    "file": "blocks/posts-grid/index.js",
+    "name": "posts-grid/index",
+    "src": "blocks/posts-grid/index.js",
+    "isEntry": true
+  },
+  "blocks/pricing-table/index.js": {
+    "file": "blocks/pricing-table/index.js",
+    "name": "pricing-table/index",
+    "src": "blocks/pricing-table/index.js",
+    "isEntry": true
+  },
+  "blocks/product-card/index.js": {
+    "file": "blocks/product-card/index.js",
+    "name": "product-card/index",
+    "src": "blocks/product-card/index.js",
+    "isEntry": true
+  },
+  "blocks/product-carousel/index.js": {
+    "file": "blocks/product-carousel/index.js",
+    "name": "product-carousel/index",
+    "src": "blocks/product-carousel/index.js",
+    "isEntry": true
+  },
+  "blocks/product-filters/index.js": {
+    "file": "blocks/product-filters/index.js",
+    "name": "product-filters/index",
+    "src": "blocks/product-filters/index.js",
+    "isEntry": true
+  },
+  "blocks/product-gallery/index.js": {
+    "file": "blocks/product-gallery/index.js",
+    "name": "product-gallery/index",
+    "src": "blocks/product-gallery/index.js",
+    "isEntry": true
+  },
+  "blocks/product-grid/index.js": {
+    "file": "blocks/product-grid/index.js",
+    "name": "product-grid/index",
+    "src": "blocks/product-grid/index.js",
+    "isEntry": true
+  },
+  "blocks/product-tabs/index.js": {
+    "file": "blocks/product-tabs/index.js",
+    "name": "product-tabs/index",
+    "src": "blocks/product-tabs/index.js",
+    "isEntry": true
+  },
+  "blocks/promo-banner/index.js": {
+    "file": "blocks/promo-banner/index.js",
+    "name": "promo-banner/index",
+    "src": "blocks/promo-banner/index.js",
+    "isEntry": true
+  },
+  "blocks/quick-view/index.js": {
+    "file": "blocks/quick-view/index.js",
+    "name": "quick-view/index",
+    "src": "blocks/quick-view/index.js",
+    "isEntry": true
+  },
+  "blocks/recently-viewed/index.js": {
+    "file": "blocks/recently-viewed/index.js",
+    "name": "recently-viewed/index",
+    "src": "blocks/recently-viewed/index.js",
+    "isEntry": true
+  },
+  "blocks/reviews-summary/index.js": {
+    "file": "blocks/reviews-summary/index.js",
+    "name": "reviews-summary/index",
+    "src": "blocks/reviews-summary/index.js",
+    "isEntry": true
+  },
+  "blocks/search/index.js": {
+    "file": "blocks/search/index.js",
+    "name": "search/index",
+    "src": "blocks/search/index.js",
+    "isEntry": true
+  },
+  "blocks/section-wrapper/index.js": {
+    "file": "blocks/section-wrapper/index.js",
+    "name": "section-wrapper/index",
+    "src": "blocks/section-wrapper/index.js",
+    "isEntry": true
+  },
+  "blocks/shipping-partners/index.js": {
+    "file": "blocks/shipping-partners/index.js",
+    "name": "shipping-partners/index",
+    "src": "blocks/shipping-partners/index.js",
+    "isEntry": true
+  },
+  "blocks/shipping-progress/index.js": {
+    "file": "blocks/shipping-progress/index.js",
+    "name": "shipping-progress/index",
+    "src": "blocks/shipping-progress/index.js",
+    "isEntry": true
+  },
+  "blocks/shop-toolbar/index.js": {
+    "file": "blocks/shop-toolbar/index.js",
+    "name": "shop-toolbar/index",
+    "src": "blocks/shop-toolbar/index.js",
+    "isEntry": true
+  },
+  "blocks/single-product/index.js": {
+    "file": "blocks/single-product/index.js",
+    "name": "single-product/index",
+    "src": "blocks/single-product/index.js",
+    "isEntry": true
+  },
+  "blocks/slide/index.js": {
+    "file": "blocks/slide/index.js",
+    "name": "slide/index",
+    "src": "blocks/slide/index.js",
+    "isEntry": true
+  },
+  "blocks/slider/index.js": {
+    "file": "blocks/slider/index.js",
+    "name": "slider/index",
+    "src": "blocks/slider/index.js",
+    "isEntry": true
+  },
+  "blocks/spacer-divider/index.js": {
+    "file": "blocks/spacer-divider/index.js",
+    "name": "spacer-divider/index",
+    "src": "blocks/spacer-divider/index.js",
+    "isEntry": true
+  },
+  "blocks/split-banner/index.js": {
+    "file": "blocks/split-banner/index.js",
+    "name": "split-banner/index",
+    "src": "blocks/split-banner/index.js",
+    "isEntry": true
+  },
+  "blocks/stats-counter/index.js": {
+    "file": "blocks/stats-counter/index.js",
+    "name": "stats-counter/index",
+    "src": "blocks/stats-counter/index.js",
+    "isEntry": true
+  },
+  "blocks/stock-countdown/index.js": {
+    "file": "blocks/stock-countdown/index.js",
+    "name": "stock-countdown/index",
+    "src": "blocks/stock-countdown/index.js",
+    "isEntry": true
+  },
+  "blocks/testimonials/index.js": {
+    "file": "blocks/testimonials/index.js",
+    "name": "testimonials/index",
+    "src": "blocks/testimonials/index.js",
+    "isEntry": true
+  },
+  "blocks/trust-badges/index.js": {
+    "file": "blocks/trust-badges/index.js",
+    "name": "trust-badges/index",
+    "src": "blocks/trust-badges/index.js",
+    "isEntry": true
+  },
+  "blocks/trust-strip/index.js": {
+    "file": "blocks/trust-strip/index.js",
+    "name": "trust-strip/index",
+    "src": "blocks/trust-strip/index.js",
+    "isEntry": true
+  },
+  "blocks/variation-picker/index.js": {
+    "file": "blocks/variation-picker/index.js",
+    "name": "variation-picker/index",
+    "src": "blocks/variation-picker/index.js",
+    "isEntry": true
+  },
+  "blocks/video-hero/index.js": {
+    "file": "blocks/video-hero/index.js",
+    "name": "video-hero/index",
+    "src": "blocks/video-hero/index.js",
+    "isEntry": true
+  },
+  "blocks/wishlist/index.js": {
+    "file": "blocks/wishlist/index.js",
+    "name": "wishlist/index",
+    "src": "blocks/wishlist/index.js",
+    "isEntry": true
+  }
+}

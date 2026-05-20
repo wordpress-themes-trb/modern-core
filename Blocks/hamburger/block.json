@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/hamburger",
+  "title": "Hamburger Drawer",
+  "category": "modern-core",
+  "icon": "menu-alt",
+  "description": "A hamburger toggle that opens a customizable off-canvas drawer.",
+  "attributes": {
+    "drawerType": { "type": "string", "default": "slide-right" },
+    "drawerWidth": { "type": "number", "default": 400 },
+    "drawerBg": { "type": "string", "default": "#ffffff" },
+    "overlayBlur": { "type": "number", "default": 5 },
+    "iconColor": { "type": "string", "default": "#0f172a" },
+    "iconSize": { "type": "number", "default": 28 }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-hamburger-js",
+  "render": "file:./render.php"
+}

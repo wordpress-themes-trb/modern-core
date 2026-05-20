@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/logo",
+  "title": "Advanced Logo",
+  "category": "modern-core",
+  "icon": "format-image",
+  "description": "Brand logo with image, text, and tagline support.",
+  "attributes": {
+    "logoType": { "type": "string", "default": "text" },
+    "brandName": { "type": "string", "default": "MODERN CORE" },
+    "mediaUrl": { "type": "string", "default": "" },
+    "mediaId": { "type": "number", "default": 0 },
+    "logoWidth": { "type": "number", "default": 150 },
+    "tagline": { "type": "string", "default": "" },
+    "alignment": { "type": "string", "default": "left" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-logo-js",
+  "render": "file:./render.php"
+}

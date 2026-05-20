@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/countdown",
+  "title": "Countdown Timer",
+  "category": "modern-core",
+  "icon": "clock",
+  "description": "Urgency-driving live countdown with customizable expiration actions.",
+  "attributes": {
+    "targetDate": { "type": "string", "default": "" },
+    "styleMode": { "type": "string", "default": "boxed" },
+    "digitSize": { "type": "number", "default": 32 },
+    "digitColor": { "type": "string", "default": "#ffffff" },
+    "labelColor": { "type": "string", "default": "rgba(255,255,255,0.6)" },
+    "boxBg": { "type": "string", "default": "rgba(255,255,255,0.1)" },
+    "boxRadius": { "type": "number", "default": 8 },
+    "labelDays": { "type": "string", "default": "Days" },
+    "labelHours": { "type": "string", "default": "Hours" },
+    "labelMins": { "type": "string", "default": "Mins" },
+    "labelSecs": { "type": "string", "default": "Secs" },
+    "expireAction": { "type": "string", "default": "stop" },
+    "expireMessage": { "type": "string", "default": "This offer has expired." },
+    "expireUrl": { "type": "string", "default": "" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-countdown-js",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/featured-product",
+  "title": "Featured Product",
+  "category": "modern-core",
+  "icon": "star-filled",
+  "description": "An editorial, high-conversion display for a single hero product.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "productId": { "type": "number", "default": 0 },
+    "layoutMode": { "type": "string", "default": "side-by-side" },
+    "preHeadline": { "type": "string", "default": "FEATURED" },
+    "showRating": { "type": "boolean", "default": true },
+    "showPrice": { "type": "boolean", "default": true },
+    "showExcerpt": { "type": "boolean", "default": true },
+    "showGallery": { "type": "boolean", "default": true },
+    "imageBg": { "type": "string", "default": "#f8fafc" },
+    "contentBg": { "type": "string", "default": "#ffffff" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "buttonStyle": { "type": "string", "default": "solid" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-featured-product-js",
+  "render": "file:./render.php"
+}

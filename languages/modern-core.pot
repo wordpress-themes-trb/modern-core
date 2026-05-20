@@ -1,0 +1,260 @@
+# Copyright (C) 2026 Modern Core Team
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Modern Core 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/modern-core\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-14T15:16:15+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Modern Core"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://example.com/modern-core"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Enterprise-grade, high-performance WooCommerce theme built with Full Site Editing and a Service-Oriented Architecture."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Modern Core Team"
+msgstr ""
+
+#: Blocks/announcement-bar/render.php:31
+msgid "Dismiss announcement"
+msgstr ""
+
+#: Blocks/BlockManager.php:65
+msgid "Modern Core Blocks"
+msgstr ""
+
+#: Blocks/product-grid/render.php:14
+msgid "WooCommerce must be activated to display products."
+msgstr ""
+
+#: Blocks/product-grid/render.php:36
+msgid "No products found."
+msgstr ""
+
+#: inc/Accessibility/A11yEnforcer.php:40
+msgid "Skip to main content"
+msgstr ""
+
+#: Blocks/announcement-bar/edit.jsx:12
+msgid "Settings"
+msgstr ""
+
+#: Blocks/announcement-bar/edit.jsx:14
+msgid "Allow users to dismiss"
+msgstr ""
+
+#: Blocks/announcement-bar/edit.jsx:26
+msgid "Enter announcement..."
+msgstr ""
+
+#: Blocks/hero/edit.jsx:14
+msgid "Background Media"
+msgstr ""
+
+#: Blocks/hero/edit.jsx:22
+msgid "Change Image"
+msgstr ""
+
+#: Blocks/hero/edit.jsx:22
+msgid "Select Image"
+msgstr ""
+
+#: Blocks/hero/edit.jsx:28
+msgid "Call to Action"
+msgstr ""
+
+#: Blocks/hero/edit.jsx:30
+msgid "Button URL"
+msgstr ""
+
+#: Blocks/hero/edit.jsx:43
+msgid "Enter headline..."
+msgstr ""
+
+#: Blocks/hero/edit.jsx:49
+msgid "Enter subheadline..."
+msgstr ""
+
+#: Blocks/hero/edit.jsx:57
+msgid "Button text..."
+msgstr ""
+
+#: Blocks/product-grid/edit.jsx:14
+msgid "Grid Settings"
+msgstr ""
+
+#: Blocks/product-grid/edit.jsx:16
+msgid "Number of Products"
+msgstr ""
+
+#: Blocks/product-grid/edit.jsx:23
+msgid "Columns"
+msgstr ""
+
+#: Blocks/announcement-bar/block.json
+msgctxt "block title"
+msgid "Announcement Bar"
+msgstr ""
+
+#: Blocks/announcement-bar/block.json
+msgctxt "block description"
+msgid "A dismissible sitewide announcement notice."
+msgstr ""
+
+#: Blocks/hero/block.json
+msgctxt "block title"
+msgid "Hero Section"
+msgstr ""
+
+#: Blocks/hero/block.json
+msgctxt "block description"
+msgid "Full-width hero with headline, subheadline, and CTA."
+msgstr ""
+
+#: Blocks/product-grid/block.json
+msgctxt "block title"
+msgid "Product Grid"
+msgstr ""
+
+#: Blocks/product-grid/block.json
+msgctxt "block description"
+msgid "Displays a dynamic grid of WooCommerce products."
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary (Dark)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Secondary (Light)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Accent (Brand)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral (Text)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Semantic Success"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Semantic Warning"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Semantic Error"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "2XL"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "3XL"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XXS"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XS"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XL"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XXL"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Large"
+msgstr ""

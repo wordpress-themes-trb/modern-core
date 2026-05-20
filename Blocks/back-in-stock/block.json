@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/back-in-stock",
+  "title": "Back in Stock Alert",
+  "category": "modern-core",
+  "icon": "bell",
+  "description": "Demand capture form that only appears when a product is out of stock.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "heading": { "type": "string", "default": "Notify me when available" },
+    "message": {
+      "type": "string",
+      "default": "We'll send you a quick email when this item is back in stock."
+    },
+    "btnText": { "type": "string", "default": "Notify Me" },
+    "showName": { "type": "boolean", "default": false },
+    "privacyNote": {
+      "type": "string",
+      "default": "We respect your privacy and won't spam you."
+    },
+    "successHeading": { "type": "string", "default": "You're on the list!" },
+    "successMsg": {
+      "type": "string",
+      "default": "We will email you the moment this returns."
+    },
+    "emailSubject": {
+      "type": "string",
+      "default": "Great news! {product_name} is back in stock."
+    },
+    "emailBody": {
+      "type": "string",
+      "default": "The wait is over. {product_name} is now available again. Grab yours before it sells out!"
+    },
+    "bgColor": { "type": "string", "default": "#f8fafc" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "inputRadius": { "type": "number", "default": 6 }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-back-in-stock-js",
+  "render": "file:./render.php"
+}

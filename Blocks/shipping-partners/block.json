@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/shipping-partners",
+  "title": "Shipping Partners",
+  "category": "modern-core",
+  "icon": "car",
+  "description": "Delivery credibility signal displaying recognized shipping carrier logos.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "showLabel": { "type": "boolean", "default": true },
+    "labelText": { "type": "string", "default": "We ship with" },
+    "badgeStyle": { "type": "string", "default": "mono-dark" },
+    "iconHeight": { "type": "number", "default": 28 },
+    "gap": { "type": "number", "default": 30 },
+    "alignment": { "type": "string", "default": "center" },
+    "activeIcons": {
+      "type": "array",
+      "default": ["dhl", "fedex", "ups", "usps"]
+    },
+    "labelColor": { "type": "string", "default": "#64748b" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-shipping-partners-js",
+  "render": "file:./render.php"
+}

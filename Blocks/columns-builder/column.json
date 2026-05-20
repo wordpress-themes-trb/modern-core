@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/column",
+  "title": "Column",
+  "parent": ["modern-core/columns-builder"],
+  "icon": "grid-view",
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "bgColor": { "type": "string", "default": "transparent" },
+    "padding": { "type": "number", "default": 0 },
+    "radius": { "type": "number", "default": 0 },
+    "borderColor": { "type": "string", "default": "transparent" },
+    "hideOnMobile": { "type": "boolean", "default": false }
+  },
+  "textdomain": "modern-core",
+  "render": "file:./column-render.php"
+}

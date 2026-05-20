@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/tab-pane",
+  "title": "Tab Pane",
+  "category": "modern-core",
+  "icon": "feedback",
+  "parent": ["modern-core/content-tabs"],
+  "description": "An individual content pane for the Content Tabs block.",
+  "supports": { "html": false },
+  "attributes": {
+    "tabTitle": { "type": "string", "default": "New Tab" },
+    "tabIcon": { "type": "string", "default": "" }
+  },
+  "editorScript": "modern-core-tab-pane-js",
+  "render": "file:./render.php"
+}

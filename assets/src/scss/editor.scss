@@ -1,0 +1,11 @@
+/**
+ * Editor Theme Stylesheet
+ * 
+ * This file is enqueued exclusively in the Gutenberg editor. 
+ * Use this to tweak editor-specific UI quirks.
+ */
+
+.editor-styles-wrapper {
+  // Ensure the editor canvas matches your theme's base behavior
+  overflow-x: hidden;
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/shop-toolbar",
+  "title": "Shop Toolbar",
+  "category": "modern-core",
+  "icon": "minus",
+  "description": "Catalog control bar for sorting, layout toggles, and filter triggers.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "showCount": { "type": "boolean", "default": true },
+    "showSort": { "type": "boolean", "default": true },
+    "showViewToggles": { "type": "boolean", "default": true },
+    "showFilterTrigger": { "type": "boolean", "default": true },
+    "borderBottom": { "type": "boolean", "default": true },
+    "paddingVert": { "type": "number", "default": 15 },
+    "textColor": { "type": "string", "default": "#64748b" },
+    "accentColor": { "type": "string", "default": "#0f172a" },
+    "borderColor": { "type": "string", "default": "#e2e8f0" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-shop-toolbar-js",
+  "render": "file:./render.php"
+}

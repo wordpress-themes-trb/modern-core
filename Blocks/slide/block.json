@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/slide",
+  "title": "Slide Canvas",
+  "category": "modern-core",
+  "icon": "format-image",
+  "parent": ["modern-core/slider"],
+  "attributes": {
+    "bgColor": { "type": "string", "default": "#0f172a" },
+    "bgImageUrl": { "type": "string", "default": "" },
+    "overlayOpacity": { "type": "number", "default": 50 }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-slide-js",
+  "render": "file:./render.php"
+}

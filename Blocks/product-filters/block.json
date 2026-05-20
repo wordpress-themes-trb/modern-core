@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/product-filters",
+  "title": "Dynamic Product Filters",
+  "category": "modern-core",
+  "icon": "filter",
+  "description": "Dense ecommerce product filtering panel with color swatches, price sliders, and toggles.",
+  "attributes": {
+    "showPriceFilter": { "type": "boolean", "default": true },
+    "minPrice": { "type": "number", "default": 0 },
+    "maxPrice": { "type": "number", "default": 250 },
+    "showColorFilter": { "type": "boolean", "default": true },
+    "swatchShape": { "type": "string", "default": "circle" },
+    "swatchSize": { "type": "number", "default": 32 },
+    "showStatusFilter": { "type": "boolean", "default": true },
+    "showRatingFilter": { "type": "boolean", "default": true },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "headingColor": { "type": "string", "default": "inherit" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-filters-js",
+  "render": "file:./render.php"
+}

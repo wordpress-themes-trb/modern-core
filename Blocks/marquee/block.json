@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/marquee",
+  "title": "Marquee Announcement",
+  "category": "modern-core",
+  "icon": "megaphone",
+  "description": "A premium scrolling announcement bar.",
+  "attributes": {
+    "text": {
+      "type": "string",
+      "default": "⚡ FREE WORLDWIDE SHIPPING ON ORDERS OVER $150 ⚡"
+    },
+    "speed": { "type": "number", "default": 15 },
+    "isScrolling": { "type": "boolean", "default": true },
+    "bgColor": { "type": "string", "default": "#0f172a" },
+    "textColor": { "type": "string", "default": "#ffffff" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-marquee-js",
+  "render": "file:./render.php"
+}

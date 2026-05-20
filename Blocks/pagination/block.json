@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/pagination",
+  "title": "Pagination",
+  "category": "modern-core",
+  "icon": "ellipsis",
+  "description": "Catalog navigation with AJAX Load More and Infinite Scroll capabilities.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "mode": { "type": "string", "default": "numbers" },
+    "alignment": { "type": "string", "default": "center" },
+    "prevNextStyle": { "type": "string", "default": "both" },
+    "loadMoreText": { "type": "string", "default": "Load More Products" },
+    "loadingText": { "type": "string", "default": "Loading..." },
+    "buttonRadius": { "type": "number", "default": 8 },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "borderColor": { "type": "string", "default": "#e2e8f0" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-pagination-js",
+  "render": "file:./render.php"
+}

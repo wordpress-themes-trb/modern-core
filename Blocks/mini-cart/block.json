@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/mini-cart",
+  "title": "Mini Cart Drawer",
+  "category": "modern-core",
+  "icon": "cart",
+  "description": "Off-canvas purchase momentum preserver with real-time AJAX updates.",
+  "supports": {
+    "align": false,
+    "html": false
+  },
+  "attributes": {
+    "autoOpen": { "type": "boolean", "default": true },
+    "openDelay": { "type": "number", "default": 400 },
+    "showUndo": { "type": "boolean", "default": true },
+    "undoDuration": { "type": "number", "default": 4000 },
+    "drawerWidth": { "type": "number", "default": 400 },
+    "drawerTitle": { "type": "string", "default": "Your Cart" },
+    "emptyHeading": { "type": "string", "default": "Your cart is empty" },
+    "emptyMessage": {
+      "type": "string",
+      "default": "Looks like you haven't added anything yet."
+    },
+    "emptyBtnText": { "type": "string", "default": "Start Shopping" },
+    "emptyBtnLink": { "type": "string", "default": "/shop" },
+    "bgColor": { "type": "string", "default": "#ffffff" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "overlayOpacity": { "type": "number", "default": 50 }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-mini-cart-js",
+  "render": "file:./render.php"
+}

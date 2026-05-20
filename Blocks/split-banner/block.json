@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/split-banner",
+  "title": "Editorial Split Banner",
+  "category": "modern-core",
+  "icon": "layout",
+  "description": "A magazine-quality two-column storytelling banner.",
+  "supports": {
+    "align": ["full", "wide"],
+    "html": false
+  },
+  "attributes": {
+    "mediaWidth": { "type": "number", "default": 50 },
+    "mediaSide": { "type": "string", "default": "left" },
+    "mediaUrl": { "type": "string", "default": "" },
+    "overlayOpacity": { "type": "number", "default": 40 },
+    "contentBg": { "type": "string", "default": "#f8fafc" },
+    "contentColor": { "type": "string", "default": "#0f172a" },
+    "dividerShape": { "type": "string", "default": "diagonal" },
+    "vAlign": { "type": "string", "default": "center" },
+    "minHeight": { "type": "number", "default": 600 },
+    "mobileStack": { "type": "string", "default": "media-first" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-split-banner-js",
+  "render": "file:./render.php"
+}

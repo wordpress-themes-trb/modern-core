@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/live-sales-popup",
+  "title": "Live Sales Popup",
+  "category": "modern-core",
+  "icon": "megaphone",
+  "description": "Real-time WooCommerce purchase notifications to build commercial momentum.",
+  "supports": {
+    "align": false,
+    "html": false
+  },
+  "attributes": {
+    "lookbackDays": { "type": "number", "default": 7 },
+    "maxOrders": { "type": "number", "default": 10 },
+    "privacyMode": { "type": "string", "default": "first_name" },
+    "position": { "type": "string", "default": "bottom-left" },
+    "animStyle": { "type": "string", "default": "slide" },
+    "durationMs": { "type": "number", "default": 5000 },
+    "intervalMs": { "type": "number", "default": 3000 },
+    "cardBg": { "type": "string", "default": "#ffffff" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "cardRadius": { "type": "number", "default": 8 },
+    "shadowOpacity": { "type": "number", "default": 15 }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-live-sales-js",
+  "render": "file:./render.php"
+}

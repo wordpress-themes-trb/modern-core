@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/product-card",
+  "title": "Standalone Product Card",
+  "category": "modern-core",
+  "icon": "feedback",
+  "description": "An editorial, standalone product card with dynamic WC data routing.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "sourceMode": { "type": "string", "default": "dynamic" },
+    "productId": { "type": "number", "default": 0 },
+    "manualImage": { "type": "string", "default": "" },
+    "manualTitle": { "type": "string", "default": "Premium Cotton Silhouette" },
+    "manualPrice": { "type": "string", "default": "$120.00" },
+    "manualDesc": {
+      "type": "string",
+      "default": "Engineered for the modern aesthetic with uncompromising quality."
+    },
+    "orientation": { "type": "string", "default": "vertical" },
+    "imageRatio": { "type": "string", "default": "3/4" },
+    "cardRadius": { "type": "number", "default": 12 },
+    "cardBg": { "type": "string", "default": "#ffffff" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "hoverLift": { "type": "boolean", "default": true },
+    "showCategory": { "type": "boolean", "default": true },
+    "showRating": { "type": "boolean", "default": true },
+    "showDesc": { "type": "boolean", "default": false },
+    "showWishlist": { "type": "boolean", "default": true },
+    "atcStyle": { "type": "string", "default": "solid" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-product-card-js",
+  "render": "file:./render.php"
+}

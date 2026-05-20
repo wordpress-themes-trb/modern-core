@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/spacer-divider",
+  "title": "Spacer / Divider",
+  "category": "modern-core",
+  "icon": "minus",
+  "description": "Precision vertical rhythm and visual separation tool.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "mode": { "type": "string", "default": "spacer" },
+    "heightDesktop": { "type": "number", "default": 60 },
+    "heightMobile": { "type": "number", "default": 40 },
+    "dividerStyle": { "type": "string", "default": "solid" },
+    "dividerColor": { "type": "string", "default": "#e2e8f0" },
+    "dividerThickness": { "type": "number", "default": 1 },
+    "dividerWidth": { "type": "number", "default": 100 },
+    "dividerAlign": { "type": "string", "default": "center" },
+    "centerElement": { "type": "string", "default": "none" },
+    "centerText": { "type": "string", "default": "✧" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-spacer-js",
+  "render": "file:./render.php"
+}

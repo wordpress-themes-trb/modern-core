@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/testimonials",
+  "title": "Testimonials",
+  "category": "modern-core",
+  "icon": "format-quote",
+  "description": "Authentic social proof engine with grid, masonry, and carousel layouts.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "layoutMode": { "type": "string", "default": "grid" },
+    "sectionTitle": { "type": "string", "default": "What our customers say" },
+    "showAggregate": { "type": "boolean", "default": true },
+    "aggregateScore": { "type": "string", "default": "4.9" },
+    "aggregateCount": { "type": "string", "default": "2,400" },
+    "colsDesktop": { "type": "number", "default": 3 },
+    "colsMobile": { "type": "number", "default": 1 },
+    "showAvatar": { "type": "boolean", "default": true },
+    "showRating": { "type": "boolean", "default": true },
+    "cardBg": { "type": "string", "default": "#ffffff" },
+    "cardRadius": { "type": "number", "default": 12 },
+    "shadowOpacity": { "type": "number", "default": 5 },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "starColor": { "type": "string", "default": "#f59e0b" },
+    "testimonials": {
+      "type": "array",
+      "default": [
+        {
+          "name": "Sarah J.",
+          "title": "Verified Buyer",
+          "quote": "Absolutely incredible quality. It arrived faster than expected and the fit is perfect. I will definitely be ordering again.",
+          "rating": 5,
+          "avatar": ""
+        },
+        {
+          "name": "Michael T.",
+          "title": "Verified Buyer",
+          "quote": "The customer service was exceptional. They helped me find exactly what I needed. The product itself feels incredibly premium.",
+          "rating": 5,
+          "avatar": ""
+        },
+        {
+          "name": "Emma W.",
+          "title": "Verified Buyer",
+          "quote": "I've tried similar products from other brands, but this one completely blew me away. The attention to detail is unmatched.",
+          "rating": 5,
+          "avatar": ""
+        }
+      ]
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-testimonials-js",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/stock-countdown",
+  "title": "Stock Countdown",
+  "category": "modern-core",
+  "icon": "chart-bar",
+  "description": "Dynamic, threshold-based inventory scarcity indicator.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "displayMode": { "type": "string", "default": "bar" },
+    "maxStock": { "type": "number", "default": 100 },
+    "showThreshold": { "type": "number", "default": 20 },
+    "cautionThreshold": { "type": "number", "default": 10 },
+    "urgentThreshold": { "type": "number", "default": 5 },
+    "neutralColor": { "type": "string", "default": "#3b82f6" },
+    "cautionColor": { "type": "string", "default": "#f59e0b" },
+    "urgentColor": { "type": "string", "default": "#ef4444" },
+    "trackColor": { "type": "string", "default": "#e2e8f0" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "enablePulse": { "type": "boolean", "default": true }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-stock-js",
+  "render": "file:./render.php"
+}

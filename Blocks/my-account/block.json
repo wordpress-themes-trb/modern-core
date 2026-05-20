@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/my-account",
+  "title": "My Account Dashboard",
+  "category": "modern-core",
+  "icon": "admin-users",
+  "description": "Premium customer relationship hub and account management interface.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "layoutMode": { "type": "string", "default": "sidebar" },
+    "navWidth": { "type": "number", "default": 280 },
+    "welcomeFormat": { "type": "string", "default": "Welcome back, {name}!" },
+    "showRecentOrders": { "type": "boolean", "default": true },
+    "showWishlist": { "type": "boolean", "default": true },
+    "navBg": { "type": "string", "default": "#f8fafc" },
+    "contentBg": { "type": "string", "default": "#ffffff" },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "borderColor": { "type": "string", "default": "#e2e8f0" },
+    "cardRadius": { "type": "number", "default": 12 }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-my-account-js",
+  "render": "file:./render.php"
+}

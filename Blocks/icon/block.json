@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/icon",
+  "title": "Icon",
+  "category": "modern-core",
+  "icon": "star-filled",
+  "description": "Atomic visual accent with an integrated SVG library.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "iconName": { "type": "string", "default": "star" },
+    "customSvg": { "type": "string", "default": "" },
+    "presentation": { "type": "string", "default": "standalone" },
+    "shape": { "type": "string", "default": "circle" },
+    "iconSize": { "type": "number", "default": 32 },
+    "bgPadding": { "type": "number", "default": 16 },
+    "borderWidth": { "type": "number", "default": 2 },
+    "text": { "type": "string", "default": "" },
+    "textPosition": { "type": "string", "default": "right" },
+    "link": { "type": "string", "default": "" },
+    "hoverEffect": { "type": "string", "default": "scale" },
+    "iconColor": { "type": "string", "default": "#3b82f6" },
+    "bgColor": { "type": "string", "default": "transparent" },
+    "borderColor": { "type": "string", "default": "#e2e8f0" },
+    "textColor": { "type": "string", "default": "#0f172a" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-icon-js",
+  "render": "file:./render.php"
+}

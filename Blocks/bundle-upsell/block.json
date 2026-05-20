@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/bundle-upsell",
+  "title": "Bundle & Upsell",
+  "category": "modern-core",
+  "icon": "cart",
+  "description": "High-AOV frequently bought together bundle with live pricing.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "sectionTitle": {
+      "type": "string",
+      "default": "Frequently bought together"
+    },
+    "sourceMode": { "type": "string", "default": "dynamic" },
+    "manualIds": { "type": "string", "default": "" },
+    "displayMode": { "type": "string", "default": "checkbox" },
+    "discountType": { "type": "string", "default": "percent" },
+    "discountValue": { "type": "number", "default": 10 },
+    "lockMainProduct": { "type": "boolean", "default": true },
+    "accentColor": { "type": "string", "default": "#0f172a" },
+    "badgeColor": { "type": "string", "default": "#10b981" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-bundle-js",
+  "render": "file:./render.php"
+}

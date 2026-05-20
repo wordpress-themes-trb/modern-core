@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ruleset name="ModernCoreStandard">
+    <description>PSR-12 coding standard for Modern Core Theme</description>
+    <arg name="colors"/>
+    <arg value="sp"/>
+    <rule ref="PSR12"/>
+    <file>functions.php</file>
+    <file>inc/</file>
+    <file>blocks/</file>
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+</ruleset>

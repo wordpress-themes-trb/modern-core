@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/icon-feature-list",
+  "title": "Icon Feature List",
+  "category": "modern-core",
+  "icon": "list-view",
+  "description": "Value proposition communicator with customizable icons and layouts.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "layoutMode": { "type": "string", "default": "row" },
+    "colsDesktop": { "type": "number", "default": 4 },
+    "colsMobile": { "type": "number", "default": 1 },
+    "iconPosition": { "type": "string", "default": "top" },
+    "iconStyle": { "type": "string", "default": "outline" },
+    "iconSize": { "type": "number", "default": 32 },
+    "headingColor": { "type": "string", "default": "#0f172a" },
+    "textColor": { "type": "string", "default": "#64748b" },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "cardBg": { "type": "string", "default": "#ffffff" },
+    "features": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Free Shipping",
+          "desc": "On all orders over $150",
+          "icon": "truck",
+          "image": "",
+          "link": ""
+        },
+        {
+          "title": "Secure Checkout",
+          "desc": "100% encrypted payments",
+          "icon": "shield",
+          "image": "",
+          "link": ""
+        },
+        {
+          "title": "Easy Returns",
+          "desc": "30-day return policy",
+          "icon": "refresh",
+          "image": "",
+          "link": ""
+        },
+        {
+          "title": "24/7 Support",
+          "desc": "We are here to help",
+          "icon": "chat",
+          "image": "",
+          "link": ""
+        }
+      ]
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-feature-list-js",
+  "render": "file:./render.php"
+}

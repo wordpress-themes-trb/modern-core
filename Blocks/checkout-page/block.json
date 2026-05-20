@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/checkout-page",
+  "title": "Checkout Page Layout",
+  "category": "modern-core",
+  "icon": "shield",
+  "description": "Frictionless, conversion-optimized transaction environment.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "layoutMode": { "type": "string", "default": "single" },
+    "progressStyle": { "type": "string", "default": "numbered" },
+    "animStyle": { "type": "string", "default": "slide" },
+    "labelStyle": { "type": "string", "default": "above" },
+    "showTrustStrip": { "type": "boolean", "default": true },
+    "trustText": {
+      "type": "string",
+      "default": "SSL Encrypted Secure Checkout"
+    },
+    "summaryBg": { "type": "string", "default": "#f8fafc" },
+    "summaryRadius": { "type": "number", "default": 12 },
+    "inputRadius": { "type": "number", "default": 8 },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "borderColor": { "type": "string", "default": "#e2e8f0" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-checkout-page-js",
+  "render": "file:./render.php"
+}

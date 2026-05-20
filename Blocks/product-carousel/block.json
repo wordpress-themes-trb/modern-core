@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/product-carousel",
+  "title": "Product Carousel",
+  "category": "modern-core",
+  "icon": "leftright",
+  "description": "A scrollable shelf of products with native swipe and autoplay.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "sectionTitle": { "type": "string", "default": "Featured Products" },
+    "sectionSubtitle": { "type": "string", "default": "" },
+    "viewAllText": { "type": "string", "default": "View all →" },
+    "viewAllLink": { "type": "string", "default": "#" },
+    "productCount": { "type": "number", "default": 12 },
+    "querySort": { "type": "string", "default": "date" },
+    "colsDesktop": { "type": "number", "default": 4 },
+    "colsTablet": { "type": "number", "default": 2.5 },
+    "colsMobile": { "type": "number", "default": 1.2 },
+    "imageRatio": { "type": "string", "default": "3/4" },
+    "cardBg": { "type": "string", "default": "#ffffff" },
+    "cardRadius": { "type": "number", "default": 8 },
+    "cardHoverLift": { "type": "boolean", "default": true },
+    "showRating": { "type": "boolean", "default": true },
+    "atcPosition": { "type": "string", "default": "below" },
+    "showArrows": { "type": "boolean", "default": true },
+    "showDots": { "type": "boolean", "default": true },
+    "autoplay": { "type": "boolean", "default": false },
+    "delay": { "type": "number", "default": 4000 },
+    "accentColor": { "type": "string", "default": "#0f172a" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-product-carousel-js",
+  "render": "file:./render.php"
+}

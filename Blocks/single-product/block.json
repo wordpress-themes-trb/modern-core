@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/single-product",
+  "title": "Single Product (PDP)",
+  "category": "modern-core",
+  "icon": "layout",
+  "description": "The ultimate conversion-optimized product detail page layout.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "layoutMode": { "type": "string", "default": "standard" },
+    "splitRatio": { "type": "string", "default": "50-50" },
+    "galleryThumbs": { "type": "string", "default": "bottom" },
+    "imageRatio": { "type": "string", "default": "3/4" },
+    "enableStickyATC": { "type": "boolean", "default": true },
+    "elements": {
+      "type": "array",
+      "default": [
+        { "id": "breadcrumbs", "label": "Breadcrumbs", "visible": true },
+        { "id": "category", "label": "Category Label", "visible": true },
+        { "id": "title", "label": "Product Title", "visible": true },
+        { "id": "rating", "label": "Star Rating", "visible": true },
+        { "id": "price", "label": "Price & Sale Badge", "visible": true },
+        { "id": "excerpt", "label": "Short Description", "visible": true },
+        { "id": "variations", "label": "Variation Selectors", "visible": true },
+        {
+          "id": "add_to_cart",
+          "label": "Add to Cart & Quantity",
+          "visible": true
+        },
+        {
+          "id": "trust_badges",
+          "label": "Trust Indicator Strip",
+          "visible": true
+        },
+        { "id": "meta", "label": "SKU & Tags", "visible": true }
+      ]
+    },
+    "panelBg": { "type": "string", "default": "#ffffff" },
+    "panelRadius": { "type": "number", "default": 0 },
+    "accentColor": { "type": "string", "default": "#0f172a" }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-single-product-js",
+  "render": "file:./render.php"
+}

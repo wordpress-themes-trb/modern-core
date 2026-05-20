@@ -1,0 +1,43 @@
+// ==========================================================================
+// SCSS Variables Map
+// ==========================================================================
+// This file acts as a bridge. It consumes the CSS Custom Properties generated
+// automatically by WordPress from our theme.json, allowing us to use familiar
+// SCSS variables in our custom blocks and WooCommerce overrides.
+
+// Colors
+$color-primary: var(--wp--preset--color--primary);
+$color-secondary: var(--wp--preset--color--secondary);
+$color-accent: var(--wp--preset--color--accent);
+$color-neutral: var(--wp--preset--color--neutral);
+$color-success: var(--wp--preset--color--success);
+$color-warning: var(--wp--preset--color--warning);
+$color-error: var(--wp--preset--color--error);
+
+// Typography (Fluid Values)
+$font-size-xs: var(--wp--preset--font-size--xs);
+$font-size-sm: var(--wp--preset--font-size--sm);
+$font-size-base: var(--wp--preset--font-size--base);
+$font-size-lg: var(--wp--preset--font-size--lg);
+$font-size-xl: var(--wp--preset--font-size--xl);
+$font-size-xxl: var(--wp--preset--font-size--xxl);
+$font-size-xxxl: var(--wp--preset--font-size--xxxl);
+
+// Spacing (Clamp Values)
+$space-xxs: var(--wp--preset--spacing--xxs);
+$space-xs: var(--wp--preset--spacing--xs);
+$space-sm: var(--wp--preset--spacing--sm);
+$space-md: var(--wp--preset--spacing--md);
+$space-lg: var(--wp--preset--spacing--lg);
+$space-xl: var(--wp--preset--spacing--xl);
+$space-xxl: var(--wp--preset--spacing--xxl);
+
+// Shadows
+$shadow-sm: var(--wp--preset--shadow--sm);
+$shadow-md: var(--wp--preset--shadow--md);
+$shadow-lg: var(--wp--preset--shadow--lg);
+
+// Layout Breakpoints (For media queries only, not managed by theme.json)
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;

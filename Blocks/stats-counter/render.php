@@ -1,0 +1,159 @@
+<?php
+$cols_d = $attributes['colsDesktop'] ?? 4;
+$cols_m = $attributes['colsMobile'] ?? 2;
+$align = $attributes['alignment'] ?? 'center';
+$show_dividers = $attributes['showDividers'] ?? true;
+$trigger_once = $attributes['triggerOnce'] ?? true;
+$use_grad = $attributes['useGradient'] ?? false;
+$c1 = $attributes['color1'] ?? '#3b82f6';
+$c2 = $attributes['color2'] ?? '#8b5cf6';
+$num_c = $attributes['numberColor'] ?? '#3b82f6';
+$text_c = $attributes['textColor'] ?? '#64748b';
+$border_c = $attributes['borderColor'] ?? '#e2e8f0';
+$stats = $attributes['stats'] ?? [];
+
+if (empty($stats)) return;
+
+$unique_id = uniqid('mc-stats-');
+$wrapper_attributes = get_block_wrapper_attributes([
+    'class' => "modern-core-stats-counter {$unique_id} align-{$align}",
+    'data-once' => $trigger_once ? 'true' : 'false'
+]);
+
+// Helper for SVGs
+function mc_get_stat_svg($type) {
+    $s = 'width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mc-st-icon"';
+    if ($type === 'users') return "<svg {$s}><path d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'></path><circle cx='9' cy='7' r='4'></circle><path d='M23 21v-2a4 4 0 0 0-3-3.87'></path><path d='M16 3.13a4 4 0 0 1 0 7.75'></path></svg>";
+    if ($type === 'award') return "<svg {$s}><circle cx='12' cy='8' r='7'></circle><polyline points='8.21 13.89 7 23 12 20 17 23 15.79 13.88'></polyline></svg>";
+    if ($type === 'smile') return "<svg {$s}><circle cx='12' cy='12' r='10'></circle><path d='M8 14s1.5 2 4 2 4-2 4-2'></path><line x1='9' y1='9' x2='9.01' y2='9'></line><line x1='15' y1='9' x2='15.01' y2='9'></line></svg>";
+    if ($type === 'star') return "<svg {$s}><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'></polygon></svg>";
+    return '';
+}
+?>
+
+<div <?php echo $wrapper_attributes; ?>>
+    <style>
+        .<?php echo esc_attr($unique_id); ?> {
+            --mc-cols: <?php echo esc_attr($cols_d); ?>;
+            --mc-cols-m: <?php echo esc_attr($cols_m); ?>;
+            --mc-border: <?php echo esc_attr($show_dividers ? $border_c : 'transparent'); ?>;
+            width: 100%; padding: 60px 0; color: <?php echo esc_attr($text_c); ?>;
+        }
+
+        .<?php echo esc_attr($unique_id); ?> .mc-st-grid {
+            display: grid; grid-template-columns: repeat(var(--mc-cols), 1fr);
+        }
+
+        .<?php echo esc_attr($unique_id); ?> .mc-st-item {
+            display: flex; flex-direction: column; padding: 20px 30px;
+            align-items: <?php echo $align === 'flex-start' ? 'flex-start' : ($align === 'flex-end' ? 'flex-end' : 'center'); ?>;
+            text-align: <?php echo $align === 'flex-start' ? 'left' : ($align === 'flex-end' ? 'right' : 'center'); ?>;
+            border-right: 1px solid var(--mc-border);
+        }
+        .<?php echo esc_attr($unique_id); ?> .mc-st-item:nth-child(var(--mc-cols)n) { border-right: none; }
+
+        @media (max-width: 768px) {
+            .<?php echo esc_attr($unique_id); ?> .mc-st-grid { grid-template-columns: repeat(var(--mc-cols-m), 1fr); }
+            .<?php echo esc_attr($unique_id); ?> .mc-st-item { border-right: none; border-bottom: 1px solid var(--mc-border); padding: 30px 15px; }
+            .<?php echo esc_attr($unique_id); ?> .mc-st-item:nth-last-child(-n+var(--mc-cols-m)) { border-bottom: none; }
+        }
+
+        .<?php echo esc_attr($unique_id); ?> .mc-st-icon {
+            margin-bottom: 15px; opacity: 0.5;
+            color: <?php echo esc_attr($use_grad ? $c1 : $num_c); ?>;
+        }
+
+        .<?php echo esc_attr($unique_id); ?> .mc-st-val-wrap {
+            font-size: clamp(42px, 5vw, 64px); font-weight: 900; line-height: 1; margin-bottom: 10px; display: flex; align-items: baseline;
+        }
+        
+        .<?php echo esc_attr($unique_id); ?> .mc-st-prefix,
+        .<?php echo esc_attr($unique_id); ?> .mc-st-suffix {
+            font-size: 0.5em; opacity: 0.8; font-weight: bold;
+        }
+        
+        .<?php echo esc_attr($unique_id); ?> .mc-st-number {
+            font-variant-numeric: tabular-nums; /* Keeps numbers from jumping horizontally */
+            <?php if ($use_grad) : ?>
+                background: linear-gradient(135deg, <?php echo esc_attr($c1); ?>, <?php echo esc_attr($c2); ?>);
+                -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            <?php else : ?>
+                color: <?php echo esc_attr($num_c); ?>;
+            <?php endif; ?>
+        }
+
+        .<?php echo esc_attr($unique_id); ?> .mc-st-label {
+            font-size: 15px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8;
+        }
+    </style>
+
+    <div class="mc-st-grid">
+        <?php foreach ($stats as $s) : ?>
+            <div class="mc-st-item">
+                <?php echo mc_get_stat_svg($s['icon']); ?>
+                <div class="mc-st-val-wrap">
+                    <?php if (!empty($s['prefix'])) echo '<span class="mc-st-prefix">' . esc_html($s['prefix']) . '</span>'; ?>
+                    <span class="mc-st-number" data-target="<?php echo esc_attr($s['number']); ?>" data-duration="<?php echo esc_attr($s['duration']); ?>">0</span>
+                    <?php if (!empty($s['suffix'])) echo '<span class="mc-st-suffix">' . esc_html($s['suffix']) . '</span>'; ?>
+                </div>
+                <div class="mc-st-label"><?php echo esc_html($s['label']); ?></div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapper = document.querySelector('.<?php echo esc_attr($unique_id); ?>');
+            if (!wrapper) return;
+
+            const triggerOnce = wrapper.dataset.once === 'true';
+            const numberEls = wrapper.querySelectorAll('.mc-st-number');
+
+            // Cubic Ease Out
+            const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+            const animateNumber = (el) => {
+                const target = parseFloat(el.dataset.target);
+                if (isNaN(target)) return;
+                
+                const duration = parseInt(el.dataset.duration) || 2000;
+                
+                // Math validation: is it a float? How many decimals?
+                const isFloat = target % 1 !== 0;
+                const decimals = isFloat ? target.toString().split('.')[1].length : 0;
+                
+                let startTime = null;
+
+                const step = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    const easedProgress = easeOutCubic(progress);
+                    const current = easedProgress * target;
+
+                    el.innerText = current.toFixed(decimals);
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        el.innerText = target.toFixed(decimals);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        numberEls.forEach(el => animateNumber(el));
+                        if (triggerOnce) observer.unobserve(wrapper);
+                    } else if (!triggerOnce) {
+                        // Reset numbers to 0 if we scroll away and want to re-animate
+                        numberEls.forEach(el => el.innerText = "0");
+                    }
+                });
+            }, { threshold: 0.2 }); // Trigger when 20% of block is visible
+
+            observer.observe(wrapper);
+        });
+    </script>
+</div>

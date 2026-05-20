@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/pricing-table",
+  "title": "Pricing Table",
+  "category": "modern-core",
+  "icon": "columns",
+  "description": "High-conversion pricing comparison with interactive billing toggles.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "showToggle": { "type": "boolean", "default": true },
+    "discountLabel": { "type": "string", "default": "Save 20%" },
+    "cardRadius": { "type": "number", "default": 12 },
+    "accentColor": { "type": "string", "default": "#3b82f6" },
+    "textColor": { "type": "string", "default": "#0f172a" },
+    "bgBase": { "type": "string", "default": "#ffffff" },
+    "bgFeatured": { "type": "string", "default": "#f8fafc" },
+    "tiers": {
+      "type": "array",
+      "default": [
+        {
+          "name": "Basic",
+          "badge": "",
+          "priceMonthly": "19",
+          "priceAnnual": "15",
+          "desc": "Perfect for individuals getting started.",
+          "button": "Start Basic",
+          "isFeatured": false,
+          "features": [
+            { "text": "1 User Account", "included": true },
+            { "text": "Basic Analytics", "included": true },
+            { "text": "Priority Support", "included": false }
+          ]
+        },
+        {
+          "name": "Pro",
+          "badge": "Most Popular",
+          "priceMonthly": "49",
+          "priceAnnual": "39",
+          "desc": "Everything you need to grow your business.",
+          "button": "Start Pro",
+          "isFeatured": true,
+          "features": [
+            { "text": "5 User Accounts", "included": true },
+            { "text": "Advanced Analytics", "included": true },
+            { "text": "Priority Support", "included": true }
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "badge": "",
+          "priceMonthly": "99",
+          "priceAnnual": "79",
+          "desc": "For large scale organizations.",
+          "button": "Contact Sales",
+          "isFeatured": false,
+          "features": [
+            { "text": "Unlimited Users", "included": true },
+            { "text": "Custom Reporting", "included": true },
+            { "text": "24/7 Phone Support", "included": true }
+          ]
+        }
+      ]
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-pricing-table-js",
+  "render": "file:./render.php"
+}
