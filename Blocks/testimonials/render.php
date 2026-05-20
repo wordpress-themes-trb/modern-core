@@ -20,9 +20,12 @@ if (empty($testimonials)) return;
 $unique_id = uniqid('mc-test-');
 $wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-testimonials {$unique_id} layout-{$layout}"]);
 
-function mc_render_stars($count) {
-    $count = intval($count);
-    return str_repeat('★', $count) . str_repeat('☆', 5 - $count);
+// FIX: Wrap helper function to prevent redeclaration errors
+if (!function_exists('mc_render_stars')) {
+    function mc_render_stars($count) {
+        $count = intval($count);
+        return str_repeat('★', $count) . str_repeat('☆', 5 - $count);
+    }
 }
 ?>
 

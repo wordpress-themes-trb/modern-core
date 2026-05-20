@@ -36,11 +36,13 @@ if (is_single() && $post) {
 $query = new WP_Query($args);
 if (!$query->have_posts()) return;
 
-// Helper: Calculate Read Time
-function mc_get_read_time($content) {
-    $word_count = str_word_count(strip_tags($content));
-    $minutes = ceil($word_count / 200); // Avg reading speed: 200 wpm
-    return max(1, $minutes) . ' min read';
+// FIX: Wrap helper function to prevent redeclaration fatal errors
+if (!function_exists('mc_get_read_time')) {
+    function mc_get_read_time($content) {
+        $word_count = str_word_count(strip_tags($content));
+        $minutes = ceil($word_count / 200); // Avg reading speed: 200 wpm
+        return max(1, $minutes) . ' min read';
+    }
 }
 ?>
 
@@ -150,7 +152,6 @@ function mc_get_read_time($content) {
                     <?php endif; ?>
                 </div>
             </a>
-</a>
         <?php endwhile; wp_reset_postdata(); ?>
     </div>
 </div>

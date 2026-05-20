@@ -14,7 +14,8 @@ $unique_id = uniqid('mc-cart-');
 $wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-cart {$unique_id} layout-{$layout}"]);
 
 // We output empty state purely via WooCommerce defaults to maintain functionality
-if (WC()->cart->is_empty()) {
+// FIX: Verify the cart object actually exists before checking if it's empty
+if (!empty(WC()->cart) && WC()->cart->is_empty()) {
     echo '<div ' . $wrapper_attributes . '>';
     wc_get_template('cart/cart-empty.php');
     echo '</div>';

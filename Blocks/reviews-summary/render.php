@@ -28,13 +28,15 @@ $text_c = $attributes['textColor'] ?? '#0f172a';
 $unique_id = uniqid('mc-rev-');
 $wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-reviews-summary {$unique_id} layout-{$layout}"]);
 
-// Helper to render stars
-function mc_render_precise_stars($average) {
-    $full_stars = floor($average);
-    $half_star = ($average - $full_stars) >= 0.5 ? 1 : 0;
-    $empty_stars = 5 - $full_stars - $half_star;
-    
-    return str_repeat('★', $full_stars) . ($half_star ? '★' : '') . str_repeat('☆', $empty_stars);
+// FIX: Wrap helper function to prevent redeclaration errors if multiple blocks exist
+if (!function_exists('mc_render_precise_stars')) {
+    function mc_render_precise_stars($average) {
+        $full_stars = floor($average);
+        $half_star = ($average - $full_stars) >= 0.5 ? 1 : 0;
+        $empty_stars = 5 - $full_stars - $half_star;
+        
+        return str_repeat('★', $full_stars) . ($half_star ? '★' : '') . str_repeat('☆', $empty_stars);
+    }
 }
 ?>
 

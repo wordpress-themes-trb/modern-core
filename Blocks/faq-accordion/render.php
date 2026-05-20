@@ -39,12 +39,14 @@ $schema_json = [
     'mainEntity' => $schema_entities
 ];
 
-// Helper to render Icons
-function mc_get_faq_icon($style) {
-    if ($style === 'plus-minus') {
-        return '<div class="mc-faq-icon mc-plus-minus"><span class="mc-pm-v"></span><span class="mc-pm-h"></span></div>';
+// FIX: Wrap the helper function to prevent redeclaration errors if the block is used multiple times
+if (!function_exists('mc_get_faq_icon')) {
+    function mc_get_faq_icon($style) {
+        if ($style === 'plus-minus') {
+            return '<div class="mc-faq-icon mc-plus-minus"><span class="mc-pm-v"></span><span class="mc-pm-h"></span></div>';
+        }
+        return '<div class="mc-faq-icon mc-chevron"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div>';
     }
-    return '<div class="mc-faq-icon mc-chevron"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div>';
 }
 ?>
 

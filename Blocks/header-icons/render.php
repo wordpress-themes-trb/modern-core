@@ -11,8 +11,8 @@ $wrapper_attributes = get_block_wrapper_attributes([
     'style' => "display: flex; align-items: center; gap: {$spacing}px; color: {$color};"
 ]);
 
-// If WooCommerce is active, we can pull the real cart count. For now, it defaults to a static '0' or '3' for frontend preview.
-$cart_count = function_exists('WC') ? WC()->cart->get_cart_contents_count() : 3;
+// FIX: We must check if WC()->cart is set, because it is null in the Block Editor's REST API.
+$cart_count = ( function_exists('WC') && !empty(WC()->cart) ) ? WC()->cart->get_cart_contents_count() : 3;
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>

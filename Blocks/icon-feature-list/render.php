@@ -16,15 +16,18 @@ if (empty($features)) return;
 $unique_id = uniqid('mc-feat-');
 $wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-feature-list {$unique_id} layout-{$layout} pos-{$pos} style-{$style}"]);
 
-function mc_get_feature_svg($type, $size, $color, $is_filled) {
-    $stroke = $is_filled ? '#ffffff' : $color;
-    $s = 'width="'.esc_attr($size).'" height="'.esc_attr($size).'" viewBox="0 0 24 24" fill="none" stroke="'.esc_attr($stroke).'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
-    
-    if ($type === 'truck') return "<svg {$s}><rect x='1' y='3' width='15' height='13'></rect><polygon points='16 8 20 8 23 11 23 16 16 16 16 8'></polygon><circle cx='5.5' cy='18.5' r='2.5'></circle><circle cx='18.5' cy='18.5' r='2.5'></circle></svg>";
-    if ($type === 'shield') return "<svg {$s}><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'></path></svg>";
-    if ($type === 'refresh') return "<svg {$s}><polyline points='23 4 23 10 17 10'></polyline><path d='M20.49 15a9 9 0 1 1-2.12-9.36L23 10'></path></svg>";
-    if ($type === 'chat') return "<svg {$s}><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'></path></svg>";
-    return "<svg {$s}><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'></polygon></svg>";
+// FIX: Wrap the helper function to prevent redeclaration errors if the block is used multiple times
+if (!function_exists('mc_get_feature_svg')) {
+    function mc_get_feature_svg($type, $size, $color, $is_filled) {
+        $stroke = $is_filled ? '#ffffff' : $color;
+        $s = 'width="'.esc_attr($size).'" height="'.esc_attr($size).'" viewBox="0 0 24 24" fill="none" stroke="'.esc_attr($stroke).'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+        
+        if ($type === 'truck') return "<svg {$s}><rect x='1' y='3' width='15' height='13'></rect><polygon points='16 8 20 8 23 11 23 16 16 16 16 8'></polygon><circle cx='5.5' cy='18.5' r='2.5'></circle><circle cx='18.5' cy='18.5' r='2.5'></circle></svg>";
+        if ($type === 'shield') return "<svg {$s}><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'></path></svg>";
+        if ($type === 'refresh') return "<svg {$s}><polyline points='23 4 23 10 17 10'></polyline><path d='M20.49 15a9 9 0 1 1-2.12-9.36L23 10'></path></svg>";
+        if ($type === 'chat') return "<svg {$s}><path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'></path></svg>";
+        return "<svg {$s}><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'></polygon></svg>";
+    }
 }
 
 $is_filled = ($style === 'circle' || $style === 'square');

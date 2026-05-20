@@ -17,8 +17,8 @@ $border_c = $attributes['borderColor'] ?? '#e2e8f0';
 $unique_id = uniqid('mc-chk-');
 $wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-checkout {$unique_id} layout-{$layout} label-{$label_style}"]);
 
-// If cart is empty, WooCommerce will automatically handle the output
-if (WC()->cart->is_empty()) {
+// FIX: Verify cart exists before checking if empty (prevents backend crash)
+if (!empty(WC()->cart) && WC()->cart->is_empty()) {
     echo '<div ' . $wrapper_attributes . '>';
     echo do_shortcode('[woocommerce_checkout]');
     echo '</div>';

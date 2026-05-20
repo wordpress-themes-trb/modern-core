@@ -11,26 +11,28 @@ if (empty($badges)) return;
 $unique_id = uniqid('mc-tb-');
 $wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-trust-badges {$unique_id} style-{$style}"]);
 
-// Helper to render native SVGs based on Style
-function mc_get_trust_badge_svg($type, $style, $size) {
-    $is_filled = ($style === 'filled');
-    $stroke = $is_filled ? '#10b981' : 'currentColor'; // Emerald green for filled outline
-    $fill = $is_filled ? '#d1fae5' : 'none'; // Light emerald for filled bg
-    
-    $s = 'width="'.esc_attr($size).'" height="'.esc_attr($size).'" viewBox="0 0 24 24" fill="'.esc_attr($fill).'" stroke="'.esc_attr($stroke).'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
-    
-    if ($type === 'ssl') return "<svg {$s}><rect x='3' y='11' width='18' height='11' rx='2' ry='2' fill='{$fill}'></rect><path d='M7 11V7a5 5 0 0 1 10 0v4'></path></svg>";
-    if ($type === 'guarantee') {
-        $g_stroke = $is_filled ? '#f59e0b' : 'currentColor'; // Amber for guarantee
-        $g_fill = $is_filled ? '#fef3c7' : 'none';
-        $s = 'width="'.esc_attr($size).'" height="'.esc_attr($size).'" viewBox="0 0 24 24" fill="'.$g_fill.'" stroke="'.$g_stroke.'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
-        return "<svg {$s}><circle cx='12' cy='8' r='7'></circle><polyline points='8.21 13.89 7 23 12 20 17 23 15.79 13.88'></polyline></svg>";
+// FIX: Wrap helper function to prevent redeclaration errors
+if (!function_exists('mc_get_trust_badge_svg')) {
+    function mc_get_trust_badge_svg($type, $style, $size) {
+        $is_filled = ($style === 'filled');
+        $stroke = $is_filled ? '#10b981' : 'currentColor'; // Emerald green for filled outline
+        $fill = $is_filled ? '#d1fae5' : 'none'; // Light emerald for filled bg
+        
+        $s = 'width="'.esc_attr($size).'" height="'.esc_attr($size).'" viewBox="0 0 24 24" fill="'.esc_attr($fill).'" stroke="'.esc_attr($stroke).'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
+        
+        if ($type === 'ssl') return "<svg {$s}><rect x='3' y='11' width='18' height='11' rx='2' ry='2' fill='{$fill}'></rect><path d='M7 11V7a5 5 0 0 1 10 0v4'></path></svg>";
+        if ($type === 'guarantee') {
+            $g_stroke = $is_filled ? '#f59e0b' : 'currentColor'; // Amber for guarantee
+            $g_fill = $is_filled ? '#fef3c7' : 'none';
+            $s = 'width="'.esc_attr($size).'" height="'.esc_attr($size).'" viewBox="0 0 24 24" fill="'.$g_fill.'" stroke="'.$g_stroke.'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
+            return "<svg {$s}><circle cx='12' cy='8' r='7'></circle><polyline points='8.21 13.89 7 23 12 20 17 23 15.79 13.88'></polyline></svg>";
+        }
+        if ($type === 'shipping') return "<svg {$s}><rect x='1' y='3' width='15' height='13'></rect><polygon points='16 8 20 8 23 11 23 16 16 16 16 8'></polygon><circle cx='5.5' cy='18.5' r='2.5' fill='".($is_filled?'#10b981':'none')."'></circle><circle cx='18.5' cy='18.5' r='2.5' fill='".($is_filled?'#10b981':'none')."'></circle></svg>";
+        if ($type === 'payment') return "<svg {$s}><rect x='1' y='4' width='22' height='16' rx='2' ry='2'></rect><line x1='1' y1='10' x2='23' y2='10'></line></svg>";
+        if ($type === 'returns') return "<svg {$s}><polyline points='1 4 1 10 7 10'></polyline><path d='M3.51 15a9 9 0 1 0 2.13-9.36L1 10'></path></svg>";
+        
+        return "<svg {$s}><circle cx='12' cy='12' r='10'></circle><path d='M12 8v4l3 3'></path></svg>";
     }
-    if ($type === 'shipping') return "<svg {$s}><rect x='1' y='3' width='15' height='13'></rect><polygon points='16 8 20 8 23 11 23 16 16 16 16 8'></polygon><circle cx='5.5' cy='18.5' r='2.5' fill='".($is_filled?'#10b981':'none')."'></circle><circle cx='18.5' cy='18.5' r='2.5' fill='".($is_filled?'#10b981':'none')."'></circle></svg>";
-    if ($type === 'payment') return "<svg {$s}><rect x='1' y='4' width='22' height='16' rx='2' ry='2'></rect><line x1='1' y1='10' x2='23' y2='10'></line></svg>";
-    if ($type === 'returns') return "<svg {$s}><polyline points='1 4 1 10 7 10'></polyline><path d='M3.51 15a9 9 0 1 0 2.13-9.36L1 10'></path></svg>";
-    
-    return "<svg {$s}><circle cx='12' cy='12' r='10'></circle><path d='M12 8v4l3 3'></path></svg>";
 }
 ?>
 

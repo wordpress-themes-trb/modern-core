@@ -18,17 +18,19 @@ $inactive = $attributes['inactiveColor'] ?? '#94a3b8';
 $unique_id = uniqid('mc-ptabs-');
 $wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-product-tabs {$unique_id} style-{$tab_style} anim-{$anim}"]);
 
-// Helper function to build WC queries dynamically
-function mc_get_tab_query($type, $count) {
-    $args = ['post_type' => 'product', 'posts_per_page' => $count, 'post_status' => 'publish'];
-    if ($type === 'popularity') {
-        $args['meta_key'] = 'total_sales'; $args['orderby'] = 'meta_value_num';
-    } elseif ($type === 'sale') {
-        $args['post__in'] = array_merge([0], wc_get_product_ids_on_sale());
-    } elseif ($type === 'rating') {
-        $args['meta_key'] = '_wc_average_rating'; $args['orderby'] = 'meta_value_num'; $args['order'] = 'DESC';
+// FIX: Wrap helper function to prevent redeclaration errors if multiple blocks exist
+if (!function_exists('mc_get_tab_query')) {
+    function mc_get_tab_query($type, $count) {
+        $args = ['post_type' => 'product', 'posts_per_page' => $count, 'post_status' => 'publish'];
+        if ($type === 'popularity') {
+            $args['meta_key'] = 'total_sales'; $args['orderby'] = 'meta_value_num';
+        } elseif ($type === 'sale') {
+            $args['post__in'] = array_merge([0], wc_get_product_ids_on_sale());
+        } elseif ($type === 'rating') {
+            $args['meta_key'] = '_wc_average_rating'; $args['orderby'] = 'meta_value_num'; $args['order'] = 'DESC';
+        }
+        return new WP_Query($args);
     }
-    return new WP_Query($args);
 }
 ?>
 

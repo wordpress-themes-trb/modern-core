@@ -13,11 +13,17 @@ if (empty($tiers)) return;
 $unique_id = uniqid('mc-price-');
 $wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-pricing-table {$unique_id}"]);
 
-function mc_pricing_check() {
-    return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mc-pt-icon check"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+// FIX: Wrap helper functions to prevent redeclaration fatal errors
+if (!function_exists('mc_pricing_check')) {
+    function mc_pricing_check() {
+        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mc-pt-icon check"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+    }
 }
-function mc_pricing_cross() {
-    return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mc-pt-icon cross"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+
+if (!function_exists('mc_pricing_cross')) {
+    function mc_pricing_cross() {
+        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mc-pt-icon cross"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+    }
 }
 ?>
 
@@ -83,7 +89,7 @@ function mc_pricing_cross() {
         .<?php echo esc_attr($unique_id); ?> .mc-pt-period { opacity: 0.6; font-size: 16px; font-weight: bold; }
 
         /* Features List */
-        .<?php echo esc_attr($unique_id); ?> .mc-pt-features { display: flex; flexDirection: column; gap: 15px; flex: 1; margin-bottom: 35px; }
+        .<?php echo esc_attr($unique_id); ?> .mc-pt-features { display: flex; flex-direction: column; gap: 15px; flex: 1; margin-bottom: 35px; }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-feature { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.4; }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-feature.is-excluded { opacity: 0.5; text-decoration: line-through; }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-icon { flex-shrink: 0; margin-top: 2px; }

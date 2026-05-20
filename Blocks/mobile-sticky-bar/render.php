@@ -25,8 +25,10 @@ $checkout_url = function_exists('wc_get_checkout_url') ? wc_get_checkout_url() :
 $is_product = function_exists('is_product') && is_product();
 $is_cart = function_exists('is_cart') && is_cart();
 $is_checkout = function_exists('is_checkout') && is_checkout();
-$cart_count = function_exists('WC') ? WC()->cart->get_cart_contents_count() : 0;
-$cart_total = function_exists('WC') ? WC()->cart->get_cart_total() : '$0.00';
+
+// FIX: Verify cart object exists before attempting to get count and total
+$cart_count = (function_exists('WC') && !empty(WC()->cart)) ? WC()->cart->get_cart_contents_count() : 0;
+$cart_total = (function_exists('WC') && !empty(WC()->cart)) ? WC()->cart->get_cart_total() : '$0.00';
 
 // Early exit if checkout behavior is set to 'hide'
 if ($is_checkout && $checkout_behavior === 'hide') return;
