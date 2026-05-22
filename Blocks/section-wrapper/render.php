@@ -49,7 +49,7 @@ if ($hide_empty && trim($content) === '' && !is_admin()) {
 }
 
 $unique_id = uniqid('mc-sw-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-section {$unique_id} w-{$w_width}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-section {$unique_id} w-{$w_width} c-{$c_width}"]);
 
 if (!function_exists('mc_get_simple_divider')) {
     function mc_get_simple_divider($type, $color, $position) {
@@ -104,13 +104,53 @@ if (!function_exists('mc_get_simple_divider')) {
             }
         }
 
-        .<?php echo esc_attr($unique_id); ?>.w-full {
-            width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;
+        /* ========== WRAPPER WIDTH MODES ========== */
+
+        /* w-contained: Section stays within parent container */
+        .<?php echo esc_attr($unique_id); ?>.w-contained {
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* 2D Multi-Column Layout Engine */
+        /* w-full: Section breaks out to full viewport width */
+        .<?php echo esc_attr($unique_id); ?>.w-full {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        /* ========== CONTENT WIDTH MODES ========== */
+
+        /* c-contained: Inner content capped at 1200px */
+        .<?php echo esc_attr($unique_id); ?>.c-contained .mc-sw-inner {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* c-wide: Inner content capped at 1400px */
+        .<?php echo esc_attr($unique_id); ?>.c-wide .mc-sw-inner {
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* c-fullwidth: Inner content spans full width - NO MAX-WIDTH */
+        .<?php echo esc_attr($unique_id); ?>.c-fullwidth .mc-sw-inner {
+            max-width: none;
+            width: 100%;
+        }
+
+        /* ========== 2D MULTI-COLUMN LAYOUT ENGINE ========== */
         .<?php echo esc_attr($unique_id); ?> .mc-sw-inner {
-            position: relative; z-index: 10; width: 100%; margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            width: 100%;
             <?php if ($layout === 'multi-column') : ?>
                 display: grid;
                 column-gap: <?php echo esc_attr($col_gap); ?>px;
@@ -123,10 +163,6 @@ if (!function_exists('mc_get_simple_divider')) {
                 <?php endif; ?>
             <?php endif; ?>
         }
-        
-        <?php if ($c_width === 'contained') : ?>
-            .<?php echo esc_attr($unique_id); ?> .mc-sw-inner { max-width: 1200px; }
-        <?php endif; ?>
 
         <?php if ($layout === 'multi-column' && $stack_on_mobile) : ?>
         @media (min-width: 768px) {
@@ -137,32 +173,54 @@ if (!function_exists('mc_get_simple_divider')) {
         }
         <?php endif; ?>
 
+        /* ========== BACKGROUND IMAGE & OVERLAY ========== */
         <?php if ($bg_type === 'image' && !empty($bg_img)) : ?>
             .<?php echo esc_attr($unique_id); ?>::before {
-                content: ''; position: absolute; inset: 0; background-image: url('<?php echo esc_url($bg_img); ?>');
-                background-size: cover; background-position: center; border-radius: inherit; z-index: 0;
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-image: url('<?php echo esc_url($bg_img); ?>');
+                background-size: cover;
+                background-position: center;
+                border-radius: inherit;
+                z-index: 0;
             }
             <?php if ($overlay > 0) : ?>
                 .<?php echo esc_attr($unique_id); ?>::after {
-                    content: ''; position: absolute; inset: 0; background-color: rgba(0,0,0, <?php echo esc_attr($overlay); ?>);
-                    border-radius: inherit; z-index: 1;
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background-color: rgba(0,0,0, <?php echo esc_attr($overlay); ?>);
+                    border-radius: inherit;
+                    z-index: 1;
                 }
             <?php endif; ?>
         <?php endif; ?>
 
+        /* ========== SHAPE DIVIDERS ========== */
         .<?php echo esc_attr($unique_id); ?> .mc-sw-shape {
-            position: absolute; left: 0; width: 100%; height: <?php echo esc_attr($s_height); ?>px; z-index: 5; pointer-events: none;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: <?php echo esc_attr($s_height); ?>px;
+            z-index: 5;
+            pointer-events: none;
         }
         .<?php echo esc_attr($unique_id); ?> .mc-sw-shape-top { top: -1px; }
         .<?php echo esc_attr($unique_id); ?> .mc-sw-shape-bottom { bottom: -1px; }
+
         @media (max-width: 768px) {
-            .<?php echo esc_attr($unique_id); ?> .mc-sw-shape { height: <?php echo esc_attr($s_height * 0.6); ?>px; }
+            .<?php echo esc_attr($unique_id); ?> .mc-sw-shape {
+                height: <?php echo esc_attr($s_height * 0.6); ?>px;
+            }
         }
     </style>
 
     <?php if ($t_shape !== 'none') echo mc_get_simple_divider($t_shape, $s_color, 'top'); ?>
+
     <div class="mc-sw-inner">
         <?php echo $content; ?>
     </div>
+
     <?php if ($b_shape !== 'none') echo mc_get_simple_divider($b_shape, $s_color, 'bottom'); ?>
 </div>

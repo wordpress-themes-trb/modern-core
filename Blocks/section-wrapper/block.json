@@ -13,10 +13,18 @@
     "customClassName": true
   },
   "attributes": {
-    "wrapperWidth": { "type": "string", "default": "full" },
-    "contentWidth": { "type": "string", "default": "contained" },
+    "wrapperWidth": {
+      "type": "string",
+      "default": "full",
+      "enum": ["contained", "full"]
+    },
+    "contentWidth": {
+      "type": "string",
+      "default": "contained",
+      "enum": ["contained", "wide", "fullwidth"]
+    },
     "layoutStyle": { "type": "string", "default": "standard" },
-"columnCount": { "type": "number", "default": 1 },
+    "columnCount": { "type": "number", "default": 1 },
     "rowCount": { "type": "number", "default": 1 },
     "columnGap": { "type": "number", "default": 30 },
     "rowGap": { "type": "number", "default": 30 },

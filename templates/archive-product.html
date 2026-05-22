@@ -1,29 +1,33 @@
 <!-- wp:template-part {"slug":"advanced-header","theme":"modern-core","tagName":"header"}/-->
 
+<!-- Announcement Bar — contained background wrapper OK -->
 <!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTop":40,"paddingBottom":20,"bgType":"solid","bgColor":"#f8fafc","borderType":"bottom","borderColor":"#e2e8f0"} -->
 <!-- wp:modern-core/announcement-bar {"barId":"archive-bar","displayMode":"marquee","message1":"FREE SHIPPING ON ORDERS OVER $150","message2":"NEW COLLECTION NOW AVAILABLE","bgColor":"#0f172a","textColor":"#ffffff","isSticky":false,"enableDismiss":false} /-->
 <!-- /wp:modern-core/section-wrapper -->
 
+<!-- Shop Toolbar — contained background wrapper OK -->
 <!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTop":40,"paddingBottom":20} -->
 <!-- wp:modern-core/shop-toolbar {"showCount":true,"showSort":true,"showViewToggles":true,"showFilterTrigger":true,"borderBottom":true,"paddingVert":15,"textColor":"#64748b","accentColor":"#0f172a","borderColor":"#e2e8f0"} /-->
 <!-- /wp:modern-core/section-wrapper -->
 
-<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"full","paddingTop":0,"paddingBottom":0} -->
+<!-- Main Shop Layout — NO outer section wrapper, columns builder handles layout -->
 <!-- wp:modern-core/columns-builder {"layout":"280px 1fr","gap":0,"vAlign":"start","mobileStack":"stack","reverseMobile":false} -->
 
+<!-- Filter Sidebar — background wrapper OK, but content width full so sidebar fills column -->
 <!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"full","paddingTop":30,"paddingBottom":40,"bgType":"solid","bgColor":"#f8fafc","borderType":"right","borderColor":"#e2e8f0"} -->
 <!-- wp:modern-core/filter-sidebar {"placementMode":"sidebar-left","showCounts":true,"showActiveChips":true,"chipBgColor":"#f1f5f9","chipTextColor":"#0f172a","headingColor":"#0f172a","accentColor":"#3b82f6"} /-->
 <!-- /wp:modern-core/section-wrapper -->
 
-<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"full","paddingTop":30,"paddingBottom":60} -->
+<!-- Product Grid Area — NO section wrapper, let blocks control their own width -->
 <!-- wp:modern-core/product-grid {"productCount":12,"querySort":"date","layoutMode":"grid","columnsDesktop":3,"columnsTablet":3,"columnsMobile":2,"imageRatio":"3/4","imageHover":"zoom","cardRadius":8,"cardBg":"#ffffff","cardHoverLift":true,"showCategory":false,"showRating":true,"saleBadgeStyle":"pill","atcStyle":"solid","atcPosition":"below","showToolbar":false,"paginationType":"load-more","accentColor":"#0f172a"} /-->
+
 <!-- wp:modern-core/spacer-divider {"mode":"spacer","heightDesktop":40,"heightMobile":24} /-->
+
 <!-- wp:modern-core/pagination {"mode":"load-more","alignment":"center","loadMoreText":"Load More Products","loadingText":"Loading...","buttonRadius":8,"accentColor":"#3b82f6","textColor":"#0f172a","borderColor":"#e2e8f0"} /-->
-<!-- /wp:modern-core/section-wrapper -->
 
 <!-- /wp:modern-core/columns-builder -->
-<!-- /wp:modern-core/section-wrapper -->
 
+<!-- Recently Viewed — contained background wrapper OK -->
 <!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTop":60,"paddingBottom":60,"bgType":"solid","bgColor":"#f8fafc"} -->
 <!-- wp:modern-core/recently-viewed {"sectionTitle":"Recently Viewed","displayMode":"carousel","maxProducts":8,"storageDays":7,"emptyBehavior":"hide","fallbackQuery":"popularity","fallbackTitle":"Trending Now","colsDesktop":4,"colsMobile":1.5,"accentColor":"#0f172a"} /-->
 <!-- /wp:modern-core/section-wrapper -->

@@ -21,17 +21,10 @@
 } /-->
 
 <!-- ============================================================
-     SECTION 2 — HERO BANNER
+     SECTION 2 — HERO BANNER (fullwidth by default)
      ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"full",
-  "paddingTop":0,
-  "paddingBottom":0,
-  "bgType":"none",
-  "className":"hero-section"
-} -->
 <!-- wp:modern-core/hero {
+  "widthMode":"fullwidth",
   "layout":"fullbleed",
   "height":"vh-90",
   "minHeight":600,
@@ -85,10 +78,9 @@
   "kenburnDirection":"zoom-in",
   "kenburnDuration":20000
 } /-->
-<!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 3 — VALUE PROPOSITION STRIP
+     SECTION 3 — VALUE PROPOSITION STRIP (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -102,6 +94,7 @@
   "borderBottomWidth":1
 } -->
 <!-- wp:modern-core/icon-feature-list {
+  "widthMode":"contained",
   "layout":"row",
   "alignment":"center",
   "iconStyle":"outline",
@@ -124,7 +117,7 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 4 — CATEGORY GRID
+     SECTION 4 — CATEGORY GRID (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -133,6 +126,7 @@
   "paddingBottom":80
 } -->
 <!-- wp:modern-core/section-header {
+  "widthMode":"contained",
   "title":"Shop by Category",
   "titleAlign":"center",
   "titleSize":36,
@@ -142,11 +136,13 @@
   "showViewAll":false
 } /-->
 <!-- wp:modern-core/spacer-divider {
+  "widthMode":"contained",
   "mode":"spacer",
   "heightDesktop":48,
   "heightMobile":24
 } /-->
 <!-- wp:modern-core/category-grid {
+  "widthMode":"contained",
   "source":"auto",
   "maxCategories":6,
   "layout":"featured",
@@ -168,7 +164,7 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 5 — NEW ARRIVALS PRODUCT CAROUSEL
+     SECTION 5 — NEW ARRIVALS PRODUCT CAROUSEL (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -177,6 +173,7 @@
   "paddingBottom":80
 } -->
 <!-- wp:modern-core/section-header {
+  "widthMode":"contained",
   "title":"New Arrivals",
   "titleAlign":"left",
   "titleSize":32,
@@ -189,11 +186,13 @@
   "viewAllStyle":"arrow-link"
 } /-->
 <!-- wp:modern-core/spacer-divider {
+  "widthMode":"contained",
   "mode":"spacer",
   "heightDesktop":32,
   "heightMobile":16
 } /-->
 <!-- wp:modern-core/product-carousel {
+  "widthMode":"contained",
   "queryType":"recent",
   "productCount":10,
   "columnsDesktop":4,
@@ -232,15 +231,10 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 6 — PROMOTIONAL SPLIT BANNER
+     SECTION 6 — PROMOTIONAL SPLIT BANNER (fullwidth by default)
      ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"full",
-  "paddingTop":0,
-  "paddingBottom":0
-} -->
 <!-- wp:modern-core/split-banner {
+  "widthMode":"fullwidth",
   "ratio":"50-50",
   "imageSide":"left",
   "imageUrl":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1400&auto=format&fit=crop",
@@ -275,10 +269,9 @@
   "minHeight":560,
   "mobileImagePosition":"top"
 } /-->
-<!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 7 — BESTSELLERS CAROUSEL
+     SECTION 7 — BESTSELLERS CAROUSEL (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -287,6 +280,7 @@
   "paddingBottom":80
 } -->
 <!-- wp:modern-core/section-header {
+  "widthMode":"contained",
   "title":"Bestsellers",
   "titleAlign":"left",
   "titleSize":32,
@@ -299,11 +293,13 @@
   "viewAllStyle":"arrow-link"
 } /-->
 <!-- wp:modern-core/spacer-divider {
+  "widthMode":"contained",
   "mode":"spacer",
   "heightDesktop":32,
   "heightMobile":16
 } /-->
 <!-- wp:modern-core/product-carousel {
+  "widthMode":"contained",
   "queryType":"bestselling",
   "productCount":10,
   "columnsDesktop":4,
@@ -335,7 +331,7 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 8 — LOOKBOOK
+     SECTION 8 — LOOKBOOK (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -344,6 +340,7 @@
   "paddingBottom":80
 } -->
 <!-- wp:modern-core/section-header {
+  "widthMode":"contained",
   "title":"The Look",
   "subtitle":"Click the pins to shop each piece",
   "titleAlign":"center",
@@ -352,11 +349,13 @@
   "showViewAll":false
 } /-->
 <!-- wp:modern-core/spacer-divider {
+  "widthMode":"contained",
   "mode":"spacer",
   "heightDesktop":48,
   "heightMobile":24
 } /-->
 <!-- wp:modern-core/lookbook {
+  "widthMode":"contained",
   "imageUrl":"https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2000&auto=format&fit=crop",
   "aspectRatio":"16/7",
   "imageFocalX":50,
@@ -376,7 +375,7 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 9 — COUNTDOWN / SALE BANNER
+     SECTION 9 — COUNTDOWN / SALE BANNER (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -387,6 +386,7 @@
   "bgColor":"#0f172a"
 } -->
 <!-- wp:modern-core/countdown-banner {
+  "widthMode":"contained",
   "layout":"two-col",
   "targetDate":"2025-12-31T23:59:59",
   "timezone":"UTC",
@@ -422,7 +422,7 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 10 — ON SALE CAROUSEL
+     SECTION 10 — ON SALE CAROUSEL (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -431,6 +431,7 @@
   "paddingBottom":80
 } -->
 <!-- wp:modern-core/section-header {
+  "widthMode":"contained",
   "title":"On Sale",
   "titleAlign":"left",
   "titleSize":32,
@@ -442,11 +443,13 @@
   "viewAllStyle":"arrow-link"
 } /-->
 <!-- wp:modern-core/spacer-divider {
+  "widthMode":"contained",
   "mode":"spacer",
   "heightDesktop":32,
   "heightMobile":16
 } /-->
 <!-- wp:modern-core/product-carousel {
+  "widthMode":"contained",
   "queryType":"on-sale",
   "productCount":10,
   "columnsDesktop":4,
@@ -475,7 +478,7 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 11 — TESTIMONIALS
+     SECTION 11 — TESTIMONIALS (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -486,6 +489,7 @@
   "bgColor":"#f8fafc"
 } -->
 <!-- wp:modern-core/section-header {
+  "widthMode":"contained",
   "title":"What Our Customers Say",
   "titleAlign":"center",
   "titleSize":36,
@@ -502,11 +506,13 @@
   "starColor":"#f59e0b"
 } /-->
 <!-- wp:modern-core/spacer-divider {
+  "widthMode":"contained",
   "mode":"spacer",
   "heightDesktop":56,
   "heightMobile":28
 } /-->
 <!-- wp:modern-core/testimonials {
+  "widthMode":"contained",
   "layout":"masonry",
   "columnsDesktop":3,
   "columnsTablet":2,
@@ -538,7 +544,7 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 12 — STATS COUNTER
+     SECTION 12 — STATS COUNTER (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -547,6 +553,7 @@
   "paddingBottom":80
 } -->
 <!-- wp:modern-core/stats-counter {
+  "widthMode":"contained",
   "columnsDesktop":4,
   "columnsMobile":2,
   "gap":40,
@@ -574,7 +581,7 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 13 — BLOG POSTS GRID
+     SECTION 13 — BLOG POSTS GRID (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -584,6 +591,7 @@
   "hideWhenEmpty":true
 } -->
 <!-- wp:modern-core/section-header {
+  "widthMode":"contained",
   "title":"From the Blog",
   "titleAlign":"left",
   "titleSize":32,
@@ -595,11 +603,13 @@
   "viewAllStyle":"arrow-link"
 } /-->
 <!-- wp:modern-core/spacer-divider {
+  "widthMode":"contained",
   "mode":"spacer",
   "heightDesktop":32,
   "heightMobile":16
 } /-->
 <!-- wp:modern-core/blog-grid {
+  "widthMode":"contained",
   "postCount":3,
   "columnsDesktop":3,
   "columnsTablet":2,
@@ -625,7 +635,7 @@
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================
-     SECTION 14 — NEWSLETTER CAPTURE
+     SECTION 14 — NEWSLETTER CAPTURE (background wrapper kept)
      ============================================================ -->
 <!-- wp:modern-core/section-wrapper {
   "wrapperWidth":"full",
@@ -636,6 +646,7 @@
   "bgColor":"#0f172a"
 } -->
 <!-- wp:modern-core/newsletter {
+  "widthMode":"contained",
   "layout":"two-col",
   "headline":"Join the Club",
   "headlineSize":40,
