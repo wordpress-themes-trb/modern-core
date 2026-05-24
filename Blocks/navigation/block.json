@@ -7,6 +7,10 @@
     "icon": "menu",
     "description": "Customizable horizontal navigation menu with hover effects.",
     "attributes": {
+        "disableHamburger": {
+        "type": "boolean",
+        "default": false
+         },
         "linkColor": {
             "type": "string",
             "default": "#0f172a"

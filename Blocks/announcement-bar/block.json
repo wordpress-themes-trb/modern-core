@@ -1,73 +1,69 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "modern-core/announcement-bar",
-    "title": "Announcement Bar",
-    "category": "modern-core",
-    "icon": "megaphone",
-    "description": "Slim top-bar with Marquee, Text Rotation, and Coupon functions.",
-    "supports": {
-        "align": [
-            "full"
-        ],
-        "html": false
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/announcement-bar",
+  "title": "Announcement Bar",
+  "category": "modern-core",
+  "icon": "megaphone",
+  "description": "Slim top-bar with Marquee, Text Rotation, and Coupon functions.",
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "color": false,
+    "spacing": false
+  },
+  "attributes": {
+    "barId": {
+      "type": "string",
+      "default": ""
     },
-    "attributes": {
-        "barId": {
-            "type": "string",
-            "default": "announce-1"
-        },
-        "displayMode": {
-            "type": "string",
-            "default": "marquee"
-        },
-        "message1": {
-            "type": "string",
-            "default": "FREE SHIPPING ON ORDERS OVER $150"
-        },
-        "message2": {
-            "type": "string",
-            "default": "NEW SPRING COLLECTION JUST DROPPED"
-        },
-        "message3": {
-            "type": "string",
-            "default": "USE CODE AT CHECKOUT:"
-        },
-        "couponCode": {
-            "type": "string",
-            "default": "MODERN20"
-        },
-        "animationSpeed": {
-            "type": "number",
-            "default": 15
-        },
-        "bgColor": {
-            "type": "string",
-            "default": "#0f172a"
-        },
-        "textColor": {
-            "type": "string",
-            "default": "#ffffff"
-        },
-        "isSticky": {
-            "type": "boolean",
-            "default": false
-        },
-        "enableDismiss": {
-            "type": "boolean",
-            "default": true
-        },
-        "widthMode": {
-            "type": "string",
-            "default": "fullwidth",
-            "enum": [
-                "contained",
-                "wide",
-                "fullwidth"
-            ]
-        }
+    "displayMode": {
+      "type": "string",
+      "default": "marquee"
     },
-    "textdomain": "modern-core",
-    "editorScript": "modern-core-announcement-js",
-    "render": "file:./render.php"
+    "message1": {
+      "type": "string",
+      "default": "FREE SHIPPING ON ORDERS OVER $150"
+    },
+    "message2": {
+      "type": "string",
+      "default": "NEW SPRING COLLECTION JUST DROPPED"
+    },
+    "message3": {
+      "type": "string",
+      "default": "USE CODE AT CHECKOUT:"
+    },
+    "couponCode": {
+      "type": "string",
+      "default": "MODERN20"
+    },
+    "animationSpeed": {
+      "type": "number",
+      "default": 15
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#0f172a"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "isSticky": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableDismiss": {
+      "type": "boolean",
+      "default": true
+    },
+    "widthMode": {
+      "type": "string",
+      "default": "fullwidth",
+      "enum": ["contained", "wide", "fullwidth"]
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-announcement-js",
+  "render": "file:./render.php"
 }

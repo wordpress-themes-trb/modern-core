@@ -6,6 +6,7 @@ $hover_effect = $attributes['hoverEffect'] ?? 'underline';
 $font_size = $attributes['fontSize'] ?? 15;
 $font_weight = $attributes['fontWeight'] ?? '500';
 $item_spacing = $attributes['itemSpacing'] ?? 32;
+$disable_hamburger = $attributes['disableHamburger'] ?? false;
 
 $unique_id = uniqid('mc-nav-');
 $wrapper_attributes = get_block_wrapper_attributes([
@@ -30,10 +31,17 @@ $wrapper_attributes = get_block_wrapper_attributes([
             .<?php echo esc_attr($unique_id); ?> .wp-block-navigation-item:hover a { color: <?php echo esc_attr($hover_color); ?> !important; }
             .<?php echo esc_attr($unique_id); ?> .wp-block-navigation-item:hover::after { width: 100%; }
         <?php endif; ?>
+
+        /* THE HAMBURGER KILLER */
+        <?php if ($disable_hamburger) : ?>
+            @media (max-width: 767px) {
+                .<?php echo esc_attr($unique_id); ?> .wp-block-navigation__responsive-container-open { display: none !important; }
+                .<?php echo esc_attr($unique_id); ?> .wp-block-navigation__responsive-container-close { display: none !important; }
+                .<?php echo esc_attr($unique_id); ?> .wp-block-navigation__responsive-container { display: block !important; position: static !important; width: 100% !important; height: auto !important; background: transparent !important; visibility: visible !important; opacity: 1 !important; transform: none !important; padding: 0 !important; }
+                .<?php echo esc_attr($unique_id); ?> .wp-block-navigation__responsive-container-content { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 15px !important; }
+            }
+        <?php endif; ?>
     </style>
 
-    <?php 
-    // This outputs the fully editable native WordPress Navigation block
-    echo $content; 
-    ?>
+    <?php echo $content; ?>
 </div>

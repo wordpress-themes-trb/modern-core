@@ -1,4 +1,5 @@
 import * as React from "@wordpress/element";
+import { useEffect } from "@wordpress/element";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import {
   PanelBody,
@@ -10,7 +11,7 @@ import {
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit({ attributes, setAttributes, clientId }) {
   const {
     barId,
     displayMode,
@@ -25,12 +26,27 @@ export default function Edit({ attributes, setAttributes }) {
     enableDismiss,
   } = attributes;
 
+  /*
+   * FIX 1 — Generate a stable unique barId on first insert.
+   * clientId is WordPress's own unique ID per block instance.
+   * We slice it to keep the cookie name short and readable.
+   * This runs once on mount. On subsequent renders barId is
+   * already set so the effect does nothing.
+   */
+  useEffect(() => {
+    if (!barId) {
+      setAttributes({ barId: "bar-" + clientId.slice(0, 8) });
+    }
+  }, [clientId]);
+
   const blockProps = useBlockProps({
     className: `modern-core-announcement-editor mode-${displayMode}`,
     style: {
+      boxSizing: "border-box" /* FIX 2 — matches render.php */,
       backgroundColor: bgColor,
       color: textColor,
       width: "100%",
+      maxWidth: "100%",
       padding: "10px 40px",
       position: "relative",
       display: "flex",
@@ -65,7 +81,7 @@ export default function Edit({ attributes, setAttributes }) {
             min={2}
             max={30}
             help={__(
-              "For Marquee: Lower is faster. For Rotate: Delay in seconds.",
+              "Marquee: lower = faster. Rotate: seconds between slides.",
               "modern-core",
             )}
           />
@@ -95,10 +111,10 @@ export default function Edit({ attributes, setAttributes }) {
             </>
           )}
           <TextControl
-            label={__("Coupon Code (Click to Copy)", "modern-core")}
+            label={__("Coupon Code (click to copy)", "modern-core")}
             value={couponCode}
             onChange={(val) => setAttributes({ couponCode: val })}
-            help={__("Leave blank to disable coupon.", "modern-core")}
+            help={__("Leave blank to hide the coupon chip.", "modern-core")}
           />
         </PanelBody>
 
@@ -106,13 +122,22 @@ export default function Edit({ attributes, setAttributes }) {
           title={__("Settings & Colors", "modern-core")}
           initialOpen={false}
         >
+          <TextControl
+            label={__("Bar ID (for dismiss cookie)", "modern-core")}
+            value={barId}
+            onChange={(val) => setAttributes({ barId: val })}
+            help={__(
+              "Unique per bar. Change this if you want separate dismiss cookies.",
+              "modern-core",
+            )}
+          />
           <ToggleControl
             label={__("Sticky on Scroll", "modern-core")}
             checked={isSticky}
             onChange={(val) => setAttributes({ isSticky: val })}
           />
           <ToggleControl
-            label={__("Enable Dismiss (X)", "modern-core")}
+            label={__("Enable Dismiss (✕)", "modern-core")}
             checked={enableDismiss}
             onChange={(val) => setAttributes({ enableDismiss: val })}
           />
@@ -138,7 +163,6 @@ export default function Edit({ attributes, setAttributes }) {
           <span>{message1}</span>
           {displayMode !== "static" && message2 && <span>{message2}</span>}
           {displayMode !== "static" && message3 && <span>{message3}</span>}
-
           {couponCode && (
             <span
               style={{

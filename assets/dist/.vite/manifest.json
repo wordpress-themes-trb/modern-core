@@ -1,10 +1,4 @@
 {
-  "assets/src/js/header-sidebar/index.jsx": {
-    "file": "blocks/header-sidebar/index.js",
-    "name": "header-sidebar/index",
-    "src": "assets/src/js/header-sidebar/index.jsx",
-    "isEntry": true
-  },
   "assets/src/js/main.js": {
     "file": "js/main-C1iMhbdL.js",
     "name": "main",

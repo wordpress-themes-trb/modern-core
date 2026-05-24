@@ -9,6 +9,7 @@ import {
   SelectControl,
   RangeControl,
   ColorPalette,
+  ToggleControl,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
@@ -20,6 +21,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     fontSize,
     fontWeight,
     itemSpacing,
+    disableHamburger,
   } = attributes;
 
   const blockProps = useBlockProps({
@@ -30,6 +32,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
   return (
     <>
       <InspectorControls>
+        <PanelBody title={__("Mobile Settings", "modern-core")}>
+          <ToggleControl
+            label={__("Disable Hamburger (Force Stack)", "modern-core")}
+            checked={disableHamburger}
+            onChange={(val) => setAttributes({ disableHamburger: val })}
+            help={__(
+              "Turn this on for footers to show links vertically on mobile instead of a menu icon.",
+              "modern-core",
+            )}
+          />
+        </PanelBody>
         <PanelBody title={__("Typography & Spacing", "modern-core")}>
           <RangeControl
             label={__("Font Size (px)", "modern-core")}
@@ -79,7 +92,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
             value={linkColor}
             onChange={(val) => setAttributes({ linkColor: val })}
           />
-
           {hoverEffect !== "none" && (
             <>
               <p style={{ marginTop: "15px", marginBottom: "5px" }}>
@@ -94,60 +106,39 @@ export default function Edit({ attributes, setAttributes, clientId }) {
         </PanelBody>
       </InspectorControls>
 
-      {/* Dynamic CSS Engine targeting the Native WP Nav Block inside */}
       <style>
         {`
-                .modern-core-nav-${clientId} .wp-block-navigation {
-                    gap: ${itemSpacing}px;
-                }
-                .modern-core-nav-${clientId} .wp-block-navigation-item__content,
-                .modern-core-nav-${clientId} .wp-block-navigation-item a {
-                    color: ${linkColor} !important;
-                    font-size: ${fontSize}px !important;
-                    font-weight: ${fontWeight} !important;
-                    position: relative;
-                    transition: color 0.3s ease;
-                    text-decoration: none !important;
-                }
-                
-                ${
-                  hoverEffect === "color"
-                    ? `
-                    .modern-core-nav-${clientId} .wp-block-navigation-item__content:hover,
-                    .modern-core-nav-${clientId} .wp-block-navigation-item a:hover {
-                        color: ${hoverColor} !important;
-                    }
-                `
-                    : ""
-                }
-                
-                ${
-                  hoverEffect === "underline"
-                    ? `
-                    .modern-core-nav-${clientId} .wp-block-navigation-item {
-                        position: relative;
-                    }
-                    .modern-core-nav-${clientId} .wp-block-navigation-item::after {
-                        content: '';
-                        position: absolute;
-                        width: 0;
-                        height: 2px;
-                        bottom: -4px;
-                        left: 0;
-                        background-color: ${hoverColor};
-                        transition: width 0.3s ease;
-                    }
-                    .modern-core-nav-${clientId} .wp-block-navigation-item:hover .wp-block-navigation-item__content,
-                    .modern-core-nav-${clientId} .wp-block-navigation-item:hover a {
-                        color: ${hoverColor} !important;
-                    }
-                    .modern-core-nav-${clientId} .wp-block-navigation-item:hover::after {
-                        width: 100%;
-                    }
-                `
-                    : ""
-                }
-                `}
+          .modern-core-nav-${clientId} .wp-block-navigation { gap: ${itemSpacing}px; }
+          .modern-core-nav-${clientId} .wp-block-navigation-item__content,
+          .modern-core-nav-${clientId} .wp-block-navigation-item a {
+              color: ${linkColor} !important; font-size: ${fontSize}px !important; font-weight: ${fontWeight} !important; position: relative; transition: color 0.3s ease; text-decoration: none !important;
+          }
+          ${hoverEffect === "color" ? ` .modern-core-nav-${clientId} .wp-block-navigation-item__content:hover, .modern-core-nav-${clientId} .wp-block-navigation-item a:hover { color: ${hoverColor} !important; } ` : ""}
+          ${
+            hoverEffect === "underline"
+              ? `
+              .modern-core-nav-${clientId} .wp-block-navigation-item { position: relative; }
+              .modern-core-nav-${clientId} .wp-block-navigation-item::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: ${hoverColor}; transition: width 0.3s ease; }
+              .modern-core-nav-${clientId} .wp-block-navigation-item:hover .wp-block-navigation-item__content, .modern-core-nav-${clientId} .wp-block-navigation-item:hover a { color: ${hoverColor} !important; }
+              .modern-core-nav-${clientId} .wp-block-navigation-item:hover::after { width: 100%; }
+          `
+              : ""
+          }
+
+          /* THE HAMBURGER KILLER */
+          ${
+            disableHamburger
+              ? `
+              @media (max-width: 767px) {
+                  .modern-core-nav-${clientId} .wp-block-navigation__responsive-container-open { display: none !important; }
+                  .modern-core-nav-${clientId} .wp-block-navigation__responsive-container-close { display: none !important; }
+                  .modern-core-nav-${clientId} .wp-block-navigation__responsive-container { display: block !important; position: static !important; width: 100% !important; height: auto !important; background: transparent !important; visibility: visible !important; opacity: 1 !important; transform: none !important; padding: 0 !important; }
+                  .modern-core-nav-${clientId} .wp-block-navigation__responsive-container-content { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 15px !important; }
+              }
+          `
+              : ""
+          }
+        `}
       </style>
 
       <div {...blockProps}>
