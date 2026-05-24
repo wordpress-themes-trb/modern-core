@@ -563,3 +563,5 @@ function mc_get_cart_count_ajax() {
     }
     wp_send_json_success(['count' => WC()->cart->get_cart_contents_count()]);
 }
+
+require_once get_template_directory() . '/inc/Core/dynamic-header-footer.php';

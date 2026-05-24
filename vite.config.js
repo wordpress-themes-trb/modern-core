@@ -20,7 +20,6 @@ export default defineConfig({
         main: path.resolve(__dirname, "assets/src/js/main.js"),
         style: path.resolve(__dirname, "assets/src/scss/main.scss"),
         editor: path.resolve(__dirname, "assets/src/scss/editor.scss"),
-        // Your Blocks:
         "advanced-header/index": path.resolve(
           __dirname,
           "blocks/advanced-header/index.js",
@@ -259,9 +258,12 @@ export default defineConfig({
           "blocks/spacer-divider/index.js",
         ),
         "icon/index": path.resolve(__dirname, "blocks/icon/index.js"),
+        "header-sidebar/index": path.resolve(
+          __dirname,
+          "assets/src/js/header-sidebar/index.jsx",
+        ),
       },
       output: {
-        // THE FIX: Manually inject the isolation bubble so Rollup doesn't panic
         banner: "(() => {",
         footer: "})();",
         entryFileNames: (assetInfo) => {
@@ -280,6 +282,9 @@ export default defineConfig({
           "@wordpress/i18n": "window.wp.i18n",
           "@wordpress/element": "window.wp.element",
           "@wordpress/data": "window.wp.data",
+          "@wordpress/api-fetch": "window.wp.apiFetch",
+          "@wordpress/plugins": "window.wp.plugins",
+          "@wordpress/edit-post": "window.wp.editPost",
         }),
       ],
     },
