@@ -1,86 +1,43 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "modern-core/category-grid",
-    "title": "Category Grid",
-    "category": "modern-core",
-    "icon": "category",
-    "description": "Visual taxonomy navigation with dynamic grid layouts.",
-    "supports": {
-        "align": [
-            "wide",
-            "full"
-        ],
-        "html": false
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/category-grid",
+  "title": "Category Grid",
+  "category": "modern-core",
+  "icon": "category",
+  "description": "Visual taxonomy navigation with dynamic grid layouts.",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "sourceMode": { "type": "string", "default": "dynamic" },
+    "catCount": { "type": "number", "default": 4 },
+    "manualCatIds": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "number" }
     },
-    "attributes": {
-        "sourceMode": {
-            "type": "string",
-            "default": "dynamic"
-        },
-        "catCount": {
-            "type": "number",
-            "default": 6
-        },
-        "layoutMode": {
-            "type": "string",
-            "default": "grid"
-        },
-        "colsDesktop": {
-            "type": "number",
-            "default": 3
-        },
-        "colsMobile": {
-            "type": "number",
-            "default": 2
-        },
-        "imageRatio": {
-            "type": "string",
-            "default": "3/4"
-        },
-        "labelPlacement": {
-            "type": "string",
-            "default": "overlay"
-        },
-        "textPosition": {
-            "type": "string",
-            "default": "bottom-left"
-        },
-        "showCount": {
-            "type": "boolean",
-            "default": false
-        },
-        "hoverEffect": {
-            "type": "string",
-            "default": "zoom-darken"
-        },
-        "cardRadius": {
-            "type": "number",
-            "default": 8
-        },
-        "overlayOpacity": {
-            "type": "number",
-            "default": 40
-        },
-        "accentColor": {
-            "type": "string",
-            "default": "#0f172a"
-        },
-        "textColor": {
-            "type": "string",
-            "default": "#ffffff"
-        },
-        "widthMode": {
-            "type": "string",
-            "default": "contained",
-            "enum": [
-                "contained",
-                "wide",
-                "fullwidth"
-            ]
-        }
-    },
-    "textdomain": "modern-core",
-    "editorScript": "modern-core-category-grid-js",
-    "render": "file:./render.php"
+    "featuredCatId": { "type": "number", "default": 0 },
+    "layoutMode": { "type": "string", "default": "grid" },
+    "colsDesktop": { "type": "number", "default": 4 },
+    "colsMobile": { "type": "number", "default": 2 },
+    "imageRatio": { "type": "string", "default": "3/4" },
+    "labelPlacement": { "type": "string", "default": "overlay" },
+    "textPosition": { "type": "string", "default": "bottom-left" },
+    "showCount": { "type": "boolean", "default": false },
+    "hoverEffect": { "type": "string", "default": "zoom-darken" },
+    "cardRadius": { "type": "number", "default": 8 },
+    "overlayOpacity": { "type": "number", "default": 40 },
+    "accentColor": { "type": "string", "default": "#0f172a" },
+    "textColor": { "type": "string", "default": "#ffffff" },
+    "widthMode": {
+      "type": "string",
+      "default": "contained",
+      "enum": ["contained", "wide", "fullwidth"]
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-category-grid-js",
+  "render": "file:./render.php"
 }

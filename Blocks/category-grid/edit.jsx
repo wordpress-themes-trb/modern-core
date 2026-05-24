@@ -1,4 +1,5 @@
 import * as React from "@wordpress/element";
+import { useState, useEffect } from "@wordpress/element";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import {
   PanelBody,
@@ -6,13 +7,19 @@ import {
   RangeControl,
   ToggleControl,
   ColorPalette,
+  CheckboxControl,
+  Spinner,
+  Notice,
 } from "@wordpress/components";
+import { useSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 
 export default function Edit({ attributes, setAttributes }) {
   const {
     sourceMode,
     catCount,
+    manualCatIds,
+    featuredCatId,
     layoutMode,
     colsDesktop,
     colsMobile,
@@ -27,30 +34,37 @@ export default function Edit({ attributes, setAttributes }) {
     textColor,
   } = attributes;
 
-  const blockProps = useBlockProps({
-    className: `modern-core-category-editor layout-${layoutMode} label-${labelPlacement}`,
-    style: { width: "100%", padding: "40px 0" },
-  });
+  // ── Fetch all product categories from the REST API ──────────────────────────
+  // useSelect keeps this reactive — re-runs when the store updates.
+  const { allCategories, isLoading } = useSelect((select) => {
+    const store = select("core");
+    const cats = store.getEntityRecords("taxonomy", "product_cat", {
+      per_page: 100,
+      hide_empty: false,
+      _fields: "id,name,count,slug",
+    });
+    const loading = !store.hasFinishedResolution("getEntityRecords", [
+      "taxonomy",
+      "product_cat",
+      { per_page: 100, hide_empty: false, _fields: "id,name,count,slug" },
+    ]);
+    return { allCategories: cats || [], isLoading: loading };
+  }, []);
 
-  const mockCats = Array.from({ length: catCount }).map((_, i) => {
-    const names = [
-      "Women",
-      "Men",
-      "Accessories",
-      "Footwear",
-      "Outerwear",
-      "Beauty",
-    ];
-    return {
-      id: i,
-      name: names[i % names.length],
-      count: (i + 1) * 24,
-      image: `https://images.unsplash.com/photo-${i % 2 === 0 ? "1521572163474-6f64f9fa023e" : "1506422745199-563b7e735496"}?q=80&w=600&auto=format&fit=crop`,
-    };
-  });
+  // Filter out 'uncategorized'
+  const categories = allCategories.filter((c) => c.slug !== "uncategorized");
 
-  // Text Alignment Logic
-  let alignStyles = { alignItems: "flex-start", justifyContent: "flex-end" }; // bottom-left default
+  // Toggle a category in/out of manualCatIds
+  const toggleManualCat = (catId) => {
+    const id = Number(catId);
+    const ids = manualCatIds.includes(id)
+      ? manualCatIds.filter((i) => i !== id)
+      : [...manualCatIds, id];
+    setAttributes({ manualCatIds: ids });
+  };
+
+  // ── Text alignment helper (editor preview) ──────────────────────────────────
+  let alignStyles = { alignItems: "flex-start", justifyContent: "flex-end" };
   if (textPosition === "center")
     alignStyles = { alignItems: "center", justifyContent: "center" };
   if (textPosition === "bottom-center")
@@ -58,10 +72,46 @@ export default function Edit({ attributes, setAttributes }) {
   if (textPosition === "top-left")
     alignStyles = { alignItems: "flex-start", justifyContent: "flex-start" };
 
+  // ── Determine which cats to preview ─────────────────────────────────────────
+  const previewCats =
+    sourceMode === "manual" && manualCatIds.length > 0
+      ? categories
+          .filter((c) => manualCatIds.includes(Number(c.id)))
+          .sort(
+            (a, b) =>
+              manualCatIds.indexOf(Number(a.id)) -
+              manualCatIds.indexOf(Number(b.id)),
+          )
+      : categories.slice(0, catCount);
+
+  // Move featured cat to front for preview
+  const orderedPreview = (() => {
+    if (layoutMode !== "featured" || !featuredCatId) return previewCats;
+    const idx = previewCats.findIndex(
+      (c) => Number(c.id) === Number(featuredCatId),
+    );
+    if (idx <= 0) return previewCats;
+    const copy = [...previewCats];
+    const [feat] = copy.splice(idx, 1);
+    return [feat, ...copy];
+  })();
+
+  const blockProps = useBlockProps({
+    className: `modern-core-category-editor layout-${layoutMode} label-${labelPlacement}`,
+    style: { width: "100%", padding: "40px 0", boxSizing: "border-box" },
+  });
+
+  // Mock image per index
+  const mockImg = (i) =>
+    `https://images.unsplash.com/photo-${
+      i % 2 === 0 ? "1521572163474-6f64f9fa023e" : "1506422745199-563b7e735496"
+    }?q=80&w=600&auto=format&fit=crop`;
+
   return (
     <>
       <InspectorControls>
-        <PanelBody title={__("Data Routing", "modern-core")}>
+        {/* ── DATA SOURCE ─────────────────────────────────────────────── */}
+        <PanelBody title={__("Data Source", "modern-core")}>
           <SelectControl
             label={__("Category Source", "modern-core")}
             value={sourceMode}
@@ -71,15 +121,76 @@ export default function Edit({ attributes, setAttributes }) {
             ]}
             onChange={(val) => setAttributes({ sourceMode: val })}
           />
-          <RangeControl
-            label={__("Number of Categories", "modern-core")}
-            value={catCount}
-            onChange={(val) => setAttributes({ catCount: val })}
-            min={2}
-            max={12}
-          />
+
+          {/* Dynamic: just a count slider */}
+          {sourceMode === "dynamic" && (
+            <RangeControl
+              label={__("Number of Categories", "modern-core")}
+              value={catCount}
+              onChange={(val) => setAttributes({ catCount: val })}
+              min={2}
+              max={12}
+            />
+          )}
+
+          {/* FIX 1 — Manual: checkbox list of all product categories */}
+          {sourceMode === "manual" && (
+            <div style={{ marginTop: "12px" }}>
+              <p
+                style={{
+                  margin: "0 0 8px",
+                  fontWeight: 600,
+                  fontSize: "11px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                {__("Select Categories", "modern-core")}
+              </p>
+              {isLoading ? (
+                <Spinner />
+              ) : categories.length === 0 ? (
+                <Notice status="warning" isDismissible={false}>
+                  {__("No product categories found.", "modern-core")}
+                </Notice>
+              ) : (
+                <div
+                  style={{
+                    maxHeight: "260px",
+                    overflowY: "auto",
+                    border: "1px solid #e0e0e0",
+                    borderRadius: "4px",
+                    padding: "8px",
+                  }}
+                >
+                  {categories.map((cat) => (
+                    <div key={cat.id} style={{ marginBottom: "6px" }}>
+                      <CheckboxControl
+                        label={`${cat.name} (${cat.count})`}
+                        checked={manualCatIds.includes(Number(cat.id))}
+                        onChange={() => toggleManualCat(cat.id)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+              {manualCatIds.length > 0 && (
+                <p
+                  style={{
+                    margin: "8px 0 0",
+                    fontSize: "11px",
+                    color: "#757575",
+                  }}
+                >
+                  {manualCatIds.length}{" "}
+                  {__("categories selected", "modern-core")}
+                </p>
+              )}
+            </div>
+          )}
         </PanelBody>
 
+        {/* ── GRID ARCHITECTURE ───────────────────────────────────────── */}
         <PanelBody
           title={__("Grid Architecture", "modern-core")}
           initialOpen={false}
@@ -89,11 +200,61 @@ export default function Edit({ attributes, setAttributes }) {
             value={layoutMode}
             options={[
               { label: "Uniform Grid", value: "grid" },
-              { label: "Featured Grid (Bento Box)", value: "featured" },
+              { label: "Featured Grid (Bento)", value: "featured" },
               { label: "Horizontal Scroll", value: "scroll" },
             ]}
             onChange={(val) => setAttributes({ layoutMode: val })}
           />
+
+          {/* FIX 2 — Featured category picker — only shown in featured mode */}
+          {layoutMode === "featured" && (
+            <div style={{ marginTop: "12px" }}>
+              <p
+                style={{
+                  margin: "0 0 6px",
+                  fontWeight: 600,
+                  fontSize: "11px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                {__("Featured (Hero) Category", "modern-core")}
+              </p>
+              {isLoading ? (
+                <Spinner />
+              ) : (
+                <SelectControl
+                  value={String(featuredCatId || 0)}
+                  options={[
+                    {
+                      label: __("— First category (default) —", "modern-core"),
+                      value: "0",
+                    },
+                    ...categories.map((c) => ({
+                      label: `${c.name} (${c.count})`,
+                      value: String(c.id),
+                    })),
+                  ]}
+                  onChange={(val) =>
+                    setAttributes({ featuredCatId: Number(val) })
+                  }
+                />
+              )}
+              <p
+                style={{
+                  margin: "4px 0 0",
+                  fontSize: "11px",
+                  color: "#757575",
+                }}
+              >
+                {__(
+                  "This category will be pinned as the large left tile.",
+                  "modern-core",
+                )}
+              </p>
+            </div>
+          )}
+
           <RangeControl
             label={__("Desktop Columns", "modern-core")}
             value={colsDesktop}
@@ -110,6 +271,7 @@ export default function Edit({ attributes, setAttributes }) {
           />
         </PanelBody>
 
+        {/* ── TILE DESIGN ─────────────────────────────────────────────── */}
         <PanelBody title={__("Tile Design", "modern-core")} initialOpen={false}>
           <SelectControl
             label={__("Label Placement", "modern-core")}
@@ -164,13 +326,19 @@ export default function Edit({ attributes, setAttributes }) {
           />
         </PanelBody>
 
+        {/* ── COLORS ──────────────────────────────────────────────────── */}
         <PanelBody title={__("Colors", "modern-core")} initialOpen={false}>
+          <p style={{ margin: "0 0 5px", fontWeight: 600 }}>
+            {__("Text Color", "modern-core")}
+          </p>
           <ColorPalette
             value={textColor}
             onChange={(val) => setAttributes({ textColor: val })}
           />
-          <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-            <strong>{__("Brand Accent", "modern-core")}</strong>
+          <p
+            style={{ marginTop: "15px", marginBottom: "5px", fontWeight: 600 }}
+          >
+            {__("Brand Accent", "modern-core")}
           </p>
           <ColorPalette
             value={accentColor}
@@ -179,142 +347,174 @@ export default function Edit({ attributes, setAttributes }) {
         </PanelBody>
       </InspectorControls>
 
+      {/* ── EDITOR PREVIEW ────────────────────────────────────────────── */}
       <div {...blockProps}>
-        <style>
-          {`
-                    .modern-core-category-editor {
-                        --mc-cols: ${colsDesktop};
-                        --mc-ratio: ${imageRatio};
-                        --mc-radius: ${cardRadius}px;
-                        --mc-txt: ${textColor};
-                        --mc-opacity: ${overlayOpacity / 100};
-                    }
-                    .mc-cat-grid-mock {
-                        display: grid;
-                        grid-template-columns: repeat(var(--mc-cols), 1fr);
-                        gap: 20px;
-                    }
-                    .layout-scroll .mc-cat-grid-mock {
-                        display: flex; overflow-x: auto; gap: 20px;
-                    }
-                    .mc-cat-tile-mock {
-                        position: relative;
-                        border-radius: var(--mc-radius);
-                        overflow: hidden;
-                        display: flex;
-                        flex-direction: column;
-                    }
-                    .layout-scroll .mc-cat-tile-mock {
-                        flex: 0 0 calc(100% / var(--mc-cols));
-                    }
-                    
-                    /* Featured Grid Bento Logic */
-                    .layout-featured .mc-cat-grid-mock .mc-cat-tile-mock:first-child {
-                        grid-column: span 2;
-                        grid-row: span 2;
-                    }
-                    
-                    .mc-cat-img-wrap {
-                        width: 100%;
-                        aspect-ratio: var(--mc-ratio);
-                        position: relative;
-                        overflow: hidden;
-                    }
-                    /* In featured bento, the first item must fill height */
-                    .layout-featured .mc-cat-grid-mock .mc-cat-tile-mock:first-child .mc-cat-img-wrap {
-                        height: 100%; aspect-ratio: auto;
-                    }
-                    `}
-        </style>
+        <style>{`
+          .mc-cat-grid-mock {
+            display: grid;
+            grid-template-columns: repeat(${colsDesktop}, 1fr);
+            gap: 20px;
+          }
+          .layout-featured .mc-cat-grid-mock {
+            grid-template-columns: 2fr 1fr;
+          }
+          .layout-featured .mc-cat-grid-mock .mc-cat-tile-mock:first-child {
+            grid-row: 1 / span 2;
+          }
+          .layout-featured .mc-cat-grid-mock .mc-cat-tile-mock:first-child .mc-cat-img-wrap {
+            height: 100%; aspect-ratio: auto; min-height: 300px;
+          }
+          .layout-scroll .mc-cat-grid-mock {
+            display: flex; overflow-x: auto; gap: 15px;
+          }
+          .layout-scroll .mc-cat-tile-mock {
+            flex: 0 0 calc(100% / ${colsDesktop});
+          }
+          .mc-cat-tile-mock {
+            border-radius: ${cardRadius}px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+          }
+          .mc-cat-img-wrap {
+            width: 100%;
+            aspect-ratio: ${imageRatio};
+            position: relative;
+            overflow: hidden;
+            background: #e2e8f0;
+          }
+        `}</style>
 
-        <div className="mc-cat-grid-mock">
-          {mockCats.map((cat, i) => (
-            <div key={i} className="mc-cat-tile-mock">
-              <div
-                className="mc-cat-img-wrap"
-                style={{
-                  backgroundImage: `url(${cat.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                {labelPlacement === "overlay" && (
-                  <>
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        background: textPosition.includes("bottom")
-                          ? `linear-gradient(to top, rgba(0,0,0,calc(var(--mc-opacity) + 0.2)), rgba(0,0,0,0))`
-                          : `rgba(0,0,0,var(--mc-opacity))`,
-                      }}
-                    ></div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        padding: "30px",
-                        display: "flex",
-                        flexDirection: "column",
-                        color: textColor,
-                        ...alignStyles,
-                      }}
-                    >
-                      <h3
-                        style={{
-                          margin: 0,
-                          fontSize: "24px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {cat.name}
-                      </h3>
-                      {showCount && (
-                        <span
-                          style={{
-                            fontSize: "13px",
-                            opacity: 0.8,
-                            marginTop: "5px",
-                          }}
-                        >
-                          {cat.count} products
-                        </span>
-                      )}
-                    </div>
-                  </>
-                )}
-              </div>
+        {/* Loading state */}
+        {isLoading && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "20px",
+              color: "#757575",
+            }}
+          >
+            <Spinner /> {__("Loading categories…", "modern-core")}
+          </div>
+        )}
 
-              {labelPlacement === "below" && (
+        {/* Manual + no selection warning */}
+        {!isLoading && sourceMode === "manual" && manualCatIds.length === 0 && (
+          <Notice status="info" isDismissible={false}>
+            {__(
+              "Select categories from the sidebar to preview.",
+              "modern-core",
+            )}
+          </Notice>
+        )}
+
+        {/* Grid preview */}
+        {!isLoading && orderedPreview.length > 0 && (
+          <div className="mc-cat-grid-mock">
+            {orderedPreview.map((cat, i) => (
+              <div key={cat.id} className="mc-cat-tile-mock">
                 <div
+                  className="mc-cat-img-wrap"
                   style={{
-                    padding: "20px 0",
-                    color: accentColor,
-                    textAlign: "center",
+                    backgroundImage: `url(${mockImg(i)})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                   }}
                 >
-                  <h3
-                    style={{ margin: 0, fontSize: "18px", fontWeight: "bold" }}
-                  >
-                    {cat.name}
-                  </h3>
-                  {showCount && (
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        opacity: 0.6,
-                        marginTop: "5px",
-                        display: "block",
-                      }}
-                    >
-                      {cat.count} products
-                    </span>
+                  {labelPlacement === "overlay" && (
+                    <>
+                      <div
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          background: textPosition.includes("bottom")
+                            ? `linear-gradient(to top, rgba(0,0,0,${overlayOpacity / 100 + 0.2}), rgba(0,0,0,0))`
+                            : `rgba(0,0,0,${overlayOpacity / 100})`,
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          padding: "20px",
+                          display: "flex",
+                          flexDirection: "column",
+                          color: textColor,
+                          ...alignStyles,
+                        }}
+                      >
+                        <h3
+                          style={{
+                            margin: 0,
+                            fontSize: "20px",
+                            fontWeight: 700,
+                          }}
+                        >
+                          {cat.name}
+                          {layoutMode === "featured" &&
+                            Number(cat.id) === Number(featuredCatId) && (
+                              <span
+                                style={{
+                                  fontSize: "10px",
+                                  background: "rgba(255,255,255,0.2)",
+                                  padding: "2px 6px",
+                                  borderRadius: "3px",
+                                  marginLeft: "8px",
+                                  verticalAlign: "middle",
+                                }}
+                              >
+                                FEATURED
+                              </span>
+                            )}
+                        </h3>
+                        {showCount && (
+                          <span
+                            style={{
+                              fontSize: "13px",
+                              opacity: 0.8,
+                              marginTop: "5px",
+                            }}
+                          >
+                            {cat.count} products
+                          </span>
+                        )}
+                      </div>
+                    </>
                   )}
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
+                {labelPlacement === "below" && (
+                  <div
+                    style={{
+                      padding: "15px 0",
+                      color: accentColor,
+                      textAlign: "center",
+                    }}
+                  >
+                    <h3
+                      style={{ margin: 0, fontSize: "16px", fontWeight: 700 }}
+                    >
+                      {cat.name}
+                    </h3>
+                    {showCount && (
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          opacity: 0.6,
+                          display: "block",
+                          marginTop: "4px",
+                        }}
+                      >
+                        {cat.count} products
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
