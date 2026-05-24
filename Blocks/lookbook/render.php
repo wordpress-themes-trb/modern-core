@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $img_url = $attributes['imageUrl'] ?? '';
 if (!$img_url) return;
 
@@ -12,7 +13,7 @@ $card_radius = $attributes['cardRadius'] ?? 8;
 $overlay_opacity = ($attributes['overlayOpacity'] ?? 10) / 100;
 
 $unique_id = uniqid('mc-lookbook-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-lookbook {$unique_id} style-{$pin_style}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-lookbook {$unique_id} style-{$pin_style}"]);
 
 $is_wc_active = class_exists('WooCommerce');
 ?>

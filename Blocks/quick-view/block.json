@@ -1,29 +1,68 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/quick-view",
-  "title": "Quick View Engine",
-  "category": "modern-core",
-  "icon": "visibility",
-  "description": "Global modal engine for high-speed product previews.",
-  "supports": {
-    "align": false,
-    "html": false,
-    "multiple": false
-  },
-  "attributes": {
-    "modalWidth": { "type": "number", "default": 900 },
-    "modalRadius": { "type": "number", "default": 16 },
-    "overlayColor": { "type": "string", "default": "rgba(15, 23, 42, 0.85)" },
-    "overlayBlur": { "type": "number", "default": 10 },
-    "animStyle": { "type": "string", "default": "scale" },
-    "splitRatio": { "type": "number", "default": 50 },
-    "showRating": { "type": "boolean", "default": true },
-    "showDesc": { "type": "boolean", "default": true },
-    "showTrust": { "type": "boolean", "default": true },
-    "accentColor": { "type": "string", "default": "#3b82f6" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-quick-view-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/quick-view",
+    "title": "Quick View Engine",
+    "category": "modern-core",
+    "icon": "visibility",
+    "description": "Global modal engine for high-speed product previews.",
+    "supports": {
+        "align": false,
+        "html": false,
+        "multiple": false
+    },
+    "attributes": {
+        "modalWidth": {
+            "type": "number",
+            "default": 900
+        },
+        "modalRadius": {
+            "type": "number",
+            "default": 16
+        },
+        "overlayColor": {
+            "type": "string",
+            "default": "rgba(15, 23, 42, 0.85)"
+        },
+        "overlayBlur": {
+            "type": "number",
+            "default": 10
+        },
+        "animStyle": {
+            "type": "string",
+            "default": "scale"
+        },
+        "splitRatio": {
+            "type": "number",
+            "default": 50
+        },
+        "showRating": {
+            "type": "boolean",
+            "default": true
+        },
+        "showDesc": {
+            "type": "boolean",
+            "default": true
+        },
+        "showTrust": {
+            "type": "boolean",
+            "default": true
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#3b82f6"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-quick-view-js",
+    "render": "file:./render.php"
 }

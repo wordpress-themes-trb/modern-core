@@ -1,27 +1,66 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/lookbook",
-  "title": "Shoppable Lookbook",
-  "category": "modern-core",
-  "icon": "location-alt",
-  "description": "Interactive lifestyle image with shoppable product hotspots.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "imageUrl": { "type": "string", "default": "" },
-    "imageHeight": { "type": "number", "default": 70 },
-    "pins": { "type": "array", "default": [] },
-    "pinStyle": { "type": "string", "default": "pulse" },
-    "pinColor": { "type": "string", "default": "#ffffff" },
-    "pulseColor": { "type": "string", "default": "#3b82f6" },
-    "cardBg": { "type": "string", "default": "#ffffff" },
-    "cardRadius": { "type": "number", "default": 8 },
-    "overlayOpacity": { "type": "number", "default": 10 }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-lookbook-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/lookbook",
+    "title": "Shoppable Lookbook",
+    "category": "modern-core",
+    "icon": "location-alt",
+    "description": "Interactive lifestyle image with shoppable product hotspots.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "attributes": {
+        "imageUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "imageHeight": {
+            "type": "number",
+            "default": 70
+        },
+        "pins": {
+            "type": "array",
+            "default": []
+        },
+        "pinStyle": {
+            "type": "string",
+            "default": "pulse"
+        },
+        "pinColor": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "pulseColor": {
+            "type": "string",
+            "default": "#3b82f6"
+        },
+        "cardBg": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "cardRadius": {
+            "type": "number",
+            "default": 8
+        },
+        "overlayOpacity": {
+            "type": "number",
+            "default": 10
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-lookbook-js",
+    "render": "file:./render.php"
 }

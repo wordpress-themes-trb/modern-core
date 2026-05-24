@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $title = $attributes['sectionTitle'] ?? 'Shop by Collection';
@@ -16,7 +17,7 @@ $accent = $attributes['accentColor'] ?? '#0f172a';
 $inactive = $attributes['inactiveColor'] ?? '#94a3b8';
 
 $unique_id = uniqid('mc-ptabs-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-product-tabs {$unique_id} style-{$tab_style} anim-{$anim}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-product-tabs {$unique_id} style-{$tab_style} anim-{$anim}"]);
 
 // FIX: Wrap helper function to prevent redeclaration errors if multiple blocks exist
 if (!function_exists('mc_get_tab_query')) {

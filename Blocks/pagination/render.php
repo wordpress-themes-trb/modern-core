@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 // This block only makes sense on archive pages or product queries
@@ -16,7 +17,7 @@ $text_c = $attributes['textColor'] ?? '#0f172a';
 $border_c = $attributes['borderColor'] ?? '#e2e8f0';
 
 $unique_id = uniqid('mc-pag-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-pagination {$unique_id} mode-{$mode}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-pagination {$unique_id} mode-{$mode}"]);
 
 $prev_text = ($prev_next === 'both' || $prev_next === 'text') ? __('Previous', 'woocommerce') : '';
 $next_text = ($prev_next === 'both' || $prev_next === 'text') ? __('Next', 'woocommerce') : '';

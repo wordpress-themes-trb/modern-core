@@ -1,27 +1,66 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/variation-picker",
-  "title": "Variation Picker",
-  "category": "modern-core",
-  "icon": "forms",
-  "description": "Tactile, error-proof variation selection engine with live updates.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "swatchShape": { "type": "string", "default": "circle" },
-    "swatchSize": { "type": "number", "default": 32 },
-    "btnRadius": { "type": "number", "default": 6 },
-    "gap": { "type": "number", "default": 12 },
-    "showLiveLabel": { "type": "boolean", "default": true },
-    "accentColor": { "type": "string", "default": "#3b82f6" },
-    "textColor": { "type": "string", "default": "#0f172a" },
-    "borderColor": { "type": "string", "default": "#e2e8f0" },
-    "disabledStyle": { "type": "string", "default": "strikethrough" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-variation-picker-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/variation-picker",
+    "title": "Variation Picker",
+    "category": "modern-core",
+    "icon": "forms",
+    "description": "Tactile, error-proof variation selection engine with live updates.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "attributes": {
+        "swatchShape": {
+            "type": "string",
+            "default": "circle"
+        },
+        "swatchSize": {
+            "type": "number",
+            "default": 32
+        },
+        "btnRadius": {
+            "type": "number",
+            "default": 6
+        },
+        "gap": {
+            "type": "number",
+            "default": 12
+        },
+        "showLiveLabel": {
+            "type": "boolean",
+            "default": true
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#3b82f6"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "borderColor": {
+            "type": "string",
+            "default": "#e2e8f0"
+        },
+        "disabledStyle": {
+            "type": "string",
+            "default": "strikethrough"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-variation-picker-js",
+    "render": "file:./render.php"
 }

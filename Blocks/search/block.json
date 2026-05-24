@@ -1,21 +1,51 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/search",
-  "title": "Advanced Search",
-  "category": "modern-core",
-  "icon": "search",
-  "description": "A live-suggest search bar with customizable shape and icons.",
-  "attributes": {
-    "placeholder": { "type": "string", "default": "Search for products..." },
-    "shape": { "type": "string", "default": "pill" },
-    "showIcon": { "type": "boolean", "default": true },
-    "iconPosition": { "type": "string", "default": "right" },
-    "bgColor": { "type": "string", "default": "#f1f5f9" },
-    "textColor": { "type": "string", "default": "#0f172a" },
-    "width": { "type": "number", "default": 100 }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-search-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/search",
+    "title": "Advanced Search",
+    "category": "modern-core",
+    "icon": "search",
+    "description": "A live-suggest search bar with customizable shape and icons.",
+    "attributes": {
+        "placeholder": {
+            "type": "string",
+            "default": "Search for products..."
+        },
+        "shape": {
+            "type": "string",
+            "default": "pill"
+        },
+        "showIcon": {
+            "type": "boolean",
+            "default": true
+        },
+        "iconPosition": {
+            "type": "string",
+            "default": "right"
+        },
+        "bgColor": {
+            "type": "string",
+            "default": "#f1f5f9"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "width": {
+            "type": "number",
+            "default": 100
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-search-js",
+    "render": "file:./render.php"
 }

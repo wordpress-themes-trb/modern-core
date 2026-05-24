@@ -1,38 +1,71 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/payment-icons",
-  "title": "Payment Icons",
-  "category": "modern-core",
-  "icon": "cart",
-  "description": "Checkout confidence signal displaying accepted payment method logos.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "showLabel": { "type": "boolean", "default": true },
-    "labelText": { "type": "string", "default": "Secure payment options" },
-    "badgeStyle": { "type": "string", "default": "color" },
-    "iconHeight": { "type": "number", "default": 32 },
-    "gap": { "type": "number", "default": 16 },
-    "alignment": { "type": "string", "default": "center" },
-    "activeIcons": {
-      "type": "array",
-      "default": [
-        "visa",
-        "mastercard",
-        "paypal",
-        "applepay",
-        "googlepay",
-        "klarna",
-        "amex",
-        "stripe"
-      ]
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/payment-icons",
+    "title": "Payment Icons",
+    "category": "modern-core",
+    "icon": "cart",
+    "description": "Checkout confidence signal displaying accepted payment method logos.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
     },
-    "labelColor": { "type": "string", "default": "#64748b" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-payment-icons-js",
-  "render": "file:./render.php"
+    "attributes": {
+        "showLabel": {
+            "type": "boolean",
+            "default": true
+        },
+        "labelText": {
+            "type": "string",
+            "default": "Secure payment options"
+        },
+        "badgeStyle": {
+            "type": "string",
+            "default": "color"
+        },
+        "iconHeight": {
+            "type": "number",
+            "default": 32
+        },
+        "gap": {
+            "type": "number",
+            "default": 16
+        },
+        "alignment": {
+            "type": "string",
+            "default": "center"
+        },
+        "activeIcons": {
+            "type": "array",
+            "default": [
+                "visa",
+                "mastercard",
+                "paypal",
+                "applepay",
+                "googlepay",
+                "klarna",
+                "amex",
+                "stripe"
+            ]
+        },
+        "labelColor": {
+            "type": "string",
+            "default": "#64748b"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-payment-icons-js",
+    "render": "file:./render.php"
 }

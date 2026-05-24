@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (empty($attributes['videoUrl'])) return;
 
 $video_url = $attributes['videoUrl'];
@@ -16,7 +17,7 @@ $min_height = $attributes['minHeight'] ?? 80;
 $align = $attributes['contentAlign'] ?? 'center';
 
 $unique_id = uniqid('mc-vid-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-video-hero {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-video-hero {$unique_id}"]);
 
 $flex_align = $align === 'center' ? 'center' : ($align === 'right' ? 'flex-end' : 'flex-start');
 ?>

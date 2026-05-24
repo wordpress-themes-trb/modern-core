@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $thumb_size = $attributes['thumbSize'] ?? 80;
 $thumb_radius = $attributes['thumbRadius'] ?? 8;
 $qty_style = $attributes['qtyStyle'] ?? 'plus-minus';
@@ -11,6 +12,7 @@ $checkout_bg = $attributes['checkoutBg'] ?? '#0f172a';
 $checkout_text = $attributes['checkoutText'] ?? '#ffffff';
 
 $wrapper_attributes = get_block_wrapper_attributes([
+    'class' => 'mc-block width-' . esc_attr($width_mode),
     'style' => 'display: flex; flex-direction: column; height: 100%; color: inherit;'
 ]);
 

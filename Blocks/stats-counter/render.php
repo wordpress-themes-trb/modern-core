@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $cols_d = $attributes['colsDesktop'] ?? 4;
 $cols_m = $attributes['colsMobile'] ?? 2;
 $align = $attributes['alignment'] ?? 'center';
@@ -16,7 +17,7 @@ if (empty($stats)) return;
 
 $unique_id = uniqid('mc-stats-');
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-stats-counter {$unique_id} align-{$align}",
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-stats-counter {$unique_id} align-{$align}",
     'data-once' => $trigger_once ? 'true' : 'false'
 ]);
 

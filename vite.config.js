@@ -258,10 +258,6 @@ export default defineConfig({
           "blocks/spacer-divider/index.js",
         ),
         "icon/index": path.resolve(__dirname, "blocks/icon/index.js"),
-        "header-sidebar/index": path.resolve(
-          __dirname,
-          "assets/src/js/header-sidebar/index.jsx",
-        ),
       },
       output: {
         banner: "(() => {",

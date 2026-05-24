@@ -1,39 +1,103 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/product-tabs",
-  "title": "Product Tabs",
-  "category": "modern-core",
-  "icon": "index-card",
-  "description": "Dynamic, multi-query product discovery organized into interactive tabs.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "sectionTitle": { "type": "string", "default": "Shop by Collection" },
-    "sectionSubtitle": { "type": "string", "default": "Curated for you" },
-    "tabStyle": { "type": "string", "default": "pill" },
-    "tabAlignment": { "type": "string", "default": "center" },
-    "animationStyle": { "type": "string", "default": "fade" },
-    "tabsData": {
-      "type": "array",
-      "default": [
-        { "label": "New Arrivals", "query": "recent", "count": 8 },
-        { "label": "Best Sellers", "query": "popularity", "count": 8 },
-        { "label": "On Sale", "query": "sale", "count": 8 },
-        { "label": "Top Rated", "query": "rating", "count": 8 }
-      ]
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/product-tabs",
+    "title": "Product Tabs",
+    "category": "modern-core",
+    "icon": "index-card",
+    "description": "Dynamic, multi-query product discovery organized into interactive tabs.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
     },
-    "colsDesktop": { "type": "number", "default": 4 },
-    "colsMobile": { "type": "number", "default": 2 },
-    "imageRatio": { "type": "string", "default": "3/4" },
-    "cardBg": { "type": "string", "default": "#ffffff" },
-    "cardRadius": { "type": "number", "default": 8 },
-    "accentColor": { "type": "string", "default": "#0f172a" },
-    "inactiveColor": { "type": "string", "default": "#94a3b8" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-product-tabs-js",
-  "render": "file:./render.php"
+    "attributes": {
+        "sectionTitle": {
+            "type": "string",
+            "default": "Shop by Collection"
+        },
+        "sectionSubtitle": {
+            "type": "string",
+            "default": "Curated for you"
+        },
+        "tabStyle": {
+            "type": "string",
+            "default": "pill"
+        },
+        "tabAlignment": {
+            "type": "string",
+            "default": "center"
+        },
+        "animationStyle": {
+            "type": "string",
+            "default": "fade"
+        },
+        "tabsData": {
+            "type": "array",
+            "default": [
+                {
+                    "label": "New Arrivals",
+                    "query": "recent",
+                    "count": 8
+                },
+                {
+                    "label": "Best Sellers",
+                    "query": "popularity",
+                    "count": 8
+                },
+                {
+                    "label": "On Sale",
+                    "query": "sale",
+                    "count": 8
+                },
+                {
+                    "label": "Top Rated",
+                    "query": "rating",
+                    "count": 8
+                }
+            ]
+        },
+        "colsDesktop": {
+            "type": "number",
+            "default": 4
+        },
+        "colsMobile": {
+            "type": "number",
+            "default": 2
+        },
+        "imageRatio": {
+            "type": "string",
+            "default": "3/4"
+        },
+        "cardBg": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "cardRadius": {
+            "type": "number",
+            "default": 8
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "inactiveColor": {
+            "type": "string",
+            "default": "#94a3b8"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-product-tabs-js",
+    "render": "file:./render.php"
 }

@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $bg_color = $attributes['bgColor'] ?? 'rgba(15, 23, 42, 0.85)';
 $icon_color = $attributes['iconColor'] ?? '#94a3b8';
 $active_color = $attributes['activeColor'] ?? '#ffffff';

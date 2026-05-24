@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $source = $attributes['sourceMode'] ?? 'dynamic';
@@ -17,7 +18,7 @@ $accent = $attributes['accentColor'] ?? '#0f172a';
 $text_c = $attributes['textColor'] ?? '#ffffff';
 
 $unique_id = uniqid('mc-cat-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-category-grid {$unique_id} layout-{$layout} label-{$placement} hover-{$hover_effect}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-category-grid {$unique_id} layout-{$layout} label-{$placement} hover-{$hover_effect}"]);
 
 // Query Categories
 $args = [

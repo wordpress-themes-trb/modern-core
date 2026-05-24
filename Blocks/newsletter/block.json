@@ -1,42 +1,90 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/newsletter",
-  "title": "Newsletter Capture",
-  "category": "modern-core",
-  "icon": "email",
-  "description": "High-conversion lead capture with API integration and behavioral triggers.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "displayMode": { "type": "string", "default": "inline" },
-    "triggerType": { "type": "string", "default": "time" },
-    "triggerValue": { "type": "number", "default": 5 },
-    "provider": { "type": "string", "default": "klaviyo" },
-    "layout": { "type": "string", "default": "split" },
-    "heading": { "type": "string", "default": "Stay in the loop" },
-    "subhead": {
-      "type": "string",
-      "default": "Get exclusive offers, new arrivals, and style inspiration delivered to your inbox."
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/newsletter",
+    "title": "Newsletter Capture",
+    "category": "modern-core",
+    "icon": "email",
+    "description": "High-conversion lead capture with API integration and behavioral triggers.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
     },
-    "btnText": { "type": "string", "default": "Subscribe" },
-    "showName": { "type": "boolean", "default": false },
-    "privacyText": {
-      "type": "string",
-      "default": "We respect your privacy. Unsubscribe at any time."
+    "attributes": {
+        "displayMode": {
+            "type": "string",
+            "default": "inline"
+        },
+        "triggerType": {
+            "type": "string",
+            "default": "time"
+        },
+        "triggerValue": {
+            "type": "number",
+            "default": 5
+        },
+        "provider": {
+            "type": "string",
+            "default": "klaviyo"
+        },
+        "layout": {
+            "type": "string",
+            "default": "split"
+        },
+        "heading": {
+            "type": "string",
+            "default": "Stay in the loop"
+        },
+        "subhead": {
+            "type": "string",
+            "default": "Get exclusive offers, new arrivals, and style inspiration delivered to your inbox."
+        },
+        "btnText": {
+            "type": "string",
+            "default": "Subscribe"
+        },
+        "showName": {
+            "type": "boolean",
+            "default": false
+        },
+        "privacyText": {
+            "type": "string",
+            "default": "We respect your privacy. Unsubscribe at any time."
+        },
+        "successMsg": {
+            "type": "string",
+            "default": "Welcome! Please check your email to confirm."
+        },
+        "bgColor": {
+            "type": "string",
+            "default": "#f8fafc"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#3b82f6"
+        },
+        "inputRadius": {
+            "type": "number",
+            "default": 8
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "fullwidth",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
     },
-    "successMsg": {
-      "type": "string",
-      "default": "Welcome! Please check your email to confirm."
-    },
-    "bgColor": { "type": "string", "default": "#f8fafc" },
-    "textColor": { "type": "string", "default": "#0f172a" },
-    "accentColor": { "type": "string", "default": "#3b82f6" },
-    "inputRadius": { "type": "number", "default": 8 }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-newsletter-js",
-  "render": "file:./render.php"
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-newsletter-js",
+    "render": "file:./render.php"
 }

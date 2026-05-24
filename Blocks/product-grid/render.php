@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 // Safety check: Don't crash if WooCommerce is not active
 if (!class_exists('WooCommerce')) {
     echo '<p>Please install and activate WooCommerce to use the Product Grid.</p>';

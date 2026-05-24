@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ModernCore Advanced Footer Rendering Engine
  * Handles full responsive configurations, customizable layouts, and dynamic styling variables.
@@ -8,6 +9,7 @@
 
 declare(strict_types=1);
 
+$width_mode = $attributes['widthMode'] ?? 'contained';
 // Extract configuration attributes populated from the block.json blueprint
 $layout_mode          = $attributes['layoutMode'] ?? 'four-column';
 $brand_name          = $attributes['brandName'] ?? 'MODERNCORE';
@@ -56,7 +58,7 @@ if ($enable_reveal && !is_admin()) {
 }
 
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-advanced-footer {$unique_id}",
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-advanced-footer {$unique_id}",
     'style' => 'width: 100%;'
 ]);
 ?>

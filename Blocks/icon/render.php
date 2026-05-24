@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $name = $attributes['iconName'] ?? 'star';
 $custom = $attributes['customSvg'] ?? '';
 $pres = $attributes['presentation'] ?? 'standalone';
@@ -16,7 +17,7 @@ $border_c = $attributes['borderColor'] ?? '#e2e8f0';
 $text_c = $attributes['textColor'] ?? '#0f172a';
 
 $unique_id = uniqid('mc-icon-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-icon {$unique_id} p-{$pres} s-{$shape} t-{$t_pos} h-{$hover}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-icon {$unique_id} p-{$pres} s-{$shape} t-{$t_pos} h-{$hover}"]);
 
 // Wrap function to prevent fatal errors on multiple usages
 if (!function_exists('mc_get_core_icon_svg')) {

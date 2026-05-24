@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $threshold = $attributes['threshold'] ?? 100;
@@ -13,7 +14,7 @@ $text_c = $attributes['textColor'] ?? '#0f172a';
 $use_grad = $attributes['useGradient'] ?? false;
 
 $unique_id = uniqid('mc-ship-prog-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-shipping-progress {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-shipping-progress {$unique_id}"]);
 
 // Initial Server-Side Calculation
 $cart_total = WC()->cart ? WC()->cart->get_subtotal() : 0;

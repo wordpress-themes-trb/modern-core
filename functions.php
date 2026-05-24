@@ -564,4 +564,18 @@ function mc_get_cart_count_ajax() {
     wp_send_json_success(['count' => WC()->cart->get_cart_contents_count()]);
 }
 
-require_once get_template_directory() . '/inc/Core/dynamic-header-footer.php';
+
+add_action('wp_enqueue_scripts', function() {
+    wp_enqueue_style('mc-block-widths', get_template_directory_uri() . '/assets/css/block-widths.css', [], '1.0.0');
+});
+
+add_action('enqueue_block_editor_assets', function() {
+    wp_enqueue_style('mc-block-widths-editor', get_template_directory_uri() . '/assets/css/block-widths.css', [], '1.0.0');
+});
+
+
+
+
+
+
+

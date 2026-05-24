@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $label = $attributes['menuLabel'] ?? 'Shop Categories';
 $link = $attributes['menuLink'] ?? '#';
 $width = $attributes['panelWidth'] ?? 'full';
@@ -11,7 +12,7 @@ $padding = $attributes['padding'] ?? '40px';
 $shadow = ($attributes['shadowOpacity'] ?? 10) / 100;
 
 $unique_id = uniqid('mc-mega-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-mega-menu {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-mega-menu {$unique_id}"]);
 ?>
 
 <div <?php echo $wrapper_attributes; ?> data-open="<?php echo esc_attr($open_delay); ?>" data-close="<?php echo esc_attr($close_delay); ?>">

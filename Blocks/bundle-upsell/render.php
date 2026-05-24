@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $title = $attributes['sectionTitle'] ?? 'Frequently bought together';
@@ -12,7 +13,7 @@ $accent = $attributes['accentColor'] ?? '#0f172a';
 $badge_color = $attributes['badgeColor'] ?? '#10b981';
 
 $unique_id = uniqid('mc-bundle-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-bundle {$unique_id} mode-{$mode}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-bundle {$unique_id} mode-{$mode}"]);
 
 // Gather Product IDs
 $product_ids = [];

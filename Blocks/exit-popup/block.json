@@ -1,40 +1,91 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/exit-popup",
-  "title": "Exit Intent Popup",
-  "category": "modern-core",
-  "icon": "welcome-widgets-menus",
-  "description": "Last-chance conversion modal triggered when a visitor attempts to leave.",
-  "supports": {
-    "align": false,
-    "html": false
-  },
-  "attributes": {
-    "triggerType": { "type": "string", "default": "exit" },
-    "mobileFallback": { "type": "number", "default": 10 },
-    "suppressionDays": { "type": "number", "default": 7 },
-    "headline": { "type": "string", "default": "Wait — before you go!" },
-    "subhead": {
-      "type": "string",
-      "default": "Take 10% off your first order."
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/exit-popup",
+    "title": "Exit Intent Popup",
+    "category": "modern-core",
+    "icon": "welcome-widgets-menus",
+    "description": "Last-chance conversion modal triggered when a visitor attempts to leave.",
+    "supports": {
+        "align": false,
+        "html": false
     },
-    "offerHighlight": { "type": "string", "default": "USE CODE: SAVE10" },
-    "ctaText": { "type": "string", "default": "Get my discount" },
-    "dismissText": {
-      "type": "string",
-      "default": "No thanks, I'll pay full price"
+    "attributes": {
+        "triggerType": {
+            "type": "string",
+            "default": "exit"
+        },
+        "mobileFallback": {
+            "type": "number",
+            "default": 10
+        },
+        "suppressionDays": {
+            "type": "number",
+            "default": 7
+        },
+        "headline": {
+            "type": "string",
+            "default": "Wait \u2014 before you go!"
+        },
+        "subhead": {
+            "type": "string",
+            "default": "Take 10% off your first order."
+        },
+        "offerHighlight": {
+            "type": "string",
+            "default": "USE CODE: SAVE10"
+        },
+        "ctaText": {
+            "type": "string",
+            "default": "Get my discount"
+        },
+        "dismissText": {
+            "type": "string",
+            "default": "No thanks, I'll pay full price"
+        },
+        "showEmail": {
+            "type": "boolean",
+            "default": true
+        },
+        "showCountdown": {
+            "type": "boolean",
+            "default": false
+        },
+        "bgColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#3b82f6"
+        },
+        "overlayOpacity": {
+            "type": "number",
+            "default": 80
+        },
+        "overlayBlur": {
+            "type": "number",
+            "default": 4
+        },
+        "animStyle": {
+            "type": "string",
+            "default": "scale"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
     },
-    "showEmail": { "type": "boolean", "default": true },
-    "showCountdown": { "type": "boolean", "default": false },
-    "bgColor": { "type": "string", "default": "#0f172a" },
-    "textColor": { "type": "string", "default": "#ffffff" },
-    "accentColor": { "type": "string", "default": "#3b82f6" },
-    "overlayOpacity": { "type": "number", "default": 80 },
-    "overlayBlur": { "type": "number", "default": 4 },
-    "animStyle": { "type": "string", "default": "scale" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-exit-popup-js",
-  "render": "file:./render.php"
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-exit-popup-js",
+    "render": "file:./render.php"
 }

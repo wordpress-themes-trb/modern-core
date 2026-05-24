@@ -1,33 +1,78 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/countdown-banner",
-  "title": "Countdown Banner",
-  "category": "modern-core",
-  "icon": "clock",
-  "description": "High-stakes, full-section urgency engine.",
-  "supports": {
-    "align": ["full", "wide"],
-    "html": false
-  },
-  "attributes": {
-    "targetDate": { "type": "string", "default": "" },
-    "layoutMode": { "type": "string", "default": "card" },
-    "timerStyle": { "type": "string", "default": "boxed" },
-    "bgMode": { "type": "string", "default": "gradient" },
-    "color1": { "type": "string", "default": "#dc2626" },
-    "color2": { "type": "string", "default": "#7f1d1d" },
-    "digitColor": { "type": "string", "default": "#ffffff" },
-    "boxColor": { "type": "string", "default": "rgba(0,0,0,0.5)" },
-    "expireAction": { "type": "string", "default": "hide" },
-    "expireMessage": {
-      "type": "string",
-      "default": "This flash sale has ended."
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/countdown-banner",
+    "title": "Countdown Banner",
+    "category": "modern-core",
+    "icon": "clock",
+    "description": "High-stakes, full-section urgency engine.",
+    "supports": {
+        "align": [
+            "full",
+            "wide"
+        ],
+        "html": false
     },
-    "expireUrl": { "type": "string", "default": "" },
-    "showDays": { "type": "boolean", "default": true }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-countdown-banner-js",
-  "render": "file:./render.php"
+    "attributes": {
+        "targetDate": {
+            "type": "string",
+            "default": ""
+        },
+        "layoutMode": {
+            "type": "string",
+            "default": "card"
+        },
+        "timerStyle": {
+            "type": "string",
+            "default": "boxed"
+        },
+        "bgMode": {
+            "type": "string",
+            "default": "gradient"
+        },
+        "color1": {
+            "type": "string",
+            "default": "#dc2626"
+        },
+        "color2": {
+            "type": "string",
+            "default": "#7f1d1d"
+        },
+        "digitColor": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "boxColor": {
+            "type": "string",
+            "default": "rgba(0,0,0,0.5)"
+        },
+        "expireAction": {
+            "type": "string",
+            "default": "hide"
+        },
+        "expireMessage": {
+            "type": "string",
+            "default": "This flash sale has ended."
+        },
+        "expireUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "showDays": {
+            "type": "boolean",
+            "default": true
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "fullwidth",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-countdown-banner-js",
+    "render": "file:./render.php"
 }

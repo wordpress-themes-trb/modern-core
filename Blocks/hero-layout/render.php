@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $layout = $attributes['layoutType'] ?? 'split';
 $ratio = $attributes['splitRatio'] ?? '50-50';
 $divider = $attributes['dividerStyle'] ?? 'straight';
@@ -9,7 +10,7 @@ $offset_y = $attributes['offsetY'] ?? 15;
 $content_side = $attributes['contentSide'] ?? 'left';
 
 $unique_id = uniqid('mc-h-layout-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-hero-layout {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-hero-layout {$unique_id}"]);
 
 list($left_pct, $right_pct) = explode('-', $ratio);
 $is_content_left = $content_side === 'left';

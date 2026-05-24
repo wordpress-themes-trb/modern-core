@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $layout = $attributes['layoutMode'] ?? 'two-column';
@@ -11,7 +12,7 @@ $text_c = $attributes['textColor'] ?? '#0f172a';
 $border_c = $attributes['borderColor'] ?? '#e2e8f0';
 
 $unique_id = uniqid('mc-cart-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-cart {$unique_id} layout-{$layout}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-cart {$unique_id} layout-{$layout}"]);
 
 // We output empty state purely via WooCommerce defaults to maintain functionality
 // FIX: Verify the cart object actually exists before checking if it's empty

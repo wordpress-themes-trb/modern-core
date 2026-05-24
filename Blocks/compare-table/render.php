@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $source_mode = $attributes['sourceMode'] ?? 'dynamic';
@@ -62,7 +63,7 @@ foreach ($products as $p) {
     }
 }
 
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-compare-table {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-compare-table {$unique_id}"]);
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>

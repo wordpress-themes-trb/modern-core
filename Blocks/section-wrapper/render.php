@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 /**
  * ModernCore Section Layout System
  * Handles omni-directional padding, complete 2D Grid layouts (Rows + Columns), and mobile stacking.
@@ -49,7 +50,7 @@ if ($hide_empty && trim($content) === '' && !is_admin()) {
 }
 
 $unique_id = uniqid('mc-sw-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-section {$unique_id} w-{$w_width} c-{$c_width}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-section {$unique_id} w-{$w_width} c-{$c_width}"]);
 
 if (!function_exists('mc_get_simple_divider')) {
     function mc_get_simple_divider($type, $color, $position) {

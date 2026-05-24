@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $layout = $attributes['layoutMode'] ?? 'grid';
 $title = $attributes['sectionTitle'] ?? 'What our customers say';
 $show_agg = $attributes['showAggregate'] ?? true;
@@ -18,7 +19,7 @@ $testimonials = $attributes['testimonials'] ?? [];
 if (empty($testimonials)) return;
 
 $unique_id = uniqid('mc-test-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-testimonials {$unique_id} layout-{$layout}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-testimonials {$unique_id} layout-{$layout}"]);
 
 // FIX: Wrap helper function to prevent redeclaration errors
 if (!function_exists('mc_render_stars')) {

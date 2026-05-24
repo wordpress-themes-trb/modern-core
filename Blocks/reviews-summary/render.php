@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 global $product;
@@ -26,7 +27,7 @@ $track_c = $attributes['trackColor'] ?? '#e2e8f0';
 $text_c = $attributes['textColor'] ?? '#0f172a';
 
 $unique_id = uniqid('mc-rev-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-reviews-summary {$unique_id} layout-{$layout}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-reviews-summary {$unique_id} layout-{$layout}"]);
 
 // FIX: Wrap helper function to prevent redeclaration errors if multiple blocks exist
 if (!function_exists('mc_render_precise_stars')) {

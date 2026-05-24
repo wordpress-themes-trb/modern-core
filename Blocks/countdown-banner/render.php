@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $target     = $attributes['targetDate']     ?? '';
 $layout     = $attributes['layoutMode']     ?? 'card';
 $style      = $attributes['timerStyle']     ?? 'boxed';
@@ -14,7 +15,7 @@ $show_days  = $attributes['showDays']       ?? true;
 
 $uid = 'mc-cdbanner-' . uniqid();
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class'       => "modern-core-countdown-banner {$uid} layout-{$layout} style-{$style}",
+    'class'       => "mc-block width-" . esc_attr($width_mode) . " modern-core-countdown-banner {$uid} layout-{$layout} style-{$style}",
     'data-target' => esc_attr( $target ),
     'data-action' => esc_attr( $action ),
     'data-url'    => esc_url( $url ),

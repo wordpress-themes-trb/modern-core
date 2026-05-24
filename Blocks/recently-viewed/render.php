@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $title = $attributes['sectionTitle'] ?? 'Recently Viewed';
@@ -13,7 +14,7 @@ $cols_m = $attributes['colsMobile'] ?? 1.5;
 
 $unique_id = uniqid('mc-recent-');
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-recent-viewed {$unique_id} mode-{$mode}",
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-recent-viewed {$unique_id} mode-{$mode}",
     'id' => $unique_id,
     'style' => 'display: none;', // Hidden until JS hydrates it
     'data-max' => esc_attr($max),

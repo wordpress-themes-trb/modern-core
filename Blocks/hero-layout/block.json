@@ -1,26 +1,62 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/hero-layout",
-  "title": "Hero Split / Asymmetric",
-  "category": "modern-core",
-  "icon": "columns",
-  "description": "Editorial layout engine for Split and Asymmetric hero designs.",
-  "supports": {
-    "html": false,
-    "align": ["full", "wide"]
-  },
-  "attributes": {
-    "layoutType": { "type": "string", "default": "split" },
-    "splitRatio": { "type": "string", "default": "50-50" },
-    "dividerStyle": { "type": "string", "default": "straight" },
-    "dividerColor": { "type": "string", "default": "#0f172a" },
-    "mobileStack": { "type": "string", "default": "content-first" },
-    "offsetX": { "type": "number", "default": 10 },
-    "offsetY": { "type": "number", "default": 15 },
-    "contentSide": { "type": "string", "default": "left" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-hero-layout-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/hero-layout",
+    "title": "Hero Split / Asymmetric",
+    "category": "modern-core",
+    "icon": "columns",
+    "description": "Editorial layout engine for Split and Asymmetric hero designs.",
+    "supports": {
+        "html": false,
+        "align": [
+            "full",
+            "wide"
+        ]
+    },
+    "attributes": {
+        "layoutType": {
+            "type": "string",
+            "default": "split"
+        },
+        "splitRatio": {
+            "type": "string",
+            "default": "50-50"
+        },
+        "dividerStyle": {
+            "type": "string",
+            "default": "straight"
+        },
+        "dividerColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "mobileStack": {
+            "type": "string",
+            "default": "content-first"
+        },
+        "offsetX": {
+            "type": "number",
+            "default": 10
+        },
+        "offsetY": {
+            "type": "number",
+            "default": 15
+        },
+        "contentSide": {
+            "type": "string",
+            "default": "left"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-hero-layout-js",
+    "render": "file:./render.php"
 }

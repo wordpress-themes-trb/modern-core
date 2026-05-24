@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $show_search = $attributes['showSearch'] ?? true;
 $show_account = $attributes['showAccount'] ?? true;
 $show_cart = $attributes['showCart'] ?? true;
@@ -8,6 +9,7 @@ $spacing = $attributes['iconSpacing'] ?? 20;
 $color = $attributes['iconColor'] ?? '#0f172a';
 
 $wrapper_attributes = get_block_wrapper_attributes([
+    'class' => 'mc-block width-' . esc_attr($width_mode),
     'style' => "display: flex; align-items: center; gap: {$spacing}px; color: {$color};"
 ]);
 

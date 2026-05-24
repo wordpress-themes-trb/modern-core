@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $show_count = $attributes['showCount'] ?? true;
@@ -12,7 +13,7 @@ $accent = $attributes['accentColor'] ?? '#0f172a';
 $border_c = $attributes['borderColor'] ?? '#e2e8f0';
 
 $unique_id = uniqid('mc-toolbar-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-shop-toolbar {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-shop-toolbar {$unique_id}"]);
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>

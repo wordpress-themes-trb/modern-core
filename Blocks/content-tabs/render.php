@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $style = $attributes['tabStyle'] ?? 'underline';
 $layout = $attributes['layoutMode'] ?? 'horizontal';
 $anim = $attributes['animStyle'] ?? 'fade';
@@ -7,7 +8,7 @@ $accent = $attributes['accentColor'] ?? '#0f172a';
 $inactive = $attributes['inactiveColor'] ?? '#94a3b8';
 
 $unique_id = uniqid('mc-ctabs-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-content-tabs {$unique_id} style-{$style} layout-{$layout} anim-{$anim}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-content-tabs {$unique_id} style-{$style} layout-{$layout} anim-{$anim}"]);
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>

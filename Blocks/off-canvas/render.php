@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $panel_id = $attributes['panelId'] ?? 'mc-drawer-1';
 $direction = $attributes['direction'] ?? 'right';
 $animation_mode = $attributes['animationMode'] ?? 'overlay';
@@ -13,7 +14,7 @@ $scroll = $attributes['triggerScroll'] ?? 0;
 $exit = $attributes['triggerExit'] ?? false;
 $memory = $attributes['sessionMemory'] ?? false;
 
-$wrapper_attributes = get_block_wrapper_attributes(['class' => 'modern-core-offcanvas-system']);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => 'mc-block width-" . esc_attr($width_mode) . " modern-core-offcanvas-system']);
 
 // --- Physics Engine CSS Setup ---
 $z_index = $animation_mode === 'reveal' ? 9990 : 99999; 

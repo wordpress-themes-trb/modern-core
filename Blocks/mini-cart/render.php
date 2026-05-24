@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $auto_open = $attributes['autoOpen'] ?? true;
@@ -17,7 +18,7 @@ $accent = $attributes['accentColor'] ?? '#3b82f6';
 $opacity = ($attributes['overlayOpacity'] ?? 50) / 100;
 
 $unique_id = uniqid('mc-cart-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-minicart {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-minicart {$unique_id}"]);
 ?>
 
 <div <?php echo $wrapper_attributes; ?> 

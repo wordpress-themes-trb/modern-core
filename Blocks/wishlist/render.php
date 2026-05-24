@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $layout = $attributes['layoutMode'] ?? 'grid';
@@ -14,7 +15,7 @@ $accent = $attributes['accentColor'] ?? '#0f172a';
 
 $unique_id = uniqid('mc-wishlist-');
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-wishlist {$unique_id} layout-{$layout}",
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-wishlist {$unique_id} layout-{$layout}",
     'id' => $unique_id,
     'data-stock' => $show_stock ? '1' : '0',
     'data-price' => $show_price ? '1' : '0'

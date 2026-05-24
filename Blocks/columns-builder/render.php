@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $layout = $attributes['layout'] ?? '1fr 1fr';
 $gap = $attributes['gap'] ?? 30;
 $align = $attributes['vAlign'] ?? 'start';
@@ -8,7 +9,7 @@ $dividers = $attributes['showDividers'] ?? false;
 $div_color = $attributes['dividerColor'] ?? '#e2e8f0';
 
 $unique_id = uniqid('mc-cols-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-columns {$unique_id} m-{$mobile}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-columns {$unique_id} m-{$mobile}"]);
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>

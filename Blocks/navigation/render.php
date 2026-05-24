@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $link_color = $attributes['linkColor'] ?? '#0f172a';
 $hover_color = $attributes['hoverColor'] ?? '#3b82f6';
 $hover_effect = $attributes['hoverEffect'] ?? 'underline';

@@ -1,28 +1,70 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/recently-viewed",
-  "title": "Recently Viewed",
-  "category": "modern-core",
-  "icon": "backup",
-  "description": "Personalized, cached-busting product history grid/carousel.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "sectionTitle": { "type": "string", "default": "Recently Viewed" },
-    "displayMode": { "type": "string", "default": "carousel" },
-    "maxProducts": { "type": "number", "default": 8 },
-    "storageDays": { "type": "number", "default": 7 },
-    "emptyBehavior": { "type": "string", "default": "hide" },
-    "fallbackQuery": { "type": "string", "default": "popularity" },
-    "fallbackTitle": { "type": "string", "default": "Trending Now" },
-    "colsDesktop": { "type": "number", "default": 4 },
-    "colsMobile": { "type": "number", "default": 1.5 },
-    "accentColor": { "type": "string", "default": "#0f172a" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-recently-viewed-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/recently-viewed",
+    "title": "Recently Viewed",
+    "category": "modern-core",
+    "icon": "backup",
+    "description": "Personalized, cached-busting product history grid/carousel.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "attributes": {
+        "sectionTitle": {
+            "type": "string",
+            "default": "Recently Viewed"
+        },
+        "displayMode": {
+            "type": "string",
+            "default": "carousel"
+        },
+        "maxProducts": {
+            "type": "number",
+            "default": 8
+        },
+        "storageDays": {
+            "type": "number",
+            "default": 7
+        },
+        "emptyBehavior": {
+            "type": "string",
+            "default": "hide"
+        },
+        "fallbackQuery": {
+            "type": "string",
+            "default": "popularity"
+        },
+        "fallbackTitle": {
+            "type": "string",
+            "default": "Trending Now"
+        },
+        "colsDesktop": {
+            "type": "number",
+            "default": 4
+        },
+        "colsMobile": {
+            "type": "number",
+            "default": 1.5
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-recently-viewed-js",
+    "render": "file:./render.php"
 }

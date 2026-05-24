@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $placement = $attributes['placementMode'] ?? 'sidebar-left';
@@ -11,7 +12,7 @@ $head_c = $attributes['headingColor'] ?? '#0f172a';
 $accent = $attributes['accentColor'] ?? '#3b82f6';
 
 $unique_id = uniqid('mc-filter-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-filter-sidebar {$unique_id} placement-{$placement}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-filter-sidebar {$unique_id} placement-{$placement}"]);
 
 // Active Filter Logic (Simulated for this block context)
 // In a full theme, this parses $_GET variables (e.g. ?min_price=50&filter_color=black)

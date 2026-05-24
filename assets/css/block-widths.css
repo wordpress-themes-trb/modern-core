@@ -1,0 +1,55 @@
+/* ============================================
+   MODERN CORE — UNIVERSAL BLOCK WIDTH SYSTEM
+   ============================================ */
+
+/* Base */
+.mc-block {
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Width Modes */
+.mc-block.width-contained {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.mc-block.width-wide {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.mc-block.width-fullwidth {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Break out of parent container when inside post-content */
+.wp-block-post-content .mc-block.width-fullwidth {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    left: 0;
+}
+
+/* Reset for mobile */
+@media (max-width: 768px) {
+    .wp-block-post-content .mc-block.width-fullwidth {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .mc-block.width-contained,
+    .mc-block.width-wide {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}

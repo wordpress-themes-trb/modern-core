@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $layout_mode   = $attributes['layoutMode']      ?? 'full-center';
 $min_height    = $attributes['minHeight']        ?? 90;
 $bg_type       = $attributes['bgType']           ?? 'gradient';
@@ -11,7 +12,7 @@ $content_card  = $attributes['contentCard']      ?? false;
 
 $uid = 'mc-hero-' . uniqid();
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-hero {$uid}",
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-hero {$uid}",
 ]);
 
 // Layout helpers

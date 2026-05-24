@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 global $product;
@@ -19,7 +20,7 @@ $zoom_level = $attributes['zoomLevel'] ?? 2;
 $enable_lightbox = $attributes['enableLightbox'] ?? true;
 
 $unique_id = uniqid('mc-pg-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-product-gallery {$unique_id} pos-{$thumb_pos}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-product-gallery {$unique_id} pos-{$thumb_pos}"]);
 
 // Fetch Images
 $main_image_id = $product->get_image_id();

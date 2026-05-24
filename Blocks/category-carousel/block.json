@@ -1,35 +1,98 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/category-carousel",
-  "title": "Category Carousel",
-  "category": "modern-core",
-  "icon": "update-alt",
-  "description": "A fluid, horizontal category browser with responsive shape-morphing.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "sourceMode": { "type": "string", "default": "dynamic" },
-    "catCount": { "type": "number", "default": 8 },
-    "colsDesktop": { "type": "number", "default": 6 },
-    "colsTablet": { "type": "number", "default": 4 },
-    "colsMobile": { "type": "number", "default": 3.2 },
-    "tileShape": { "type": "string", "default": "rounded-square" },
-    "mobileMorphCircle": { "type": "boolean", "default": true },
-    "labelPlacement": { "type": "string", "default": "overlay" },
-    "showCount": { "type": "boolean", "default": false },
-    "overlayOpacity": { "type": "number", "default": 40 },
-    "hoverEffect": { "type": "string", "default": "zoom" },
-    "showArrows": { "type": "boolean", "default": true },
-    "showDots": { "type": "boolean", "default": false },
-    "autoplay": { "type": "boolean", "default": false },
-    "delay": { "type": "number", "default": 4000 },
-    "accentColor": { "type": "string", "default": "#0f172a" },
-    "textColor": { "type": "string", "default": "#ffffff" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-category-carousel-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/category-carousel",
+    "title": "Category Carousel",
+    "category": "modern-core",
+    "icon": "update-alt",
+    "description": "A fluid, horizontal category browser with responsive shape-morphing.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "attributes": {
+        "sourceMode": {
+            "type": "string",
+            "default": "dynamic"
+        },
+        "catCount": {
+            "type": "number",
+            "default": 8
+        },
+        "colsDesktop": {
+            "type": "number",
+            "default": 6
+        },
+        "colsTablet": {
+            "type": "number",
+            "default": 4
+        },
+        "colsMobile": {
+            "type": "number",
+            "default": 3.2000000000000002
+        },
+        "tileShape": {
+            "type": "string",
+            "default": "rounded-square"
+        },
+        "mobileMorphCircle": {
+            "type": "boolean",
+            "default": true
+        },
+        "labelPlacement": {
+            "type": "string",
+            "default": "overlay"
+        },
+        "showCount": {
+            "type": "boolean",
+            "default": false
+        },
+        "overlayOpacity": {
+            "type": "number",
+            "default": 40
+        },
+        "hoverEffect": {
+            "type": "string",
+            "default": "zoom"
+        },
+        "showArrows": {
+            "type": "boolean",
+            "default": true
+        },
+        "showDots": {
+            "type": "boolean",
+            "default": false
+        },
+        "autoplay": {
+            "type": "boolean",
+            "default": false
+        },
+        "delay": {
+            "type": "number",
+            "default": 4000
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-category-carousel-js",
+    "render": "file:./render.php"
 }

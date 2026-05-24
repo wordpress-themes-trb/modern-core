@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $mode = $attributes['displayMode'] ?? 'inline';
 $trigger = $attributes['triggerType'] ?? 'time';
 $trigger_val = $attributes['triggerValue'] ?? 5;
@@ -16,7 +17,7 @@ $accent = $attributes['accentColor'] ?? '#3b82f6';
 $radius = $attributes['inputRadius'] ?? 8;
 
 $unique_id = uniqid('mc-nl-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-newsletter {$unique_id} mode-{$mode} layout-{$layout}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-newsletter {$unique_id} mode-{$mode} layout-{$layout}"]);
 
 // Determine wrapper structure based on display mode
 $is_overlay = in_array($mode, ['popup', 'slide', 'sticky']);

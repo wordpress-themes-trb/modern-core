@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $bar_id = $attributes['barId'] ?? 'announce-1';
 $mode = $attributes['displayMode'] ?? 'marquee';
 $m1 = $attributes['message1'] ?? '';

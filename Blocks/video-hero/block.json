@@ -1,31 +1,82 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/video-hero",
-  "title": "Video Hero",
-  "category": "modern-core",
-  "icon": "video-alt3",
-  "description": "Cinematic full-bleed video background with mobile fallbacks.",
-  "supports": {
-    "align": ["full", "wide"],
-    "html": false
-  },
-  "attributes": {
-    "videoUrl": { "type": "string", "default": "" },
-    "posterUrl": { "type": "string", "default": "" },
-    "mobileBehavior": { "type": "string", "default": "play" },
-    "mobileVideoUrl": { "type": "string", "default": "" },
-    "mobilePosterUrl": { "type": "string", "default": "" },
-    "playbackSpeed": { "type": "number", "default": 1.0 },
-    "showMuteToggle": { "type": "boolean", "default": true },
-    "showPlayToggle": { "type": "boolean", "default": false },
-    "overlayType": { "type": "string", "default": "bottom-gradient" },
-    "overlayColor": { "type": "string", "default": "#000000" },
-    "overlayOpacity": { "type": "number", "default": 70 },
-    "minHeight": { "type": "number", "default": 80 },
-    "contentAlign": { "type": "string", "default": "center" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-video-hero-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/video-hero",
+    "title": "Video Hero",
+    "category": "modern-core",
+    "icon": "video-alt3",
+    "description": "Cinematic full-bleed video background with mobile fallbacks.",
+    "supports": {
+        "align": [
+            "full",
+            "wide"
+        ],
+        "html": false
+    },
+    "attributes": {
+        "videoUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "posterUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "mobileBehavior": {
+            "type": "string",
+            "default": "play"
+        },
+        "mobileVideoUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "mobilePosterUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "playbackSpeed": {
+            "type": "number",
+            "default": 1
+        },
+        "showMuteToggle": {
+            "type": "boolean",
+            "default": true
+        },
+        "showPlayToggle": {
+            "type": "boolean",
+            "default": false
+        },
+        "overlayType": {
+            "type": "string",
+            "default": "bottom-gradient"
+        },
+        "overlayColor": {
+            "type": "string",
+            "default": "#000000"
+        },
+        "overlayOpacity": {
+            "type": "number",
+            "default": 70
+        },
+        "minHeight": {
+            "type": "number",
+            "default": 80
+        },
+        "contentAlign": {
+            "type": "string",
+            "default": "center"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "fullwidth",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-video-hero-js",
+    "render": "file:./render.php"
 }

@@ -1,31 +1,82 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/off-canvas",
-  "title": "Off-Canvas Sidebar",
-  "category": "modern-core",
-  "icon": "layout",
-  "description": "A cinematic sliding panel for carts, filters, and navigation.",
-  "supports": {
-    "html": false,
-    "align": ["wide", "full"]
-  },
-  "attributes": {
-    "panelId": { "type": "string", "default": "mc-drawer-1" },
-    "direction": { "type": "string", "default": "right" },
-    "animationMode": { "type": "string", "default": "overlay" },
-    "panelWidth": { "type": "number", "default": 400 },
-    "overlayBlur": { "type": "number", "default": 10 },
-    "overlayOpacity": { "type": "number", "default": 50 },
-    "bgColor": { "type": "string", "default": "rgba(15, 23, 42, 0.85)" },
-    "textColor": { "type": "string", "default": "#f8fafc" },
-    "headerText": { "type": "string", "default": "Your Bag" },
-    "triggerDelay": { "type": "number", "default": 0 },
-    "triggerScroll": { "type": "number", "default": 0 },
-    "triggerExit": { "type": "boolean", "default": false },
-    "sessionMemory": { "type": "boolean", "default": false }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-offcanvas-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/off-canvas",
+    "title": "Off-Canvas Sidebar",
+    "category": "modern-core",
+    "icon": "layout",
+    "description": "A cinematic sliding panel for carts, filters, and navigation.",
+    "supports": {
+        "html": false,
+        "align": [
+            "wide",
+            "full"
+        ]
+    },
+    "attributes": {
+        "panelId": {
+            "type": "string",
+            "default": "mc-drawer-1"
+        },
+        "direction": {
+            "type": "string",
+            "default": "right"
+        },
+        "animationMode": {
+            "type": "string",
+            "default": "overlay"
+        },
+        "panelWidth": {
+            "type": "number",
+            "default": 400
+        },
+        "overlayBlur": {
+            "type": "number",
+            "default": 10
+        },
+        "overlayOpacity": {
+            "type": "number",
+            "default": 50
+        },
+        "bgColor": {
+            "type": "string",
+            "default": "rgba(15, 23, 42, 0.85)"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#f8fafc"
+        },
+        "headerText": {
+            "type": "string",
+            "default": "Your Bag"
+        },
+        "triggerDelay": {
+            "type": "number",
+            "default": 0
+        },
+        "triggerScroll": {
+            "type": "number",
+            "default": 0
+        },
+        "triggerExit": {
+            "type": "boolean",
+            "default": false
+        },
+        "sessionMemory": {
+            "type": "boolean",
+            "default": false
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-offcanvas-js",
+    "render": "file:./render.php"
 }

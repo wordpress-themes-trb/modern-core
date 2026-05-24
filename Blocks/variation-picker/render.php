@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 global $product;
@@ -19,7 +20,7 @@ $border_c = $attributes['borderColor'] ?? '#e2e8f0';
 $disabled_style = $attributes['disabledStyle'] ?? 'strikethrough';
 
 $unique_id = uniqid('mc-var-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-variation-engine {$unique_id} shape-{$shape} disabled-{$disabled_style}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-variation-engine {$unique_id} shape-{$shape} disabled-{$disabled_style}"]);
 ?>
 
 <div <?php echo $wrapper_attributes; ?> data-live="<?php echo esc_attr($live_label); ?>">

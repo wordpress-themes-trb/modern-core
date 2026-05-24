@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $show_toggle = $attributes['showToggle'] ?? true;
 $discount_label = $attributes['discountLabel'] ?? 'Save 20%';
 $radius = $attributes['cardRadius'] ?? 12;
@@ -11,7 +12,7 @@ $tiers = $attributes['tiers'] ?? [];
 if (empty($tiers)) return;
 
 $unique_id = uniqid('mc-price-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-pricing-table {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-pricing-table {$unique_id}"]);
 
 // FIX: Wrap helper functions to prevent redeclaration fatal errors
 if (!function_exists('mc_pricing_check')) {

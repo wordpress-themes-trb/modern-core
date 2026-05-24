@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $show_price = $attributes['showPriceFilter'] ?? true;
 $min_price = $attributes['minPrice'] ?? 0;
 $max_price = $attributes['maxPrice'] ?? 250;
@@ -12,7 +13,7 @@ $heading_color = $attributes['headingColor'] ?? 'inherit';
 
 $unique_id = uniqid('mc-filter-');
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-filters-engine {$unique_id}",
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-filters-engine {$unique_id}",
     'style' => 'display: flex; flex-direction: column; gap: 30px; width: 100%; color: inherit;'
 ]);
 

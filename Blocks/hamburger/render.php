@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $drawer_type = $attributes['drawerType'] ?? 'slide-right';
 $drawer_width = $attributes['drawerWidth'] ?? 400;
 $drawer_bg = $attributes['drawerBg'] ?? '#ffffff';
@@ -7,7 +8,7 @@ $icon_color = $attributes['iconColor'] ?? '#0f172a';
 $icon_size = $attributes['iconSize'] ?? 28;
 
 $unique_id = uniqid('mc-drawer-');
-$wrapper_attributes = get_block_wrapper_attributes();
+$wrapper_attributes = get_block_wrapper_attributes(['class' => 'mc-block width-' . esc_attr($width_mode)]);
 
 // CSS adjustments based on drawer type
 $drawer_css = "background-color: {$drawer_bg}; transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); position: fixed; top: 0; bottom: 0; z-index: 99999; overflow-y: auto; padding: 40px;";

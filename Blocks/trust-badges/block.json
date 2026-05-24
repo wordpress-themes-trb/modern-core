@@ -1,52 +1,79 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/trust-badges",
-  "title": "Trust Badges",
-  "category": "modern-core",
-  "icon": "shield",
-  "description": "Compact security and guarantee symbols to reduce purchase anxiety.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "alignment": { "type": "string", "default": "center" },
-    "badgeStyle": { "type": "string", "default": "mono-dark" },
-    "badgeSize": { "type": "number", "default": 48 },
-    "gap": { "type": "number", "default": 24 },
-    "mobileBehavior": { "type": "string", "default": "wrap" },
-    "badges": {
-      "type": "array",
-      "default": [
-        {
-          "type": "ssl",
-          "text": "SSL Secure",
-          "showText": true,
-          "customImage": ""
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/trust-badges",
+    "title": "Trust Badges",
+    "category": "modern-core",
+    "icon": "shield",
+    "description": "Compact security and guarantee symbols to reduce purchase anxiety.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "attributes": {
+        "alignment": {
+            "type": "string",
+            "default": "center"
         },
-        {
-          "type": "guarantee",
-          "text": "Money Back",
-          "showText": true,
-          "customImage": ""
+        "badgeStyle": {
+            "type": "string",
+            "default": "mono-dark"
         },
-        {
-          "type": "shipping",
-          "text": "Free Shipping",
-          "showText": true,
-          "customImage": ""
+        "badgeSize": {
+            "type": "number",
+            "default": 48
         },
-        {
-          "type": "payment",
-          "text": "Secure Payment",
-          "showText": true,
-          "customImage": ""
+        "gap": {
+            "type": "number",
+            "default": 24
+        },
+        "mobileBehavior": {
+            "type": "string",
+            "default": "wrap"
+        },
+        "badges": {
+            "type": "array",
+            "default": [
+                {
+                    "type": "ssl",
+                    "text": "SSL Secure",
+                    "showText": true,
+                    "customImage": ""
+                },
+                {
+                    "type": "guarantee",
+                    "text": "Money Back",
+                    "showText": true,
+                    "customImage": ""
+                },
+                {
+                    "type": "shipping",
+                    "text": "Free Shipping",
+                    "showText": true,
+                    "customImage": ""
+                },
+                {
+                    "type": "payment",
+                    "text": "Secure Payment",
+                    "showText": true,
+                    "customImage": ""
+                }
+            ]
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
         }
-      ]
-    }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-trust-badges-js",
-  "render": "file:./render.php"
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-trust-badges-js",
+    "render": "file:./render.php"
 }

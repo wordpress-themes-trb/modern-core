@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $layout = $attributes['layoutMode'] ?? 'row';
 $cols_d = $attributes['colsDesktop'] ?? 4;
 $cols_m = $attributes['colsMobile'] ?? 1;
@@ -14,7 +15,7 @@ $features = $attributes['features'] ?? [];
 if (empty($features)) return;
 
 $unique_id = uniqid('mc-feat-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-feature-list {$unique_id} layout-{$layout} pos-{$pos} style-{$style}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-feature-list {$unique_id} layout-{$layout} pos-{$pos} style-{$style}"]);
 
 // FIX: Wrap the helper function to prevent redeclaration errors if the block is used multiple times
 if (!function_exists('mc_get_feature_svg')) {

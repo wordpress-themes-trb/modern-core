@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $min_height = $attributes['minHeight'] ?? 80;
 $transition = $attributes['transition'] ?? 'fade';
 $autoplay = $attributes['autoplay'] ?? true;
@@ -8,7 +9,7 @@ $show_dots = $attributes['showDots'] ?? true;
 
 $unique_id = uniqid('mc-slider-');
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-slider-engine {$unique_id} mode-{$transition}",
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-slider-engine {$unique_id} mode-{$transition}",
     'data-autoplay' => $autoplay ? 'true' : 'false',
     'data-delay' => esc_attr($delay)
 ]);

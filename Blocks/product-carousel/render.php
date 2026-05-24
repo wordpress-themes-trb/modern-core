@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $title = $attributes['sectionTitle'] ?? 'Featured Products';
@@ -22,7 +23,7 @@ $delay = $attributes['delay'] ?? 4000;
 $accent = $attributes['accentColor'] ?? '#0f172a';
 
 $unique_id = uniqid('mc-carousel-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-product-carousel {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-product-carousel {$unique_id}"]);
 
 $args = [ 'post_type' => 'product', 'posts_per_page' => $count, 'post_status' => 'publish' ];
 if ($sort === 'popularity') { $args['meta_key'] = 'total_sales'; $args['orderby'] = 'meta_value_num'; }

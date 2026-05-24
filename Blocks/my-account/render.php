@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $layout = $attributes['layoutMode'] ?? 'sidebar';
@@ -13,7 +14,7 @@ $border_c = $attributes['borderColor'] ?? '#e2e8f0';
 $rad = $attributes['cardRadius'] ?? 12;
 
 $unique_id = uniqid('mc-acct-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-my-account {$unique_id} layout-{$layout}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-my-account {$unique_id} layout-{$layout}"]);
 
 // Hook to completely override the default WooCommerce Dashboard
 if (!function_exists('mc_custom_account_dashboard')) {

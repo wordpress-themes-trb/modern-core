@@ -1,28 +1,67 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/mega-menu",
-  "title": "Mega Menu Item",
-  "category": "modern-core",
-  "icon": "menu-alt",
-  "description": "A top-level navigation item that reveals a rich, multi-column mega panel.",
-  "supports": {
-    "align": false,
-    "html": false
-  },
-  "attributes": {
-    "menuLabel": { "type": "string", "default": "Shop Categories" },
-    "menuLink": { "type": "string", "default": "#" },
-    "panelWidth": { "type": "string", "default": "full" },
-    "animStyle": { "type": "string", "default": "slide" },
-    "openDelay": { "type": "number", "default": 150 },
-    "closeDelay": { "type": "number", "default": 250 },
-    "panelBg": { "type": "string", "default": "#ffffff" },
-    "panelRadius": { "type": "number", "default": 0 },
-    "padding": { "type": "string", "default": "40px" },
-    "shadowOpacity": { "type": "number", "default": 10 }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-mega-menu-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/mega-menu",
+    "title": "Mega Menu Item",
+    "category": "modern-core",
+    "icon": "menu-alt",
+    "description": "A top-level navigation item that reveals a rich, multi-column mega panel.",
+    "supports": {
+        "align": false,
+        "html": false
+    },
+    "attributes": {
+        "menuLabel": {
+            "type": "string",
+            "default": "Shop Categories"
+        },
+        "menuLink": {
+            "type": "string",
+            "default": "#"
+        },
+        "panelWidth": {
+            "type": "string",
+            "default": "full"
+        },
+        "animStyle": {
+            "type": "string",
+            "default": "slide"
+        },
+        "openDelay": {
+            "type": "number",
+            "default": 150
+        },
+        "closeDelay": {
+            "type": "number",
+            "default": 250
+        },
+        "panelBg": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "panelRadius": {
+            "type": "number",
+            "default": 0
+        },
+        "padding": {
+            "type": "string",
+            "default": "40px"
+        },
+        "shadowOpacity": {
+            "type": "number",
+            "default": 10
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-mega-menu-js",
+    "render": "file:./render.php"
 }

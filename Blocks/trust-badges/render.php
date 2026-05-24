@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $align = $attributes['alignment'] ?? 'center';
 $style = $attributes['badgeStyle'] ?? 'mono-dark';
 $size = $attributes['badgeSize'] ?? 48;
@@ -9,7 +10,7 @@ $badges = $attributes['badges'] ?? [];
 if (empty($badges)) return;
 
 $unique_id = uniqid('mc-tb-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-trust-badges {$unique_id} style-{$style}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-trust-badges {$unique_id} style-{$style}"]);
 
 // FIX: Wrap helper function to prevent redeclaration errors
 if (!function_exists('mc_get_trust_badge_svg')) {

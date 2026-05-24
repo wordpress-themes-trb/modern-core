@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $lookback = $attributes['lookbackDays'] ?? 7;
@@ -15,7 +16,7 @@ $radius = $attributes['cardRadius'] ?? 8;
 $shadow = ($attributes['shadowOpacity'] ?? 15) / 100;
 
 $unique_id = uniqid('mc-sales-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-sales-popup {$unique_id} pos-{$position} anim-{$anim}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-sales-popup {$unique_id} pos-{$position} anim-{$anim}"]);
 
 // 1. Data Aggregation & Caching
 $transient_key = "mc_sales_popup_{$lookback}_{$limit}_{$privacy}";

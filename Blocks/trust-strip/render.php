@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $item1 = $attributes['item1'] ?? 'Free Worldwide Shipping';
 $item2 = $attributes['item2'] ?? '30-Day Easy Returns';
 $item3 = $attributes['item3'] ?? 'Secure SSL Checkout';
@@ -15,7 +16,7 @@ $unique_id = uniqid('mc-trust-');
 $flex_align = $alignment === 'center' ? 'center' : ($alignment === 'right' ? 'flex-end' : 'flex-start');
 
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-trust-strip {$unique_id}"
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-trust-strip {$unique_id}"
 ]);
 
 $items = array_filter([

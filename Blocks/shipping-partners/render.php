@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $show_label = $attributes['showLabel'] ?? true;
 $label_text = $attributes['labelText'] ?? 'We ship with';
 $style      = $attributes['badgeStyle'] ?? 'mono-dark';
@@ -11,7 +12,7 @@ $label_c    = $attributes['labelColor'] ?? '#64748b';
 if (empty($active)) return;
 
 $unique_id = uniqid('mc-sp-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-shipping-partners {$unique_id} style-{$style} align-{$align}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-shipping-partners {$unique_id} style-{$style} align-{$align}"]);
 
 if (!function_exists('mc_get_shipping_svg_vector')) {
     function mc_get_shipping_svg_vector($id) {

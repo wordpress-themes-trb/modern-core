@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $width = $attributes['modalWidth'] ?? 900;
@@ -10,7 +11,7 @@ $ratio = $attributes['splitRatio'] ?? 50;
 $accent = $attributes['accentColor'] ?? '#3b82f6';
 
 $unique_id = uniqid('mc-qv-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-quick-view-modal {$unique_id} anim-{$anim}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-quick-view-modal {$unique_id} anim-{$anim}"]);
 
 $img_width = $ratio;
 $txt_width = 100 - $ratio;

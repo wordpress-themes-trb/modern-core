@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $behavior = $attributes['behavior'] ?? 'exclusive';
 $open_first = $attributes['openFirst'] ?? true;
 $icon_style = $attributes['iconStyle'] ?? 'chevron';
@@ -15,7 +16,7 @@ if (empty($faqs)) return;
 
 $unique_id = uniqid('mc-faq-');
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-faq-accordion {$unique_id} pos-{$icon_pos} style-{$icon_style}",
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-faq-accordion {$unique_id} pos-{$icon_pos} style-{$icon_style}",
     'data-behavior' => esc_attr($behavior),
     'data-duration' => esc_attr($anim_duration)
 ]);

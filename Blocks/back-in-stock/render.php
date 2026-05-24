@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 global $product;
@@ -20,7 +21,7 @@ $accent = $attributes['accentColor'] ?? '#3b82f6';
 $radius = $attributes['inputRadius'] ?? 6;
 
 $unique_id = uniqid('mc-bis-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-bis {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-bis {$unique_id}"]);
 $product_id = $product->get_id();
 ?>
 

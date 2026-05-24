@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 global $wp;
@@ -20,7 +21,7 @@ $text_c = $attributes['textColor'] ?? '#0f172a';
 $border_c = $attributes['borderColor'] ?? '#e2e8f0';
 
 $unique_id = uniqid('mc-order-conf-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-order-conf {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-order-conf {$unique_id}"]);
 
 // Fallback if accessed directly without an order
 if (!$order) {

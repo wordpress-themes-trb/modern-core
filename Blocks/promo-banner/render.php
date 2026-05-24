@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $banner_id = $attributes['bannerId'] ?? 'promo-1';
 $layout_mode = $attributes['layoutMode'] ?? 'full';
 $bg_mode = $attributes['bgMode'] ?? 'animated-gradient';

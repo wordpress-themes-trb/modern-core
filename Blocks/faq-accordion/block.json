@@ -1,53 +1,95 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/faq-accordion",
-  "title": "FAQ Accordion",
-  "category": "modern-core",
-  "icon": "editor-ul",
-  "description": "Objection handling accordion with automated JSON-LD Schema generation.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "behavior": { "type": "string", "default": "exclusive" },
-    "openFirst": { "type": "boolean", "default": true },
-    "iconStyle": { "type": "string", "default": "chevron" },
-    "iconPosition": { "type": "string", "default": "right" },
-    "animDuration": { "type": "number", "default": 300 },
-    "questionBg": { "type": "string", "default": "#ffffff" },
-    "answerBg": { "type": "string", "default": "#ffffff" },
-    "textColor": { "type": "string", "default": "#0f172a" },
-    "accentColor": { "type": "string", "default": "#3b82f6" },
-    "borderColor": { "type": "string", "default": "#e2e8f0" },
-    "faqs": {
-      "type": "array",
-      "default": [
-        {
-          "question": "What is your shipping policy?",
-          "answer": "We offer free standard shipping on all orders over $150. Most orders are processed and shipped within 1-2 business days."
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/faq-accordion",
+    "title": "FAQ Accordion",
+    "category": "modern-core",
+    "icon": "editor-ul",
+    "description": "Objection handling accordion with automated JSON-LD Schema generation.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "attributes": {
+        "behavior": {
+            "type": "string",
+            "default": "exclusive"
         },
-        {
-          "question": "How do I return an item?",
-          "answer": "We accept returns within 30 days of delivery. The item must be unused and in its original packaging. Simply use the return label included in your package."
+        "openFirst": {
+            "type": "boolean",
+            "default": true
         },
-        {
-          "question": "Is my payment information secure?",
-          "answer": "Absolutely. Our checkout uses industry-standard 256-bit encryption. We never store your full credit card information on our servers."
+        "iconStyle": {
+            "type": "string",
+            "default": "chevron"
         },
-        {
-          "question": "How do I know what size to order?",
-          "answer": "Please refer to our detailed sizing chart linked above the add-to-cart button. If you are between sizes, we generally recommend sizing up."
+        "iconPosition": {
+            "type": "string",
+            "default": "right"
         },
-        {
-          "question": "Do you offer a warranty?",
-          "answer": "Yes, all our products come with a standard 1-year manufacturing warranty covering any defects in materials or workmanship."
+        "animDuration": {
+            "type": "number",
+            "default": 300
+        },
+        "questionBg": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "answerBg": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#3b82f6"
+        },
+        "borderColor": {
+            "type": "string",
+            "default": "#e2e8f0"
+        },
+        "faqs": {
+            "type": "array",
+            "default": [
+                {
+                    "question": "What is your shipping policy?",
+                    "answer": "We offer free standard shipping on all orders over $150. Most orders are processed and shipped within 1-2 business days."
+                },
+                {
+                    "question": "How do I return an item?",
+                    "answer": "We accept returns within 30 days of delivery. The item must be unused and in its original packaging. Simply use the return label included in your package."
+                },
+                {
+                    "question": "Is my payment information secure?",
+                    "answer": "Absolutely. Our checkout uses industry-standard 256-bit encryption. We never store your full credit card information on our servers."
+                },
+                {
+                    "question": "How do I know what size to order?",
+                    "answer": "Please refer to our detailed sizing chart linked above the add-to-cart button. If you are between sizes, we generally recommend sizing up."
+                },
+                {
+                    "question": "Do you offer a warranty?",
+                    "answer": "Yes, all our products come with a standard 1-year manufacturing warranty covering any defects in materials or workmanship."
+                }
+            ]
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
         }
-      ]
-    }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-faq-js",
-  "render": "file:./render.php"
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-faq-js",
+    "render": "file:./render.php"
 }

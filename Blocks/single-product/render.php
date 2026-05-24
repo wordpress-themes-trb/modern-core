@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 global $product;
@@ -26,7 +27,7 @@ foreach ($elements as $el) {
 }
 
 $unique_id = uniqid('mc-pdp-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-single-product {$unique_id} layout-{$layout} split-{$split} thumbs-{$thumbs}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-single-product {$unique_id} layout-{$layout} split-{$split} thumbs-{$thumbs}"]);
 
 $product_id = $product->get_id();
 $main_image_url = wp_get_attachment_image_url($product->get_image_id(), 'large') ?: wc_placeholder_img_src();

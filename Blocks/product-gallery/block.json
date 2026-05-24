@@ -1,26 +1,62 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/product-gallery",
-  "title": "Product Gallery",
-  "category": "modern-core",
-  "icon": "images-alt2",
-  "description": "Premium, fluid image gallery with native hover zoom and lightbox.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "thumbPosition": { "type": "string", "default": "bottom" },
-    "aspectRatio": { "type": "string", "default": "1/1" },
-    "gap": { "type": "number", "default": 15 },
-    "radius": { "type": "number", "default": 8 },
-    "activeBorder": { "type": "string", "default": "#0f172a" },
-    "enableZoom": { "type": "boolean", "default": true },
-    "zoomLevel": { "type": "number", "default": 2 },
-    "enableLightbox": { "type": "boolean", "default": true }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-product-gallery-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/product-gallery",
+    "title": "Product Gallery",
+    "category": "modern-core",
+    "icon": "images-alt2",
+    "description": "Premium, fluid image gallery with native hover zoom and lightbox.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "attributes": {
+        "thumbPosition": {
+            "type": "string",
+            "default": "bottom"
+        },
+        "aspectRatio": {
+            "type": "string",
+            "default": "1/1"
+        },
+        "gap": {
+            "type": "number",
+            "default": 15
+        },
+        "radius": {
+            "type": "number",
+            "default": 8
+        },
+        "activeBorder": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "enableZoom": {
+            "type": "boolean",
+            "default": true
+        },
+        "zoomLevel": {
+            "type": "number",
+            "default": 2
+        },
+        "enableLightbox": {
+            "type": "boolean",
+            "default": true
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-product-gallery-js",
+    "render": "file:./render.php"
 }

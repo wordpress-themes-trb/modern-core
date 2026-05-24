@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 global $product;
@@ -27,7 +28,7 @@ $text_c = $attributes['textColor'] ?? '#0f172a';
 $pulse = $attributes['enablePulse'] ?? true;
 
 $unique_id = uniqid('mc-stock-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-stock-countdown {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-stock-countdown {$unique_id}"]);
 
 // Determine active colors and classes
 $current_color = $neutral_c;

@@ -12,12 +12,23 @@
     "customClassName": true
   },
   "attributes": {
-    "isSticky": { "type": "boolean", "default": true },
-    "transparentOnLoad": { "type": "boolean", "default": false },
-    "autoHideOnScroll": { "type": "boolean", "default": false },
-    "preset": { "type": "string", "default": "custom" },
-    "presetName": { "type": "string", "default": "" },
-    "isLocal": { "type": "boolean", "default": false }
+    "isSticky": {
+      "type": "boolean",
+      "default": true
+    },
+    "transparentOnLoad": {
+      "type": "boolean",
+      "default": false
+    },
+    "autoHideOnScroll": {
+      "type": "boolean",
+      "default": false
+    },
+    "widthMode": {
+      "type": "string",
+      "default": "fullwidth",
+      "enum": ["contained", "wide", "fullwidth"]
+    }
   },
   "textdomain": "modern-core",
   "editorScript": "modern-core-header-js",

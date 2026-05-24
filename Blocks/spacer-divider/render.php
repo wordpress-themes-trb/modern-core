@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $mode = $attributes['mode'] ?? 'spacer';
 $h_desk = $attributes['heightDesktop'] ?? 60;
 $h_mob = $attributes['heightMobile'] ?? 40;
@@ -11,7 +12,7 @@ $center = $attributes['centerElement'] ?? 'none';
 $text = $attributes['centerText'] ?? '✧';
 
 $unique_id = uniqid('mc-sd-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-spacer {$unique_id} mode-{$mode} align-{$align}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-spacer {$unique_id} mode-{$mode} align-{$align}"]);
 
 // FIXED: Check if the function exists before declaring it to prevent fatal errors when multiple blocks are on the page
 if ( ! function_exists( 'mc_get_wave_svg_data_uri' ) ) {

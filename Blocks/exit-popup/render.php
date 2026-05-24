@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $trigger = $attributes['triggerType'] ?? 'exit';
 $mobile_fallback = $attributes['mobileFallback'] ?? 10;
 $suppression = $attributes['suppressionDays'] ?? 7;
@@ -17,7 +18,7 @@ $blur = $attributes['overlayBlur'] ?? 4;
 $anim = $attributes['animStyle'] ?? 'scale';
 
 $unique_id = uniqid('mc-exit-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-exit-popup {$unique_id} anim-{$anim}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-exit-popup {$unique_id} anim-{$anim}"]);
 ?>
 
 <div <?php echo $wrapper_attributes; ?> 

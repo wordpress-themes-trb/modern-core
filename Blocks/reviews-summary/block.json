@@ -1,26 +1,62 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/reviews-summary",
-  "title": "Reviews Summary",
-  "category": "modern-core",
-  "icon": "chart-bar",
-  "description": "Data-rich aggregate review visualizer with star breakdown.",
-  "supports": {
-    "align": ["wide", "full"],
-    "html": false
-  },
-  "attributes": {
-    "layoutMode": { "type": "string", "default": "horizontal" },
-    "barHeight": { "type": "number", "default": 8 },
-    "barRadius": { "type": "number", "default": 4 },
-    "interactiveRows": { "type": "boolean", "default": true },
-    "countFormat": { "type": "string", "default": "percentage" },
-    "starColor": { "type": "string", "default": "#f59e0b" },
-    "trackColor": { "type": "string", "default": "#e2e8f0" },
-    "textColor": { "type": "string", "default": "#0f172a" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-reviews-summary-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/reviews-summary",
+    "title": "Reviews Summary",
+    "category": "modern-core",
+    "icon": "chart-bar",
+    "description": "Data-rich aggregate review visualizer with star breakdown.",
+    "supports": {
+        "align": [
+            "wide",
+            "full"
+        ],
+        "html": false
+    },
+    "attributes": {
+        "layoutMode": {
+            "type": "string",
+            "default": "horizontal"
+        },
+        "barHeight": {
+            "type": "number",
+            "default": 8
+        },
+        "barRadius": {
+            "type": "number",
+            "default": 4
+        },
+        "interactiveRows": {
+            "type": "boolean",
+            "default": true
+        },
+        "countFormat": {
+            "type": "string",
+            "default": "percentage"
+        },
+        "starColor": {
+            "type": "string",
+            "default": "#f59e0b"
+        },
+        "trackColor": {
+            "type": "string",
+            "default": "#e2e8f0"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-reviews-summary-js",
+    "render": "file:./render.php"
 }

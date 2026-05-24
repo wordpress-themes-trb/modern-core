@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $source = $attributes['sourceMode'] ?? 'dynamic';
@@ -23,7 +24,7 @@ $text_c = $attributes['textColor'] ?? '#ffffff';
 if ($shape === 'circle') $placement = 'below';
 
 $unique_id = uniqid('mc-catcar-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-cat-carousel {$unique_id} shape-{$shape} label-{$placement} hover-{$hover_effect}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-cat-carousel {$unique_id} shape-{$shape} label-{$placement} hover-{$hover_effect}"]);
 
 // Query Categories
 $args = [ 'taxonomy' => 'product_cat', 'hide_empty' => true, 'number' => $count, 'orderby' => 'count', 'order' => 'DESC' ];

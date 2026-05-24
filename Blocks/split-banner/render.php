@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $media_width = $attributes['mediaWidth'] ?? 50;
 $media_side = $attributes['mediaSide'] ?? 'left';
 $media_url = $attributes['mediaUrl'] ?? 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop';
@@ -11,7 +12,7 @@ $min_height = $attributes['minHeight'] ?? 600;
 $mobile_stack = $attributes['mobileStack'] ?? 'media-first';
 
 $unique_id = uniqid('mc-split-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-split-banner {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-split-banner {$unique_id}"]);
 
 $is_left = $media_side === 'left';
 $content_width = 100 - $media_width;

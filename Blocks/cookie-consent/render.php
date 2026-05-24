@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $mode = $attributes['consentMode'] ?? 'simple';
 $style = $attributes['placementStyle'] ?? 'bar';
 $msg = $attributes['message'] ?? 'We use cookies to improve your experience and analyze our traffic.';
@@ -17,7 +18,7 @@ $shadow = ($attributes['shadowOpacity'] ?? 10) / 100;
 if (isset($_COOKIE['mc_cookie_consent'])) return;
 
 $unique_id = uniqid('mc-cookie-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-cookie-consent {$unique_id} style-{$style}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-cookie-consent {$unique_id} style-{$style}"]);
 ?>
 
 <div <?php echo $wrapper_attributes; ?> data-days="<?php echo esc_attr($days); ?>">

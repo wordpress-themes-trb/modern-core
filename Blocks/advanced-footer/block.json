@@ -1,35 +1,82 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/advanced-footer",
-  "title": "Footer System (Wrapper)",
-  "category": "modern-core",
-  "icon": "feedback",
-  "description": "The master container for your customizable, mobile-responsive footer system.",
-  "supports": {
-    "align": ["full"],
-    "html": false,
-    "customClassName": true
-  },
-  "attributes": {
-    "layoutMode": { "type": "string", "default": "four-column" },
-    "brandName": { "type": "string", "default": "MODERNCORE" },
-    "brandDescription": {
-      "type": "string",
-      "default": "Elevated minimal essentials curated for the modern wardrobe."
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/advanced-footer",
+    "title": "Footer System (Wrapper)",
+    "category": "modern-core",
+    "icon": "feedback",
+    "description": "The master container for your customizable, mobile-responsive footer system.",
+    "supports": {
+        "align": [
+            "full"
+        ],
+        "html": false,
+        "customClassName": true
     },
-    "footerBg": { "type": "string", "default": "#0f172a" },
-    "textColor": { "type": "string", "default": "#f8fafc" },
-    "accentColor": { "type": "string", "default": "#e2b57a" },
-    "showPaymentIcons": { "type": "boolean", "default": true },
-    "showSocial": { "type": "boolean", "default": true },
-    "enableReveal": { "type": "boolean", "default": false },
-    "paddingTopMobile": { "type": "number", "default": 40 },
-    "paddingBottomMobile": { "type": "number", "default": 24 },
-    "paddingTopDesktop": { "type": "number", "default": 80 },
-    "paddingBottomDesktop": { "type": "number", "default": 40 }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-footer-js",
-  "render": "file:./render.php"
+    "attributes": {
+        "layoutMode": {
+            "type": "string",
+            "default": "four-column"
+        },
+        "brandName": {
+            "type": "string",
+            "default": "MODERNCORE"
+        },
+        "brandDescription": {
+            "type": "string",
+            "default": "Elevated minimal essentials curated for the modern wardrobe."
+        },
+        "footerBg": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#f8fafc"
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#e2b57a"
+        },
+        "showPaymentIcons": {
+            "type": "boolean",
+            "default": true
+        },
+        "showSocial": {
+            "type": "boolean",
+            "default": true
+        },
+        "enableReveal": {
+            "type": "boolean",
+            "default": false
+        },
+        "paddingTopMobile": {
+            "type": "number",
+            "default": 40
+        },
+        "paddingBottomMobile": {
+            "type": "number",
+            "default": 24
+        },
+        "paddingTopDesktop": {
+            "type": "number",
+            "default": 80
+        },
+        "paddingBottomDesktop": {
+            "type": "number",
+            "default": 40
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "fullwidth",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-footer-js",
+    "render": "file:./render.php"
 }

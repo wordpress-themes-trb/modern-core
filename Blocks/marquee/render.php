@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $text = $attributes['text'] ?? '';
 $speed = $attributes['speed'] ?? 15;
 $is_scrolling = $attributes['isScrolling'] ?? true;
@@ -6,6 +7,7 @@ $bg_color = $attributes['bgColor'] ?? '#0f172a';
 $text_color = $attributes['textColor'] ?? '#ffffff';
 
 $wrapper_attributes = get_block_wrapper_attributes([
+    'class' => 'mc-block width-' . esc_attr($width_mode),
     'style' => "background-color: {$bg_color}; color: {$text_color}; overflow: hidden; white-space: nowrap; display: flex; align-items: center; padding: 10px 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;"
 ]);
 ?>

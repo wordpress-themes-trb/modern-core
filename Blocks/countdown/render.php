@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $target_date = $attributes['targetDate'] ?? '';
 $style_mode = $attributes['styleMode'] ?? 'boxed';
 $digit_size = $attributes['digitSize'] ?? 32;
@@ -19,7 +20,7 @@ $is_boxed = in_array($style_mode, ['boxed', 'pill']);
 $radius = $style_mode === 'pill' ? '50px' : "{$box_radius}px";
 
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "modern-core-countdown {$unique_id}",
+    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-countdown {$unique_id}",
     'data-target' => esc_attr($target_date),
     'data-action' => esc_attr($expire_action),
     'data-url' => esc_url($expire_url)

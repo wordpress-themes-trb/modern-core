@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $product_id = $attributes['productId'] ?? 0;
@@ -20,7 +21,7 @@ $accent = $attributes['accentColor'] ?? '#3b82f6';
 $btn_style = $attributes['buttonStyle'] ?? 'solid';
 
 $unique_id = uniqid('mc-featprod-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-featured-product {$unique_id} layout-{$layout}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-featured-product {$unique_id} layout-{$layout}"]);
 
 // Get Images
 $main_img_url = wp_get_attachment_image_url($product->get_image_id(), 'large');

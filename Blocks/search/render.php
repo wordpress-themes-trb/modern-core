@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $placeholder = $attributes['placeholder'] ?? 'Search for products...';
 $shape = $attributes['shape'] ?? 'pill';
 $show_icon = $attributes['showIcon'] ?? true;
@@ -9,6 +10,7 @@ $width = $attributes['width'] ?? 100;
 
 $unique_id = uniqid('mc-search-');
 $wrapper_attributes = get_block_wrapper_attributes([
+    'class' => 'mc-block width-' . esc_attr($width_mode),
     'style' => "width: {$width}%; position: relative;"
 ]);
 

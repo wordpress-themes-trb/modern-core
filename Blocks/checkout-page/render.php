@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $layout = $attributes['layoutMode'] ?? 'single';
@@ -15,7 +16,7 @@ $text_c = $attributes['textColor'] ?? '#0f172a';
 $border_c = $attributes['borderColor'] ?? '#e2e8f0';
 
 $unique_id = uniqid('mc-chk-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-checkout {$unique_id} layout-{$layout} label-{$label_style}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-checkout {$unique_id} layout-{$layout} label-{$label_style}"]);
 
 // FIX: Verify cart exists before checking if empty (prevents backend crash)
 if (!empty(WC()->cart) && WC()->cart->is_empty()) {

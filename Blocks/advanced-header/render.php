@@ -1,19 +1,17 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'fullwidth';
 $is_sticky = $attributes['isSticky'] ?? true;
 $is_transparent = $attributes['transparentOnLoad'] ?? false;
 $auto_hide = $attributes['autoHideOnScroll'] ?? false;
-$preset = $attributes['preset'] ?? 'custom';
-$is_local = $attributes['isLocal'] ?? false;
 
-$classes = 'modern-core-header-wrapper';
+$classes = 'modern-core-header-wrapper mc-block';
+$classes .= ' width-' . esc_attr($width_mode);
 if ( $is_sticky ) { $classes .= ' is-sticky'; }
 if ( $is_transparent ) { $classes .= ' is-transparent'; }
-if ( $is_local ) { $classes .= ' is-local-header'; }
 
 $wrapper_attributes = get_block_wrapper_attributes( [
     'class' => $classes,
     'data-auto-hide' => $is_sticky && $auto_hide ? 'true' : 'false',
-    'data-preset' => esc_attr($preset),
 ] );
 ?>
 

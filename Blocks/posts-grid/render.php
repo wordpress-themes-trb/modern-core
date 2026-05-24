@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $title = $attributes['sectionTitle'] ?? 'From the blog';
 $link = $attributes['sectionLink'] ?? '';
 $count = $attributes['queryCount'] ?? 6;
@@ -17,7 +18,7 @@ $accent = $attributes['accentColor'] ?? '#0f172a';
 $text_c = $attributes['textColor'] ?? '#64748b';
 
 $unique_id = uniqid('mc-posts-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-posts-grid {$unique_id} layout-{$layout}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-posts-grid {$unique_id} layout-{$layout}"]);
 
 // Query Execution
 $args = [

@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $logo_type = $attributes['logoType'] ?? 'text';
 $brand_name = $attributes['brandName'] ?? 'MODERN CORE';
 $media_url = $attributes['mediaUrl'] ?? '';
@@ -10,6 +11,7 @@ $alignment = $attributes['alignment'] ?? 'left';
 $flex_align = $alignment === 'center' ? 'center' : ($alignment === 'right' ? 'flex-end' : 'flex-start');
 
 $wrapper_attributes = get_block_wrapper_attributes([
+    'class' => 'mc-block width-' . esc_attr($width_mode),
     'style' => "display: flex; flex-direction: column; align-items: {$flex_align}; justify-content: center; width: 100%;"
 ]);
 ?>

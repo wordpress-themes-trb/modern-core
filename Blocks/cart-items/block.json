@@ -1,24 +1,63 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "modern-core/cart-items",
-  "title": "Mini-Cart Content",
-  "category": "modern-core",
-  "icon": "cart",
-  "description": "Displays cart items, free shipping progress, and checkout.",
-  "attributes": {
-    "thumbSize": { "type": "number", "default": 80 },
-    "thumbRadius": { "type": "number", "default": 8 },
-    "qtyStyle": { "type": "string", "default": "plus-minus" },
-    "removeStyle": { "type": "string", "default": "text" },
-    "titleColor": { "type": "string", "default": "inherit" },
-    "showFreeShipping": { "type": "boolean", "default": true },
-    "shippingThreshold": { "type": "number", "default": 150 },
-    "accentColor": { "type": "string", "default": "#3b82f6" },
-    "checkoutBg": { "type": "string", "default": "#0f172a" },
-    "checkoutText": { "type": "string", "default": "#ffffff" }
-  },
-  "textdomain": "modern-core",
-  "editorScript": "modern-core-cart-items-js",
-  "render": "file:./render.php"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "modern-core/cart-items",
+    "title": "Mini-Cart Content",
+    "category": "modern-core",
+    "icon": "cart",
+    "description": "Displays cart items, free shipping progress, and checkout.",
+    "attributes": {
+        "thumbSize": {
+            "type": "number",
+            "default": 80
+        },
+        "thumbRadius": {
+            "type": "number",
+            "default": 8
+        },
+        "qtyStyle": {
+            "type": "string",
+            "default": "plus-minus"
+        },
+        "removeStyle": {
+            "type": "string",
+            "default": "text"
+        },
+        "titleColor": {
+            "type": "string",
+            "default": "inherit"
+        },
+        "showFreeShipping": {
+            "type": "boolean",
+            "default": true
+        },
+        "shippingThreshold": {
+            "type": "number",
+            "default": 150
+        },
+        "accentColor": {
+            "type": "string",
+            "default": "#3b82f6"
+        },
+        "checkoutBg": {
+            "type": "string",
+            "default": "#0f172a"
+        },
+        "checkoutText": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "widthMode": {
+            "type": "string",
+            "default": "contained",
+            "enum": [
+                "contained",
+                "wide",
+                "fullwidth"
+            ]
+        }
+    },
+    "textdomain": "modern-core",
+    "editorScript": "modern-core-cart-items-js",
+    "render": "file:./render.php"
 }

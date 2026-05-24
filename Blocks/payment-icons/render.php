@@ -1,4 +1,5 @@
 <?php
+$width_mode = $attributes['widthMode'] ?? 'contained';
 $show_label = $attributes['showLabel'] ?? true;
 $label_text = $attributes['labelText'] ?? 'Secure payment options';
 $style      = $attributes['badgeStyle'] ?? 'color';
@@ -11,7 +12,7 @@ $label_c    = $attributes['labelColor'] ?? '#64748b';
 if (empty($active)) return;
 
 $unique_id = uniqid('mc-picons-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "modern-core-payment-icons {$unique_id} style-{$style} align-{$align}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-payment-icons {$unique_id} style-{$style} align-{$align}"]);
 
 // Unified internal vector storage mapping keys to responsive inline inline strings
 // Unified internal vector storage mapping keys to responsive inline inline strings
