@@ -6,6 +6,7 @@ import {
   RangeControl,
   TextControl,
   ColorPalette,
+  ToggleControl,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
@@ -13,8 +14,12 @@ export default function Edit({ attributes, setAttributes }) {
   const {
     consentMode,
     placementStyle,
+    gateMode,
+    gateModeStyle,
+    showModalOverlay,
     message,
     policyLink,
+    policyLinkText,
     btnAccept,
     btnDecline,
     btnManage,
@@ -33,14 +38,65 @@ export default function Edit({ attributes, setAttributes }) {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      minHeight: "300px",
+      minHeight: "260px",
+      boxSizing: "border-box",
     },
   });
+
+  // Shared styles
+  const btnBase = {
+    padding: "11px 22px",
+    borderRadius: "8px",
+    fontSize: "13px",
+    fontWeight: 700,
+    cursor: "pointer",
+    border: "none",
+    whiteSpace: "nowrap",
+    boxSizing: "border-box",
+  };
+  const mockContainerStyle = {
+    background: bgColor,
+    color: textColor,
+    boxShadow: `0 10px 30px rgba(0,0,0,${shadowOpacity / 100})`,
+    borderRadius:
+      placementStyle === "bar"
+        ? "10px"
+        : placementStyle === "card"
+          ? "16px"
+          : "20px",
+    position: "relative",
+    boxSizing: "border-box",
+    ...(placementStyle === "bar" && {
+      width: "100%",
+      maxWidth: "900px",
+      padding: "18px 28px",
+      display: "flex",
+      alignItems: "center",
+      gap: "24px",
+      justifyContent: "space-between",
+      flexWrap: "wrap",
+    }),
+    ...(placementStyle === "card" && {
+      width: "320px",
+      padding: "28px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "18px",
+    }),
+    ...(placementStyle === "modal" && {
+      width: "460px",
+      maxWidth: "100%",
+      padding: "40px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+    }),
+  };
 
   return (
     <>
       <InspectorControls>
-        <PanelBody title={__("Architecture & Compliance", "modern-core")}>
+        <PanelBody title={__("Placement & Compliance", "modern-core")}>
           <SelectControl
             label={__("Placement Style", "modern-core")}
             value={placementStyle}
@@ -60,6 +116,14 @@ export default function Edit({ attributes, setAttributes }) {
             ]}
             onChange={(val) => setAttributes({ consentMode: val })}
           />
+          {placementStyle === "modal" && (
+            <ToggleControl
+              label={__("Show Backdrop Overlay", "modern-core")}
+              checked={showModalOverlay}
+              onChange={(val) => setAttributes({ showModalOverlay: val })}
+              help={__("Darkens the page behind the modal.", "modern-core")}
+            />
+          )}
           <RangeControl
             label={__("Cookie Expiration (Days)", "modern-core")}
             value={cookieDays}
@@ -67,6 +131,29 @@ export default function Edit({ attributes, setAttributes }) {
             min={1}
             max={365}
           />
+        </PanelBody>
+
+        <PanelBody title={__("Gate Mode", "modern-core")} initialOpen={false}>
+          <ToggleControl
+            label={__("Enable Gate Mode", "modern-core")}
+            checked={gateMode}
+            onChange={(val) => setAttributes({ gateMode: val })}
+            help={__(
+              "Blocks access to the site until the visitor accepts cookies.",
+              "modern-core",
+            )}
+          />
+          {gateMode && (
+            <SelectControl
+              label={__("Gate Style", "modern-core")}
+              value={gateModeStyle}
+              options={[
+                { label: "Blur page content", value: "blur" },
+                { label: "Blackout (full block)", value: "blackout" },
+              ]}
+              onChange={(val) => setAttributes({ gateModeStyle: val })}
+            />
+          )}
         </PanelBody>
 
         <PanelBody
@@ -82,6 +169,11 @@ export default function Edit({ attributes, setAttributes }) {
             label={__("Privacy Policy URL", "modern-core")}
             value={policyLink}
             onChange={(val) => setAttributes({ policyLink: val })}
+          />
+          <TextControl
+            label={__("Privacy Policy Link Text", "modern-core")}
+            value={policyLinkText}
+            onChange={(val) => setAttributes({ policyLinkText: val })}
           />
           <TextControl
             label={__("Accept Button Text", "modern-core")}
@@ -113,74 +205,164 @@ export default function Edit({ attributes, setAttributes }) {
             min={0}
             max={30}
           />
-          <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-            <strong>{__("Background Color", "modern-core")}</strong>
-          </p>
-          <ColorPalette
-            value={bgColor}
-            onChange={(val) => setAttributes({ bgColor: val })}
-          />
-          <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-            <strong>{__("Text Color", "modern-core")}</strong>
-          </p>
-          <ColorPalette
-            value={textColor}
-            onChange={(val) => setAttributes({ textColor: val })}
-          />
-          <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-            <strong>
-              {__("Primary Accent (Accept Button)", "modern-core")}
-            </strong>
-          </p>
-          <ColorPalette
-            value={accentColor}
-            onChange={(val) => setAttributes({ accentColor: val })}
-          />
+          {[
+            ["Background Color", "bgColor", bgColor],
+            ["Text Color", "textColor", textColor],
+            ["Accent / Accept Button", "accentColor", accentColor],
+          ].map(([label, key, val]) => (
+            <div key={key}>
+              <p
+                style={{
+                  margin: "14px 0 5px",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                }}
+              >
+                {__(label, "modern-core")}
+              </p>
+              <ColorPalette
+                value={val}
+                onChange={(v) => setAttributes({ [key]: v })}
+              />
+            </div>
+          ))}
         </PanelBody>
       </InspectorControls>
 
       <div {...blockProps}>
-        <style>
-          {`
-                    .modern-core-cookie-editor { --mc-bg: ${bgColor}; --mc-text: ${textColor}; --mc-acc: ${accentColor}; --mc-shad: ${shadowOpacity / 100}; }
-                    .mc-cookie-mock { background: var(--mc-bg); color: var(--mc-text); box-shadow: 0 10px 30px rgba(0,0,0,var(--mc-shad)); display: flex; gap: 20px; align-items: center; position: relative; }
-                    
-                    /* Style Mocks */
-                    .style-bar .mc-cookie-mock { width: 100%; max-width: 1200px; padding: 20px 5%; border-radius: 8px; justify-content: space-between; }
-                    .style-card .mc-cookie-mock { width: 360px; padding: 25px; border-radius: 12px; flex-direction: column; align-items: flex-start; }
-                    .style-modal .mc-cookie-mock { width: 480px; padding: 40px; border-radius: 16px; flex-direction: column; text-align: center; }
+        <div style={mockContainerStyle}>
+          {/* Close button */}
+          <button
+            style={{
+              position: "absolute",
+              top: "12px",
+              right: "12px",
+              width: "28px",
+              height: "28px",
+              borderRadius: "50%",
+              border: "none",
+              background: "rgba(0,0,0,0.07)",
+              cursor: "pointer",
+              fontSize: "14px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: textColor,
+              padding: 0,
+              lineHeight: 1,
+            }}
+          >
+            ✕
+          </button>
 
-                    .mc-cookie-text { font-size: 14px; line-height: 1.5; margin: 0; flex: 1; }
-                    .mc-cookie-link { color: var(--mc-acc); text-decoration: underline; }
-                    
-                    .mc-cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-                    .style-card .mc-cookie-actions, .style-modal .mc-cookie-actions { width: 100%; }
-                    .style-modal .mc-cookie-actions { justify-content: center; }
-                    
-                    .mc-btn { padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer; border: none; white-space: nowrap; }
-                    .mc-btn-accept { background: var(--mc-acc); color: #fff; }
-                    .mc-btn-decline { background: transparent; color: var(--mc-text); border: 1px solid rgba(0,0,0,0.1); }
-                    .mc-btn-manage { background: transparent; color: var(--mc-text); text-decoration: underline; padding: 10px 5px; opacity: 0.7; }
-                    `}
-        </style>
-
-        <div className="mc-cookie-mock">
-          <p className="mc-cookie-text">
-            {message}{" "}
-            {policyLink && (
-              <a href="#" className="mc-cookie-link">
-                Privacy Policy
-              </a>
-            )}
-          </p>
-
-          <div className="mc-cookie-actions">
-            {consentMode === "category" && (
-              <button className="mc-btn mc-btn-manage">{btnManage}</button>
-            )}
-            <button className="mc-btn mc-btn-decline">{btnDecline}</button>
-            <button className="mc-btn mc-btn-accept">{btnAccept}</button>
+          {/* Header */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: "12px",
+              flex: placementStyle === "bar" ? 1 : "none",
+            }}
+          >
+            <span style={{ fontSize: "22px", flexShrink: 0 }}>🍪</span>
+            <div>
+              <p
+                style={{
+                  margin: "0 0 4px",
+                  fontWeight: 700,
+                  fontSize: "15px",
+                  color: textColor,
+                }}
+              >
+                We value your privacy
+              </p>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "13px",
+                  color: textColor,
+                  opacity: 0.75,
+                  lineHeight: 1.5,
+                }}
+              >
+                {message}{" "}
+                {policyLink && (
+                  <a
+                    href="#"
+                    style={{
+                      color: accentColor,
+                      textDecoration: "underline",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {policyLinkText}
+                  </a>
+                )}
+              </p>
+            </div>
           </div>
+
+          {/* Actions */}
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              flexDirection: placementStyle === "bar" ? "row" : "column",
+              flexShrink: 0,
+              width: placementStyle === "bar" ? "auto" : "100%",
+            }}
+          >
+            {consentMode === "category" && (
+              <button
+                style={{
+                  ...btnBase,
+                  background: "transparent",
+                  color: accentColor,
+                  textDecoration: "underline",
+                  padding: "8px 0",
+                  border: "none",
+                }}
+              >
+                {btnManage}
+              </button>
+            )}
+            <button
+              style={{
+                ...btnBase,
+                background: "transparent",
+                color: textColor,
+                border: `1px solid rgba(0,0,0,0.15)`,
+              }}
+            >
+              {btnDecline}
+            </button>
+            <button
+              style={{ ...btnBase, background: accentColor, color: "#fff" }}
+            >
+              {btnAccept}
+            </button>
+          </div>
+
+          {/* Gate mode badge */}
+          {gateMode && (
+            <div
+              style={{
+                position: "absolute",
+                top: "-10px",
+                left: "20px",
+                background: "#f59e0b",
+                color: "#fff",
+                fontSize: "10px",
+                fontWeight: 700,
+                padding: "3px 8px",
+                borderRadius: "99px",
+                letterSpacing: "0.5px",
+                textTransform: "uppercase",
+              }}
+            >
+              Gate Mode: {gateModeStyle}
+            </div>
+          )}
         </div>
       </div>
     </>
