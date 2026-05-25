@@ -33,77 +33,58 @@ export default function Edit({ attributes, setAttributes }) {
 
   const blockProps = useBlockProps({
     className: "modern-core-compare-editor",
-    style: { width: "100%", padding: "40px 0", overflowX: "auto" },
+    style: {
+      width: "100%",
+      padding: "40px 0",
+      overflowX: "auto",
+      boxSizing: "border-box",
+    },
   });
 
-  // Mock Data for the Matrix
-  const mockProducts = Array.from({ length: Math.min(maxColumns, 4) }).map(
-    (_, i) => ({
-      id: i,
-      title:
-        i % 2 === 0
-          ? "Premium Cotton Silhouette"
-          : "Minimalist Architecture Chair",
-      price: i === 1 ? "$245.00" : "$120.00",
-      image: `https://images.unsplash.com/photo-${i % 2 === 0 ? "1521572163474-6f64f9fa023e" : "1506422745199-563b7e735496"}?q=80&w=300&auto=format&fit=crop`,
-      specs: {
-        material: i % 2 === 0 ? "100% Cotton" : "Oak Wood",
-        weight: i === 1 ? "12 lbs" : "1.2 lbs",
-        waterproof: i === 2,
-      },
-    }),
-  );
+  const colCount = Math.min(maxColumns, 4);
 
-  const renderRow = (label, key, isEven) => (
-    <div
-      style={{
-        display: "flex",
-        backgroundColor: alternateRows && isEven ? rowEvenBg : rowOddBg,
-        borderBottom: `1px solid ${borderColor}`,
-      }}
-    >
-      <div
-        style={{
-          width: `${labelWidth}%`,
-          padding: "15px 20px",
-          fontWeight: "bold",
-          fontSize: "13px",
-          color: "#64748b",
-          borderRight: `1px solid ${borderColor}`,
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        {label}
-      </div>
-      {mockProducts.map((p, i) => (
-        <div
-          key={i}
-          style={{
-            flex: 1,
-            padding: "15px 20px",
-            fontSize: "14px",
-            borderRight:
-              i < mockProducts.length - 1 ? `1px solid ${borderColor}` : "none",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-          }}
-        >
-          {typeof p.specs[key] === "boolean" ? (
-            p.specs[key] ? (
-              <span style={{ color: "#10b981", fontWeight: "bold" }}>✓</span>
-            ) : (
-              <span style={{ color: "#ef4444", fontWeight: "bold" }}>✕</span>
-            )
-          ) : (
-            p.specs[key]
-          )}
-        </div>
-      ))}
-    </div>
-  );
+  const mockProducts = Array.from({ length: colCount }).map((_, i) => ({
+    id: i,
+    title:
+      i % 2 === 0
+        ? "Premium Cotton Silhouette"
+        : "Minimalist Architecture Chair",
+    price: i === 1 ? "$245.00" : "$120.00",
+    image: `https://images.unsplash.com/photo-${
+      i % 2 === 0 ? "1521572163474-6f64f9fa023e" : "1506422745199-563b7e735496"
+    }?q=80&w=300&auto=format&fit=crop`,
+    specs: {
+      Material: i % 2 === 0 ? "100% Cotton" : "Oak Wood",
+      Weight: i === 1 ? "12 lbs" : "1.2 lbs",
+      Waterproof: i === 2 ? "Yes" : "No",
+      Warranty: "2 Years",
+    },
+  }));
+
+  const specKeys = ["Material", "Weight", "Waterproof", "Warranty"];
+
+  /* Shared cell style */
+  const cellBase = {
+    flex: 1,
+    padding: "16px 12px",
+    borderRight: `1px solid ${borderColor}`,
+    boxSizing: "border-box",
+    fontSize: "14px",
+  };
+
+  /* Label cell style */
+  const labelCell = {
+    width: `${labelWidth}%`,
+    minWidth: "120px",
+    padding: "16px 20px",
+    fontWeight: 600,
+    fontSize: "13px",
+    color: "#64748b",
+    borderRight: `1px solid ${borderColor}`,
+    background: headerBg,
+    boxSizing: "border-box",
+    whiteSpace: "nowrap",
+  };
 
   return (
     <>
@@ -145,11 +126,19 @@ export default function Edit({ attributes, setAttributes }) {
             onChange={(val) => setAttributes({ labelWidth: val })}
             min={15}
             max={40}
+            help={__(
+              "The left column showing attribute names like 'Material', 'Weight', etc.",
+              "modern-core",
+            )}
           />
           <ToggleControl
             label={__("Enable Sticky Header", "modern-core")}
             checked={isSticky}
             onChange={(val) => setAttributes({ isSticky: val })}
+            help={__(
+              "Pins the product header row while scrolling through attributes.",
+              "modern-core",
+            )}
           />
           <RangeControl
             label={__("Table Border Radius", "modern-core")}
@@ -167,7 +156,7 @@ export default function Edit({ attributes, setAttributes }) {
           <ToggleControl
             label={__("Show Image", "modern-core")}
             checked={showImage}
-            onChange={(val) => setAttributes({ showImage: val })}
+            onChange={(v) => setAttributes({ showImage: v })}
           />
           {showImage && (
             <SelectControl
@@ -184,17 +173,17 @@ export default function Edit({ attributes, setAttributes }) {
           <ToggleControl
             label={__("Show Price", "modern-core")}
             checked={showPrice}
-            onChange={(val) => setAttributes({ showPrice: val })}
+            onChange={(v) => setAttributes({ showPrice: v })}
           />
           <ToggleControl
             label={__("Show Rating", "modern-core")}
             checked={showRating}
-            onChange={(val) => setAttributes({ showRating: val })}
+            onChange={(v) => setAttributes({ showRating: v })}
           />
           <ToggleControl
             label={__("Show Add to Cart", "modern-core")}
             checked={showAtc}
-            onChange={(val) => setAttributes({ showAtc: val })}
+            onChange={(v) => setAttributes({ showAtc: v })}
           />
         </PanelBody>
 
@@ -207,41 +196,23 @@ export default function Edit({ attributes, setAttributes }) {
             checked={alternateRows}
             onChange={(val) => setAttributes({ alternateRows: val })}
           />
-          <p style={{ marginTop: "5px", marginBottom: "5px" }}>
-            <strong>{__("Header Background", "modern-core")}</strong>
-          </p>
-          <ColorPalette
-            value={headerBg}
-            onChange={(val) => setAttributes({ headerBg: val })}
-          />
-          <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-            <strong>{__("Odd Row Background", "modern-core")}</strong>
-          </p>
-          <ColorPalette
-            value={rowOddBg}
-            onChange={(val) => setAttributes({ rowOddBg: val })}
-          />
-          <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-            <strong>{__("Even Row Background", "modern-core")}</strong>
-          </p>
-          <ColorPalette
-            value={rowEvenBg}
-            onChange={(val) => setAttributes({ rowEvenBg: val })}
-          />
-          <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-            <strong>{__("Border Color", "modern-core")}</strong>
-          </p>
-          <ColorPalette
-            value={borderColor}
-            onChange={(val) => setAttributes({ borderColor: val })}
-          />
-          <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-            <strong>{__("Brand Accent Color", "modern-core")}</strong>
-          </p>
-          <ColorPalette
-            value={accentColor}
-            onChange={(val) => setAttributes({ accentColor: val })}
-          />
+          {[
+            ["Header Background", "headerBg", headerBg],
+            ["Odd Row Background", "rowOddBg", rowOddBg],
+            ["Even Row Background", "rowEvenBg", rowEvenBg],
+            ["Border Color", "borderColor", borderColor],
+            ["Brand Accent Color", "accentColor", accentColor],
+          ].map(([label, key, val]) => (
+            <div key={key}>
+              <p style={{ margin: "15px 0 5px", fontWeight: 600 }}>
+                {__(label, "modern-core")}
+              </p>
+              <ColorPalette
+                value={val}
+                onChange={(v) => setAttributes({ [key]: v })}
+              />
+            </div>
+          ))}
         </PanelBody>
       </InspectorControls>
 
@@ -255,49 +226,55 @@ export default function Edit({ attributes, setAttributes }) {
             background: "#fff",
           }}
         >
-          {/* Sticky Header Row */}
+          {/* ── HEADER ROW ───────────────────────────────────── */}
           <div
             style={{
               display: "flex",
               backgroundColor: headerBg,
               borderBottom: `2px solid ${borderColor}`,
+              position: isSticky ? "sticky" : "relative",
+              top: isSticky ? 0 : "auto",
+              zIndex: isSticky ? 10 : "auto",
+              boxShadow: isSticky ? "0 4px 12px rgba(0,0,0,0.06)" : "none",
             }}
           >
-            <div
-              style={{
-                width: `${labelWidth}%`,
-                borderRight: `1px solid ${borderColor}`,
-              }}
-            ></div>
+            {/* Top-left empty cell */}
+            <div style={{ ...labelCell, borderBottom: "none" }} />
+
             {mockProducts.map((p, i) => (
               <div
                 key={p.id}
                 style={{
-                  flex: 1,
-                  padding: "20px",
+                  ...cellBase,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  padding: "20px 12px",
+                  background: headerBg,
+                  position: "relative",
                   borderRight:
                     i < mockProducts.length - 1
                       ? `1px solid ${borderColor}`
                       : "none",
-                  position: "relative",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
+                  /* FIX: min-height keeps all cards same height */
+                  minHeight: "280px",
                 }}
               >
+                {/* Remove X */}
                 <span
                   style={{
                     position: "absolute",
-                    top: "10px",
-                    right: "10px",
+                    top: 8,
+                    right: 8,
                     fontSize: "12px",
-                    opacity: 0.5,
+                    opacity: 0.3,
                     cursor: "pointer",
                   }}
                 >
                   ✕
                 </span>
+
+                {/* Image */}
                 {showImage && (
                   <div
                     style={{
@@ -307,52 +284,72 @@ export default function Edit({ attributes, setAttributes }) {
                       backgroundImage: `url(${p.image})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
-                      borderRadius: "4px",
-                      marginBottom: "15px",
+                      borderRadius: "6px",
+                      marginBottom: "12px",
+                      flexShrink: 0,
                     }}
-                  ></div>
+                  />
                 )}
+
+                {/* Title — 2-line clamp */}
                 <h4
                   style={{
-                    margin: "0 0 10px 0",
+                    margin: "0 0 8px",
                     fontSize: "14px",
-                    lineHeight: 1.3,
+                    fontWeight: 700,
+                    lineHeight: 1.35,
+                    textAlign: "center",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    width: "100%",
                   }}
                 >
                   {p.title}
                 </h4>
+
+                {/* Rating */}
                 {showRating && (
                   <div
                     style={{
                       color: "#f59e0b",
                       fontSize: "11px",
-                      marginBottom: "10px",
+                      marginBottom: "8px",
                     }}
                   >
                     ★★★★★
                   </div>
                 )}
+
+                {/* Price — margin-top:auto pushes it toward ATC */}
                 {showPrice && (
                   <div
                     style={{
-                      fontWeight: "bold",
+                      fontWeight: 700,
                       fontSize: "15px",
-                      marginBottom: "15px",
+                      marginTop: "auto",
+                      marginBottom: "10px",
                     }}
                   >
                     {p.price}
                   </div>
                 )}
+
+                {/* ATC */}
                 {showAtc && (
                   <div
                     style={{
-                      padding: "10px 15px",
+                      padding: "10px 12px",
                       background: accentColor,
                       color: "#fff",
                       fontSize: "12px",
-                      fontWeight: "bold",
+                      fontWeight: 700,
                       borderRadius: "4px",
                       width: "100%",
+                      textAlign: "center",
+                      boxSizing: "border-box",
+                      marginTop: showPrice ? 0 : "auto",
                     }}
                   >
                     Add to Cart
@@ -362,10 +359,55 @@ export default function Edit({ attributes, setAttributes }) {
             ))}
           </div>
 
-          {/* Specification Rows */}
-          {renderRow("Material", "material", false)}
-          {renderRow("Item Weight", "weight", true)}
-          {renderRow("Waterproof", "waterproof", false)}
+          {/* ── SPEC ROWS ─────────────────────────────────────── */}
+          {specKeys.map((key, rowIdx) => {
+            const isEven = rowIdx % 2 !== 0;
+            const rowBg = alternateRows
+              ? isEven
+                ? rowEvenBg
+                : rowOddBg
+              : rowOddBg;
+            return (
+              <div
+                key={key}
+                style={{
+                  display: "flex",
+                  background: rowBg,
+                  borderBottom: `1px solid ${borderColor}`,
+                }}
+              >
+                {/* Row label — this is what "Row Label Column Width" controls */}
+                <div
+                  style={{
+                    ...labelCell,
+                    background: rowBg,
+                    borderBottom: "none",
+                  }}
+                >
+                  {key}
+                </div>
+                {mockProducts.map((p, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      ...cellBase,
+                      textAlign: "center",
+                      background: rowBg,
+                      borderRight:
+                        i < mockProducts.length - 1
+                          ? `1px solid ${borderColor}`
+                          : "none",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {p.specs[key]}
+                  </div>
+                ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
