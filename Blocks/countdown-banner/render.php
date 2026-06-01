@@ -15,10 +15,8 @@ $show_days  = $attributes['showDays']       ?? true;
 
 $uid = 'mc-cdbanner-' . uniqid();
 $wrapper_attributes = get_block_wrapper_attributes([
+    'id'          => esc_attr( $uid ),
     'class'       => "mc-block width-" . esc_attr($width_mode) . " modern-core-countdown-banner {$uid} layout-{$layout} style-{$style}",
-    'data-target' => esc_attr( $target ),
-    'data-action' => esc_attr( $action ),
-    'data-url'    => esc_url( $url ),
 ]);
 
 $bg_css = $bg_mode === 'gradient'
@@ -28,17 +26,11 @@ $bg_css = $bg_mode === 'gradient'
 
 <div <?php echo $wrapper_attributes; ?>>
 <style>
-/* ── OUTER BLOCK ────────────────────────────────────────────
-   box-sizing:border-box  →  padding is INSIDE the width,
-   never adds extra pixels outside it.
-   overflow:hidden        →  nothing ever causes a scrollbar.
-   width/max-width:100%   →  respect whatever the parent gives us.
-──────────────────────────────────────────────────────────── */
 .<?php echo esc_attr($uid); ?> {
     box-sizing:      border-box;
     width:           100%;
     max-width:       100%;
-    overflow:        hidden;           /* ← kills the scrollbar permanently   */
+    overflow:        hidden;
     background:      <?php echo $bg_css; ?>;
     color:           #fff;
     display:         flex;
@@ -46,14 +38,10 @@ $bg_css = $bg_mode === 'gradient'
     justify-content: <?php echo $layout === 'split' ? 'space-between' : 'center'; ?>;
     gap:             40px;
     transition:      opacity 0.5s ease, height 0.5s ease;
-
-    /* Safe padding: uses padding-inline so it's always
-       calculated INSIDE the declared width — no overflow ever. */
     padding-block:  <?php echo $layout === 'strip' ? '20px' : '60px'; ?>;
     padding-inline: clamp(1rem, 5%, 80px);
 }
 
-/* ── LAYOUT VARIANTS ───────────────────────────────────── */
 <?php if ( $layout === 'card' ) : ?>
 .<?php echo esc_attr($uid); ?> {
     flex-direction: column;
@@ -73,7 +61,6 @@ $bg_css = $bg_mode === 'gradient'
 }
 <?php endif; ?>
 
-/* ── CONTENT ZONE ──────────────────────────────────────── */
 .<?php echo esc_attr($uid); ?> .mc-cdb-content {
     flex:      <?php echo $layout === 'split' ? '1' : 'none'; ?>;
     width:     100%;
@@ -82,7 +69,6 @@ $bg_css = $bg_mode === 'gradient'
     z-index:   2;
 }
 
-/* ── TIMER ZONE ────────────────────────────────────────── */
 .<?php echo esc_attr($uid); ?> .mc-cdb-timer-zone {
     flex:           <?php echo $layout === 'split' ? '1' : 'none'; ?>;
     display:        flex;
@@ -92,11 +78,10 @@ $bg_css = $bg_mode === 'gradient'
     z-index:        2;
 }
 
-/* ── TIMER UNITS ───────────────────────────────────────── */
 .<?php echo esc_attr($uid); ?> .mc-timer-wrap {
     display: flex;
-    gap:     clamp(8px, 1.5vw, 15px);  /* responsive gap — no overflow */
-    flex-wrap: wrap;                    /* wraps on very small screens   */
+    gap:     clamp(8px, 1.5vw, 15px);
+    flex-wrap: wrap;
     justify-content: center;
 }
 .<?php echo esc_attr($uid); ?> .mc-unit {
@@ -104,12 +89,12 @@ $bg_css = $bg_mode === 'gradient'
     flex-direction: column;
     align-items:    center;
     justify-content:center;
-    min-width:      clamp(55px, 8vw, 80px);   /* fluid, never overflows */
+    min-width:      clamp(55px, 8vw, 80px);
     position:       relative;
     box-sizing:     border-box;
 }
 .<?php echo esc_attr($uid); ?> .mc-digit {
-    font-size:           clamp(28px, 4vw, 42px);  /* fluid font size    */
+    font-size:           clamp(28px, 4vw, 42px);
     font-weight:         800;
     line-height:         1;
     color:               <?php echo esc_attr($digit_color); ?>;
@@ -125,7 +110,6 @@ $bg_css = $bg_mode === 'gradient'
     opacity:       0.8;
 }
 
-/* ── TIMER STYLES ──────────────────────────────────────── */
 <?php if ( $style === 'boxed' || $style === 'flip' ) : ?>
 .<?php echo esc_attr($uid); ?> .mc-unit {
     background:    <?php echo esc_attr($box_color); ?>;
@@ -160,7 +144,6 @@ $bg_css = $bg_mode === 'gradient'
 }
 <?php endif; ?>
 
-/* ── EXPIRY MESSAGE ────────────────────────────────────── */
 .<?php echo esc_attr($uid); ?> .mc-cdb-msg {
     display:    none;
     font-size:  24px;
@@ -169,12 +152,10 @@ $bg_css = $bg_mode === 'gradient'
     text-align: center;
 }
 
-/* ── MOBILE ────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .<?php echo esc_attr($uid); ?> {
         flex-direction: column;
         text-align:     center;
-        /* padding-inline already uses clamp — no override needed */
         padding-block:  40px;
         gap:            24px;
     }
@@ -184,7 +165,6 @@ $bg_css = $bg_mode === 'gradient'
         text-align:      center;
         align-items:     center;
     }
-    /* card layout on mobile: remove side margin so it fills screen */
     .<?php echo esc_attr($uid); ?>.layout-card {
         width:         100%;
         margin-left:   0;
@@ -214,61 +194,71 @@ $bg_css = $bg_mode === 'gradient'
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const banner = document.querySelector('.<?php echo esc_js( $uid ); ?>');
-        if (!banner) return;
+    document.addEventListener('DOMContentLoaded', function () {
+        var uid     = <?php echo wp_json_encode( $uid ); ?>;
+        var rawDate = <?php echo wp_json_encode( $target ); ?>;
+        var action  = <?php echo wp_json_encode( $action ); ?>;
+        var url     = <?php echo wp_json_encode( $url ); ?>;
 
-        const targetStr = banner.dataset.target;
-        const action    = banner.dataset.action;
-        const url       = banner.dataset.url;
+        var banner = document.getElementById(uid);
+        if (!banner || !rawDate) return;
 
-        if (!targetStr) return;
+        var elD = banner.querySelector('.mc-d');
+        var elH = banner.querySelector('.mc-h');
+        var elM = banner.querySelector('.mc-m');
+        var elS = banner.querySelector('.mc-s');
+        var wrap = banner.querySelector('.mc-timer-wrap');
+        var msgEl = banner.querySelector('.mc-cdb-msg');
+        var contentZone = banner.querySelector('.mc-cdb-content');
 
-        const countDownDate = new Date(targetStr).getTime();
-        const elD  = banner.querySelector('.mc-d');
-        const elH  = banner.querySelector('.mc-h');
-        const elM  = banner.querySelector('.mc-m');
-        const elS  = banner.querySelector('.mc-s');
-        const wrap = banner.querySelector('.mc-timer-wrap');
-        const msgEl        = banner.querySelector('.mc-cdb-msg');
-        const contentZone  = banner.querySelector('.mc-cdb-content');
+        function pad(n) {
+            return String(Math.max(0, n)).padStart(2, '0');
+        }
 
-        const pad = n => String(n).padStart(2, '0');
+        function parseLocal(str) {
+            var s     = str.trim().replace(' ', 'T');
+            var parts = s.split('T');
+            var d     = (parts[0] || '').split('-').map(Number);
+            var t     = (parts[1] || '00:00').split(':').map(Number);
+            if (!d[0] || !d[1] || !d[2]) return NaN;
+            return new Date(d[0], d[1] - 1, d[2], t[0] || 0, t[1] || 0, t[2] || 0).getTime();
+        }
 
-        const timer = setInterval(() => {
-            const distance = countDownDate - Date.now();
+        var targetTime = parseLocal(rawDate);
+        if (isNaN(targetTime)) return;
 
-            if (distance < 0) {
-                clearInterval(timer);
+        function update() {
+            var diff = targetTime - Date.now();
+
+            if (diff <= 0) {
                 if (elD) elD.textContent = '00';
-                elH.textContent = '00';
-                elM.textContent = '00';
-                elS.textContent = '00';
+                if (elH) elH.textContent = '00';
+                if (elM) elM.textContent = '00';
+                if (elS) elS.textContent = '00';
+                clearInterval(timer);
 
-                if (action === 'redirect' && url) {
-                    window.location.href = url;
+                if (action === 'redirect') {
+                    if (url) { window.location.href = url; }
                 } else if (action === 'message') {
-                    wrap.style.display        = 'none';
-                    contentZone.style.display = 'none';
-                    msgEl.style.display       = 'block';
+                    if (wrap) wrap.style.display = 'none';
+                    if (contentZone) contentZone.style.display = 'none';
+                    if (msgEl) msgEl.style.display = 'block';
                 } else if (action === 'hide') {
                     banner.style.opacity = '0';
-                    setTimeout(() => { banner.style.display = 'none'; }, 500);
+                    setTimeout(function() { banner.style.display = 'none'; }, 500);
                 }
                 return;
             }
 
-            const d = Math.floor(distance / 86400000);
-            const h = Math.floor((distance % 86400000) / 3600000);
-            const m = Math.floor((distance % 3600000)  / 60000);
-            const s = Math.floor((distance % 60000)    / 1000);
+            var totalSec = Math.floor(diff / 1000);
+            if (elD) elD.textContent = pad(Math.floor(totalSec / 86400));
+            if (elH) elH.textContent = pad(Math.floor(totalSec / 3600) % 24);
+            if (elM) elM.textContent = pad(Math.floor(totalSec / 60)   % 60);
+            if (elS) elS.textContent = pad(totalSec % 60);
+        }
 
-            if (elD) elD.textContent = pad(d);
-            elH.textContent = pad(h);
-            elM.textContent = pad(m);
-            elS.textContent = pad(s);
-        }, 1000);
+        update();
+        var timer = setInterval(update, 1000);
     });
     </script>
-
 </div>

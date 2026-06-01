@@ -1,4 +1,5 @@
 import * as React from "@wordpress/element";
+import { useState, useEffect, useCallback } from "@wordpress/element";
 import {
   InspectorControls,
   useBlockProps,
@@ -12,6 +13,146 @@ import {
   ToggleControl,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
+
+/* ── FIX 2a: Define sub-components OUTSIDE the Edit function ────────────────
+ * Defining Unit/TimerMock inside Edit means React treats them as new
+ * component types on every render, unmounting + remounting them and
+ * discarding live state. Moved outside so they are stable references.
+ */
+const Unit = ({ digit, label, timerStyle, boxColor, digitColor }) => (
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      background:
+        timerStyle === "boxed" || timerStyle === "flip"
+          ? boxColor
+          : "transparent",
+      padding:
+        timerStyle === "boxed" || timerStyle === "flip" ? "15px 20px" : "0",
+      borderRadius: "8px",
+      border:
+        timerStyle === "flip" ? "1px solid rgba(255,255,255,0.1)" : "none",
+      position: "relative",
+      minWidth: "80px",
+    }}
+  >
+    <span
+      style={{
+        fontSize: "42px",
+        fontWeight: "800",
+        color: digitColor,
+        lineHeight: 1,
+      }}
+    >
+      {digit}
+    </span>
+    <span
+      style={{
+        fontSize: "11px",
+        textTransform: "uppercase",
+        letterSpacing: "1px",
+        marginTop: "5px",
+        opacity: 0.8,
+        color: "#fff",
+      }}
+    >
+      {label}
+    </span>
+    {timerStyle === "flip" && (
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: 0,
+          right: 0,
+          height: "1px",
+          background: "rgba(0,0,0,0.5)",
+        }}
+      />
+    )}
+  </div>
+);
+
+/* ── FIX 2b: Reliable local-time parser (same fix as render.php) ────────────
+ * new Date("2025-06-01T18:00") is parsed as UTC in Safari → wrong countdown.
+ * Manual split + Date constructor uses local timezone correctly everywhere.
+ */
+function parseLocalDate(str) {
+  if (!str) return NaN;
+  const s = str.trim().replace(" ", "T");
+  const parts = s.split("T");
+  const d = (parts[0] || "").split("-").map(Number);
+  const t = (parts[1] || "00:00").split(":").map(Number);
+  if (!d[0] || !d[1] || !d[2]) return NaN;
+  return new Date(
+    d[0],
+    d[1] - 1,
+    d[2],
+    t[0] || 0,
+    t[1] || 0,
+    t[2] || 0,
+  ).getTime();
+}
+
+const DEFAULT_TEMPLATE = [
+  [
+    "core/paragraph",
+    {
+      content: "FLASH EVENT",
+      style: {
+        typography: {
+          fontSize: "12px",
+          fontWeight: "700",
+          letterSpacing: "2px",
+        },
+        color: { text: "#fca5a5" },
+      },
+    },
+  ],
+  [
+    "core/heading",
+    {
+      level: 2,
+      content: "Time is running out.",
+      style: {
+        typography: { fontSize: "36px", fontWeight: "800" },
+        color: { text: "#ffffff" },
+      },
+      textAlign: "center",
+    },
+  ],
+  [
+    "core/paragraph",
+    {
+      content: "Secure your items before the vault closes permanently.",
+      style: {
+        typography: { fontSize: "16px" },
+        color: { text: "#ffffff" },
+        spacing: { margin: { bottom: "20px" } },
+      },
+      align: "center",
+    },
+  ],
+  [
+    "core/buttons",
+    {
+      /* FIX 1: layout type + justifyContent centers the button */
+      layout: { type: "flex", justifyContent: "center" },
+      style: { spacing: { margin: { top: "8px" } } },
+    },
+    [
+      [
+        "core/button",
+        {
+          text: "Shop Now",
+          style: { border: { radius: "50px" } },
+        },
+      ],
+    ],
+  ],
+];
 
 export default function Edit({ attributes, setAttributes }) {
   const {
@@ -27,149 +168,75 @@ export default function Edit({ attributes, setAttributes }) {
     expireMessage,
     expireUrl,
     showDays,
+    widthMode,
   } = attributes;
 
+  /* ── FIX 2c: Timer state lives here, updated by a stable interval ───────── */
+  const [timeLeft, setTimeLeft] = useState({
+    d: "00",
+    h: "00",
+    m: "00",
+    s: "00",
+  });
+
+  useEffect(() => {
+    const pad = (n) => String(Math.max(0, n)).padStart(2, "0");
+
+    function tick() {
+      const target = parseLocalDate(targetDate);
+      if (!targetDate || isNaN(target)) {
+        setTimeLeft({ d: "00", h: "00", m: "00", s: "00" });
+        return;
+      }
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        setTimeLeft({ d: "00", h: "00", m: "00", s: "00" });
+        return;
+      }
+      const totalSec = Math.floor(diff / 1000);
+      setTimeLeft({
+        d: pad(Math.floor(totalSec / 86400)),
+        h: pad(Math.floor(totalSec / 3600) % 24),
+        m: pad(Math.floor(totalSec / 60) % 60),
+        s: pad(totalSec % 60),
+      });
+    }
+
+    tick(); // run immediately so display isn't blank for 1 second
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]); // only restarts when the date setting changes
+
+  /* ── Layout-dependent styles ───────────────────────────────────────────── */
+  const isCard = layoutMode === "card";
+  const isSplit = layoutMode === "split";
+  const isStrip = layoutMode === "strip";
+
   const blockProps = useBlockProps({
-    className: `modern-core-countdown-banner-editor layout-${layoutMode} style-${timerStyle}`,
+    className: `modern-core-countdown-banner-editor layout-${layoutMode} style-${timerStyle} mc-width-${widthMode}`,
     style: {
+      boxSizing: "border-box",
       width: "100%",
       background:
         bgMode === "gradient"
           ? `linear-gradient(135deg, ${color1}, ${color2})`
           : color1,
-      padding: layoutMode === "strip" ? "20px 5%" : "60px 5%",
+      padding: isStrip
+        ? "20px clamp(16px,5%,60px)"
+        : "60px clamp(16px,5%,60px)",
       display: "flex",
-      flexDirection: layoutMode === "split" ? "row" : "column",
+      flexDirection: isSplit ? "row" : "column",
       alignItems: "center",
-      justifyContent: layoutMode === "split" ? "space-between" : "center",
+      justifyContent: isSplit ? "space-between" : "center",
       gap: "40px",
-      borderRadius: layoutMode === "card" ? "16px" : "0",
-      boxShadow:
-        layoutMode === "card" ? "0 25px 50px -12px rgba(0,0,0,0.5)" : "none",
+      borderRadius: isCard ? "16px" : "0",
+      boxShadow: isCard ? "0 25px 50px -12px rgba(0,0,0,0.5)" : "none",
       color: "#fff",
-      margin: layoutMode === "card" ? "40px auto" : "0",
-      maxWidth: layoutMode === "card" ? "1000px" : "none",
+      margin: isCard ? "40px auto" : "0",
+      maxWidth: isCard ? "1000px" : "none",
+      overflow: "hidden" /* prevents editor horizontal scroll */,
     },
   });
-
-  const DEFAULT_TEMPLATE = [
-    [
-      "core/paragraph",
-      {
-        content: "⚡ FLASH EVENT",
-        style: {
-          typography: {
-            fontSize: "12px",
-            fontWeight: "bold",
-            letterSpacing: "2px",
-          },
-          color: { text: "#fca5a5" },
-        },
-      },
-    ],
-    [
-      "core/heading",
-      {
-        level: 2,
-        content: "Time is running out.",
-        style: { typography: { fontSize: "36px", fontWeight: "800" } },
-      },
-    ],
-    [
-      "core/paragraph",
-      {
-        content: "Secure your items before the vault closes permanently.",
-        style: {
-          typography: { fontSize: "16px" },
-          spacing: { margin: { bottom: "20px" } },
-        },
-      },
-    ],
-    [
-      "core/buttons",
-      {},
-      [
-        [
-          "core/button",
-          { text: "Shop Now", style: { border: { radius: "50px" } } },
-        ],
-      ],
-    ],
-  ];
-
-  // Mock Timer UI
-  const TimerMock = () => (
-    <div
-      style={{
-        display: "flex",
-        gap: "15px",
-        textShadow:
-          timerStyle === "neon"
-            ? `0 0 10px ${digitColor}, 0 0 20px ${digitColor}`
-            : "none",
-      }}
-    >
-      {showDays && <Unit digit="02" label="Days" />}
-      <Unit digit="14" label="Hours" />
-      <Unit digit="30" label="Mins" />
-      <Unit digit="45" label="Secs" />
-    </div>
-  );
-
-  const Unit = ({ digit, label }) => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        background:
-          timerStyle === "boxed" || timerStyle === "flip"
-            ? boxColor
-            : "transparent",
-        padding:
-          timerStyle === "boxed" || timerStyle === "flip" ? "15px 20px" : "0",
-        borderRadius: "8px",
-        border:
-          timerStyle === "flip" ? "1px solid rgba(255,255,255,0.1)" : "none",
-        position: "relative",
-        minWidth: "80px",
-      }}
-    >
-      <span
-        style={{
-          fontSize: "42px",
-          fontWeight: "800",
-          color: digitColor,
-          lineHeight: 1,
-        }}
-      >
-        {digit}
-      </span>
-      <span
-        style={{
-          fontSize: "11px",
-          textTransform: "uppercase",
-          letterSpacing: "1px",
-          marginTop: "5px",
-          opacity: 0.8,
-        }}
-      >
-        {label}
-      </span>
-      {timerStyle === "flip" && (
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: 0,
-            right: 0,
-            height: "1px",
-            background: "rgba(0,0,0,0.5)",
-          }}
-        ></div>
-      )}
-    </div>
-  );
 
   return (
     <>
@@ -186,15 +253,25 @@ export default function Edit({ attributes, setAttributes }) {
             onChange={(val) => setAttributes({ layoutMode: val })}
           />
           <SelectControl
-            label={__("Advanced Timer Style", "modern-core")}
+            label={__("Timer Style", "modern-core")}
             value={timerStyle}
             options={[
               { label: "Solid Boxed", value: "boxed" },
-              { label: "Mechanical Flip Card", value: "flip" },
+              { label: "Mechanical Flip", value: "flip" },
               { label: "Glowing Neon", value: "neon" },
               { label: "Minimal Text", value: "minimal" },
             ]}
             onChange={(val) => setAttributes({ timerStyle: val })}
+          />
+          <SelectControl
+            label={__("Width Mode", "modern-core")}
+            value={widthMode}
+            options={[
+              { label: "Contained", value: "contained" },
+              { label: "Wide", value: "wide" },
+              { label: "Fullwidth", value: "fullwidth" },
+            ]}
+            onChange={(val) => setAttributes({ widthMode: val })}
           />
           <ToggleControl
             label={__("Show Days Unit", "modern-core")}
@@ -250,19 +327,36 @@ export default function Edit({ attributes, setAttributes }) {
             ]}
             onChange={(val) => setAttributes({ bgMode: val })}
           />
+          <p style={{ margin: "8px 0 5px", fontWeight: 600, fontSize: "12px" }}>
+            {bgMode === "gradient"
+              ? __("Gradient Start", "modern-core")
+              : __("Background Color", "modern-core")}
+          </p>
           <ColorPalette
             value={color1}
             onChange={(val) => setAttributes({ color1: val })}
           />
           {bgMode === "gradient" && (
-            <ColorPalette
-              value={color2}
-              onChange={(val) => setAttributes({ color2: val })}
-            />
+            <>
+              <p
+                style={{
+                  margin: "14px 0 5px",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                }}
+              >
+                {__("Gradient End", "modern-core")}
+              </p>
+              <ColorPalette
+                value={color2}
+                onChange={(val) => setAttributes({ color2: val })}
+              />
+            </>
           )}
-
-          <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-            <strong>{__("Digit / Neon Color", "modern-core")}</strong>
+          <p
+            style={{ margin: "14px 0 5px", fontWeight: 600, fontSize: "12px" }}
+          >
+            {__("Digit Color", "modern-core")}
           </p>
           <ColorPalette
             value={digitColor}
@@ -270,8 +364,14 @@ export default function Edit({ attributes, setAttributes }) {
           />
           {(timerStyle === "boxed" || timerStyle === "flip") && (
             <>
-              <p style={{ marginTop: "15px", marginBottom: "5px" }}>
-                <strong>{__("Box Background", "modern-core")}</strong>
+              <p
+                style={{
+                  margin: "14px 0 5px",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                }}
+              >
+                {__("Box Background", "modern-core")}
               </p>
               <ColorPalette
                 value={boxColor}
@@ -283,24 +383,74 @@ export default function Edit({ attributes, setAttributes }) {
       </InspectorControls>
 
       <div {...blockProps}>
+        {/* ── CONTENT ZONE ─────────────────────────────────────────────────── */}
+        {/* FIX 1: width:100% + textAlign:center on the wrapper ensures
+            InnerBlocks content (including core/buttons) inherits centering  */}
         <div
           style={{
-            flex: layoutMode === "split" ? "1" : "none",
-            textAlign: layoutMode === "split" ? "left" : "center",
+            flex: isSplit ? "1" : "none",
             width: "100%",
-            maxWidth: "600px",
+            maxWidth: isSplit ? "none" : "600px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: isSplit ? "flex-start" : "center",
+            textAlign: isSplit ? "left" : "center",
           }}
         >
-          <InnerBlocks template={DEFAULT_TEMPLATE} />
+          <InnerBlocks template={DEFAULT_TEMPLATE} templateLock={false} />
         </div>
+
+        {/* ── TIMER ZONE ───────────────────────────────────────────────────── */}
         <div
           style={{
-            flex: layoutMode === "split" ? "1" : "none",
+            flex: isSplit ? "1" : "none",
             display: "flex",
-            justifyContent: layoutMode === "split" ? "flex-end" : "center",
+            justifyContent: isSplit ? "flex-end" : "center",
+            textShadow:
+              timerStyle === "neon"
+                ? `0 0 10px ${digitColor}, 0 0 20px ${digitColor}`
+                : "none",
           }}
         >
-          <TimerMock />
+          <div
+            style={{
+              display: "flex",
+              gap: "15px",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {showDays && (
+              <Unit
+                digit={timeLeft.d}
+                label="Days"
+                timerStyle={timerStyle}
+                boxColor={boxColor}
+                digitColor={digitColor}
+              />
+            )}
+            <Unit
+              digit={timeLeft.h}
+              label="Hours"
+              timerStyle={timerStyle}
+              boxColor={boxColor}
+              digitColor={digitColor}
+            />
+            <Unit
+              digit={timeLeft.m}
+              label="Mins"
+              timerStyle={timerStyle}
+              boxColor={boxColor}
+              digitColor={digitColor}
+            />
+            <Unit
+              digit={timeLeft.s}
+              label="Secs"
+              timerStyle={timerStyle}
+              boxColor={boxColor}
+              digitColor={digitColor}
+            />
+          </div>
         </div>
       </div>
     </>
