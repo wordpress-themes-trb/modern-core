@@ -1,5 +1,4 @@
 <?php
-$width_mode = $attributes['widthMode'] ?? 'contained';
 $layout_mode   = $attributes['layoutMode']      ?? 'full-center';
 $min_height    = $attributes['minHeight']        ?? 90;
 $bg_type       = $attributes['bgType']           ?? 'gradient';
@@ -12,10 +11,9 @@ $content_card  = $attributes['contentCard']      ?? false;
 
 $uid = 'mc-hero-' . uniqid();
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-hero {$uid}",
+    'class' => "mc-block modern-core-hero {$uid}",
 ]);
 
-// Layout helpers
 $is_center  = strpos( $layout_mode, 'center' ) !== false;
 $is_bottom  = strpos( $layout_mode, 'bottom' ) !== false;
 $is_split   = strpos( $layout_mode, 'split'  ) !== false;
@@ -24,37 +22,26 @@ $align_items     = $is_center ? 'center'        : ( $is_bottom  ? 'flex-end'    
 $justify_content = $is_center ? 'center'        : ( $is_split   ? 'space-between' : 'flex-start' );
 $content_maxw    = $is_center ? '800px'         : '600px';
 
-// Noise texture — inline SVG, no external request
 $noise_svg = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')";
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>
 <style>
-/* ── OUTER HERO BLOCK ───────────────────────────────────────
-   box-sizing:border-box  → padding is INSIDE the width.
-   overflow:hidden        → nothing ever causes a scrollbar.
-   padding-inline uses clamp so horizontal padding is always
-   proportional but capped — never bleeds outside the block.
-──────────────────────────────────────────────────────────── */
 .<?php echo esc_attr($uid); ?> {
     position:        relative;
-    box-sizing:      border-box;      /* ← THE FIX: padding inside width  */
+    box-sizing:      border-box; 
     width:           100%;
     max-width:       100%;
-    overflow:        hidden;          /* ← safety net: kills any scrollbar */
+    overflow:        hidden;
     min-height:      <?php echo esc_attr($min_height); ?>vh;
     display:         flex;
     align-items:     <?php echo esc_attr($align_items); ?>;
     justify-content: <?php echo esc_attr($justify_content); ?>;
     background-color:<?php echo esc_attr($bg_color); ?>;
-
-    /* Fluid padding — proportional but capped, always inside the width */
     padding-block:   clamp(40px, 5vh, 120px);
     padding-inline:  clamp(1.25rem, 8%, 120px);
 }
 
-/* ── BACKGROUND ENGINE ──────────────────────────────────── */
-/* negative inset prevents white edges during Ken Burns zoom */
 .<?php echo esc_attr($uid); ?> .mc-hero-bg {
     position:            absolute;
     inset:               -5%;
@@ -69,19 +56,16 @@ $noise_svg = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22
     <?php endif; ?>
 }
 
-/* ── KEN BURNS ──────────────────────────────────────────── */
 <?php if ( $ken_burns && $bg_type === 'image' ) : ?>
 .<?php echo esc_attr($uid); ?> .mc-hero-bg {
     animation: <?php echo esc_attr($uid); ?>_kenburns 20s ease-out forwards;
 }
-/* Namespaced keyframe — avoids collision with other hero blocks on the page */
 @keyframes <?php echo esc_attr($uid); ?>_kenburns {
     0%   { transform: scale(1);    }
     100% { transform: scale(1.08); }
 }
 <?php endif; ?>
 
-/* ── OVERLAY ────────────────────────────────────────────── */
 .<?php echo esc_attr($uid); ?> .mc-hero-overlay {
     position:   absolute;
     inset:      0;
@@ -89,7 +73,6 @@ $noise_svg = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22
     background: rgba(0,0,0,<?php echo esc_attr($opacity); ?>);
 }
 
-/* ── NOISE TEXTURE ──────────────────────────────────────── */
 <?php if ( $noise ) : ?>
 .<?php echo esc_attr($uid); ?> .mc-hero-noise {
     position:         absolute;
@@ -102,16 +85,13 @@ $noise_svg = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22
 }
 <?php endif; ?>
 
-/* ── CONTENT WRAPPER ────────────────────────────────────── */
 .<?php echo esc_attr($uid); ?> .mc-hero-content-wrapper {
     position:  relative;
     z-index:   3;
     width:     100%;
     max-width: <?php echo esc_attr($content_maxw); ?>;
-    /* No padding here — outer block handles all spacing */
 }
 
-/* ── CONTENT CARD MODE ──────────────────────────────────── */
 <?php if ( $content_card ) : ?>
 .<?php echo esc_attr($uid); ?> .mc-hero-content-wrapper {
     background:    rgba(0,0,0,0.45);
@@ -123,9 +103,6 @@ $noise_svg = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22
 }
 <?php endif; ?>
 
-/* ── STAGGER REVEAL ANIMATION ───────────────────────────── */
-/* Namespaced to this uid so multiple hero blocks on one
-   page don't interfere with each other's animations       */
 .<?php echo esc_attr($uid); ?> .mc-stagger-item {
     opacity:   0;
     transform: translateY(20px) scale(0.98);
@@ -145,7 +122,6 @@ $noise_svg = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22
     100% { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0);    }
 }
 
-/* ── ANIMATED UNDERLINE ON <em> IN HEADLINES ────────────── */
 .<?php echo esc_attr($uid); ?> h1 em,
 .<?php echo esc_attr($uid); ?> h2 em {
     font-style: italic;
@@ -160,7 +136,7 @@ $noise_svg = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22
     bottom:           -2px;
     width:            0;
     height:           3px;
-    background-color: #e2b57a;   /* matches your theme accent */
+    background-color: #e2b57a;
     border-radius:    2px;
     transition:       width 1s cubic-bezier(0.19,1,0.22,1) 1s;
 }
@@ -169,15 +145,12 @@ $noise_svg = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22
     width: 100%;
 }
 
-/* ── MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .<?php echo esc_attr($uid); ?> {
-        /* clamp already handles mobile — these are safety overrides */
         min-height:   <?php echo max(50, $min_height - 20); ?>vh;
         align-items:  flex-start;
         padding-block:clamp(32px, 4vh, 60px);
     }
-    /* On mobile, center-layout content takes full width */
     .<?php echo esc_attr($uid); ?> .mc-hero-content-wrapper {
         max-width: 100%;
     }
@@ -209,11 +182,10 @@ $noise_svg = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22
                     }
                 });
             },
-            { threshold: 0.15 }   /* fires slightly earlier for better UX */
+            { threshold: 0.15 }
         );
 
         observer.observe(hero);
     });
     </script>
-
 </div>

@@ -59,7 +59,6 @@ export default function Edit({ attributes, setAttributes }) {
     },
   });
 
-  // The Cinematic Default Template based on your prompt
   const DEFAULT_TEMPLATE = [
     [
       "core/group",
@@ -79,7 +78,6 @@ export default function Edit({ attributes, setAttributes }) {
         },
       },
       [
-        // 1. Pre-headline Pill Badge
         [
           "core/paragraph",
           {
@@ -111,8 +109,6 @@ export default function Edit({ attributes, setAttributes }) {
             className: "mc-stagger-item",
           },
         ],
-
-        // 2. Display Headline (Simulating the accented word with bold/italic for now)
         [
           "core/heading",
           {
@@ -129,8 +125,6 @@ export default function Edit({ attributes, setAttributes }) {
             className: "mc-stagger-item",
           },
         ],
-
-        // 3. Subheadline
         [
           "core/paragraph",
           {
@@ -144,8 +138,6 @@ export default function Edit({ attributes, setAttributes }) {
             className: "mc-stagger-item",
           },
         ],
-
-        // 4. Button Group
         [
           "core/buttons",
           {
@@ -279,7 +271,7 @@ export default function Edit({ attributes, setAttributes }) {
       </InspectorControls>
 
       <div {...blockProps}>
-        {/* Editor Dark Overlay */}
+        {/* Editor Dark Overlay - Added pointerEvents: "none" to fix click blocking */}
         <div
           style={{
             position: "absolute",
@@ -287,10 +279,14 @@ export default function Edit({ attributes, setAttributes }) {
             backgroundColor: "#000",
             opacity: overlayOpacity / 100,
             zIndex: 1,
+            pointerEvents: "none",
           }}
         ></div>
-        {/* InnerBlocks Dropzone */}
-        <InnerBlocks template={DEFAULT_TEMPLATE} templateLock={false} />
+
+        {/* InnerBlocks Dropzone wrapped in relative z-index container */}
+        <div style={{ position: "relative", zIndex: 10, width: "100%" }}>
+          <InnerBlocks template={DEFAULT_TEMPLATE} templateLock={false} />
+        </div>
       </div>
     </>
   );

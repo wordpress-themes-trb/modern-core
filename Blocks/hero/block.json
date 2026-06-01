@@ -1,66 +1,55 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "modern-core/hero",
-    "title": "Advanced Hero Banner",
-    "category": "modern-core",
-    "icon": "cover-image",
-    "description": "Cinematic hero system with layouts, layers, and staggered animations.",
-    "supports": {
-        "align": [
-            "full"
-        ],
-        "html": false,
-        "customClassName": true
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/hero",
+  "title": "Advanced Hero Banner",
+  "category": "modern-core",
+  "icon": "cover-image",
+  "description": "Cinematic hero system with layouts, layers, and staggered animations.",
+  "supports": {
+    "align": ["full"],
+    "html": false,
+    "customClassName": true
+  },
+  "attributes": {
+    "layoutMode": {
+      "type": "string",
+      "default": "full-center"
     },
-    "attributes": {
-        "layoutMode": {
-            "type": "string",
-            "default": "full-center"
-        },
-        "minHeight": {
-            "type": "number",
-            "default": 90
-        },
-        "bgType": {
-            "type": "string",
-            "default": "gradient"
-        },
-        "bgColor": {
-            "type": "string",
-            "default": "#0f172a"
-        },
-        "bgImageUrl": {
-            "type": "string",
-            "default": ""
-        },
-        "overlayOpacity": {
-            "type": "number",
-            "default": 60
-        },
-        "enableKenBurns": {
-            "type": "boolean",
-            "default": true
-        },
-        "enableNoise": {
-            "type": "boolean",
-            "default": true
-        },
-        "contentCard": {
-            "type": "boolean",
-            "default": false
-        },
-        "widthMode": {
-            "type": "string",
-            "default": "fullwidth",
-            "enum": [
-                "contained",
-                "wide",
-                "fullwidth"
-            ]
-        }
+    "minHeight": {
+      "type": "number",
+      "default": 90
     },
-    "textdomain": "modern-core",
-    "editorScript": "modern-core-hero-js",
-    "render": "file:./render.php"
+    "bgType": {
+      "type": "string",
+      "default": "gradient"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#0f172a"
+    },
+    "bgImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 60
+    },
+    "enableKenBurns": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableNoise": {
+      "type": "boolean",
+      "default": true
+    },
+    "contentCard": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-hero-js",
+  "render": "file:./render.php"
 }
