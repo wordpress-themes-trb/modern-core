@@ -1,11 +1,13 @@
 import * as React from "@wordpress/element";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
+import { useSelect } from "@wordpress/data";
 import {
   PanelBody,
   SelectControl,
   ToggleControl,
   ColorPalette,
   TextControl,
+  ComboboxControl,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
@@ -18,12 +20,48 @@ export default function Edit({ attributes, setAttributes }) {
     showPrice,
     showExcerpt,
     showGallery,
+    showQuantity,
+    showBuyNow,
     imageBg,
     contentBg,
     textColor,
     accentColor,
     buttonStyle,
+    buyNowStyle,
   } = attributes;
+
+  const { products, isResolving } = useSelect((select) => {
+    const { getEntityRecords, isResolving } = select("core");
+    const query = { per_page: 100, status: "publish", _embed: true };
+    return {
+      products: getEntityRecords("postType", "product", query),
+      isResolving: isResolving("getEntityRecords", [
+        "postType",
+        "product",
+        query,
+      ]),
+    };
+  }, []);
+
+  const decodeEntities = (html) => {
+    if (!html) return "";
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  };
+
+  const productOptions = React.useMemo(() => {
+    if (!products) return [];
+    return products.map((p) => ({
+      label: decodeEntities(p.title.rendered) || `Product ID: ${p.id}`,
+      value: p.id,
+    }));
+  }, [products]);
+
+  const selectedProduct = React.useMemo(() => {
+    if (!products || !productId) return null;
+    return products.find((p) => p.id === productId);
+  }, [products, productId]);
 
   const blockProps = useBlockProps({
     className: `modern-core-featured-editor layout-${layoutMode}`,
@@ -42,13 +80,18 @@ export default function Edit({ attributes, setAttributes }) {
     },
   });
 
-  // Mock Data for Editor
-  const mockImage =
+  const displayTitle = selectedProduct
+    ? decodeEntities(selectedProduct.title.rendered)
+    : "Cinematic Overcoat";
+
+  const rawExcerpt = selectedProduct?.excerpt?.rendered || "";
+  const displayExcerpt = rawExcerpt
+    ? decodeEntities(rawExcerpt.replace(/(<([^>]+)>)/gi, ""))
+    : "Tailored in Italy from lightweight virgin wool, this overcoat features an unstructured shoulder and a relaxed drape.";
+
+  const displayImage =
+    selectedProduct?._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
     "https://images.unsplash.com/photo-1521572163474-6f64f9fa023e?q=80&w=800&auto=format&fit=crop";
-  const mockThumb1 =
-    "https://images.unsplash.com/photo-1506422745199-563b7e735496?q=80&w=150&auto=format&fit=crop";
-  const mockThumb2 =
-    "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=150&auto=format&fit=crop";
 
   if (!productId || productId === 0) {
     return (
@@ -64,27 +107,52 @@ export default function Edit({ attributes, setAttributes }) {
       >
         <h3 style={{ margin: "0 0 15px 0" }}>Setup Featured Product</h3>
         <p style={{ opacity: 0.6, marginBottom: "20px" }}>
-          Enter a WooCommerce Product ID in the sidebar to display it here.
+          Select a WooCommerce product to feature in this block.
         </p>
-        <TextControl
-          type="number"
-          value={productId}
-          onChange={(val) => setAttributes({ productId: parseInt(val) })}
-          style={{ width: "200px", textAlign: "center" }}
-        />
+        <div style={{ width: "300px" }}>
+          <ComboboxControl
+            value={productId}
+            options={productOptions}
+            onChange={(val) =>
+              setAttributes({ productId: parseInt(val, 10) || 0 })
+            }
+            help={isResolving ? "Loading products..." : ""}
+          />
+        </div>
       </div>
     );
   }
+
+  const getBtnStyle = (styleType) => ({
+    padding: "16px",
+    textAlign: "center",
+    fontSize: "16px",
+    fontWeight: "bold",
+    borderRadius: "8px",
+    cursor: "pointer",
+    flex: 1,
+    background: styleType === "solid" ? accentColor : "transparent",
+    color: styleType === "solid" ? "#fff" : accentColor,
+    border:
+      styleType === "outline"
+        ? `2px solid ${accentColor}`
+        : "2px solid transparent",
+  });
 
   return (
     <>
       <InspectorControls>
         <PanelBody title={__("Data Routing", "modern-core")}>
-          <TextControl
-            type="number"
-            label={__("WooCommerce Product ID", "modern-core")}
+          <ComboboxControl
+            label={__("Select Product", "modern-core")}
             value={productId}
-            onChange={(val) => setAttributes({ productId: parseInt(val) })}
+            options={productOptions}
+            onChange={(val) =>
+              setAttributes({ productId: parseInt(val, 10) || 0 })
+            }
+            help={
+              isResolving ? "Loading inventory..." : "Search by product name"
+            }
           />
         </PanelBody>
 
@@ -132,6 +200,17 @@ export default function Edit({ attributes, setAttributes }) {
             checked={showGallery}
             onChange={(val) => setAttributes({ showGallery: val })}
           />
+        </PanelBody>
+
+        <PanelBody
+          title={__("Commerce Actions", "modern-core")}
+          initialOpen={false}
+        >
+          <ToggleControl
+            label={__("Show Quantity Selector", "modern-core")}
+            checked={showQuantity}
+            onChange={(val) => setAttributes({ showQuantity: val })}
+          />
           <SelectControl
             label={__("Add to Cart Style", "modern-core")}
             value={buttonStyle}
@@ -141,12 +220,25 @@ export default function Edit({ attributes, setAttributes }) {
             ]}
             onChange={(val) => setAttributes({ buttonStyle: val })}
           />
+          <ToggleControl
+            label={__("Enable 'Buy Now' Redirect", "modern-core")}
+            checked={showBuyNow}
+            onChange={(val) => setAttributes({ showBuyNow: val })}
+          />
+          {showBuyNow && (
+            <SelectControl
+              label={__("Buy Now Style", "modern-core")}
+              value={buyNowStyle}
+              options={[
+                { label: "Solid Fill", value: "solid" },
+                { label: "Ghost Outline", value: "outline" },
+              ]}
+              onChange={(val) => setAttributes({ buyNowStyle: val })}
+            />
+          )}
         </PanelBody>
 
         <PanelBody title={__("Colors", "modern-core")} initialOpen={false}>
-          <p style={{ marginTop: "5px", marginBottom: "5px" }}>
-            <strong>{__("Image Area Background", "modern-core")}</strong>
-          </p>
           <ColorPalette
             value={imageBg}
             onChange={(val) => setAttributes({ imageBg: val })}
@@ -176,7 +268,6 @@ export default function Edit({ attributes, setAttributes }) {
       </InspectorControls>
 
       <div {...blockProps}>
-        {/* Visual Zone (Image & Gallery) */}
         <div
           style={{
             flex: 1,
@@ -192,14 +283,13 @@ export default function Edit({ attributes, setAttributes }) {
             style={{
               width: "100%",
               aspectRatio: "3/4",
-              backgroundImage: `url(${mockImage})`,
+              backgroundImage: `url(${displayImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderRadius: "8px",
               boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
             }}
           ></div>
-
           {showGallery && (
             <div
               style={{
@@ -216,7 +306,7 @@ export default function Edit({ attributes, setAttributes }) {
                   height: "60px",
                   borderRadius: "4px",
                   border: `2px solid ${accentColor}`,
-                  backgroundImage: `url(${mockImage})`,
+                  backgroundImage: `url(${displayImage})`,
                   backgroundSize: "cover",
                 }}
               ></div>
@@ -225,9 +315,7 @@ export default function Edit({ attributes, setAttributes }) {
                   width: "60px",
                   height: "60px",
                   borderRadius: "4px",
-                  border: "2px solid transparent",
-                  backgroundImage: `url(${mockThumb1})`,
-                  backgroundSize: "cover",
+                  backgroundColor: "rgba(0,0,0,0.1)",
                   opacity: 0.6,
                 }}
               ></div>
@@ -236,9 +324,7 @@ export default function Edit({ attributes, setAttributes }) {
                   width: "60px",
                   height: "60px",
                   borderRadius: "4px",
-                  border: "2px solid transparent",
-                  backgroundImage: `url(${mockThumb2})`,
-                  backgroundSize: "cover",
+                  backgroundColor: "rgba(0,0,0,0.1)",
                   opacity: 0.6,
                 }}
               ></div>
@@ -246,7 +332,6 @@ export default function Edit({ attributes, setAttributes }) {
           )}
         </div>
 
-        {/* Content Zone (Data & Add to Cart) */}
         <div
           style={{
             flex: 1,
@@ -270,7 +355,6 @@ export default function Edit({ attributes, setAttributes }) {
               {preHeadline}
             </span>
           )}
-
           <h2
             style={{
               fontSize: "36px",
@@ -279,9 +363,8 @@ export default function Edit({ attributes, setAttributes }) {
               margin: "0 0 15px 0",
             }}
           >
-            Cinematic Overcoat
+            {displayTitle}
           </h2>
-
           {showRating && (
             <div
               style={{
@@ -298,7 +381,6 @@ export default function Edit({ attributes, setAttributes }) {
               </span>
             </div>
           )}
-
           {showPrice && (
             <div
               style={{
@@ -310,7 +392,6 @@ export default function Edit({ attributes, setAttributes }) {
               $245.00
             </div>
           )}
-
           {showExcerpt && (
             <p
               style={{
@@ -320,61 +401,62 @@ export default function Edit({ attributes, setAttributes }) {
                 marginBottom: "30px",
               }}
             >
-              Tailored in Italy from lightweight virgin wool, this overcoat
-              features an unstructured shoulder and a relaxed drape. The perfect
-              layer for transitional weather.
+              {displayExcerpt}
             </p>
           )}
 
-          {/* Mock Variations */}
-          <div style={{ marginBottom: "30px" }}>
-            <p
+          {showQuantity && (
+            <div
               style={{
-                fontSize: "12px",
-                fontWeight: "bold",
-                textTransform: "uppercase",
-                marginBottom: "10px",
+                display: "flex",
+                alignItems: "center",
+                border: "1px solid rgba(0,0,0,0.1)",
+                borderRadius: "8px",
+                overflow: "hidden",
+                width: "120px",
+                marginBottom: "20px",
               }}
             >
-              Color: <span style={{ opacity: 0.6 }}>Charcoal</span>
-            </p>
-            <div style={{ display: "flex", gap: "10px" }}>
               <div
                 style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "50%",
-                  backgroundColor: "#334155",
-                  outline: `2px solid ${accentColor}`,
-                  outlineOffset: "2px",
+                  flex: 1,
+                  textAlign: "center",
+                  padding: "10px",
+                  background: imageBg,
+                  cursor: "pointer",
+                  fontWeight: "bold",
                 }}
-              ></div>
+              >
+                −
+              </div>
               <div
                 style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "50%",
-                  backgroundColor: "#94a3b8",
+                  flex: 1,
+                  textAlign: "center",
+                  padding: "10px",
+                  fontWeight: "bold",
                 }}
-              ></div>
+              >
+                1
+              </div>
+              <div
+                style={{
+                  flex: 1,
+                  textAlign: "center",
+                  padding: "10px",
+                  background: imageBg,
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                }}
+              >
+                +
+              </div>
             </div>
-          </div>
+          )}
 
-          <div
-            style={{
-              padding: "16px",
-              textAlign: "center",
-              fontSize: "16px",
-              fontWeight: "bold",
-              borderRadius: "8px",
-              cursor: "pointer",
-              background: buttonStyle === "solid" ? accentColor : "transparent",
-              color: buttonStyle === "solid" ? "#fff" : accentColor,
-              border:
-                buttonStyle === "outline" ? `2px solid ${accentColor}` : "none",
-            }}
-          >
-            Add to Cart
+          <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+            <div style={getBtnStyle(buttonStyle)}>Add to Cart</div>
+            {showBuyNow && <div style={getBtnStyle(buyNowStyle)}>Buy Now</div>}
           </div>
         </div>
       </div>

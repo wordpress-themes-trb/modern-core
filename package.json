@@ -23,6 +23,7 @@
     "@testing-library/react": "^14.1.2",
     "@vitejs/plugin-react": "^4.7.0",
     "@wordpress/eslint-plugin": "^17.0.0",
+    "@wordpress/html-entities": "^4.47.0",
     "autoprefixer": "^10.4.16",
     "cssnano": "^6.0.1",
     "eslint": "^8.52.0",
