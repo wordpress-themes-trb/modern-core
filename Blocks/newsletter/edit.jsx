@@ -184,42 +184,38 @@ export default function Edit({ attributes, setAttributes }) {
       <div {...blockProps}>
         <style>
           {`
-                    .modern-core-newsletter-editor {
-                        --mc-bg: ${bgColor};
-                        --mc-text: ${textColor};
-                        --mc-accent: ${accentColor};
-                        --mc-rad: ${inputRadius}px;
-                    }
-                    
-                    /* Shell Mockups */
-                    .shell-popup { background: rgba(0,0,0,0.5); padding: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-                    .shell-popup-inner { background: var(--mc-bg); padding: 50px; border-radius: 16px; width: 100%; max-width: 600px; position: relative; }
-                    .shell-slide { background: transparent; padding: 40px; display: flex; justify-content: flex-end; align-items: flex-end; }
-                    .shell-slide-inner { background: var(--mc-bg); padding: 40px; border-radius: 16px; width: 100%; max-width: 400px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-                    .shell-sticky { background: transparent; padding: 40px 0; }
-                    .shell-sticky-inner { background: var(--mc-bg); padding: 20px 5%; width: 100%; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); }
+            .modern-core-newsletter-editor {
+                --mc-bg: ${bgColor};
+                --mc-text: ${textColor};
+                --mc-accent: ${accentColor};
+                --mc-rad: ${inputRadius}px;
+            }
+            
+            .shell-popup { background: rgba(0,0,0,0.5); padding: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+            .shell-popup-inner { background: var(--mc-bg); padding: 50px; border-radius: 16px; width: 100%; max-width: 600px; position: relative; }
+            .shell-slide { background: transparent; padding: 40px; display: flex; justify-content: flex-end; align-items: flex-end; }
+            .shell-slide-inner { background: var(--mc-bg); padding: 40px; border-radius: 16px; width: 100%; max-width: 400px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+            .shell-sticky { background: transparent; padding: 40px 0; }
+            .shell-sticky-inner { background: var(--mc-bg); padding: 20px 5%; width: 100%; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); }
 
-                    /* Form Layouts */
-                    .mc-nl-form-wrapper { color: var(--mc-text); }
-                    .layout-split .mc-nl-form-wrapper { display: flex; gap: 40px; align-items: center; }
-                    .layout-split .mc-nl-text { flex: 1; }
-                    .layout-split .mc-nl-form { flex: 1; }
-                    
-                    .layout-stack .mc-nl-form-wrapper { text-align: center; max-width: 600px; margin: 0 auto; }
-                    .layout-stack .mc-nl-text { margin-bottom: 30px; }
+            .mc-nl-form-wrapper { color: var(--mc-text); }
+            .layout-split .mc-nl-form-wrapper { display: flex; gap: 40px; align-items: center; }
+            .layout-split .mc-nl-text { flex: 1; }
+            .layout-split .mc-nl-form { flex: 1; }
+            
+            .layout-stack .mc-nl-form-wrapper { text-align: center; max-width: 600px; margin: 0 auto; }
+            .layout-stack .mc-nl-text { margin-bottom: 30px; }
 
-                    /* Display Mode Overrides */
-                    .display-popup .mc-nl-form-wrapper, .display-slide .mc-nl-form-wrapper { flex-direction: column; text-align: center; }
-                    .display-sticky .mc-nl-form-wrapper { flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; text-align: left; }
-                    .display-sticky .mc-nl-text { margin: 0; display: flex; align-items: center; gap: 15px; }
+            .display-popup .mc-nl-form-wrapper, .display-slide .mc-nl-form-wrapper { flex-direction: column; text-align: center; }
+            .display-sticky .mc-nl-form-wrapper { flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; text-align: left; }
+            .display-sticky .mc-nl-text { margin: 0; display: flex; align-items: center; gap: 15px; }
 
-                    /* Form Elements */
-                    .mc-nl-input-group { display: flex; gap: 10px; margin-bottom: 10px; }
-                    .display-slide .mc-nl-input-group { flex-direction: column; }
-                    .mc-nl-input { flex: 1; padding: 14px 20px; border: 1px solid rgba(0,0,0,0.1); border-radius: var(--mc-rad); outline: none; }
-                    .mc-nl-btn { padding: 14px 30px; background: var(--mc-accent); color: #fff; border: none; border-radius: var(--mc-rad); font-weight: bold; cursor: pointer; }
-                    .mc-nl-privacy { font-size: 11px; opacity: 0.6; margin-top: 10px; }
-                    `}
+            .mc-nl-input-group { display: flex; gap: 10px; margin-bottom: 10px; }
+            .display-slide .mc-nl-input-group { flex-direction: column; }
+            .mc-nl-input { flex: 1; padding: 14px 20px; border: 1px solid rgba(0,0,0,0.1); border-radius: var(--mc-rad); outline: none; }
+            .mc-nl-btn { padding: 14px 30px; background: var(--mc-accent); color: #fff; border: none; border-radius: var(--mc-rad); font-weight: bold; cursor: pointer; }
+            .mc-nl-privacy { font-size: 11px; opacity: 0.6; margin-top: 10px; }
+          `}
         </style>
 
         {displayMode !== "inline" && (
@@ -291,7 +287,9 @@ export default function Edit({ attributes, setAttributes }) {
                     placeholder="Email Address"
                     readOnly
                   />
-                  <button className="mc-nl-btn">{btnText}</button>
+                  <button className="mc-nl-btn" style={{ color: "#ffffff" }}>
+                    {btnText}
+                  </button>
                 </div>
                 {privacyText && (
                   <div className="mc-nl-privacy">{privacyText}</div>

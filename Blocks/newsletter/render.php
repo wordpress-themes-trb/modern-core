@@ -1,5 +1,4 @@
 <?php
-$width_mode = $attributes['widthMode'] ?? 'contained';
 $mode = $attributes['displayMode'] ?? 'inline';
 $trigger = $attributes['triggerType'] ?? 'time';
 $trigger_val = $attributes['triggerValue'] ?? 5;
@@ -11,15 +10,14 @@ $btn_text = $attributes['btnText'] ?? 'Subscribe';
 $show_name = $attributes['showName'] ?? false;
 $privacy = $attributes['privacyText'] ?? 'We respect your privacy. Unsubscribe at any time.';
 $success_msg = $attributes['successMsg'] ?? 'Welcome! Please check your email to confirm.';
-$bg = $attributes['bgColor'] ?? '#f8fafc';
-$text_c = $attributes['textColor'] ?? '#0f172a';
-$accent = $attributes['accentColor'] ?? '#3b82f6';
+$bg = $attributes['bgColor'] ?? '#ffffff';
+$text_c = $attributes['textColor'] ?? '#000000';
+$accent = $attributes['accentColor'] ?? '#000000';
 $radius = $attributes['inputRadius'] ?? 8;
 
 $unique_id = uniqid('mc-nl-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-newsletter {$unique_id} mode-{$mode} layout-{$layout}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block modern-core-newsletter {$unique_id} mode-{$mode} layout-{$layout}"]);
 
-// Determine wrapper structure based on display mode
 $is_overlay = in_array($mode, ['popup', 'slide', 'sticky']);
 ?>
 
@@ -158,157 +156,76 @@ $is_overlay = in_array($mode, ['popup', 'slide', 'sticky']);
         .<?php echo esc_attr($unique_id); ?> .mc-nl-content { color: var(--mc-text); }
 
         .<?php echo esc_attr($unique_id); ?>.layout-split .mc-nl-content { 
-            display: flex; 
-            gap: 60px; 
-            align-items: center; 
-            max-width: 1200px; 
-            margin: 0 auto; 
+            display: flex; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; 
         }
         .<?php echo esc_attr($unique_id); ?>.layout-split .mc-nl-text { flex: 1; }
         .<?php echo esc_attr($unique_id); ?>.layout-split .mc-nl-form-zone { flex: 1; }
 
         .<?php echo esc_attr($unique_id); ?>.layout-stack .mc-nl-content { 
-            text-align: center; 
-            max-width: 600px; 
-            margin: 0 auto; 
+            text-align: center; max-width: 600px; margin: 0 auto; 
         }
         .<?php echo esc_attr($unique_id); ?>.layout-stack .mc-nl-text { margin-bottom: 30px; }
 
         /* Mode Overrides */
         .<?php echo esc_attr($unique_id); ?>.mode-popup .mc-nl-content, 
         .<?php echo esc_attr($unique_id); ?>.mode-slide .mc-nl-content { 
-            flex-direction: column; 
-            text-align: center; 
-            gap: 30px; 
+            flex-direction: column; text-align: center; gap: 30px; 
         }
         .<?php echo esc_attr($unique_id); ?>.mode-sticky .mc-nl-content { 
-            flex-direction: row; 
-            align-items: center; 
-            justify-content: space-between; 
-            gap: 30px; 
-            text-align: left; 
+            flex-direction: row; align-items: center; justify-content: space-between; gap: 30px; text-align: left; 
         }
         .<?php echo esc_attr($unique_id); ?>.mode-sticky .mc-nl-text { 
-            margin: 0; 
-            display: flex; 
-            align-items: center; 
-            gap: 20px; 
+            margin: 0; display: flex; align-items: center; gap: 20px; 
         }
 
         @media (max-width: 768px) {
             .<?php echo esc_attr($unique_id); ?>.layout-split .mc-nl-content,
             .<?php echo esc_attr($unique_id); ?>.mode-sticky .mc-nl-content { 
-                flex-direction: column; 
-                text-align: center; 
-                gap: 25px; 
+                flex-direction: column; text-align: center; gap: 25px; 
             }
             .<?php echo esc_attr($unique_id); ?>.mode-slide { 
-                bottom: 15px; 
-                right: 15px; 
-                left: 15px;
-                max-width: none;
+                bottom: 15px; right: 15px; left: 15px; max-width: none;
             }
-            .<?php echo esc_attr($unique_id); ?>.mode-slide .mc-nl-inner { 
-                max-width: 100%; 
-            }
-            .<?php echo esc_attr($unique_id); ?>.mode-popup {
-                padding: 15px;
-            }
-            .<?php echo esc_attr($unique_id); ?>.mode-popup .mc-nl-inner {
-                padding: 30px 20px;
-            }
+            .<?php echo esc_attr($unique_id); ?>.mode-slide .mc-nl-inner { max-width: 100%; }
+            .<?php echo esc_attr($unique_id); ?>.mode-popup { padding: 15px; }
+            .<?php echo esc_attr($unique_id); ?>.mode-popup .mc-nl-inner { padding: 30px 20px; }
         }
 
         /* 3. Typography & Form UI */
         .<?php echo esc_attr($unique_id); ?> .mc-nl-heading { 
-            margin: 0 0 10px 0; 
-            font-size: clamp(24px, 3vw, 36px); 
-            font-weight: 800; 
-            line-height: 1.1; 
+            margin: 0 0 10px 0; font-size: clamp(24px, 3vw, 36px); font-weight: 800; line-height: 1.1; color: var(--mc-text);
         }
-        .<?php echo esc_attr($unique_id); ?>.mode-sticky .mc-nl-heading { 
-            font-size: 20px; 
-            margin: 0; 
-        }
+        .<?php echo esc_attr($unique_id); ?>.mode-sticky .mc-nl-heading { font-size: 20px; margin: 0; }
         .<?php echo esc_attr($unique_id); ?> .mc-nl-sub { 
-            margin: 0; 
-            font-size: 16px; 
-            opacity: 0.8; 
-            line-height: 1.5; 
+            margin: 0; font-size: 16px; opacity: 0.8; line-height: 1.5; color: var(--mc-text);
         }
 
-        .<?php echo esc_attr($unique_id); ?> .mc-nl-inputs { 
-            display: flex; 
-            gap: 10px; 
-            margin-bottom: 15px; 
-        }
-        .<?php echo esc_attr($unique_id); ?>.mode-slide .mc-nl-inputs { 
-            flex-direction: column; 
-        }
-        @media (max-width: 600px) { 
-            .<?php echo esc_attr($unique_id); ?> .mc-nl-inputs { 
-                flex-direction: column; 
-            } 
-        }
+        .<?php echo esc_attr($unique_id); ?> .mc-nl-inputs { display: flex; gap: 10px; margin-bottom: 15px; }
+        .<?php echo esc_attr($unique_id); ?>.mode-slide .mc-nl-inputs { flex-direction: column; }
+        @media (max-width: 600px) { .<?php echo esc_attr($unique_id); ?> .mc-nl-inputs { flex-direction: column; } }
 
         .<?php echo esc_attr($unique_id); ?> .mc-nl-input {
-            flex: 1; 
-            padding: 15px 20px; 
-            border: 1px solid rgba(0,0,0,0.1); 
-            border-radius: var(--mc-rad);
-            font-size: 15px; 
-            outline: none; 
-            transition: border-color 0.2s; 
-            background: #fff; 
-            color: #000;
+            flex: 1; padding: 15px 20px; border: 1px solid rgba(0,0,0,0.15); border-radius: var(--mc-rad);
+            font-size: 15px; outline: none; transition: border-color 0.2s; background: #fff; color: #000;
         }
-        .<?php echo esc_attr($unique_id); ?> .mc-nl-input:focus { 
-            border-color: var(--mc-accent); 
-        }
+        .<?php echo esc_attr($unique_id); ?> .mc-nl-input:focus { border-color: var(--mc-accent); }
 
         .<?php echo esc_attr($unique_id); ?> .mc-nl-btn {
-            padding: 15px 35px; 
-            background: var(--mc-accent); 
-            color: #fff; 
-            border: none; 
-            border-radius: var(--mc-rad);
-            font-weight: bold; 
-            font-size: 15px; 
-            cursor: pointer; 
-            transition: opacity 0.2s; 
-            white-space: nowrap;
+            padding: 15px 35px; background: var(--mc-accent); color: #fff; border: none; border-radius: var(--mc-rad);
+            font-weight: bold; font-size: 15px; cursor: pointer; transition: opacity 0.2s; white-space: nowrap;
         }
         .<?php echo esc_attr($unique_id); ?> .mc-nl-btn:hover { opacity: 0.8; }
-        .<?php echo esc_attr($unique_id); ?> .mc-nl-btn.is-loading { 
-            opacity: 0.7; 
-            pointer-events: none; 
-        }
+        .<?php echo esc_attr($unique_id); ?> .mc-nl-btn.is-loading { opacity: 0.7; pointer-events: none; }
 
-        .<?php echo esc_attr($unique_id); ?> .mc-nl-privacy { 
-            font-size: 12px; 
-            opacity: 0.6; 
-        }
+        .<?php echo esc_attr($unique_id); ?> .mc-nl-privacy { font-size: 12px; opacity: 0.6; color: var(--mc-text); }
 
         /* 4. States */
         .<?php echo esc_attr($unique_id); ?> .mc-nl-success { 
-            display: none; 
-            text-align: center; 
-            padding: 20px; 
-            color: var(--mc-accent); 
-            font-weight: bold; 
-            font-size: 18px; 
+            display: none; text-align: center; padding: 20px; color: var(--mc-text); font-weight: bold; font-size: 18px; 
         }
-        .<?php echo esc_attr($unique_id); ?>.is-success .mc-nl-form { 
-            display: none; 
-        }
-        .<?php echo esc_attr($unique_id); ?>.is-success .mc-nl-success { 
-            display: block; 
-            animation: mcFadeIn 0.5s ease; 
-        }
-        @keyframes mcFadeIn { 
-            from{opacity:0;} 
-            to{opacity:1;} 
-        }
+        .<?php echo esc_attr($unique_id); ?>.is-success .mc-nl-form { display: none; }
+        .<?php echo esc_attr($unique_id); ?>.is-success .mc-nl-success { display: block; animation: mcFadeIn 0.5s ease; }
+        @keyframes mcFadeIn { from{opacity:0;} to{opacity:1;} }
     </style>
 
     <?php if ($is_overlay) echo '<div class="mc-nl-inner"><button class="mc-nl-close" aria-label="Close">✕</button>'; ?>
@@ -355,7 +272,6 @@ $is_overlay = in_array($mode, ['popup', 'slide', 'sticky']);
 
             // --- TRIGGER LOGIC ---
             if (isOverlay) {
-                // Check if user already closed or submitted in this session
                 if (sessionStorage.getItem('mc_nl_dismissed_<?php echo esc_attr($unique_id); ?>')) return;
 
                 const showBlock = () => {
@@ -372,7 +288,7 @@ $is_overlay = in_array($mode, ['popup', 'slide', 'sticky']);
                 if (closeBtn) closeBtn.addEventListener('click', dismissBlock);
                 if (mode === 'popup') {
                     block.addEventListener('click', (e) => {
-                        if (e.target === block) dismissBlock(); // Click outside modal
+                        if (e.target === block) dismissBlock(); 
                     });
                 }
 
@@ -392,7 +308,7 @@ $is_overlay = in_array($mode, ['popup', 'slide', 'sticky']);
                 } 
                 else if (trigger === 'exit') {
                     const onMouseLeave = (e) => {
-                        if (e.clientY < 0) { // Mouse moved off top of screen
+                        if (e.clientY < 0) { 
                             showBlock();
                             document.removeEventListener('mouseleave', onMouseLeave);
                         }
@@ -414,7 +330,10 @@ $is_overlay = in_array($mode, ['popup', 'slide', 'sticky']);
                     formData.append('action', 'mc_newsletter_submit_ajax');
                     formData.append('provider', block.dataset.provider);
 
-                    fetch(mc_ajax.ajaxurl, {
+                    // Ensure ajaxurl is defined by WordPress or your theme
+                    const ajaxUrl = (typeof mc_ajax !== 'undefined' && mc_ajax.ajaxurl) ? mc_ajax.ajaxurl : '/wp-admin/admin-ajax.php';
+
+                    fetch(ajaxUrl, {
                         method: 'POST',
                         body: formData
                     })
@@ -427,7 +346,7 @@ $is_overlay = in_array($mode, ['popup', 'slide', 'sticky']);
                                 setTimeout(() => block.classList.remove('is-triggered'), 4000);
                             }
                         } else {
-                            alert(data.data.message || 'There was an error. Please try again.');
+                            alert(data.data?.message || 'There was an error. Please try again.');
                             btn.classList.remove('is-loading');
                             btn.innerText = btnOriginalText;
                         }
