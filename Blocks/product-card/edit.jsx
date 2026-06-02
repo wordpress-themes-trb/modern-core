@@ -5,6 +5,7 @@ import {
   MediaUpload,
   MediaUploadCheck,
 } from "@wordpress/block-editor";
+import { useSelect } from "@wordpress/data";
 import {
   PanelBody,
   SelectControl,
@@ -14,6 +15,7 @@ import {
   TextControl,
   Button,
   TextareaControl,
+  ComboboxControl,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
@@ -42,6 +44,41 @@ export default function Edit({ attributes, setAttributes }) {
   const isHorizontal = orientation === "horizontal";
   const isManual = sourceMode === "manual";
 
+  // Native HTML entity decoder fallback
+  const decodeEntities = (html) => {
+    if (!html) return "";
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  };
+
+  // ── FETCH WOOCOMMERCE PRODUCTS FOR EDITOR ──
+  const { products, isResolving } = useSelect((select) => {
+    const { getEntityRecords, isResolving } = select("core");
+    const query = { per_page: 100, status: "publish", _embed: true };
+    return {
+      products: getEntityRecords("postType", "product", query),
+      isResolving: isResolving("getEntityRecords", [
+        "postType",
+        "product",
+        query,
+      ]),
+    };
+  }, []);
+
+  const productOptions = React.useMemo(() => {
+    if (!products) return [];
+    return products.map((p) => ({
+      label: decodeEntities(p.title.rendered) || `Product ID: ${p.id}`,
+      value: p.id,
+    }));
+  }, [products]);
+
+  const selectedProduct = React.useMemo(() => {
+    if (!products || !productId) return null;
+    return products.find((p) => p.id === productId);
+  }, [products, productId]);
+
   const blockProps = useBlockProps({
     className: `modern-core-standalone-card-editor orient-${orientation}`,
     style: {
@@ -52,22 +89,31 @@ export default function Edit({ attributes, setAttributes }) {
       borderRadius: `${cardRadius}px`,
       overflow: "hidden",
       boxShadow: hoverLift ? "0 10px 30px rgba(0,0,0,0.05)" : "none",
-      border: "1px solid rgba(0,0,0,0.05)",
+      border: "1px solid rgba(0,0,0,0.08)",
       maxWidth: isHorizontal ? "800px" : "400px",
       margin: "20px auto",
+      boxSizing: "border-box",
     },
   });
 
-  // Mock Data for Dynamic Preview
+  // Dynamic vs Manual Data Routing
+  const previewTitle = isManual
+    ? manualTitle
+    : selectedProduct
+      ? decodeEntities(selectedProduct.title.rendered)
+      : "Select a Product";
+  const rawExcerpt = selectedProduct?.excerpt?.rendered || "";
+  const decodedDesc = rawExcerpt
+    ? decodeEntities(rawExcerpt.replace(/(<([^>]+)>)/gi, ""))
+    : "Product description will appear here.";
+  const previewDesc = isManual ? manualDesc : decodedDesc;
   const previewImage =
     isManual && manualImage
       ? manualImage
-      : "https://images.unsplash.com/photo-1521572163474-6f64f9fa023e?q=80&w=600&auto=format&fit=crop";
-  const previewTitle = isManual ? manualTitle : "Cinematic Wool Overcoat";
-  const previewPrice = isManual ? manualPrice : "$245.00";
-  const previewDesc = isManual
-    ? manualDesc
-    : "Tailored in Italy from lightweight virgin wool, this overcoat features an unstructured shoulder and a relaxed drape.";
+      : selectedProduct?._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+        "https://images.unsplash.com/photo-1521572163474-6f64f9fa023e?q=80&w=600&auto=format&fit=crop";
+  // Basic mock price for dynamic mode preview
+  const previewPrice = isManual ? manualPrice : "$120.00";
 
   return (
     <>
@@ -83,15 +129,16 @@ export default function Edit({ attributes, setAttributes }) {
             onChange={(val) => setAttributes({ sourceMode: val })}
           />
           {sourceMode === "dynamic" ? (
-            <TextControl
-              type="number"
-              label={__("WooCommerce Product ID", "modern-core")}
+            <ComboboxControl
+              label={__("Select WooCommerce Product", "modern-core")}
               value={productId}
-              onChange={(val) => setAttributes({ productId: parseInt(val) })}
-              help={__(
-                "Enter the ID of the product to pull live data.",
-                "modern-core",
-              )}
+              options={productOptions}
+              onChange={(val) =>
+                setAttributes({ productId: parseInt(val, 10) || 0 })
+              }
+              help={
+                isResolving ? "Loading inventory..." : "Search by product name"
+              }
             />
           ) : (
             <>
@@ -193,7 +240,7 @@ export default function Edit({ attributes, setAttributes }) {
             onChange={(val) => setAttributes({ showWishlist: val })}
           />
           <SelectControl
-            label={__("Button Style", "modern-core")}
+            label={__("Add to Cart Style", "modern-core")}
             value={atcStyle}
             options={[
               { label: "Solid Fill", value: "solid" },
@@ -230,7 +277,6 @@ export default function Edit({ attributes, setAttributes }) {
       </InspectorControls>
 
       <div {...blockProps}>
-        {/* Image Zone */}
         <div
           style={{
             width: isHorizontal ? "45%" : "100%",
@@ -250,6 +296,7 @@ export default function Edit({ attributes, setAttributes }) {
                 width: "32px",
                 height: "32px",
                 background: "#fff",
+                color: "#000",
                 borderRadius: "50%",
                 display: "flex",
                 alignItems: "center",
@@ -262,7 +309,6 @@ export default function Edit({ attributes, setAttributes }) {
           )}
         </div>
 
-        {/* Content Zone */}
         <div
           style={{
             width: isHorizontal ? "55%" : "100%",
@@ -270,6 +316,7 @@ export default function Edit({ attributes, setAttributes }) {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            boxSizing: "border-box",
           }}
         >
           {showCategory && (
@@ -282,7 +329,7 @@ export default function Edit({ attributes, setAttributes }) {
                 marginBottom: "8px",
               }}
             >
-              Outerwear
+              Category
             </span>
           )}
           <h3
@@ -326,6 +373,7 @@ export default function Edit({ attributes, setAttributes }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              marginBottom: "20px",
             }}
           >
             <span style={{ fontSize: "18px", fontWeight: "bold" }}>
@@ -335,7 +383,7 @@ export default function Edit({ attributes, setAttributes }) {
 
           <div
             style={{
-              marginTop: "20px",
+              width: "100%",
               padding: "14px",
               textAlign: "center",
               fontSize: "14px",
@@ -345,6 +393,7 @@ export default function Edit({ attributes, setAttributes }) {
               color: atcStyle === "solid" ? "#fff" : accentColor,
               border:
                 atcStyle === "outline" ? `2px solid ${accentColor}` : "none",
+              cursor: "pointer",
             }}
           >
             Add to Cart

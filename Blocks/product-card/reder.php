@@ -9,8 +9,8 @@ $orient = $attributes['orientation'] ?? 'vertical';
 $ratio = $attributes['imageRatio'] ?? '3/4';
 $radius = $attributes['cardRadius'] ?? 12;
 $bg = $attributes['cardBg'] ?? '#ffffff';
-$text_color = $attributes['textColor'] ?? '#0f172a';
-$accent = $attributes['accentColor'] ?? '#3b82f6';
+$text_color = $attributes['textColor'] ?? '#000000';
+$accent = $attributes['accentColor'] ?? '#000000';
 $lift = $attributes['hoverLift'] ?? true;
 $show_cat = $attributes['showCategory'] ?? true;
 $show_rating = $attributes['showRating'] ?? true;
@@ -50,8 +50,14 @@ if ($source_mode === 'dynamic' && $is_wc_active && $product_id > 0) {
             color: <?php echo esc_attr($text_color); ?>;
             border-radius: <?php echo esc_attr($radius); ?>px;
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.08);
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+        }
+
+        .<?php echo esc_attr($unique_id); ?> *,
+        .<?php echo esc_attr($unique_id); ?> *::before,
+        .<?php echo esc_attr($unique_id); ?> *::after {
+            box-sizing: border-box !important;
         }
 
         /* Hover Lift Physics */
@@ -82,7 +88,7 @@ if ($source_mode === 'dynamic' && $is_wc_active && $product_id > 0) {
             position: relative; overflow: hidden; display: block;
         }
         .<?php echo esc_attr($unique_id); ?> .mc-sc-img {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block;
         }
         .<?php echo esc_attr($unique_id); ?>:hover .mc-sc-img { transform: scale(1.05); }
 
@@ -104,15 +110,19 @@ if ($source_mode === 'dynamic' && $is_wc_active && $product_id > 0) {
         .<?php echo esc_attr($unique_id); ?> .mc-sc-price del { opacity: 0.5; font-size: 14px; font-weight: normal; margin-left: 5px; }
         .<?php echo esc_attr($unique_id); ?> .mc-sc-price ins { text-decoration: none; color: #ef4444; }
 
-        /* Button Injection */
-        .<?php echo esc_attr($unique_id); ?> .mc-sc-btn-wrap a {
-            display: block; padding: 14px; text-align: center; font-size: 14px; font-weight: bold; border-radius: <?php echo esc_attr($radius); ?>px;
-            text-decoration: none; transition: opacity 0.2s;
-            <?php if ($atc_style === 'solid') : ?> background: <?php echo esc_attr($accent); ?>; color: #fff; border: none;
-            <?php elseif ($atc_style === 'outline') : ?> background: transparent; color: <?php echo esc_attr($accent); ?>; border: 2px solid <?php echo esc_attr($accent); ?>;
-            <?php else : ?> background: transparent; color: <?php echo esc_attr($accent); ?>; padding: 0; text-align: left; text-decoration: underline; <?php endif; ?>
+        /* Aggressive WooCommerce Button Override to ensure centering */
+        .<?php echo esc_attr($unique_id); ?> .mc-sc-btn-wrap { width: 100%; margin-top: 10px; }
+        .<?php echo esc_attr($unique_id); ?> .mc-sc-btn-wrap a,
+        .<?php echo esc_attr($unique_id); ?> .mc-sc-btn-wrap .button,
+        .<?php echo esc_attr($unique_id); ?> .mc-sc-btn-wrap .added_to_cart {
+            display: block !important; width: 100% !important; padding: 14px !important; text-align: center !important; 
+            font-size: 14px !important; font-weight: bold !important; border-radius: <?php echo esc_attr($radius); ?>px !important;
+            text-decoration: none !important; transition: opacity 0.2s !important; margin: 0 !important; line-height: 1.2 !important;
+            <?php if ($atc_style === 'solid') : ?> background: <?php echo esc_attr($accent); ?> !important; color: #fff !important; border: none !important;
+            <?php elseif ($atc_style === 'outline') : ?> background: transparent !important; color: <?php echo esc_attr($accent); ?> !important; border: 2px solid <?php echo esc_attr($accent); ?> !important;
+            <?php else : ?> background: transparent !important; color: <?php echo esc_attr($accent); ?> !important; padding: 0 !important; text-align: left !important; text-decoration: underline !important; <?php endif; ?>
         }
-        .<?php echo esc_attr($unique_id); ?> .mc-sc-btn-wrap a:hover { opacity: 0.8; }
+        .<?php echo esc_attr($unique_id); ?> .mc-sc-btn-wrap a:hover { opacity: 0.8 !important; }
     </style>
 
     <a href="<?php echo esc_url($link); ?>" class="mc-sc-img-zone">
@@ -138,14 +148,15 @@ if ($source_mode === 'dynamic' && $is_wc_active && $product_id > 0) {
         <div class="mc-sc-btn-wrap">
             <?php 
                 if ($product && $source_mode === 'dynamic') {
-                    // Render native WooCommerce button to ensure AJAX works
+                    global $post;
+                    $post = get_post($product_id);
+                    setup_postdata($post);
                     woocommerce_template_loop_add_to_cart();
+                    wp_reset_postdata();
                 } else {
-                    // Manual Fallback
                     echo '<a href="#">Add to Cart</a>';
                 }
             ?>
         </div>
     </div>
-
 </div>
