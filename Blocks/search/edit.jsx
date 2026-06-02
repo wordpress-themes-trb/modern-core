@@ -19,11 +19,12 @@ export default function Edit({ attributes, setAttributes }) {
     bgColor,
     textColor,
     width,
+    trendingTags,
   } = attributes;
 
   const blockProps = useBlockProps({
-    className: "modern-core-search-block",
-    style: { width: `${width}%`, position: "relative" },
+    className: "modern-core-search-block-editor",
+    style: { width: `${width}%`, position: "relative", margin: "0 auto" },
   });
 
   const borderRadius =
@@ -38,6 +39,12 @@ export default function Edit({ attributes, setAttributes }) {
             label={__("Placeholder Text", "modern-core")}
             value={placeholder}
             onChange={(val) => setAttributes({ placeholder: val })}
+          />
+          <TextControl
+            label={__("Trending Search Tags (Comma separated)", "modern-core")}
+            value={trendingTags}
+            onChange={(val) => setAttributes({ trendingTags: val })}
+            help="Displays as clickable suggestion chips when the search bar is focused."
           />
           <SelectControl
             label={__("Input Shape", "modern-core")}
@@ -55,11 +62,12 @@ export default function Edit({ attributes, setAttributes }) {
             onChange={(val) => setAttributes({ width: val })}
             min={20}
             max={100}
+            help="Set to 100% for fluid layouts (recommended)."
           />
         </PanelBody>
 
         <PanelBody
-          title={__("Icon & Colors", "modern-core")}
+          title={__("Icon & Minimalist Colors", "modern-core")}
           initialOpen={false}
         >
           <ToggleControl
@@ -102,7 +110,7 @@ export default function Edit({ attributes, setAttributes }) {
             alignItems: "center",
             backgroundColor: bgColor,
             borderRadius: borderRadius,
-            padding: "8px 16px",
+            padding: "10px 20px",
             border: "1px solid transparent",
           }}
         >
@@ -111,7 +119,7 @@ export default function Edit({ attributes, setAttributes }) {
               style={{
                 color: textColor,
                 opacity: 0.6,
-                marginRight: "10px",
+                marginRight: "12px",
                 display: "flex",
               }}
             >
@@ -129,7 +137,7 @@ export default function Edit({ attributes, setAttributes }) {
               outline: "none",
               width: "100%",
               color: textColor,
-              fontSize: "14px",
+              fontSize: "15px",
               cursor: "default",
             }}
           />
@@ -139,7 +147,7 @@ export default function Edit({ attributes, setAttributes }) {
               style={{
                 color: textColor,
                 opacity: 0.6,
-                marginLeft: "10px",
+                marginLeft: "12px",
                 display: "flex",
               }}
             >
@@ -148,7 +156,7 @@ export default function Edit({ attributes, setAttributes }) {
           )}
         </div>
 
-        {/* Simulated Live Suggestion Dropdown for Editor Preview */}
+        {/* Editor Preview Dropdown */}
         <div
           style={{
             position: "absolute",
@@ -161,41 +169,37 @@ export default function Edit({ attributes, setAttributes }) {
             boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
             padding: "15px",
             zIndex: 10,
-            display: "none", // Hidden by default in editor to avoid clutter
+            display: "none", // Hidden by default in the editor to avoid cluttering the view
           }}
-          className="mc-search-dropdown-preview"
         >
           <p
             style={{
               fontSize: "11px",
               textTransform: "uppercase",
-              color: "#94a3b8",
+              color: "#64748b",
               margin: "0 0 10px 0",
             }}
           >
             Trending Searches
           </p>
           <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-            <span
-              style={{
-                background: "#f1f5f9",
-                padding: "4px 10px",
-                borderRadius: "20px",
-                fontSize: "12px",
-              }}
-            >
-              Summer Dress
-            </span>
-            <span
-              style={{
-                background: "#f1f5f9",
-                padding: "4px 10px",
-                borderRadius: "20px",
-                fontSize: "12px",
-              }}
-            >
-              Leather Jacket
-            </span>
+            {trendingTags.split(",").map((tag, index) => {
+              const cleanTag = tag.trim();
+              if (!cleanTag) return null;
+              return (
+                <span
+                  key={index}
+                  style={{
+                    background: "#f4f4f5",
+                    padding: "4px 10px",
+                    borderRadius: "20px",
+                    fontSize: "12px",
+                  }}
+                >
+                  {cleanTag}
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
