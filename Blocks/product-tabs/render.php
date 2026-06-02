@@ -1,5 +1,4 @@
 <?php
-$width_mode = $attributes['widthMode'] ?? 'contained';
 if (!class_exists('WooCommerce')) return;
 
 $title = $attributes['sectionTitle'] ?? 'Shop by Collection';
@@ -13,23 +12,35 @@ $cols_m = $attributes['colsMobile'] ?? 2;
 $ratio = $attributes['imageRatio'] ?? '3/4';
 $card_bg = $attributes['cardBg'] ?? '#ffffff';
 $radius = $attributes['cardRadius'] ?? 8;
-$accent = $attributes['accentColor'] ?? '#0f172a';
-$inactive = $attributes['inactiveColor'] ?? '#94a3b8';
+$accent = $attributes['accentColor'] ?? '#000000';
+$inactive = $attributes['inactiveColor'] ?? '#64748b';
 
 $unique_id = uniqid('mc-ptabs-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-product-tabs {$unique_id} style-{$tab_style} anim-{$anim}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block modern-core-product-tabs {$unique_id} style-{$tab_style} anim-{$anim}"]);
 
-// FIX: Wrap helper function to prevent redeclaration errors if multiple blocks exist
 if (!function_exists('mc_get_tab_query')) {
-    function mc_get_tab_query($type, $count) {
+    function mc_get_tab_query($tab_data) {
+        $type = $tab_data['query'] ?? 'recent';
+        $count = $tab_data['count'] ?? 4;
+        
         $args = ['post_type' => 'product', 'posts_per_page' => $count, 'post_status' => 'publish'];
+        
         if ($type === 'popularity') {
             $args['meta_key'] = 'total_sales'; $args['orderby'] = 'meta_value_num';
         } elseif ($type === 'sale') {
             $args['post__in'] = array_merge([0], wc_get_product_ids_on_sale());
         } elseif ($type === 'rating') {
             $args['meta_key'] = '_wc_average_rating'; $args['orderby'] = 'meta_value_num'; $args['order'] = 'DESC';
+        } elseif ($type === 'category' && !empty($tab_data['categoryId'])) {
+            $args['tax_query'] = [
+                [
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => $tab_data['categoryId']
+                ]
+            ];
         }
+        
         return new WP_Query($args);
     }
 }
@@ -46,6 +57,13 @@ if (!function_exists('mc_get_tab_query')) {
             --mc-accent: <?php echo esc_attr($accent); ?>;
             --mc-inactive: <?php echo esc_attr($inactive); ?>;
             width: 100%; padding: 60px 0;
+            box-sizing: border-box;
+        }
+
+        .<?php echo esc_attr($unique_id); ?> *,
+        .<?php echo esc_attr($unique_id); ?> *::before,
+        .<?php echo esc_attr($unique_id); ?> *::after {
+            box-sizing: border-box;
         }
 
         /* Nav Styles */
@@ -89,18 +107,20 @@ if (!function_exists('mc_get_tab_query')) {
         @keyframes mcScalePop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
         /* Shared Card Styles */
-        .mc-tab-card { background: var(--mc-bg); border-radius: var(--mc-radius); overflow: hidden; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .mc-tab-card { background: var(--mc-bg); border-radius: var(--mc-radius); overflow: hidden; border: 1px solid rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; height: 100%; }
         .mc-tab-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .mc-tab-img { aspect-ratio: var(--mc-ratio); width: 100%; object-fit: cover; }
-        .mc-tab-info { padding: 20px; }
-        .mc-tab-title { font-size: 15px; margin: 0 0 10px 0; color: inherit; text-decoration: none; display: block; }
-        .mc-tab-price { font-weight: bold; font-size: 15px; }
+        .mc-tab-img-wrap { position: relative; overflow: hidden; display: block; aspect-ratio: var(--mc-ratio); }
+        .mc-tab-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .mc-tab-info { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+        .mc-tab-title { font-size: 15px; margin: 0 0 10px 0; color: inherit; text-decoration: none; display: block; font-weight: bold; line-height: 1.3; }
+        .mc-tab-price { font-weight: bold; font-size: 15px; margin-top: auto; }
         .mc-tab-price del { opacity: 0.5; font-size: 13px; font-weight: normal; margin-left: 5px; }
+        .mc-tab-price ins { text-decoration: none; color: #ef4444; }
     </style>
 
     <div style="text-align: center; margin-bottom: 40px;">
-        <?php if ($subtitle) echo '<p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--mc-accent); margin: 0 0 10px 0;">' . esc_html($subtitle) . '</p>'; ?>
-        <h2 style="font-size: 32px; font-weight: 800; margin: 0;"><?php echo esc_html($title); ?></h2>
+        <?php if ($subtitle) echo '<p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--mc-accent); margin: 0 0 10px 0; font-weight: bold;">' . esc_html($subtitle) . '</p>'; ?>
+        <h2 style="font-size: 32px; font-weight: 800; margin: 0; color: #000;"><?php echo esc_html($title); ?></h2>
     </div>
 
     <div class="mc-tabs-nav">
@@ -113,13 +133,13 @@ if (!function_exists('mc_get_tab_query')) {
 
     <div class="mc-tabs-content-wrapper">
         <?php foreach ($tabs as $index => $tab) : 
-            $query = mc_get_tab_query($tab['query'], $tab['count']);
+            $query = mc_get_tab_query($tab);
         ?>
             <div class="mc-tab-pane <?php echo $index === 0 ? 'is-active' : ''; ?>" id="tab-<?php echo esc_attr($unique_id . '-' . $index); ?>">
                 <?php if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post(); global $product; ?>
                     <div <?php wc_product_class('mc-tab-card', $product); ?>>
-                        <a href="<?php echo esc_url($product->get_permalink()); ?>">
-                            <img src="<?php echo esc_url(wp_get_attachment_image_url($product->get_image_id(), 'woocommerce_thumbnail')); ?>" class="mc-tab-img" />
+                        <a href="<?php echo esc_url($product->get_permalink()); ?>" class="mc-tab-img-wrap">
+                            <img src="<?php echo esc_url(wp_get_attachment_image_url($product->get_image_id(), 'woocommerce_thumbnail')); ?>" class="mc-tab-img" loading="lazy" />
                         </a>
                         <div class="mc-tab-info">
                             <a href="<?php echo esc_url($product->get_permalink()); ?>" class="mc-tab-title"><?php echo $product->get_name(); ?></a>
@@ -127,7 +147,7 @@ if (!function_exists('mc_get_tab_query')) {
                         </div>
                     </div>
                 <?php endwhile; wp_reset_postdata(); else: ?>
-                    <p>No products found for this category.</p>
+                    <p style="grid-column: 1 / -1; text-align: center; padding: 40px; background: rgba(0,0,0,0.02); border-radius: 8px;">No products found for this collection.</p>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
