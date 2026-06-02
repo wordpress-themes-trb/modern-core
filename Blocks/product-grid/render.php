@@ -1,5 +1,4 @@
 <?php
-$width_mode = $attributes['widthMode'] ?? 'contained';
 // Safety check: Don't crash if WooCommerce is not active
 if (!class_exists('WooCommerce')) {
     echo '<p>Please install and activate WooCommerce to use the Product Grid.</p>';
@@ -21,7 +20,7 @@ $show_rating = $attributes['showRating'] ?? true;
 $atc_style = $attributes['atcStyle'] ?? 'solid';
 $atc_pos = $attributes['atcPosition'] ?? 'below';
 $show_toolbar = $attributes['showToolbar'] ?? true;
-$accent = $attributes['accentColor'] ?? '#0f172a';
+$accent = $attributes['accentColor'] ?? '#000000';
 
 $unique_id = uniqid('mc-pgrid-');
 
@@ -60,7 +59,19 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => $wrapper_classes]
             --mc-radius: <?php echo esc_attr($radius); ?>px;
             --mc-bg: <?php echo esc_attr($card_bg); ?>;
             --mc-accent: <?php echo esc_attr($accent); ?>;
+            
+            /* Margin, Containment, and Padding Enforcement */
             width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 5%;
+            box-sizing: border-box;
+        }
+
+        .<?php echo esc_attr($unique_id); ?> *,
+        .<?php echo esc_attr($unique_id); ?> *::before,
+        .<?php echo esc_attr($unique_id); ?> *::after {
+            box-sizing: border-box !important;
         }
 
         .<?php echo esc_attr($unique_id); ?> .mc-grid-container {
@@ -70,6 +81,7 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => $wrapper_classes]
         }
 
         @media (max-width: 768px) {
+            .<?php echo esc_attr($unique_id); ?> { padding: 40px 20px; }
             .<?php echo esc_attr($unique_id); ?> .mc-grid-container {
                 grid-template-columns: repeat(var(--mc-cols-m), 1fr);
                 gap: 15px;
@@ -84,8 +96,9 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => $wrapper_classes]
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
         }
         <?php if ($lift) : ?>
         .<?php echo esc_attr($unique_id); ?> .mc-product-card:hover {
@@ -100,12 +113,13 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => $wrapper_classes]
             position: relative;
             overflow: hidden;
             display: block;
+            width: 100%;
         }
         .<?php echo esc_attr($unique_id); ?> .mc-img-primary {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, opacity 0.4s ease;
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, opacity 0.4s ease; display: block;
         }
         .<?php echo esc_attr($unique_id); ?> .mc-img-secondary {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s ease;
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s ease; display: block;
         }
 
         /* Hover: Zoom */
@@ -120,28 +134,33 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => $wrapper_classes]
             padding: 20px; display: flex; flex-direction: column; flex: 1;
         }
         .<?php echo esc_attr($unique_id); ?> .mc-title {
-            font-size: 15px; margin: 0 0 10px 0; line-height: 1.3; color: inherit; text-decoration: none;
+            font-size: 15px; margin: 0 0 10px 0; line-height: 1.3; color: inherit; text-decoration: none; font-weight: bold;
         }
-        .<?php echo esc_attr($unique_id); ?> .mc-price { font-weight: bold; font-size: 15px; }
+        .<?php echo esc_attr($unique_id); ?> .mc-price { font-weight: bold; font-size: 15px; margin-bottom: 15px; }
         .<?php echo esc_attr($unique_id); ?> .mc-price del { opacity: 0.5; font-size: 13px; font-weight: normal; margin-left: 5px; }
         .<?php echo esc_attr($unique_id); ?> .mc-price ins { text-decoration: none; color: #ef4444; }
 
         /* Add to Cart Native Styling */
-        .<?php echo esc_attr($unique_id); ?> .ajax_add_to_cart {
-            display: block; margin-top: 15px; padding: 12px; text-align: center;
-            font-size: 13px; font-weight: bold; border-radius: var(--mc-radius);
-            text-decoration: none; transition: opacity 0.2s ease;
+        .<?php echo esc_attr($unique_id); ?> .ajax_add_to_cart,
+        .<?php echo esc_attr($unique_id); ?> .added_to_cart {
+            display: block !important; margin-top: auto; padding: 12px !important; text-align: center !important;
+            font-size: 13px !important; font-weight: bold !important; border-radius: var(--mc-radius) !important;
+            text-decoration: none !important; transition: opacity 0.2s ease !important; width: 100% !important; line-height: 1.2 !important;
             <?php if ($atc_style === 'solid') : ?>
-                background: var(--mc-accent); color: #fff; border: none;
+                background: var(--mc-accent) !important; color: #fff !important; border: none !important;
             <?php elseif ($atc_style === 'outline') : ?>
-                background: transparent; color: var(--mc-accent); border: 2px solid var(--mc-accent);
+                background: transparent !important; color: var(--mc-accent) !important; border: 2px solid var(--mc-accent) !important;
+            <?php else : ?>
+                background: transparent !important; color: var(--mc-accent) !important; padding: 0 !important; text-align: left !important; text-decoration: underline !important; margin-top: 5px !important;
             <?php endif; ?>
         }
-        .<?php echo esc_attr($unique_id); ?> .ajax_add_to_cart.loading { opacity: 0.5; }
+        .<?php echo esc_attr($unique_id); ?> .ajax_add_to_cart:hover { opacity: 0.8 !important; }
+        .<?php echo esc_attr($unique_id); ?> .ajax_add_to_cart.loading { opacity: 0.5 !important; }
 
         /* ATC Overlay Mode */
         <?php if ($atc_pos === 'overlay') : ?>
-        .<?php echo esc_attr($unique_id); ?> .mc-card-info .ajax_add_to_cart { display: none; }
+        .<?php echo esc_attr($unique_id); ?> .mc-card-info .ajax_add_to_cart,
+        .<?php echo esc_attr($unique_id); ?> .mc-card-info .added_to_cart { display: none !important; }
         .<?php echo esc_attr($unique_id); ?> .mc-atc-overlay-wrap {
             position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 5;
             transform: translateY(20px); opacity: 0; transition: all 0.3s ease;
@@ -149,15 +168,16 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => $wrapper_classes]
         .<?php echo esc_attr($unique_id); ?> .mc-product-card:hover .mc-atc-overlay-wrap {
             transform: translateY(0); opacity: 1;
         }
-        .<?php echo esc_attr($unique_id); ?> .mc-atc-overlay-wrap .ajax_add_to_cart {
-            margin: 0; background: #fff; color: #000; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .<?php echo esc_attr($unique_id); ?> .mc-atc-overlay-wrap .ajax_add_to_cart,
+        .<?php echo esc_attr($unique_id); ?> .mc-atc-overlay-wrap .added_to_cart {
+            margin: 0 !important; background: #fff !important; color: #000 !important; box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; border: none !important;
         }
         <?php endif; ?>
 
         /* Sale Badge */
         .<?php echo esc_attr($unique_id); ?> .onsale {
             position: absolute; top: 10px; left: 10px; background: #ef4444; color: #fff;
-            font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 4px; z-index: 3; line-height: 1;
+            font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: <?php echo $attributes['saleBadgeStyle'] === 'pill' ? '50px' : '4px'; ?>; z-index: 3; line-height: 1;
         }
     </style>
 
@@ -176,7 +196,6 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => $wrapper_classes]
                 $img_id = $product->get_image_id();
                 $primary_img = wp_get_attachment_image_url($img_id, 'woocommerce_thumbnail');
                 
-                // Get secondary image for swap hover
                 $gallery = $product->get_gallery_image_ids();
                 $secondary_img = !empty($gallery) ? wp_get_attachment_image_url($gallery[0], 'woocommerce_thumbnail') : null;
             ?>
@@ -211,7 +230,7 @@ $wrapper_attributes = get_block_wrapper_attributes(['class' => $wrapper_classes]
                             </div>
                         <?php endif; ?>
 
-                        <div style="margin-top: auto;" class="mc-price">
+                        <div class="mc-price">
                             <?php echo $product->get_price_html(); ?>
                         </div>
 

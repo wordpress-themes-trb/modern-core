@@ -33,10 +33,15 @@ export default function Edit({ attributes, setAttributes }) {
 
   const blockProps = useBlockProps({
     className: `modern-core-grid-editor layout-${layoutMode} atc-${atcPosition}`,
-    style: { width: "100%", padding: "20px" },
+    style: {
+      width: "100%",
+      maxWidth: "1200px",
+      margin: "0 auto",
+      padding: "40px 5%",
+      boxSizing: "border-box",
+    },
   });
 
-  // Generate high-quality mock data for the editor preview
   const mockProducts = Array.from({ length: Math.min(productCount, 8) }).map(
     (_, i) => ({
       id: i,
@@ -204,67 +209,68 @@ export default function Edit({ attributes, setAttributes }) {
       <div {...blockProps}>
         <style>
           {`
-                    .modern-core-grid-editor {
-                        --mc-cols: ${columnsDesktop};
-                        --mc-ratio: ${imageRatio};
-                        --mc-radius: ${cardRadius}px;
-                        --mc-bg: ${cardBg};
-                        --mc-accent: ${accentColor};
-                    }
-                    .mc-grid-container {
-                        display: grid;
-                        grid-template-columns: repeat(var(--mc-cols), 1fr);
-                        gap: 30px;
-                    }
-                    .layout-list .mc-grid-container {
-                        grid-template-columns: 1fr;
-                        gap: 20px;
-                    }
-                    .mc-product-card {
-                        background: var(--mc-bg);
-                        border-radius: var(--mc-radius);
-                        overflow: hidden;
-                        display: flex;
-                        flex-direction: column;
-                        border: 1px solid rgba(0,0,0,0.05);
-                        position: relative;
-                    }
-                    .layout-list .mc-product-card {
-                        flex-direction: row;
-                        align-items: center;
-                    }
-                    .mc-card-image {
-                        aspect-ratio: var(--mc-ratio);
-                        width: 100%;
-                        background-size: cover;
-                        background-position: center;
-                        position: relative;
-                        overflow: hidden;
-                    }
-                    .layout-list .mc-card-image {
-                        width: 300px;
-                        flex-shrink: 0;
-                    }
-                    .mc-card-info {
-                        padding: 20px;
-                        display: flex;
-                        flex-direction: column;
-                        flex: 1;
-                    }
-                    .mc-badge {
-                        position: absolute; top: 10px; left: 10px;
-                        background: #ef4444; color: #fff; font-size: 10px; font-weight: bold;
-                        padding: 4px 10px; border-radius: ${saleBadgeStyle === "pill" ? "50px" : "4px"}; z-index: 2;
-                    }
-                    .mc-atc-btn {
-                        margin-top: 15px; padding: 12px; text-align: center; font-size: 13px; font-weight: bold;
-                        background: ${atcStyle === "solid" ? accentColor : "transparent"};
-                        color: ${atcStyle === "solid" ? "#fff" : accentColor};
-                        border: ${atcStyle === "outline" ? `2px solid ${accentColor}` : "none"};
-                        border-radius: ${cardRadius}px;
-                    }
-                    .atc-overlay .mc-atc-btn { display: none; }
-                    `}
+            .modern-core-grid-editor *, .modern-core-grid-editor *::before, .modern-core-grid-editor *::after { box-sizing: border-box; }
+            .modern-core-grid-editor {
+                --mc-cols: ${columnsDesktop};
+                --mc-ratio: ${imageRatio};
+                --mc-radius: ${cardRadius}px;
+                --mc-bg: ${cardBg};
+                --mc-accent: ${accentColor};
+            }
+            .mc-grid-container {
+                display: grid;
+                grid-template-columns: repeat(var(--mc-cols), 1fr);
+                gap: 30px;
+            }
+            .layout-list .mc-grid-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .mc-product-card {
+                background: var(--mc-bg);
+                border-radius: var(--mc-radius);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid rgba(0,0,0,0.08);
+                position: relative;
+            }
+            .layout-list .mc-product-card {
+                flex-direction: row;
+                align-items: center;
+            }
+            .mc-card-image {
+                aspect-ratio: var(--mc-ratio);
+                width: 100%;
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                overflow: hidden;
+            }
+            .layout-list .mc-card-image {
+                width: 300px;
+                flex-shrink: 0;
+            }
+            .mc-card-info {
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+            .mc-badge {
+                position: absolute; top: 10px; left: 10px;
+                background: #ef4444; color: #fff; font-size: 10px; font-weight: bold;
+                padding: 4px 10px; border-radius: ${saleBadgeStyle === "pill" ? "50px" : "4px"}; z-index: 2;
+            }
+            .mc-atc-btn {
+                margin-top: auto; padding: 12px; text-align: center; font-size: 13px; font-weight: bold;
+                background: ${atcStyle === "solid" ? accentColor : "transparent"};
+                color: ${atcStyle === "solid" ? "#fff" : accentColor};
+                border: ${atcStyle === "outline" ? `2px solid ${accentColor}` : "none"};
+                border-radius: ${cardRadius}px;
+            }
+            .atc-overlay .mc-atc-btn { display: none; }
+          `}
         </style>
 
         {showToolbar && (
@@ -362,6 +368,7 @@ export default function Edit({ attributes, setAttributes }) {
                     display: "flex",
                     gap: "10px",
                     alignItems: "center",
+                    marginBottom: "15px",
                   }}
                 >
                   {p.sale ? (
