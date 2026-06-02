@@ -10,6 +10,7 @@ import { __ } from "@wordpress/i18n";
 
 export default function Edit({ attributes, setAttributes }) {
   const {
+    dataSource,
     lookbackDays,
     maxOrders,
     privacyMode,
@@ -38,7 +39,6 @@ export default function Edit({ attributes, setAttributes }) {
     },
   });
 
-  // Mock data for editor visual
   const mockName =
     privacyMode === "full_name"
       ? "Sarah Jenkins"
@@ -49,32 +49,57 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <>
       <InspectorControls>
-        <PanelBody title={__("Data Engine (WooCommerce)", "modern-core")}>
-          <RangeControl
-            label={__("Lookback Window (Days)", "modern-core")}
-            value={lookbackDays}
-            onChange={(val) => setAttributes({ lookbackDays: val })}
-            min={1}
-            max={30}
-            help="How far back to look for recent orders."
-          />
-          <RangeControl
-            label={__("Max Notifications to Queue", "modern-core")}
-            value={maxOrders}
-            onChange={(val) => setAttributes({ maxOrders: val })}
-            min={3}
-            max={20}
-          />
+        <PanelBody title={__("Data Engine", "modern-core")}>
           <SelectControl
-            label={__("Customer Privacy Mode", "modern-core")}
-            value={privacyMode}
+            label={__("Data Source", "modern-core")}
+            value={dataSource}
             options={[
-              { label: "First Name Only (e.g., Sarah)", value: "first_name" },
-              { label: "Full Name (e.g., Sarah Jenkins)", value: "full_name" },
-              { label: "Anonymous (e.g., A customer)", value: "anonymous" },
+              { label: "Dummy / Demo Data", value: "dummy" },
+              { label: "Live WooCommerce Orders", value: "live" },
             ]}
-            onChange={(val) => setAttributes({ privacyMode: val })}
+            onChange={(val) => setAttributes({ dataSource: val })}
+            help={
+              dataSource === "dummy"
+                ? "Simulates sales using placeholder data. Great for new stores."
+                : "Pulls real orders from WooCommerce."
+            }
           />
+
+          {dataSource === "live" && (
+            <>
+              <RangeControl
+                label={__("Lookback Window (Days)", "modern-core")}
+                value={lookbackDays}
+                onChange={(val) => setAttributes({ lookbackDays: val })}
+                min={1}
+                max={30}
+                help="How far back to look for recent orders."
+              />
+              <RangeControl
+                label={__("Max Notifications to Queue", "modern-core")}
+                value={maxOrders}
+                onChange={(val) => setAttributes({ maxOrders: val })}
+                min={3}
+                max={20}
+              />
+              <SelectControl
+                label={__("Customer Privacy Mode", "modern-core")}
+                value={privacyMode}
+                options={[
+                  {
+                    label: "First Name Only (e.g., Sarah)",
+                    value: "first_name",
+                  },
+                  {
+                    label: "Full Name (e.g., Sarah Jenkins)",
+                    value: "full_name",
+                  },
+                  { label: "Anonymous (e.g., A customer)", value: "anonymous" },
+                ]}
+                onChange={(val) => setAttributes({ privacyMode: val })}
+              />
+            </>
+          )}
         </PanelBody>
 
         <PanelBody
@@ -171,7 +196,8 @@ export default function Edit({ attributes, setAttributes }) {
             textTransform: "uppercase",
           }}
         >
-          Live Sales Popup Preview (Will fix to screen corner on frontend)
+          Live Sales Popup Preview (
+          {dataSource === "live" ? "Live Mode" : "Dummy Mode"})
         </div>
 
         <div
