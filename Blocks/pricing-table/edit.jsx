@@ -6,7 +6,6 @@ import {
   ToggleControl,
   TextControl,
   ColorPalette,
-  Button,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
@@ -14,6 +13,7 @@ export default function Edit({ attributes, setAttributes }) {
   const {
     showToggle,
     discountLabel,
+    showOriginalPrice,
     cardRadius,
     accentColor,
     textColor,
@@ -22,15 +22,18 @@ export default function Edit({ attributes, setAttributes }) {
     tiers,
   } = attributes;
 
-  // Editor local state for previewing the toggle
   const [isAnnual, setIsAnnual] = React.useState(false);
 
   const blockProps = useBlockProps({
     className: "modern-core-pricing-editor",
-    style: { width: "100%", padding: "60px 0", backgroundColor: "#f1f5f9" },
+    style: {
+      width: "100%",
+      maxWidth: "100%",
+      padding: "40px 0",
+      backgroundColor: "transparent",
+    },
   });
 
-  // Tier Management Functions
   const updateTier = (index, key, value) => {
     const newTiers = [...tiers];
     newTiers[index][key] = value;
@@ -39,28 +42,30 @@ export default function Edit({ attributes, setAttributes }) {
 
   const CheckIcon = () => (
     <svg
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#10b981"
+      stroke="currentColor"
       strokeWidth="3"
       strokeLinecap="round"
       strokeLinejoin="round"
+      style={{ flexShrink: 0 }}
     >
       <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
   );
   const CrossIcon = () => (
     <svg
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#94a3b8"
+      stroke="#cbd5e1"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      style={{ flexShrink: 0 }}
     >
       <line x1="18" y1="6" x2="6" y2="18"></line>
       <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -83,6 +88,15 @@ export default function Edit({ attributes, setAttributes }) {
               onChange={(val) => setAttributes({ discountLabel: val })}
             />
           )}
+
+          <hr style={{ margin: "20px 0", opacity: 0.2 }} />
+
+          <ToggleControl
+            label={__("Show Original Price Strikethrough", "modern-core")}
+            checked={showOriginalPrice}
+            onChange={(val) => setAttributes({ showOriginalPrice: val })}
+            help="Displays the crossed-out original price next to the discounted annual price."
+          />
           <RangeControl
             label={__("Card Border Radius", "modern-core")}
             value={cardRadius}
@@ -92,7 +106,10 @@ export default function Edit({ attributes, setAttributes }) {
           />
         </PanelBody>
 
-        <PanelBody title={__("Colors", "modern-core")} initialOpen={false}>
+        <PanelBody
+          title={__("Minimalist Colors", "modern-core")}
+          initialOpen={false}
+        >
           <p style={{ marginTop: "5px", marginBottom: "5px" }}>
             <strong>
               {__("Brand Accent (Buttons & Badges)", "modern-core")}
@@ -129,10 +146,6 @@ export default function Edit({ attributes, setAttributes }) {
           title={__("Tiers Management", "modern-core")}
           initialOpen={false}
         >
-          <p style={{ fontSize: "12px", opacity: 0.6 }}>
-            Edit names, pricing, and feature arrays via the sidebar or define
-            them in your block configuration.
-          </p>
           {tiers.map((tier, index) => (
             <div
               key={index}
@@ -161,18 +174,36 @@ export default function Edit({ attributes, setAttributes }) {
                 value={tier.badge}
                 onChange={(val) => updateTier(index, "badge", val)}
               />
-              <div style={{ display: "flex", gap: "10px" }}>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
                 <TextControl
                   label="Monthly $"
                   value={tier.priceMonthly}
                   onChange={(val) => updateTier(index, "priceMonthly", val)}
+                  style={{ flex: 1 }}
                 />
                 <TextControl
                   label="Annual $"
                   value={tier.priceAnnual}
                   onChange={(val) => updateTier(index, "priceAnnual", val)}
+                  style={{ flex: 1 }}
                 />
+                {showOriginalPrice && (
+                  <TextControl
+                    label="Orig. Annual $"
+                    value={tier.priceAnnualOriginal || ""}
+                    onChange={(val) =>
+                      updateTier(index, "priceAnnualOriginal", val)
+                    }
+                    style={{ flex: 1 }}
+                    help="Price to cross out"
+                  />
+                )}
               </div>
+              <TextControl
+                label="Button Text"
+                value={tier.button}
+                onChange={(val) => updateTier(index, "button", val)}
+              />
             </div>
           ))}
         </PanelBody>
@@ -181,20 +212,67 @@ export default function Edit({ attributes, setAttributes }) {
       <div {...blockProps}>
         <style>
           {`
-                    .modern-core-pricing-editor { --mc-rad: ${cardRadius}px; --mc-acc: ${accentColor}; --mc-txt: ${textColor}; }
-                    .mc-pt-toggle-wrap { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 50px; }
-                    .mc-pt-switch { width: 60px; height: 32px; background: rgba(0,0,0,0.1); border-radius: 50px; position: relative; cursor: pointer; }
-                    .mc-pt-knob { width: 26px; height: 26px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: ${isAnnual ? "31px" : "3px"}; transition: left 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-                    .mc-pt-badge { background: var(--mc-acc); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 50px; font-weight: bold; }
-                    
-                    .mc-pt-grid { display: grid; grid-template-columns: repeat(${tiers.length}, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; padding: 0 5%; align-items: center; }
-                    .mc-pt-card { background: ${bgBase}; padding: 40px 30px; border-radius: var(--mc-rad); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column; position: relative; color: var(--mc-txt); }
-                    .mc-pt-card.is-featured { background: ${bgFeatured}; transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 2px solid var(--mc-acc); z-index: 10; }
-                    
-                    .mc-pt-btn { width: 100%; padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; margin-top: 30px; cursor: pointer; }
-                    .mc-pt-card.is-featured .mc-pt-btn { background: var(--mc-acc); color: #fff; border: none; }
-                    .mc-pt-card:not(.is-featured) .mc-pt-btn { background: transparent; border: 2px solid var(--mc-acc); color: var(--mc-acc); }
-                    `}
+            /* Hard lock the box model in the editor so buttons don't blow out */
+            .modern-core-pricing-editor *, 
+            .modern-core-pricing-editor *::before, 
+            .modern-core-pricing-editor *::after { 
+                box-sizing: border-box !important; 
+            }
+            .modern-core-pricing-editor { --mc-rad: ${cardRadius}px; --mc-acc: ${accentColor}; --mc-txt: ${textColor}; }
+            
+            .mc-pt-toggle-wrap { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 50px; color: var(--mc-txt); }
+            .mc-pt-switch { width: 64px; height: 34px; background: rgba(0,0,0,0.1); border-radius: 50px; position: relative; cursor: pointer; }
+            .mc-pt-switch.is-annual { background: var(--mc-acc); }
+            .mc-pt-knob { width: 28px; height: 28px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: ${isAnnual ? "33px" : "3px"}; transition: left 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+            .mc-pt-badge { background: var(--mc-acc); color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 50px; font-weight: bold; margin-left: 8px; }
+            
+            /* Responsive Grid tailored to survive Gutenberg's narrow canvas */
+            .mc-pt-grid { 
+                display: grid; 
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+                gap: 20px; 
+                width: 100%;
+                max-width: 1200px; 
+                margin: 0 auto; 
+                align-items: stretch; 
+            }
+            
+            .mc-pt-card { 
+                height: 100%;
+                width: 100%;
+                background: ${bgBase}; 
+                padding: 30px 20px; 
+                border-radius: var(--mc-rad); 
+                box-shadow: 0 4px 20px rgba(0,0,0,0.03); 
+                border: 1px solid rgba(0,0,0,0.08); 
+                display: flex; 
+                flex-direction: column; 
+                position: relative; 
+                color: var(--mc-txt); 
+                text-align: left; 
+            }
+            .mc-pt-card.is-featured { 
+                background: ${bgFeatured}; 
+                transform: scale(1.02); 
+                box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
+                border: 2px solid var(--mc-acc); 
+                z-index: 10; 
+            }
+            
+            .mc-pt-price-wrap { display: flex; align-items: baseline; gap: 5px; margin-bottom: 30px; flex-wrap: wrap; }
+            
+            .mc-pt-btn { 
+                width: 100%; 
+                padding: 16px; 
+                text-align: center; 
+                border-radius: 8px; 
+                font-weight: bold; 
+                margin-top: auto; /* Pushes button to the bottom */
+                display: block; 
+            }
+            .mc-pt-card.is-featured .mc-pt-btn { background: var(--mc-acc); color: #fff; border: none; }
+            .mc-pt-card:not(.is-featured) .mc-pt-btn { background: transparent; border: 1px solid var(--mc-acc); color: var(--mc-acc); }
+          `}
         </style>
 
         {showToggle && (
@@ -208,7 +286,7 @@ export default function Edit({ attributes, setAttributes }) {
               Monthly
             </span>
             <div
-              className="mc-pt-switch"
+              className={`mc-pt-switch ${isAnnual ? "is-annual" : ""}`}
               onClick={() => setIsAnnual(!isAnnual)}
             >
               <div className="mc-pt-knob"></div>
@@ -219,7 +297,6 @@ export default function Edit({ attributes, setAttributes }) {
                 opacity: isAnnual ? 1 : 0.6,
                 display: "flex",
                 alignItems: "center",
-                gap: "8px",
               }}
             >
               Annually <span className="mc-pt-badge">{discountLabel}</span>
@@ -237,16 +314,18 @@ export default function Edit({ attributes, setAttributes }) {
                 <div
                   style={{
                     position: "absolute",
-                    top: "-12px",
+                    top: "-14px",
                     left: "50%",
                     transform: "translateX(-50%)",
                     background: accentColor,
                     color: "#fff",
                     fontSize: "12px",
                     fontWeight: "bold",
-                    padding: "6px 16px",
+                    padding: "6px 20px",
                     borderRadius: "50px",
                     whiteSpace: "nowrap",
+                    letterSpacing: "1px",
+                    textTransform: "uppercase",
                   }}
                 >
                   {tier.badge}
@@ -257,45 +336,60 @@ export default function Edit({ attributes, setAttributes }) {
                 style={{
                   margin: "0 0 10px 0",
                   fontSize: "24px",
-                  fontWeight: "bold",
+                  fontWeight: "800",
                 }}
               >
                 {tier.name}
               </h3>
               <p
                 style={{
-                  fontSize: "14px",
-                  opacity: 0.8,
-                  margin: "0 0 20px 0",
-                  minHeight: "40px",
+                  fontSize: "15px",
+                  opacity: 0.7,
+                  margin: "0 0 25px 0",
+                  lineHeight: "1.5",
+                  minHeight: "45px",
                 }}
               >
                 {tier.desc}
               </p>
 
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "baseline",
-                  gap: "5px",
-                  marginBottom: "30px",
-                }}
-              >
+              <div className="mc-pt-price-wrap">
                 <span style={{ fontSize: "24px", fontWeight: "bold" }}>$</span>
                 <span
-                  style={{ fontSize: "56px", fontWeight: "900", lineHeight: 1 }}
+                  style={{
+                    fontSize: "48px",
+                    fontWeight: "900",
+                    lineHeight: 1,
+                    letterSpacing: "-1px",
+                  }}
                 >
                   {isAnnual ? tier.priceAnnual : tier.priceMonthly}
                 </span>
-                <span style={{ opacity: 0.6 }}>/mo</span>
+                <span style={{ opacity: 0.6, fontWeight: "bold" }}>/mo</span>
+
+                {/* Fixed Editor Strikethrough Logic */}
+                {showOriginalPrice && isAnnual && tier.priceAnnualOriginal && (
+                  <del
+                    style={{
+                      fontSize: "16px",
+                      opacity: 0.5,
+                      marginLeft: "4px",
+                      fontWeight: "bold",
+                      color: textColor,
+                    }}
+                  >
+                    ${tier.priceAnnualOriginal}
+                  </del>
+                )}
               </div>
 
               <div
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: "15px",
+                  gap: "12px",
                   flex: 1,
+                  marginBottom: "35px",
                 }}
               >
                 {tier.features.map((feat, fi) => (
@@ -303,15 +397,15 @@ export default function Edit({ attributes, setAttributes }) {
                     key={fi}
                     style={{
                       display: "flex",
-                      alignItems: "center",
+                      alignItems: "flex-start",
                       gap: "10px",
                       fontSize: "15px",
-                      opacity: feat.included ? 1 : 0.5,
-                      textDecoration: feat.included ? "none" : "line-through",
+                      opacity: feat.included ? 1 : 0.4,
+                      color: feat.included ? "inherit" : "#64748b",
                     }}
                   >
                     {feat.included ? <CheckIcon /> : <CrossIcon />}
-                    {feat.text}
+                    <span style={{ lineHeight: "1.4" }}>{feat.text}</span>
                   </div>
                 ))}
               </div>

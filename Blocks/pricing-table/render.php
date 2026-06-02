@@ -1,29 +1,28 @@
 <?php
-$width_mode = $attributes['widthMode'] ?? 'contained';
 $show_toggle = $attributes['showToggle'] ?? true;
 $discount_label = $attributes['discountLabel'] ?? 'Save 20%';
+$show_original_price = $attributes['showOriginalPrice'] ?? true;
 $radius = $attributes['cardRadius'] ?? 12;
-$accent = $attributes['accentColor'] ?? '#3b82f6';
-$text_c = $attributes['textColor'] ?? '#0f172a';
+$accent = $attributes['accentColor'] ?? '#000000';
+$text_c = $attributes['textColor'] ?? '#000000';
 $bg_base = $attributes['bgBase'] ?? '#ffffff';
-$bg_feat = $attributes['bgFeatured'] ?? '#f8fafc';
+$bg_feat = $attributes['bgFeatured'] ?? '#fafafa';
 $tiers = $attributes['tiers'] ?? [];
 
 if (empty($tiers)) return;
 
 $unique_id = uniqid('mc-price-');
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-pricing-table {$unique_id}"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "mc-block modern-core-pricing-table {$unique_id}"]);
 
-// FIX: Wrap helper functions to prevent redeclaration fatal errors
 if (!function_exists('mc_pricing_check')) {
     function mc_pricing_check() {
-        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mc-pt-icon check"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mc-pt-icon check"><polyline points="20 6 9 17 4 12"></polyline></svg>';
     }
 }
 
 if (!function_exists('mc_pricing_cross')) {
     function mc_pricing_cross() {
-        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mc-pt-icon cross"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+        return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mc-pt-icon cross"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
     }
 }
 ?>
@@ -37,6 +36,12 @@ if (!function_exists('mc_pricing_cross')) {
             --mc-bg: <?php echo esc_attr($bg_base); ?>;
             --mc-bg-feat: <?php echo esc_attr($bg_feat); ?>;
             width: 100%; padding: 80px 0; color: var(--mc-txt);
+        }
+
+        .<?php echo esc_attr($unique_id); ?> *,
+        .<?php echo esc_attr($unique_id); ?> *::before,
+        .<?php echo esc_attr($unique_id); ?> *::after {
+            box-sizing: border-box !important;
         }
 
         /* Toggle UI */
@@ -60,48 +65,49 @@ if (!function_exists('mc_pricing_cross')) {
 
         /* Grid & Cards */
         .<?php echo esc_attr($unique_id); ?> .mc-pt-grid {
-            display: grid; grid-template-columns: repeat(<?php echo count($tiers); ?>, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; padding: 0 5%; align-items: center;
+            display: grid; grid-template-columns: repeat(<?php echo count($tiers); ?>, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; padding: 0 5%; align-items: stretch;
         }
         @media (max-width: 900px) {
-            .<?php echo esc_attr($unique_id); ?> .mc-pt-grid { grid-template-columns: 1fr; align-items: stretch; gap: 40px; }
+            .<?php echo esc_attr($unique_id); ?> .mc-pt-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         }
 
         .<?php echo esc_attr($unique_id); ?> .mc-pt-card {
-            background: var(--mc-bg); padding: 40px 30px; border-radius: var(--mc-rad); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
-            display: flex; flex-direction: column; position: relative; transition: transform 0.3s;
+            background: var(--mc-bg); padding: 40px 30px; border-radius: var(--mc-rad); box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.08);
+            display: flex; flex-direction: column; position: relative; transition: transform 0.3s; text-align: left; width: 100%; height: 100%;
         }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-card.is-featured {
-            background: var(--mc-bg-feat); transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 2px solid var(--mc-acc); z-index: 10;
+            background: var(--mc-bg-feat); transform: scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 2px solid var(--mc-acc); z-index: 10;
         }
         @media (max-width: 900px) { .<?php echo esc_attr($unique_id); ?> .mc-pt-card.is-featured { transform: scale(1); } }
 
-        /* Typography inside Card */
+        /* Typography */
         .<?php echo esc_attr($unique_id); ?> .mc-pt-feat-badge {
             position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--mc-acc); color: #fff;
             font-size: 12px; font-weight: bold; padding: 6px 20px; border-radius: 50px; white-space: nowrap; text-transform: uppercase; letter-spacing: 1px;
         }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-name { margin: 0 0 10px 0; font-size: 24px; font-weight: 800; }
-        .<?php echo esc_attr($unique_id); ?> .mc-pt-desc { font-size: 15px; opacity: 0.8; margin: 0 0 25px 0; line-height: 1.5; min-height: 45px; }
+        .<?php echo esc_attr($unique_id); ?> .mc-pt-desc { font-size: 15px; opacity: 0.7; margin: 0 0 25px 0; line-height: 1.5; min-height: 45px; }
         
-        /* Price Animation Area */
-        .<?php echo esc_attr($unique_id); ?> .mc-pt-price-wrap { display: flex; align-items: baseline; gap: 5px; margin-bottom: 30px; }
+        .<?php echo esc_attr($unique_id); ?> .mc-pt-price-wrap { display: flex; align-items: baseline; gap: 5px; margin-bottom: 30px; flex-wrap: wrap; }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-currency { font-size: 24px; font-weight: bold; }
-        .<?php echo esc_attr($unique_id); ?> .mc-pt-amount { font-size: 56px; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+        .<?php echo esc_attr($unique_id); ?> .mc-pt-amount { font-size: 56px; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -1px; }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-period { opacity: 0.6; font-size: 16px; font-weight: bold; }
+        .<?php echo esc_attr($unique_id); ?> .mc-pt-strike { font-size: 18px; opacity: 0.5; margin-left: 8px; font-weight: bold; display: none; transition: opacity 0.15s ease; color: var(--mc-txt); }
 
         /* Features List */
-        .<?php echo esc_attr($unique_id); ?> .mc-pt-features { display: flex; flex-direction: column; gap: 15px; flex: 1; margin-bottom: 35px; }
+        .<?php echo esc_attr($unique_id); ?> .mc-pt-features { display: flex; flex-direction: column; gap: 16px; flex: 1; margin-bottom: 35px; }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-feature { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.4; }
-        .<?php echo esc_attr($unique_id); ?> .mc-pt-feature.is-excluded { opacity: 0.5; text-decoration: line-through; }
+        .<?php echo esc_attr($unique_id); ?> .mc-pt-feature.is-excluded { opacity: 0.4; color: #64748b; }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-icon { flex-shrink: 0; margin-top: 2px; }
 
         /* Button */
         .<?php echo esc_attr($unique_id); ?> .mc-pt-btn {
             display: block; width: 100%; padding: 16px; text-align: center; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 16px; transition: opacity 0.2s;
+            margin-top: auto;
         }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-btn:hover { opacity: 0.8; }
         .<?php echo esc_attr($unique_id); ?> .mc-pt-card.is-featured .mc-pt-btn { background: var(--mc-acc); color: #fff; border: none; }
-        .<?php echo esc_attr($unique_id); ?> .mc-pt-card:not(.is-featured) .mc-pt-btn { background: transparent; border: 2px solid var(--mc-acc); color: var(--mc-acc); }
+        .<?php echo esc_attr($unique_id); ?> .mc-pt-card:not(.is-featured) .mc-pt-btn { background: transparent; border: 1px solid var(--mc-acc); color: var(--mc-acc); }
     </style>
 
     <?php if ($show_toggle) : ?>
@@ -119,6 +125,7 @@ if (!function_exists('mc_pricing_cross')) {
     <div class="mc-pt-grid">
         <?php foreach ($tiers as $tier) : 
             $is_feat = $tier['isFeatured'] ?? false;
+            $orig_annual = $tier['priceAnnualOriginal'] ?? '';
         ?>
             <div class="mc-pt-card <?php echo $is_feat ? 'is-featured' : ''; ?>">
                 <?php if ($is_feat && !empty($tier['badge'])) : ?>
@@ -136,6 +143,10 @@ if (!function_exists('mc_pricing_cross')) {
                         <?php echo esc_html($tier['priceMonthly']); ?>
                     </span>
                     <span class="mc-pt-period">/mo</span>
+                    
+                    <?php if ($show_original_price && !empty($orig_annual)) : ?>
+                        <del class="mc-pt-strike">$<?php echo esc_html($orig_annual); ?></del>
+                    <?php endif; ?>
                 </div>
 
                 <div class="mc-pt-features">
@@ -165,35 +176,43 @@ if (!function_exists('mc_pricing_cross')) {
             const labelM = wrapper.querySelector('.label-monthly');
             const labelA = wrapper.querySelector('.label-annual');
             const amounts = wrapper.querySelectorAll('.mc-pt-amount');
+            const strikes = wrapper.querySelectorAll('.mc-pt-strike');
 
             let isAnnual = false;
 
             const updatePricing = () => {
                 isAnnual = !isAnnual;
                 
-                // UI Updates
                 switcher.classList.toggle('is-annual', isAnnual);
                 switcher.setAttribute('aria-checked', isAnnual);
                 labelM.classList.toggle('is-active', !isAnnual);
                 labelA.classList.toggle('is-active', isAnnual);
 
-                // Math & Animation Updates
                 amounts.forEach(amount => {
                     const targetVal = isAnnual ? amount.dataset.annual : amount.dataset.monthly;
-                    
-                    // Simple fade animation for the number swap
                     amount.style.opacity = '0';
                     setTimeout(() => {
                         amount.innerText = targetVal;
                         amount.style.opacity = '1';
                     }, 150);
                 });
+
+                strikes.forEach(strike => {
+                    strike.style.opacity = '0';
+                    setTimeout(() => {
+                        strike.style.display = isAnnual ? 'inline-block' : 'none';
+                        if(isAnnual) {
+                            // Give the browser a tiny tick to register display: inline-block before fading in
+                            requestAnimationFrame(() => {
+                                strike.style.opacity = '0.5';
+                            });
+                        }
+                    }, 150);
+                });
             };
 
-            // Allow clicking the switch or the labels directly
             if (toggleWrap) {
                 toggleWrap.addEventListener('click', updatePricing);
-                // Setup CSS transition for the fade
                 amounts.forEach(amount => amount.style.transition = 'opacity 0.15s ease');
             }
         });
