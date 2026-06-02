@@ -9,7 +9,6 @@ import {
   SelectControl,
   RangeControl,
   ColorPalette,
-  ToggleControl,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
@@ -21,7 +20,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     fontSize,
     fontWeight,
     itemSpacing,
-    disableHamburger,
+    mobileMenuDisplay,
   } = attributes;
 
   const blockProps = useBlockProps({
@@ -29,21 +28,35 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     style: { width: "100%", display: "flex", justifyContent: "center" },
   });
 
+  // Dynamically configure the core navigation block's native mobile setting
+  const innerNavConfig =
+    mobileMenuDisplay === "expanded"
+      ? { overlayMenu: "never" }
+      : { overlayMenu: "mobile" };
+
   return (
     <>
       <InspectorControls>
         <PanelBody title={__("Mobile Settings", "modern-core")}>
-          <ToggleControl
-            label={__("Disable Hamburger (Force Stack)", "modern-core")}
-            checked={disableHamburger}
-            onChange={(val) => setAttributes({ disableHamburger: val })}
+          <SelectControl
+            label={__("Mobile Menu Display", "modern-core")}
+            value={mobileMenuDisplay}
+            options={[
+              { label: "Always Expanded (Stacked Links)", value: "expanded" },
+              { label: "Standard (Hamburger Icon)", value: "collapsed" },
+            ]}
+            onChange={(val) => setAttributes({ mobileMenuDisplay: val })}
             help={__(
-              "Turn this on for footers to show links vertically on mobile instead of a menu icon.",
+              "Choose 'Always Expanded' for footer menus or secondary links where a hamburger icon feels unnecessary.",
               "modern-core",
             )}
           />
         </PanelBody>
-        <PanelBody title={__("Typography & Spacing", "modern-core")}>
+
+        <PanelBody
+          title={__("Typography & Spacing", "modern-core")}
+          initialOpen={false}
+        >
           <RangeControl
             label={__("Font Size (px)", "modern-core")}
             value={fontSize}
@@ -125,15 +138,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
               : ""
           }
 
-          /* THE HAMBURGER KILLER */
+          /* Force Mobile Stacking in Editor Preview if Expanded is chosen */
           ${
-            disableHamburger
+            mobileMenuDisplay === "expanded"
               ? `
               @media (max-width: 767px) {
-                  .modern-core-nav-${clientId} .wp-block-navigation__responsive-container-open { display: none !important; }
-                  .modern-core-nav-${clientId} .wp-block-navigation__responsive-container-close { display: none !important; }
-                  .modern-core-nav-${clientId} .wp-block-navigation__responsive-container { display: block !important; position: static !important; width: 100% !important; height: auto !important; background: transparent !important; visibility: visible !important; opacity: 1 !important; transform: none !important; padding: 0 !important; }
-                  .modern-core-nav-${clientId} .wp-block-navigation__responsive-container-content { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 15px !important; }
+                  .modern-core-nav-${clientId} .wp-block-navigation__container { 
+                      display: flex !important; flex-direction: column !important; align-items: center !important; gap: 15px !important; 
+                  }
               }
           `
               : ""
@@ -144,7 +156,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
       <div {...blockProps}>
         <InnerBlocks
           allowedBlocks={["core/navigation"]}
-          template={[["core/navigation", {}]]}
+          template={[["core/navigation", innerNavConfig]]}
         />
       </div>
     </>

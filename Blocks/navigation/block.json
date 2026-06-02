@@ -1,51 +1,42 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "modern-core/navigation",
-    "title": "Advanced Navigation",
-    "category": "modern-core",
-    "icon": "menu",
-    "description": "Customizable horizontal navigation menu with hover effects.",
-    "attributes": {
-        "disableHamburger": {
-        "type": "boolean",
-        "default": false
-         },
-        "linkColor": {
-            "type": "string",
-            "default": "#0f172a"
-        },
-        "hoverColor": {
-            "type": "string",
-            "default": "#3b82f6"
-        },
-        "hoverEffect": {
-            "type": "string",
-            "default": "underline"
-        },
-        "fontSize": {
-            "type": "number",
-            "default": 15
-        },
-        "fontWeight": {
-            "type": "string",
-            "default": "500"
-        },
-        "itemSpacing": {
-            "type": "number",
-            "default": 32
-        },
-        "widthMode": {
-            "type": "string",
-            "default": "contained",
-            "enum": [
-                "contained",
-                "wide",
-                "fullwidth"
-            ]
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/navigation",
+  "title": "Advanced Navigation",
+  "category": "modern-core",
+  "icon": "menu",
+  "description": "Customizable horizontal navigation menu with hover effects.",
+  "attributes": {
+    "mobileMenuDisplay": {
+      "type": "string",
+      "default": "expanded"
     },
-    "textdomain": "modern-core",
-    "editorScript": "modern-core-navigation-js",
-    "render": "file:./render.php"
+    "linkColor": {
+      "type": "string",
+      "default": "#0f172a"
+    },
+    "hoverColor": {
+      "type": "string",
+      "default": "#3b82f6"
+    },
+    "hoverEffect": {
+      "type": "string",
+      "default": "underline"
+    },
+    "fontSize": {
+      "type": "number",
+      "default": 15
+    },
+    "fontWeight": {
+      "type": "string",
+      "default": "500"
+    },
+    "itemSpacing": {
+      "type": "number",
+      "default": 32
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-navigation-js",
+  "render": "file:./render.php"
 }
