@@ -1,57 +1,43 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "modern-core/slider",
-    "title": "Advanced Slider",
-    "category": "modern-core",
-    "icon": "slides",
-    "description": "Cinematic multi-slide storytelling engine.",
-    "supports": {
-        "align": [
-            "full",
-            "wide"
-        ],
-        "html": false
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/slider",
+  "title": "Advanced Slider",
+  "category": "modern-core",
+  "icon": "slides",
+  "description": "Cinematic multi-slide storytelling engine.",
+  "supports": {
+    "align": ["full", "wide"],
+    "html": false
+  },
+  "attributes": {
+    "minHeight": {
+      "type": "number",
+      "default": 80
     },
-    "attributes": {
-        "minHeight": {
-            "type": "number",
-            "default": 80
-        },
-        "transition": {
-            "type": "string",
-            "default": "fade"
-        },
-        "autoplay": {
-            "type": "boolean",
-            "default": true
-        },
-        "delay": {
-            "type": "number",
-            "default": 5000
-        },
-        "showArrows": {
-            "type": "boolean",
-            "default": true
-        },
-        "showDots": {
-            "type": "boolean",
-            "default": true
-        },
-        "widthMode": {
-            "type": "string",
-            "default": "contained",
-            "enum": [
-                "contained",
-                "wide",
-                "fullwidth"
-            ]
-        }
+    "transition": {
+      "type": "string",
+      "default": "fade"
     },
-    "allowedBlocks": [
-        "modern-core/slide"
-    ],
-    "textdomain": "modern-core",
-    "editorScript": "modern-core-slider-js",
-    "render": "file:./render.php"
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "delay": {
+      "type": "number",
+      "default": 5000
+    },
+    "showArrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDots": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "allowedBlocks": ["modern-core/slide"],
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-slider-js",
+  "render": "file:./render.php"
 }

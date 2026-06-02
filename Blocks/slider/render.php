@@ -1,5 +1,4 @@
 <?php
-$width_mode = $attributes['widthMode'] ?? 'contained';
 $min_height = $attributes['minHeight'] ?? 80;
 $transition = $attributes['transition'] ?? 'fade';
 $autoplay = $attributes['autoplay'] ?? true;
@@ -9,7 +8,7 @@ $show_dots = $attributes['showDots'] ?? true;
 
 $unique_id = uniqid('mc-slider-');
 $wrapper_attributes = get_block_wrapper_attributes([
-    'class' => "mc-block width-" . esc_attr($width_mode) . " modern-core-slider-engine {$unique_id} mode-{$transition}",
+    'class' => "mc-block modern-core-slider-engine {$unique_id} mode-{$transition}",
     'data-autoplay' => $autoplay ? 'true' : 'false',
     'data-delay' => esc_attr($delay)
 ]);
@@ -23,42 +22,39 @@ $wrapper_attributes = get_block_wrapper_attributes([
             height: <?php echo esc_attr($min_height); ?>vh;
             overflow: hidden;
             background: #000;
+            box-sizing: border-box;
+        }
+
+        .<?php echo esc_attr($unique_id); ?> *,
+        .<?php echo esc_attr($unique_id); ?> *::before,
+        .<?php echo esc_attr($unique_id); ?> *::after {
+            box-sizing: border-box !important;
         }
         
         .<?php echo esc_attr($unique_id); ?> .mc-slider-track {
             display: flex;
             width: 100%;
             height: 100%;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Slide easing */
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Slide Child Styling */
-        .<?php echo esc_attr($unique_id); ?> .mc-slide {
-            flex: 0 0 100%;
+        /* HARD LOCK: Prevent the 33% blowout. Force slides to 100% width */
+        .<?php echo esc_attr($unique_id); ?> .modern-core-slide {
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            min-width: 100% !important;
             height: 100%;
+            flex-shrink: 0 !important; 
             position: relative;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            padding: 5% 8%;
-        }
-
-        .<?php echo esc_attr($unique_id); ?> .mc-slide-overlay {
-            position: absolute; inset: 0; background: #000; z-index: 1;
-        }
-        
-        .<?php echo esc_attr($unique_id); ?> .mc-slide-content {
-            position: relative; z-index: 2; width: 100%; max-width: 800px;
         }
 
         /* FADE MODE OVERRIDES */
-        .<?php echo esc_attr($unique_id); ?>.mode-fade .mc-slide {
+        .<?php echo esc_attr($unique_id); ?>.mode-fade .modern-core-slide {
             position: absolute; top: 0; left: 0;
             opacity: 0; transition: opacity 0.8s ease-in-out;
             pointer-events: none;
         }
-        .<?php echo esc_attr($unique_id); ?>.mode-fade .mc-slide.is-active {
+        .<?php echo esc_attr($unique_id); ?>.mode-fade .modern-core-slide.is-active {
             opacity: 1; pointer-events: auto; z-index: 2;
         }
 
@@ -90,8 +86,12 @@ $wrapper_attributes = get_block_wrapper_attributes([
     </div>
 
     <?php if ($show_arrows) : ?>
-        <button class="mc-arrow mc-prev"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-        <button class="mc-arrow mc-next"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+        <button class="mc-arrow mc-prev" aria-label="Previous Slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="mc-arrow mc-next" aria-label="Next Slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
     <?php endif; ?>
 
     <?php if ($show_dots) : ?>
@@ -104,19 +104,20 @@ $wrapper_attributes = get_block_wrapper_attributes([
             if (!slider) return;
 
             const track = slider.querySelector('.mc-slider-track');
-            const slides = Array.from(slider.querySelectorAll('.mc-slide'));
+            const slides = Array.from(slider.querySelectorAll('.modern-core-slide'));
+            if (slides.length === 0) return;
+
             const prevBtn = slider.querySelector('.mc-prev');
             const nextBtn = slider.querySelector('.mc-next');
             const dotsContainer = slider.querySelector('.mc-dots');
             
             const isFade = slider.classList.contains('mode-fade');
             const auto = slider.dataset.autoplay === 'true';
-            const delay = parseInt(slider.dataset.delay);
+            const delay = parseInt(slider.dataset.delay) || 5000;
             
             let currentIndex = 0;
             let timer = null;
 
-            // Generate Dots
             if (dotsContainer) {
                 slides.forEach((_, i) => {
                     const dot = document.createElement('div');
@@ -148,25 +149,26 @@ $wrapper_attributes = get_block_wrapper_attributes([
                 resetAutoplay();
             };
 
-            // Initial Setup
             if (isFade) slides[0].classList.add('is-active');
 
-            // Listeners
             if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
             if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
 
-            // Swipe Physics
             let touchStartX = 0;
-            slider.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX, { passive: true });
+            slider.addEventListener('touchstart', e => {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+            
             slider.addEventListener('touchend', e => {
                 const touchEndX = e.changedTouches[0].clientX;
-                if (touchStartX - touchEndX > 50) goToSlide(currentIndex + 1); // Swipe Left
-                if (touchEndX - touchStartX > 50) goToSlide(currentIndex - 1); // Swipe Right
+                if (touchStartX - touchEndX > 50) goToSlide(currentIndex + 1); 
+                if (touchEndX - touchStartX > 50) goToSlide(currentIndex - 1); 
             }, { passive: true });
 
-            // Autoplay Loop
             const startAutoplay = () => {
-                if (auto) timer = setInterval(() => goToSlide(currentIndex + 1), delay);
+                if (auto && slides.length > 1) {
+                    timer = setInterval(() => goToSlide(currentIndex + 1), delay);
+                }
             };
             const resetAutoplay = () => {
                 clearInterval(timer);

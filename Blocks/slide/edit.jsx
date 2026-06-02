@@ -21,6 +21,7 @@ export default function Edit({ attributes, setAttributes }) {
     className: "modern-core-slide-editor",
     style: {
       minWidth: "100%",
+      minHeight: "400px",
       flexShrink: 0,
       position: "relative",
       backgroundColor: bgColor,
@@ -30,8 +31,9 @@ export default function Edit({ attributes, setAttributes }) {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      padding: "40px",
-      border: "1px solid rgba(255,255,255,0.2)",
+      padding: "60px 5%",
+      border: "1px dashed rgba(0,0,0,0.2)",
+      boxSizing: "border-box",
     },
   });
 
@@ -41,7 +43,11 @@ export default function Edit({ attributes, setAttributes }) {
       {
         content: "NEW ARRIVALS",
         style: {
-          typography: { fontSize: "11px", letterSpacing: "2px" },
+          typography: {
+            fontSize: "12px",
+            letterSpacing: "2px",
+            textTransform: "uppercase",
+          },
           color: { text: "#ffffff" },
         },
       },
@@ -52,18 +58,28 @@ export default function Edit({ attributes, setAttributes }) {
         level: 2,
         content: "Cinematic Storytelling.",
         style: {
-          typography: { fontSize: "48px", fontWeight: "800" },
+          typography: {
+            fontSize: "clamp(36px, 5vw, 64px)",
+            fontWeight: "800",
+            lineHeight: "1.1",
+          },
           color: { text: "#ffffff" },
         },
       },
     ],
     [
       "core/buttons",
-      {},
+      { layout: { type: "flex", justifyContent: "left" } },
       [
         [
           "core/button",
-          { text: "Explore Now", style: { border: { radius: "50px" } } },
+          {
+            text: "Explore Now",
+            style: {
+              border: { radius: "0px" },
+              color: { background: "#ffffff", text: "#000000" },
+            },
+          },
         ],
       ],
     ],
@@ -92,6 +108,21 @@ export default function Edit({ attributes, setAttributes }) {
               )}
             />
           </MediaUploadCheck>
+          {bgImageUrl && (
+            <Button
+              variant="link"
+              isDestructive
+              onClick={() => setAttributes({ bgImageUrl: "" })}
+              style={{
+                marginBottom: "20px",
+                display: "block",
+                textAlign: "center",
+                width: "100%",
+              }}
+            >
+              Remove Image
+            </Button>
+          )}
           <p style={{ marginTop: "5px", marginBottom: "5px" }}>
             <strong>{__("Background Color", "modern-core")}</strong>
           </p>
@@ -117,9 +148,18 @@ export default function Edit({ attributes, setAttributes }) {
             backgroundColor: "#000",
             opacity: overlayOpacity / 100,
             zIndex: 1,
+            pointerEvents: "none",
           }}
         ></div>
-        <div style={{ position: "relative", zIndex: 2, width: "100%" }}>
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            width: "100%",
+            maxWidth: "1200px",
+            margin: "0 auto",
+          }}
+        >
           <InnerBlocks template={DEFAULT_CONTENT} templateLock={false} />
         </div>
       </div>
