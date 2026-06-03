@@ -34,9 +34,29 @@
     "showDots": {
       "type": "boolean",
       "default": true
+    },
+    "slides": {
+      "type": "array",
+      "default": [
+        {
+          "bgImage": "",
+          "bgColor": "#000000",
+          "opacity": 50,
+          "subhead": "NEW ARRIVALS",
+          "heading": "Cinematic Storytelling.",
+          "btnText": "Explore Now"
+        },
+        {
+          "bgImage": "",
+          "bgColor": "#0f172a",
+          "opacity": 60,
+          "subhead": "WINTER COLLECTION",
+          "heading": "Embrace the Elements.",
+          "btnText": "Shop Collection"
+        }
+      ]
     }
   },
-  "allowedBlocks": ["modern-core/slide"],
   "textdomain": "modern-core",
   "editorScript": "modern-core-slider-js",
   "render": "file:./render.php"

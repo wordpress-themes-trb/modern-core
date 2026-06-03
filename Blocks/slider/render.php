@@ -5,6 +5,9 @@ $autoplay = $attributes['autoplay'] ?? true;
 $delay = $attributes['delay'] ?? 5000;
 $show_arrows = $attributes['showArrows'] ?? true;
 $show_dots = $attributes['showDots'] ?? true;
+$slides = $attributes['slides'] ?? [];
+
+if (empty($slides)) return;
 
 $unique_id = uniqid('mc-slider-');
 $wrapper_attributes = get_block_wrapper_attributes([
@@ -38,7 +41,6 @@ $wrapper_attributes = get_block_wrapper_attributes([
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* HARD LOCK: Prevent the 33% blowout. Force slides to 100% width */
         .<?php echo esc_attr($unique_id); ?> .modern-core-slide {
             flex: 0 0 100% !important;
             width: 100% !important;
@@ -46,7 +48,26 @@ $wrapper_attributes = get_block_wrapper_attributes([
             height: 100%;
             flex-shrink: 0 !important; 
             position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 5%;
         }
+
+        .<?php echo esc_attr($unique_id); ?> .mc-slide-overlay {
+            position: absolute; inset: 0; background: #000; z-index: 1;
+        }
+        
+        .<?php echo esc_attr($unique_id); ?> .mc-slide-content {
+            position: relative; z-index: 2; width: 100%; max-width: 1200px; margin: 0 auto;
+        }
+
+        .<?php echo esc_attr($unique_id); ?> .mc-subhead { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin: 0 0 15px 0; }
+        .<?php echo esc_attr($unique_id); ?> .mc-heading { font-size: clamp(36px, 5vw, 64px); font-weight: 800; line-height: 1.1; color: #fff; margin: 0 0 30px 0; }
+        .<?php echo esc_attr($unique_id); ?> .mc-btn { display: inline-block; padding: 12px 30px; background: #fff; color: #000; font-weight: bold; font-size: 14px; text-decoration: none; transition: opacity 0.2s; }
+        .<?php echo esc_attr($unique_id); ?> .mc-btn:hover { opacity: 0.8; }
 
         /* FADE MODE OVERRIDES */
         .<?php echo esc_attr($unique_id); ?>.mode-fade .modern-core-slide {
@@ -82,10 +103,31 @@ $wrapper_attributes = get_block_wrapper_attributes([
     </style>
 
     <div class="mc-slider-track">
-        <?php echo $content; ?>
+        <?php foreach ($slides as $index => $slide) : 
+            $opacity = ($slide['opacity'] ?? 50) / 100;
+            $bg_color = esc_attr($slide['bgColor'] ?? '#000000');
+            $bg_image = !empty($slide['bgImage']) ? "background-image: url('" . esc_url($slide['bgImage']) . "');" : "";
+        ?>
+            <div class="modern-core-slide <?php echo $index === 0 ? 'is-active' : ''; ?>" style="background-color: <?php echo $bg_color; ?>; <?php echo $bg_image; ?>">
+                <div class="mc-slide-overlay" style="opacity: <?php echo esc_attr($opacity); ?>;"></div>
+                <div class="mc-slide-content">
+                    <?php if (!empty($slide['subhead'])) : ?>
+                        <p class="mc-subhead"><?php echo esc_html($slide['subhead']); ?></p>
+                    <?php endif; ?>
+                    
+                    <?php if (!empty($slide['heading'])) : ?>
+                        <h2 class="mc-heading"><?php echo esc_html($slide['heading']); ?></h2>
+                    <?php endif; ?>
+                    
+                    <?php if (!empty($slide['btnText'])) : ?>
+                        <a href="#" class="mc-btn"><?php echo esc_html($slide['btnText']); ?></a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 
-    <?php if ($show_arrows) : ?>
+    <?php if ($show_arrows && count($slides) > 1) : ?>
         <button class="mc-arrow mc-prev" aria-label="Previous Slide">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
@@ -94,7 +136,7 @@ $wrapper_attributes = get_block_wrapper_attributes([
         </button>
     <?php endif; ?>
 
-    <?php if ($show_dots) : ?>
+    <?php if ($show_dots && count($slides) > 1) : ?>
         <div class="mc-dots"></div>
     <?php endif; ?>
 
@@ -105,7 +147,7 @@ $wrapper_attributes = get_block_wrapper_attributes([
 
             const track = slider.querySelector('.mc-slider-track');
             const slides = Array.from(slider.querySelectorAll('.modern-core-slide'));
-            if (slides.length === 0) return;
+            if (slides.length <= 1) return;
 
             const prevBtn = slider.querySelector('.mc-prev');
             const nextBtn = slider.querySelector('.mc-next');
@@ -149,8 +191,6 @@ $wrapper_attributes = get_block_wrapper_attributes([
                 resetAutoplay();
             };
 
-            if (isFade) slides[0].classList.add('is-active');
-
             if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
             if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
 
@@ -166,7 +206,7 @@ $wrapper_attributes = get_block_wrapper_attributes([
             }, { passive: true });
 
             const startAutoplay = () => {
-                if (auto && slides.length > 1) {
+                if (auto) {
                     timer = setInterval(() => goToSlide(currentIndex + 1), delay);
                 }
             };

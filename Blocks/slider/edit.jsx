@@ -2,132 +2,218 @@ import * as React from "@wordpress/element";
 import {
   InspectorControls,
   useBlockProps,
-  InnerBlocks,
+  MediaUpload,
+  MediaUploadCheck,
 } from "@wordpress/block-editor";
 import {
   PanelBody,
   SelectControl,
   RangeControl,
   ToggleControl,
+  ColorPalette,
   Button,
+  TextControl,
 } from "@wordpress/components";
-import { useSelect, useDispatch } from "@wordpress/data";
-import { createBlock } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
-export default function Edit({ attributes, setAttributes, clientId }) {
-  const { minHeight, transition, autoplay, delay, showArrows, showDots } =
-    attributes;
+export default function Edit({ attributes, setAttributes }) {
+  const {
+    minHeight,
+    transition,
+    autoplay,
+    delay,
+    showArrows,
+    showDots,
+    slides,
+  } = attributes;
 
-  // Track the active slide locally
   const [activeSlide, setActiveSlide] = React.useState(0);
 
-  // Hook into Gutenberg's data store
-  const { innerBlocks, selectedBlockId } = useSelect(
-    (select) => {
-      const { getBlock, getSelectedBlockClientId } =
-        select("core/block-editor");
-      return {
-        innerBlocks: getBlock(clientId)?.innerBlocks || [],
-        selectedBlockId: getSelectedBlockClientId(),
-      };
-    },
-    [clientId],
-  );
-
-  const { insertBlock, removeBlock, selectBlock } =
-    useDispatch("core/block-editor");
-
-  // Keep canvas synced if user clicks a slide via List View
-  React.useEffect(() => {
-    const index = innerBlocks.findIndex((b) => b.clientId === selectedBlockId);
-    if (index > -1 && index !== activeSlide) setActiveSlide(index);
-  }, [selectedBlockId, innerBlocks]);
-
-  const addSlide = () => {
-    const newBlock = createBlock("modern-core/slide");
-    insertBlock(newBlock, innerBlocks.length, clientId);
-    setActiveSlide(innerBlocks.length);
-  };
-
-  const deleteSlide = (index, blockId) => {
-    removeBlock(blockId);
-    if (activeSlide >= innerBlocks.length - 1) {
-      setActiveSlide(Math.max(0, innerBlocks.length - 2));
-    }
-  };
-
-  const goToSlide = (index, blockId) => {
-    setActiveSlide(index);
-    selectBlock(blockId); // Switches sidebar context to the child slide
-  };
-
   const blockProps = useBlockProps({
-    className: `modern-core-slider-editor slider-${clientId}`,
+    className: "modern-core-slider-editor",
     style: {
       width: "100%",
       position: "relative",
-      backgroundColor: "#f8fafc",
       boxSizing: "border-box",
+      overflow: "hidden",
     },
   });
 
-  const DEFAULT_TEMPLATE = [
-    ["modern-core/slide", {}],
-    ["modern-core/slide", {}],
-    ["modern-core/slide", {}],
-  ];
+  const updateSlide = (index, key, value) => {
+    const newSlides = [...slides];
+    newSlides[index][key] = value;
+    setAttributes({ slides: newSlides });
+  };
+
+  const addSlide = () => {
+    setAttributes({
+      slides: [
+        ...slides,
+        {
+          bgImage: "",
+          bgColor: "#000000",
+          opacity: 50,
+          subhead: "SUBHEADING",
+          heading: "New Slide Heading",
+          btnText: "Click Here",
+        },
+      ],
+    });
+    setActiveSlide(slides.length);
+  };
+
+  const removeSlide = (index) => {
+    const newSlides = slides.filter((_, i) => i !== index);
+    setAttributes({ slides: newSlides });
+    if (activeSlide >= newSlides.length) {
+      setActiveSlide(Math.max(0, newSlides.length - 1));
+    }
+  };
+
+  // Safely grab the data for the canvas preview
+  const currentSlide = slides[activeSlide] || slides[0];
 
   return (
     <>
       <InspectorControls>
         <PanelBody title={__("Slide Manager", "modern-core")}>
           <p style={{ fontSize: "12px", opacity: 0.6, marginBottom: "15px" }}>
-            Select a slide to isolate it on the canvas and edit its content.
+            Select a slide below to edit its content and background.
           </p>
-          {innerBlocks.map((block, index) => (
+
+          {slides.map((slide, index) => (
             <div
-              key={block.clientId}
+              key={index}
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "8px",
-                padding: "8px 12px",
-                background: activeSlide === index ? "#e2e8f0" : "#ffffff",
+                marginBottom: "10px",
                 border: "1px solid",
-                borderColor: activeSlide === index ? "#94a3b8" : "#e2e8f0",
+                borderColor: activeSlide === index ? "#0f172a" : "#e2e8f0",
                 borderRadius: "6px",
+                overflow: "hidden",
               }}
             >
-              <Button
-                variant="link"
-                onClick={() => goToSlide(index, block.clientId)}
+              {/* Slide Header Toggle */}
+              <div
                 style={{
-                  fontWeight: activeSlide === index ? "bold" : "normal",
-                  textDecoration: "none",
-                  color: activeSlide === index ? "#0f172a" : "#64748b",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "10px 15px",
+                  background: activeSlide === index ? "#f8fafc" : "#ffffff",
+                  cursor: "pointer",
                 }}
+                onClick={() => setActiveSlide(index)}
               >
-                {__(`Slide ${index + 1}`)}
-              </Button>
-              <Button
-                isDestructive
-                variant="link"
-                onClick={() => deleteSlide(index, block.clientId)}
-                style={{ textDecoration: "none" }}
-              >
-                {__("Delete")}
-              </Button>
+                <strong
+                  style={{ color: activeSlide === index ? "#000" : "#64748b" }}
+                >
+                  Slide {index + 1}
+                </strong>
+                {slides.length > 1 && (
+                  <Button
+                    isDestructive
+                    variant="link"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeSlide(index);
+                    }}
+                    style={{ textDecoration: "none" }}
+                  >
+                    Remove
+                  </Button>
+                )}
+              </div>
+
+              {/* Slide Edit Panel (Only visible if active) */}
+              {activeSlide === index && (
+                <div
+                  style={{
+                    padding: "15px",
+                    borderTop: "1px solid #e2e8f0",
+                    background: "#fff",
+                  }}
+                >
+                  <TextControl
+                    label="Subheading"
+                    value={slide.subhead}
+                    onChange={(val) => updateSlide(index, "subhead", val)}
+                  />
+                  <TextControl
+                    label="Main Heading"
+                    value={slide.heading}
+                    onChange={(val) => updateSlide(index, "heading", val)}
+                  />
+                  <TextControl
+                    label="Button Text"
+                    value={slide.btnText}
+                    onChange={(val) => updateSlide(index, "btnText", val)}
+                  />
+
+                  <hr style={{ margin: "20px 0", opacity: 0.2 }} />
+
+                  <MediaUploadCheck>
+                    <MediaUpload
+                      onSelect={(media) =>
+                        updateSlide(index, "bgImage", media.url)
+                      }
+                      allowedTypes={["image"]}
+                      render={({ open }) => (
+                        <Button
+                          variant="secondary"
+                          onClick={open}
+                          style={{
+                            width: "100%",
+                            justifyContent: "center",
+                            marginBottom: "15px",
+                          }}
+                        >
+                          {slide.bgImage ? "Change Image" : "Upload Image"}
+                        </Button>
+                      )}
+                    />
+                  </MediaUploadCheck>
+                  {slide.bgImage && (
+                    <Button
+                      variant="link"
+                      isDestructive
+                      onClick={() => updateSlide(index, "bgImage", "")}
+                      style={{
+                        marginBottom: "15px",
+                        display: "block",
+                        textAlign: "center",
+                        width: "100%",
+                      }}
+                    >
+                      Clear Image
+                    </Button>
+                  )}
+
+                  <p style={{ marginTop: "5px", marginBottom: "5px" }}>
+                    <strong>Background Color</strong>
+                  </p>
+                  <ColorPalette
+                    value={slide.bgColor}
+                    onChange={(val) => updateSlide(index, "bgColor", val)}
+                  />
+                  <RangeControl
+                    label="Overlay Opacity (%)"
+                    value={slide.opacity}
+                    onChange={(val) => updateSlide(index, "opacity", val)}
+                    min={0}
+                    max={100}
+                  />
+                </div>
+              )}
             </div>
           ))}
+
           <Button
             variant="secondary"
             onClick={addSlide}
             style={{
               width: "100%",
               justifyContent: "center",
-              marginTop: "15px",
+              marginTop: "10px",
             }}
           >
             {__("+ Add New Slide")}
@@ -189,44 +275,110 @@ export default function Edit({ attributes, setAttributes, clientId }) {
       </InspectorControls>
 
       <div {...blockProps}>
-        <style>
-          {`
-            /* THE ISOLATION FIX */
-            /* We completely hide all inner blocks inside this specific slider */
-            .slider-${clientId} .block-editor-block-list__layout > .wp-block {
-                display: none !important;
-            }
-            
-            /* We ONLY show the block that corresponds to the activeSlide index */
-            .slider-${clientId} .block-editor-block-list__layout > .wp-block:nth-child(${activeSlide + 1}) {
-                display: block !important;
-                animation: mcFadeIn 0.3s ease;
-            }
-            
-            @keyframes mcFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        {/* Editor Visual Indicator */}
+        <div
+          style={{
+            position: "absolute",
+            top: "10px",
+            left: "10px",
+            background: "rgba(0,0,0,0.5)",
+            color: "#fff",
+            padding: "4px 10px",
+            borderRadius: "4px",
+            fontSize: "11px",
+            fontWeight: "bold",
+            zIndex: 99,
+          }}
+        >
+          Previewing Slide {activeSlide + 1} of {slides.length}
+        </div>
 
-            /* Editor visual indicators */
-            .slider-${clientId}::after {
-                content: 'Slide ${activeSlide + 1} of ${innerBlocks.length}';
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                background: rgba(0,0,0,0.5);
-                color: #fff;
-                padding: 4px 10px;
-                border-radius: 4px;
-                font-size: 11px;
-                font-weight: bold;
-                pointer-events: none;
-                z-index: 99;
-            }
-          `}
-        </style>
+        {/* The Isolated Slide Canvas Preview */}
+        {currentSlide && (
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              minHeight: `${minHeight}vh`,
+              backgroundColor: currentSlide.bgColor,
+              backgroundImage: currentSlide.bgImage
+                ? `url(${currentSlide.bgImage})`
+                : "none",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              padding: "80px 5%",
+              boxSizing: "border-box",
+            }}
+          >
+            {/* Overlay */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundColor: "#000",
+                opacity: currentSlide.opacity / 100,
+                zIndex: 1,
+              }}
+            ></div>
 
-        <InnerBlocks
-          allowedBlocks={["modern-core/slide"]}
-          template={DEFAULT_TEMPLATE}
-        />
+            {/* Content */}
+            <div
+              style={{
+                position: "relative",
+                zIndex: 2,
+                width: "100%",
+                maxWidth: "1200px",
+                margin: "0 auto",
+              }}
+            >
+              {currentSlide.subhead && (
+                <p
+                  style={{
+                    fontSize: "12px",
+                    letterSpacing: "2px",
+                    textTransform: "uppercase",
+                    color: "#fff",
+                    margin: "0 0 15px 0",
+                  }}
+                >
+                  {currentSlide.subhead}
+                </p>
+              )}
+              {currentSlide.heading && (
+                <h2
+                  style={{
+                    fontSize: "clamp(36px, 5vw, 64px)",
+                    fontWeight: "800",
+                    lineHeight: "1.1",
+                    color: "#fff",
+                    margin: "0 0 30px 0",
+                  }}
+                >
+                  {currentSlide.heading}
+                </h2>
+              )}
+              {currentSlide.btnText && (
+                <div
+                  style={{
+                    display: "inline-block",
+                    padding: "12px 30px",
+                    background: "#fff",
+                    color: "#000",
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    borderRadius: "0px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {currentSlide.btnText}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
