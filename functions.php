@@ -573,7 +573,46 @@ add_action('enqueue_block_editor_assets', function() {
     wp_enqueue_style('mc-block-widths-editor', get_template_directory_uri() . '/assets/css/block-widths.css', [], '1.0.0');
 });
 
+//global typography, margin and padding control --Block Level
+add_filter( 'register_block_type_args', 'modern_core_inject_universal_supports', 10, 2 );
 
+function modern_core_inject_universal_supports( $args, $block_type ) {
+    // Only target your custom blocks
+    if ( strpos( $block_type, 'modern-core/' ) === 0 ) {
+        
+        if ( ! isset( $args['supports'] ) ) {
+            $args['supports'] = [];
+        }
+
+        // 1. Force Universal Spacing
+        $args['supports']['spacing'] = [
+            'margin'   => true,
+            'padding'  => true,
+            'blockGap' => true,
+        ];
+
+        // 2. Force Universal Typography (THE FIX: Added the required WordPress core prefixes)
+        $args['supports']['typography'] = [
+            'fontSize'                      => true,
+            'lineHeight'                    => true,
+            '__experimentalFontFamily'      => true,
+            '__experimentalFontWeight'      => true,
+            '__experimentalFontStyle'       => true,
+            '__experimentalTextTransform'   => true,
+            '__experimentalLetterSpacing'   => true,
+            '__experimentalTextDecoration'  => true,
+        ];
+        
+        // 3. Force Universal Background/Text Colors
+        $args['supports']['color'] = [
+            'text'       => true,
+            'background' => true,
+            'gradients'  => true,
+        ];
+    }
+
+    return $args;
+}
 
 
 
