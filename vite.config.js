@@ -16,8 +16,23 @@ export default defineConfig({
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
+      // 1. Mark WordPress packages as external so Vite doesn't bundle them
+      external: [
+        "@wordpress/blocks",
+        "@wordpress/block-editor",
+        "@wordpress/components",
+        "@wordpress/i18n",
+        "@wordpress/element",
+        "@wordpress/data",
+        "@wordpress/api-fetch",
+        "@wordpress/plugins",
+        "@wordpress/edit-post",
+        "@wordpress/hooks",
+        "@wordpress/compose",
+      ],
       input: {
         main: path.resolve(__dirname, "assets/src/js/main.js"),
+        editorJs: path.resolve(__dirname, "assets/src/js/editor.jsx"), // Updated to .jsx
         style: path.resolve(__dirname, "assets/src/scss/main.scss"),
         editor: path.resolve(__dirname, "assets/src/scss/editor.scss"),
         "advanced-header/index": path.resolve(
@@ -266,11 +281,14 @@ export default defineConfig({
           if (assetInfo.name && assetInfo.name.includes("/index")) {
             return `blocks/[name].js`;
           }
-          return "js/[name]-[hash].js";
+          // Outputs clean filenames like 'js/main.js' or 'js/editorJs.js'
+          return "js/[name].js";
         },
-        assetFileNames: "css/[name]-[hash].[ext]",
+        // Outputs clean filenames like 'css/main.css'
+        assetFileNames: "css/[name].[ext]",
       },
       plugins: [
+        // 2. Map the external packages to the global `window.wp` object
         externalGlobals({
           "@wordpress/blocks": "window.wp.blocks",
           "@wordpress/block-editor": "window.wp.blockEditor",
@@ -281,6 +299,8 @@ export default defineConfig({
           "@wordpress/api-fetch": "window.wp.apiFetch",
           "@wordpress/plugins": "window.wp.plugins",
           "@wordpress/edit-post": "window.wp.editPost",
+          "@wordpress/hooks": "window.wp.hooks",
+          "@wordpress/compose": "window.wp.compose",
         }),
       ],
     },

@@ -1,17 +1,26 @@
 {
-  "assets/src/js/main.js": {
-    "file": "js/main-C1iMhbdL.js",
-    "name": "main",
-    "src": "assets/src/js/main.js",
+  "assets/src/js/editor.jsx": {
+    "file": "js/editorJs.js",
+    "name": "editorJs",
+    "src": "assets/src/js/editor.jsx",
     "isEntry": true
   },
+  "assets/src/js/main.js": {
+    "file": "js/main.js",
+    "name": "main",
+    "src": "assets/src/js/main.js",
+    "isEntry": true,
+    "css": [
+      "css/main.css"
+    ]
+  },
   "assets/src/scss/editor.scss": {
-    "file": "css/editor-Dyu5JM8t.css",
+    "file": "css/editor.css",
     "src": "assets/src/scss/editor.scss",
     "isEntry": true
   },
   "assets/src/scss/main.scss": {
-    "file": "css/style-Dazmlcxh.css",
+    "file": "css/style.css",
     "src": "assets/src/scss/main.scss",
     "isEntry": true
   },

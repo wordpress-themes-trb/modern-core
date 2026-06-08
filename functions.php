@@ -566,7 +566,33 @@ function mc_get_cart_count_ajax() {
 
 
 add_action('wp_enqueue_scripts', function() {
+    // 1. Existing block widths
     wp_enqueue_style('mc-block-widths', get_template_directory_uri() . '/assets/css/block-widths.css', [], '1.0.0');
+
+    // 2. Load your theme's structural styles
+    wp_enqueue_style(
+        'modern-core-frontend-styles', 
+        get_template_directory_uri() . '/assets/dist/css/style.css', 
+        [], 
+        time()
+    );
+
+    // 3. THE FIX: Load the main.css file which contains the AOS engine!
+    wp_enqueue_style(
+        'modern-core-main-styles', 
+        get_template_directory_uri() . '/assets/dist/css/main.css', 
+        [], 
+        time()
+    );
+
+    // 4. Load your JavaScript
+    wp_enqueue_script(
+        'modern-core-frontend-scripts', 
+        get_template_directory_uri() . '/assets/dist/js/main.js', 
+        [], 
+        time(), 
+        true
+    );
 });
 
 add_action('enqueue_block_editor_assets', function() {
@@ -614,7 +640,55 @@ function modern_core_inject_universal_supports( $args, $block_type ) {
     return $args;
 }
 
+// Global animation control -- Block Level (Single function for all the blocks, Animation can be set seprate for each block )
 
+function modern_core_enqueue_editor_assets() {
+    // Make sure the path matches where Vite outputs your JS (e.g., assets/dist/js/editorJs.js)
+    wp_enqueue_script(
+        'modern-core-editor-globals',
+        get_template_directory_uri() . '/assets/dist/js/editorJs.js',
+        ['wp-blocks', 'wp-element', 'wp-components', 'wp-hooks', 'wp-compose'], // Required dependencies for the HOC
+        filemtime( get_template_directory() . '/assets/dist/js/editorJs.js' ),
+        true
+    );
+}
+add_action( 'enqueue_block_editor_assets', 'modern_core_enqueue_editor_assets' );
 
+// ==========================================
+// FRONTEND ANIMATION OUTPUT FILTER (ADVANCED)
+// ==========================================
+add_filter( 'render_block', 'modern_core_inject_global_animations', 10, 2 );
 
+function modern_core_inject_global_animations( $block_content, $block ) {
+    if ( isset( $block['blockName'] ) && is_string( $block['blockName'] ) && strpos( $block['blockName'], 'modern-core/' ) === 0 ) {
+        
+        $animation = $block['attrs']['mcAnimation'] ?? 'none';
+        
+        if ( $animation !== 'none' && ! empty( $block_content ) ) {
+            
+            // Grab advanced attributes (or use defaults if user hasn't touched the sliders yet)
+            $duration = esc_attr( $block['attrs']['mcAnimDuration'] ?? 800 );
+            $delay    = esc_attr( $block['attrs']['mcAnimDelay'] ?? 0 );
+            $offset   = esc_attr( $block['attrs']['mcAnimOffset'] ?? 50 );
 
+            // Construct the full string of AOS parameters
+            $aos_payload = sprintf(
+                'data-aos="%s" data-aos-duration="%s" data-aos-delay="%s" data-aos-offset="%s"',
+                esc_attr( $animation ),
+                $duration,
+                $delay,
+                $offset
+            );
+
+            // Inject the full payload into the first tag
+            $block_content = preg_replace(
+                '/(<[a-zA-Z0-9\-]+)/', 
+                '$1 ' . $aos_payload,
+                $block_content,
+                1 
+            );
+        }
+    }
+
+    return $block_content;
+}
