@@ -692,3 +692,15 @@ function modern_core_inject_global_animations( $block_content, $block ) {
 
     return $block_content;
 }
+
+// ==========================================
+// REGISTER CUSTOM PATTERN CATEGORIES
+// ==========================================
+add_action( 'init', 'modern_core_register_pattern_categories' );
+
+function modern_core_register_pattern_categories() {
+    register_block_pattern_category(
+        'modern-core-sections',
+        [ 'label' => __( 'Modern Core Sections', 'modern-core' ) ]
+    );
+}
