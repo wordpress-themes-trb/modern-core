@@ -699,8 +699,15 @@ function modern_core_inject_global_animations( $block_content, $block ) {
 add_action( 'init', 'modern_core_register_pattern_categories' );
 
 function modern_core_register_pattern_categories() {
+    // Existing sections category
     register_block_pattern_category(
         'modern-core-sections',
         [ 'label' => __( 'Modern Core Sections', 'modern-core' ) ]
+    );
+
+    // New commerce category
+    register_block_pattern_category(
+        'commerce',
+        [ 'label' => __( 'Commerce & Shop', 'modern-core' ) ]
     );
 }
