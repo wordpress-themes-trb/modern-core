@@ -64,6 +64,7 @@ $this->container->register( 'dependencies', new \ModernCore\Core\DependencyManag
         // Performance engines — font preload, deferred CSS, emoji stripping, product query caching.
         $this->container->register( 'performance', new \ModernCore\Performance\Optimization() );
         $this->container->register( 'transient_cache', new \ModernCore\Performance\TransientCache() );
+        
     }
 
     /**
