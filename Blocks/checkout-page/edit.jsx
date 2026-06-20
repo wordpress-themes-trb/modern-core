@@ -24,10 +24,11 @@ export default function Edit({ attributes, setAttributes }) {
     accentColor,
     textColor,
     borderColor,
+    widthMode,
   } = attributes;
 
   const blockProps = useBlockProps({
-    className: `modern-core-checkout-editor layout-${layoutMode} label-${labelStyle}`,
+    className: `modern-core-checkout-editor layout-${layoutMode} label-${labelStyle} width-${widthMode}`,
     style: { width: "100%", padding: "40px 0", backgroundColor: "#ffffff" },
   });
 
@@ -46,6 +47,16 @@ export default function Edit({ attributes, setAttributes }) {
               },
             ]}
             onChange={(val) => setAttributes({ layoutMode: val })}
+          />
+          <SelectControl
+            label={__("Width Mode", "modern-core")}
+            value={widthMode}
+            options={[
+              { label: "Contained", value: "contained" },
+              { label: "Wide", value: "wide" },
+              { label: "Full Width", value: "fullwidth" },
+            ]}
+            onChange={(val) => setAttributes({ widthMode: val })}
           />
           {layoutMode === "multi" && (
             <>
@@ -144,27 +155,162 @@ export default function Edit({ attributes, setAttributes }) {
       <div {...blockProps}>
         <style>
           {`
-                    .modern-core-checkout-editor { --mc-bg: ${summaryBg}; --mc-acc: ${accentColor}; --mc-txt: ${textColor}; --mc-border: ${borderColor}; --mc-rad: ${summaryRadius}px; --mc-inp-rad: ${inputRadius}px; }
-                    .mc-chk-trust { background: #f8fafc; padding: 12px; text-align: center; font-size: 13px; font-weight: bold; color: #64748b; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 8px; border-bottom: 1px solid var(--mc-border); }
-                    .mc-chk-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto; padding: 0 5%; align-items: start; }
-                    
-                    /* Form Mocks */
-                    .mc-chk-step-nav { display: flex; gap: 30px; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 15px; margin-bottom: 30px; }
-                    .mc-chk-step { font-weight: bold; color: rgba(0,0,0,0.3); display: flex; align-items: center; gap: 10px; }
-                    .mc-chk-step.is-active { color: var(--mc-acc); border-bottom: 2px solid var(--mc-acc); margin-bottom: -17px; }
-                    .mc-chk-step-num { width: 24px; height: 24px; border-radius: 50%; background: currentColor; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; }
-                    
-                    .mc-chk-form-group { display: grid; gap: 20px; }
-                    .mc-chk-input-wrap { display: flex; flex-direction: column; gap: 8px; }
-                    .label-floating .mc-chk-input-wrap label { display: none; }
-                    .mc-chk-input { border: 1px solid var(--mc-border); padding: 15px; border-radius: var(--mc-inp-rad); background: transparent; }
-                    
-                    /* Summary Mocks */
-                    .mc-chk-summary { background: var(--mc-bg); padding: 35px; border-radius: var(--mc-rad); color: var(--mc-txt); border: 1px solid var(--mc-border); }
-                    .mc-chk-sum-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--mc-border); }
-                    .mc-chk-total { display: flex; justify-content: space-between; padding: 20px 0; font-size: 20px; font-weight: bold; }
-                    .mc-chk-btn { background: var(--mc-acc); color: #fff; padding: 18px; text-align: center; border-radius: 6px; font-weight: bold; margin-top: 10px; }
-                    `}
+            .modern-core-checkout-editor { 
+              --mc-bg: ${summaryBg}; 
+              --mc-acc: ${accentColor}; 
+              --mc-txt: ${textColor}; 
+              --mc-border: ${borderColor}; 
+              --mc-rad: ${summaryRadius}px; 
+              --mc-inp-rad: ${inputRadius}px; 
+            }
+            
+            /* Width modes */
+            .modern-core-checkout-editor.width-contained .mc-chk-grid { 
+              max-width: 1200px; 
+              margin: 0 auto; 
+              padding: 0 5%; 
+            }
+            .modern-core-checkout-editor.width-wide .mc-chk-grid { 
+              max-width: 1400px; 
+              margin: 0 auto; 
+              padding: 0 5%; 
+            }
+            .modern-core-checkout-editor.width-fullwidth .mc-chk-grid { 
+              max-width: 100%; 
+              padding: 0 5%; 
+            }
+            
+            .mc-chk-trust { 
+              background: #f8fafc; 
+              padding: 12px; 
+              text-align: center; 
+              font-size: 13px; 
+              font-weight: bold; 
+              color: #64748b; 
+              margin-bottom: 30px; 
+              display: flex; 
+              align-items: center; 
+              justify-content: center; 
+              gap: 8px; 
+              border-bottom: 1px solid var(--mc-border); 
+            }
+            
+            .mc-chk-grid { 
+              display: grid; 
+              grid-template-columns: 1.2fr 1fr; 
+              gap: 60px; 
+              align-items: start; 
+            }
+            
+            /* Form Mocks */
+            .mc-chk-step-nav { 
+              display: flex; 
+              gap: 30px; 
+              border-bottom: 2px solid rgba(0,0,0,0.05); 
+              padding-bottom: 15px; 
+              margin-bottom: 30px; 
+            }
+            .mc-chk-step { 
+              font-weight: bold; 
+              color: rgba(0,0,0,0.3); 
+              display: flex; 
+              align-items: center; 
+              gap: 10px; 
+              padding-bottom: 15px;
+              margin-bottom: -17px;
+            }
+            .mc-chk-step.is-active { 
+              color: var(--mc-acc); 
+              border-bottom: 2px solid var(--mc-acc); 
+            }
+            .mc-chk-step-num { 
+              width: 24px; 
+              height: 24px; 
+              border-radius: 50%; 
+              background: currentColor; 
+              color: #fff; 
+              display: flex; 
+              align-items: center; 
+              justify-content: center; 
+              font-size: 12px; 
+            }
+            
+            .mc-chk-form-group { 
+              display: flex; 
+              flex-direction: column; 
+              gap: 20px; 
+            }
+            .mc-chk-input-wrap { 
+              display: flex; 
+              flex-direction: column; 
+              gap: 8px; 
+            }
+            .label-floating .mc-chk-input-wrap label { 
+              display: none; 
+            }
+            .mc-chk-input { 
+              border: 1px solid var(--mc-border); 
+              padding: 15px; 
+              border-radius: var(--mc-inp-rad); 
+              background: transparent; 
+              font-size: 15px;
+              color: var(--mc-txt);
+            }
+            
+            /* Two-column form row */
+            .mc-chk-form-row-2 {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 20px;
+            }
+            
+            /* Summary Mocks */
+            .mc-chk-summary { 
+              background: var(--mc-bg); 
+              padding: 35px; 
+              border-radius: var(--mc-rad); 
+              color: var(--mc-txt); 
+              border: 1px solid var(--mc-border); 
+            }
+            .mc-chk-sum-row { 
+              display: flex; 
+              justify-content: space-between; 
+              padding: 15px 0; 
+              border-bottom: 1px solid var(--mc-border); 
+              font-size: 14px;
+            }
+            .mc-chk-sum-row strong { 
+              font-weight: 600; 
+            }
+            .mc-chk-total { 
+              display: flex; 
+              justify-content: space-between; 
+              padding: 20px 0; 
+              font-size: 20px; 
+              font-weight: bold; 
+            }
+            .mc-chk-btn { 
+              background: var(--mc-acc); 
+              color: #fff; 
+              padding: 18px; 
+              text-align: center; 
+              border-radius: 6px; 
+              font-weight: bold; 
+              margin-top: 10px; 
+              cursor: pointer;
+            }
+            
+            /* ===== MOBILE ===== */
+            @media (max-width: 768px) {
+              .mc-chk-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+              }
+              .mc-chk-form-row-2 {
+                grid-template-columns: 1fr;
+              }
+            }
+          `}
         </style>
 
         {showTrustStrip && (
@@ -225,13 +371,7 @@ export default function Edit({ attributes, setAttributes }) {
               Shipping Address
             </h3>
             <div className="mc-chk-form-group">
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "20px",
-                }}
-              >
+              <div className="mc-chk-form-row-2">
                 <div className="mc-chk-input-wrap">
                   <label>First name</label>
                   <div className="mc-chk-input" style={{ color: "#94a3b8" }}>
@@ -284,6 +424,7 @@ export default function Edit({ attributes, setAttributes }) {
                     background: "#e2e8f0",
                     borderRadius: "4px",
                     position: "relative",
+                    flexShrink: 0,
                   }}
                 >
                   <div
@@ -306,15 +447,23 @@ export default function Edit({ attributes, setAttributes }) {
                     1
                   </div>
                 </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: "bold", fontSize: "14px" }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "14px",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
                     Classic Oxford Shirt
                   </div>
                   <div style={{ fontSize: "12px", opacity: 0.6 }}>
                     White / Medium
                   </div>
                 </div>
-                <div style={{ fontWeight: "bold" }}>$45.00</div>
+                <div style={{ fontWeight: "bold", flexShrink: 0 }}>$45.00</div>
               </div>
 
               <div className="mc-chk-sum-row">
