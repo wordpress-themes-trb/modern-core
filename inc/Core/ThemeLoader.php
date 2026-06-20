@@ -58,11 +58,12 @@ class ThemeLoader {
         $this->container->register( 'translations', new \ModernCore\I18n\Translations() );
         $this->container->register( 'accessibility', new \ModernCore\Accessibility\A11yEnforcer() );
         $this->container->register( 'blocks', new \ModernCore\Blocks\BlockManager() );
-		$this->container->register( 'dependencies', new \ModernCore\Core\DependencyManager() );
+$this->container->register( 'dependencies', new \ModernCore\Core\DependencyManager() );
 		$this->container->register( 'configuration', new \ModernCore\Core\ConfigurationEngine() );
-        
-        // In subsequent development phases, enter additional optimization engines here:
-        // $this->container->register( 'performance', new \ModernCore\Performance\Optimization() );
+
+        // Performance engines — font preload, deferred CSS, emoji stripping, product query caching.
+        $this->container->register( 'performance', new \ModernCore\Performance\Optimization() );
+        $this->container->register( 'transient_cache', new \ModernCore\Performance\TransientCache() );
     }
 
     /**

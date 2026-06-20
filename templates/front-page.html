@@ -124,16 +124,9 @@
   "paddingTop":100,
   "paddingBottom":80
 } -->
-<!-- wp:modern-core/section-header {
-  "widthMode":"contained",
-  "title":"Shop by Category",
-  "titleAlign":"center",
-  "titleSize":36,
-  "titleWeight":800,
-  "titleColor":"#0f172a",
-  "showSubtitle":false,
-  "showViewAll":false
-} /-->
+<!-- wp:heading {"level":2,"textAlign":"center"} -->
+<h2 class="wp-block-heading has-text-align-center">Shop by Category</h2>
+<!-- /wp:heading -->
 <!-- wp:modern-core/spacer-divider {
   "widthMode":"contained",
   "mode":"spacer",
@@ -171,19 +164,20 @@
   "paddingTop":60,
   "paddingBottom":80
 } -->
-<!-- wp:modern-core/section-header {
-  "widthMode":"contained",
-  "title":"New Arrivals",
-  "titleAlign":"left",
-  "titleSize":32,
-  "titleWeight":800,
-  "titleColor":"#0f172a",
-  "showSubtitle":false,
-  "showViewAll":true,
-  "viewAllText":"View all",
-  "viewAllUrl":"/shop?orderby=date",
-  "viewAllStyle":"arrow-link"
-} /-->
+<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
+<div class="wp-block-group">
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">New Arrivals</h2>
+<!-- /wp:heading -->
+<!-- wp:buttons {"layout":{"type":"flex"}} -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-link"} -->
+<div class="wp-block-button is-style-link"><a class="wp-block-button__link wp-element-button" href="/shop?orderby=date">View all</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
 <!-- wp:modern-core/spacer-divider {
   "widthMode":"contained",
   "mode":"spacer",
@@ -278,19 +272,20 @@
   "paddingTop":80,
   "paddingBottom":80
 } -->
-<!-- wp:modern-core/section-header {
-  "widthMode":"contained",
-  "title":"Bestsellers",
-  "titleAlign":"left",
-  "titleSize":32,
-  "titleWeight":800,
-  "titleColor":"#0f172a",
-  "showSubtitle":false,
-  "showViewAll":true,
-  "viewAllText":"View all",
-  "viewAllUrl":"/shop?orderby=popularity",
-  "viewAllStyle":"arrow-link"
-} /-->
+<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
+<div class="wp-block-group">
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Bestsellers</h2>
+<!-- /wp:heading -->
+<!-- wp:buttons {"layout":{"type":"flex"}} -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-link"} -->
+<div class="wp-block-button is-style-link"><a class="wp-block-button__link wp-element-button" href="/shop?orderby=popularity">View all</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
 <!-- wp:modern-core/spacer-divider {
   "widthMode":"contained",
   "mode":"spacer",
@@ -338,15 +333,9 @@
   "paddingTop":80,
   "paddingBottom":80
 } -->
-<!-- wp:modern-core/section-header {
-  "widthMode":"contained",
-  "title":"The Look",
-  "subtitle":"Click the pins to shop each piece",
-  "titleAlign":"center",
-  "titleSize":36,
-  "titleWeight":800,
-  "showViewAll":false
-} /-->
+<!-- wp:heading {"level":2,"textAlign":"center"} -->
+<h2 class="wp-block-heading has-text-align-center">The Look</h2>
+<!-- /wp:heading -->
 <!-- wp:modern-core/spacer-divider {
   "widthMode":"contained",
   "mode":"spacer",
@@ -429,18 +418,20 @@
   "paddingTop":80,
   "paddingBottom":80
 } -->
-<!-- wp:modern-core/section-header {
-  "widthMode":"contained",
-  "title":"On Sale",
-  "titleAlign":"left",
-  "titleSize":32,
-  "titleWeight":800,
-  "titleColor":"#0f172a",
-  "showViewAll":true,
-  "viewAllText":"View all sale items",
-  "viewAllUrl":"/sale",
-  "viewAllStyle":"arrow-link"
-} /-->
+<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
+<div class="wp-block-group">
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">On Sale</h2>
+<!-- /wp:heading -->
+<!-- wp:buttons {"layout":{"type":"flex"}} -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-link"} -->
+<div class="wp-block-button is-style-link"><a class="wp-block-button__link wp-element-button" href="/sale">View all sale items</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
 <!-- wp:modern-core/spacer-divider {
   "widthMode":"contained",
   "mode":"spacer",
@@ -487,23 +478,12 @@
   "bgType":"solid",
   "bgColor":"#f8fafc"
 } -->
-<!-- wp:modern-core/section-header {
-  "widthMode":"contained",
-  "title":"What Our Customers Say",
-  "titleAlign":"center",
-  "titleSize":36,
-  "titleWeight":800,
-  "titleColor":"#0f172a",
-  "showSubtitle":true,
-  "subtitle":"Trusted by over 50,000 happy customers worldwide",
-  "subtitleAlign":"center",
-  "subtitleColor":"#64748b",
-  "showViewAll":false,
-  "showAggregateRating":true,
-  "aggregateScore":"4.9",
-  "aggregateCount":"2,847",
-  "starColor":"#f59e0b"
-} /-->
+<!-- wp:heading {"level":2,"textAlign":"center"} -->
+<h2 class="wp-block-heading has-text-align-center">What Our Customers Say</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">Trusted by over 50,000 happy customers worldwide</p>
+<!-- /wp:paragraph -->
 <!-- wp:modern-core/spacer-divider {
   "widthMode":"contained",
   "mode":"spacer",
@@ -589,48 +569,27 @@
   "paddingBottom":80,
   "hideWhenEmpty":true
 } -->
-<!-- wp:modern-core/section-header {
-  "widthMode":"contained",
-  "title":"From the Blog",
-  "titleAlign":"left",
-  "titleSize":32,
-  "titleWeight":800,
-  "titleColor":"#0f172a",
-  "showViewAll":true,
-  "viewAllText":"View all articles",
-  "viewAllUrl":"/blog",
-  "viewAllStyle":"arrow-link"
-} /-->
+<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
+<div class="wp-block-group">
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">From the Blog</h2>
+<!-- /wp:heading -->
+<!-- wp:buttons {"layout":{"type":"flex"}} -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-link"} -->
+<div class="wp-block-button is-style-link"><a class="wp-block-button__link wp-element-button" href="/blog">View all articles</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
 <!-- wp:modern-core/spacer-divider {
   "widthMode":"contained",
   "mode":"spacer",
   "heightDesktop":32,
   "heightMobile":16
 } /-->
-<!-- wp:modern-core/blog-grid {
-  "widthMode":"contained",
-  "postCount":3,
-  "columnsDesktop":3,
-  "columnsTablet":2,
-  "columnsMobile":1,
-  "gap":24,
-  "cardImageRatio":"16/9",
-  "cardImageHover":"zoom",
-  "cardBg":"#ffffff",
-  "cardRadius":8,
-  "showCategory":true,
-  "categoryStyle":"pill",
-  "categoryBg":"#f1f5f9",
-  "categoryColor":"#0f172a",
-  "showDate":true,
-  "showExcerpt":true,
-  "excerptLength":120,
-  "showAuthor":false,
-  "showReadTime":true,
-  "readMoreStyle":"arrow-link",
-  "readMoreText":"Read more",
-  "hideWhenNoPosts":true
-} /-->
+<!-- wp:modern-core/posts-grid {"sectionTitle":"From the Blog","sectionLink":"/blog","queryCount":3,"columnsDesktop":3,"columnsTablet":2,"columnsMobile":1,"imageRatio":"16/9","cardRadius":8,"showCategory":true,"showDate":true,"showExcerpt":true,"showReadTime":true,"readMoreText":"Read more","hideWhenNoPosts":true} /-->
 <!-- /wp:modern-core/section-wrapper -->
 
 <!-- ============================================================

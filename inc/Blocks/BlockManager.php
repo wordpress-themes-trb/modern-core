@@ -24,7 +24,7 @@ class BlockManager {
     }
 
     public function register_custom_blocks(): void {
-        $blocks_dir = get_template_directory() . '/blocks';
+        $blocks_dir = get_template_directory() . '/Blocks';
         if ( ! is_dir( $blocks_dir ) ) { return; }
 
         $blocks = array_diff( scandir( $blocks_dir ), [ '.', '..' ] );

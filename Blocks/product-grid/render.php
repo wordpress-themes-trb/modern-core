@@ -44,7 +44,16 @@ if ($sort === 'popularity') {
     $args['order']    = 'DESC';
 }
 
-$products = new WP_Query($args);
+$mc_cache_key = 'mc_products_' . md5( wp_json_encode( $args ) );
+$products     = wp_using_ext_object_cache() ? get_transient( $mc_cache_key ) : false;
+
+if ( false === $products ) {
+    $products = new WP_Query( $args );
+
+    if ( wp_using_ext_object_cache() ) {
+        set_transient( $mc_cache_key, $products, 3600 );
+    }
+}
 
 $wrapper_classes = "modern-core-product-grid {$unique_id} layout-{$layout} hover-{$hover_effect}";
 $wrapper_attributes = get_block_wrapper_attributes(['class' => $wrapper_classes]);

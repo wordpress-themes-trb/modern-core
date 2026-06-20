@@ -52,9 +52,6 @@ class Optimization {
 	public function preload_essential_assets(): void {
 		// Example: Preload a locally hosted variable font.
 		// echo '<link rel="preload" href="' . esc_url( get_template_directory_uri() . '/assets/dist/fonts/inter-variable.woff2' ) . '" as="font" type="font/woff2" crossorigin="anonymous">';
-		
-		// Preconnect to essential external domains if necessary (e.g., payment gateways).
-		echo '<link rel="preconnect" href="https://js.stripe.com" crossorigin>';
 	}
 
 	/**
