@@ -1,4 +1,5 @@
 import * as React from "@wordpress/element";
+import { useState } from "@wordpress/element";
 import {
   InspectorControls,
   useBlockProps,
@@ -9,6 +10,8 @@ import {
   SelectControl,
   RangeControl,
   ColorPalette,
+  ToggleControl,
+  Button,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
@@ -22,20 +25,71 @@ export default function Edit({ attributes, setAttributes }) {
     iconSize,
   } = attributes;
 
+  // The state that prevents the modal from destroying your editor layout
+  const [isEditingDrawer, setIsEditingDrawer] = useState(false);
+
   const blockProps = useBlockProps({
     className: "modern-core-hamburger-block",
     style: {
-      width: "100%",
+      position: "relative", // CRITICAL: Anchors the floating editor
       display: "flex",
-      flexDirection: "column",
       alignItems: "center",
+      justifyContent: "center",
     },
   });
+
+  // Dynamic CSS to float the editor cleanly over the header
+  const editorStyles = `
+    .mc-drawer-editor-wrapper {
+        display: none;
+    }
+    .mc-drawer-editor-wrapper.is-open {
+        display: block;
+        position: absolute;
+        top: calc(100% + 15px);
+        left: -10px;
+        width: ${drawerType === "fullscreen" ? "350px" : `${Math.min(drawerWidth, 400)}px`};
+        min-height: 200px;
+        background: ${drawerBg};
+        border: 2px dashed #3b82f6;
+        padding: 20px;
+        z-index: 999999;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        border-radius: 8px;
+    }
+    .mc-drawer-editor-wrapper.is-open::before {
+        content: '';
+        position: absolute;
+        top: -12px;
+        left: 20px;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid #3b82f6;
+    }
+  `;
 
   return (
     <>
       <InspectorControls>
-        <PanelBody title={__("Drawer Behavior", "modern-core")}>
+        <PanelBody
+          title={__("Drawer Content", "modern-core")}
+          initialOpen={true}
+        >
+          <ToggleControl
+            label={__("✏️ Edit Drawer Content", "modern-core")}
+            checked={isEditingDrawer}
+            onChange={(val) => setIsEditingDrawer(val)}
+            help={__(
+              "Toggle this on to float the drawer editor over your header.",
+              "modern-core",
+            )}
+          />
+        </PanelBody>
+
+        <PanelBody
+          title={__("Drawer Behavior", "modern-core")}
+          initialOpen={false}
+        >
           <SelectControl
             label={__("Opening Style", "modern-core")}
             value={drawerType}
@@ -96,9 +150,20 @@ export default function Edit({ attributes, setAttributes }) {
       </InspectorControls>
 
       <div {...blockProps}>
+        <style>{editorStyles}</style>
+
         {/* 1. The Trigger Icon */}
         <div
-          style={{ color: iconColor, cursor: "pointer", marginBottom: "15px" }}
+          onClick={() => setIsEditingDrawer(!isEditingDrawer)}
+          style={{
+            color: iconColor,
+            cursor: "pointer",
+            display: "flex",
+            padding: "5px",
+            background: isEditingDrawer ? "rgba(0,0,0,0.05)" : "transparent",
+            borderRadius: "4px",
+          }}
+          title="Click to edit drawer content"
         >
           <svg
             width={iconSize}
@@ -116,40 +181,41 @@ export default function Edit({ attributes, setAttributes }) {
           </svg>
         </div>
 
-        {/* 2. The Drawer Content Dropzone (Only styled this way in the Editor) */}
+        {/* 2. The Isolated Drawer Content Dropzone */}
         <div
-          style={{
-            width: drawerType === "fullscreen" ? "100%" : `${drawerWidth}px`,
-            maxWidth: "100%",
-            backgroundColor: drawerBg,
-            border: "2px dashed #94a3b8",
-            borderRadius: "8px",
-            padding: "20px",
-            position: "relative",
-          }}
+          className={`mc-drawer-editor-wrapper ${isEditingDrawer ? "is-open" : ""}`}
         >
           <div
             style={{
-              position: "absolute",
-              top: "-12px",
-              left: "10px",
-              background: "#fff",
-              padding: "0 10px",
+              background: "#eff6ff",
+              color: "#1d4ed8",
+              padding: "8px 12px",
+              marginBottom: "20px",
+              borderRadius: "4px",
               fontSize: "11px",
               fontWeight: "bold",
-              color: "#64748b",
-              textTransform: "uppercase",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            Drawer Content Area
+            <span>📱 DRAWER CONTENT AREA</span>
+            <Button
+              isSmall
+              variant="tertiary"
+              onClick={() => setIsEditingDrawer(false)}
+              style={{ color: "#ef4444", minWidth: "auto", padding: "0" }}
+            >
+              Close
+            </Button>
           </div>
 
-          {/* The magic InnerBlocks! Let the user build the menu here. */}
           <InnerBlocks
             template={[
               ["core/search", { showLabel: false, width: 100, widthUnit: "%" }],
-              ["modern-core/navigation", {}], // Automatically drops your styled nav inside!
+              ["modern-core/navigation", {}],
             ]}
+            templateLock={false}
           />
         </div>
       </div>

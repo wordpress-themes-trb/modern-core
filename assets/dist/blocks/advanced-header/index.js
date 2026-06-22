@@ -1,1 +1,74 @@
-(()=>{const t={name:"modern-core/advanced-header",title:"Header System (Wrapper)",icon:"layout",attributes:{isSticky:{type:"boolean",default:!0},transparentOnLoad:{type:"boolean",default:!1},autoHideOnScroll:{type:"boolean",default:!1},preset:{type:"string",default:"custom"},presetName:{type:"string",default:""},isLocal:{type:"boolean",default:!1},widthMode:{type:"string",default:"fullwidth",enum:["contained","wide","fullwidth"]}}};function f({attributes:b,setAttributes:r,clientId:a}){const{isSticky:c,transparentOnLoad:i,autoHideOnScroll:m,preset:w,presetName:N,isLocal:T}=b,[y,u]=window.wp.element.useState(!1),[o,k]=window.wp.element.useState(""),[s,g]=window.wp.element.useState([]),[d,n]=window.wp.element.useState(""),{replaceInnerBlocks:B}=window.wp.data.useDispatch("core/block-editor"),h=window.wp.data.useSelect(e=>e("core/block-editor").getBlocks(a),[a]);window.wp.element.useEffect(()=>{window.wp.apiFetch({path:"/modern-core/v1/header-presets"}).then(e=>{e&&e.presets&&g(e.presets)}).catch(()=>{})},[]);const E=window.wp.blockEditor.useBlockProps({className:`modern-core-header-wrapper ${c?"is-sticky":""} ${i?"is-transparent":""}`,style:{position:"relative",width:"100%",zIndex:99,outline:"2px dashed rgba(0,0,0,0.1)",minHeight:"80px"}}),v=e=>{switch(e){case"megastore":return[window.wp.blocks.createBlock("modern-core/marquee",{text:"⚡ MEGA CLEARANCE EVENT: UP TO 70% OFF ⚡",bgColor:"#131921",speed:20}),window.wp.blocks.createBlock("core/columns",{verticalAlignment:"center",style:{spacing:{padding:{top:"15px",bottom:"15px",left:"30px",right:"30px"}}}},[window.wp.blocks.createBlock("core/column",{width:"20%"},[window.wp.blocks.createBlock("modern-core/logo",{brandName:"MEGASTORE",alignment:"left"})]),window.wp.blocks.createBlock("core/column",{width:"60%"},[window.wp.blocks.createBlock("modern-core/search",{width:100,shape:"rounded",bgColor:"#ffffff"})]),window.wp.blocks.createBlock("core/column",{width:"20%"},[window.wp.blocks.createBlock("modern-core/header-icons",{showSearch:!1,iconColor:"#0f172a"})])]),window.wp.blocks.createBlock("core/group",{style:{color:{background:"#232f3e"},spacing:{padding:{top:"5px",bottom:"5px"}}}},[window.wp.blocks.createBlock("modern-core/navigation",{linkColor:"#ffffff",hoverEffect:"color",hoverColor:"#febd69",fontSize:14})])];case"minimalist":return[window.wp.blocks.createBlock("core/columns",{verticalAlignment:"center",style:{spacing:{padding:{top:"25px",bottom:"25px",left:"40px",right:"40px"}}}},[window.wp.blocks.createBlock("core/column",{width:"20%"},[window.wp.blocks.createBlock("modern-core/hamburger",{drawerType:"fullscreen"})]),window.wp.blocks.createBlock("core/column",{width:"60%"},[window.wp.blocks.createBlock("modern-core/logo",{brandName:"ATELIER",alignment:"center"})]),window.wp.blocks.createBlock("core/column",{width:"20%"},[window.wp.blocks.createBlock("modern-core/header-icons",{showAccount:!1,iconSpacing:25})])])];case"classic":return[window.wp.blocks.createBlock("modern-core/marquee",{text:"FREE SHIPPING ON ALL ORDERS",bgColor:"#0f172a"}),window.wp.blocks.createBlock("core/columns",{verticalAlignment:"center",style:{spacing:{padding:{top:"20px",bottom:"20px",left:"30px",right:"30px"}}}},[window.wp.blocks.createBlock("core/column",{width:"25%"},[window.wp.blocks.createBlock("modern-core/logo",{brandName:"MODERN CORE"})]),window.wp.blocks.createBlock("core/column",{width:"50%"},[window.wp.blocks.createBlock("modern-core/navigation",{hoverEffect:"underline"})]),window.wp.blocks.createBlock("core/column",{width:"25%"},[window.wp.blocks.createBlock("modern-core/header-icons",{})])])];default:return[]}},l=e=>{const p=v(e);if(p.length===0)return;const S={megastore:{isSticky:!1,transparentOnLoad:!1},minimalist:{isSticky:!0,transparentOnLoad:!0},classic:{isSticky:!0,transparentOnLoad:!1}},x=h.length>1?"This will replace your current header layout. Are you sure?":`Apply the "${e}" preset?`;confirm(x)&&(B(a,p,!1),r({preset:e,...S[e]}))},C=async()=>{if(!o.trim()){n("Please enter a preset name.");return}const e=wp.blocks.serialize(h);try{await window.wp.apiFetch({path:"/modern-core/v1/header-presets",method:"POST",data:{name:o.trim(),blocks:e,settings:{isSticky:c,transparentOnLoad:i,autoHideOnScroll:m}}}),g([...s,{name:o.trim(),slug:o.trim().toLowerCase().replace(/\s+/g,"-")}]),n(`Preset "${o}" saved successfully!`),k(""),setTimeout(()=>n(""),3e3)}catch{n("Failed to save preset. Please try again.")}};return window.wp.element.createElement(window.wp.element.Fragment,null,window.wp.element.createElement(window.wp.blockEditor.InspectorControls,null,window.wp.element.createElement(window.wp.components.PanelBody,{title:window.wp.i18n.__("1-Click Layout Presets","modern-core"),initialOpen:!0},window.wp.element.createElement(window.wp.components.BaseControl,{help:window.wp.i18n.__("Select a preset to quickly build your header layout.","modern-core")},window.wp.element.createElement("div",{style:{display:"flex",flexDirection:"column",gap:"10px",marginTop:"10px"}},window.wp.element.createElement(window.wp.components.Button,{variant:w==="megastore"?"primary":"secondary",onClick:()=>l("megastore"),style:{justifyContent:"center"}},"🏪 Mega Store (3 Rows)"),window.wp.element.createElement(window.wp.components.Button,{variant:w==="minimalist"?"primary":"secondary",onClick:()=>l("minimalist"),style:{justifyContent:"center"}},"👗 Minimalist Fashion (1 Row)"),window.wp.element.createElement(window.wp.components.Button,{variant:w==="classic"?"primary":"secondary",onClick:()=>l("classic"),style:{justifyContent:"center"}},"🛍️ Classic Modern (2 Rows)"))),s.length>0&&window.wp.element.createElement(window.wp.components.BaseControl,{label:window.wp.i18n.__("Your Saved Presets","modern-core"),style:{marginTop:"20px"}},window.wp.element.createElement("div",{style:{display:"flex",flexDirection:"column",gap:"8px"}},s.map(e=>window.wp.element.createElement(window.wp.components.Button,{key:e.slug,variant:"secondary",onClick:()=>l(e.slug),style:{justifyContent:"center"}},"💾 ",e.name)))),window.wp.element.createElement(window.wp.components.BaseControl,{style:{marginTop:"20px"}},window.wp.element.createElement(window.wp.components.Button,{variant:"tertiary",onClick:()=>u(!0),style:{width:"100%"}},"💾 Save Current as Preset"))),window.wp.element.createElement(window.wp.components.PanelBody,{title:window.wp.i18n.__("Global Header Behavior","modern-core"),initialOpen:!1},window.wp.element.createElement(window.wp.components.ToggleControl,{label:window.wp.i18n.__("Sticky Header","modern-core"),checked:c,onChange:e=>r({isSticky:e})}),window.wp.element.createElement(window.wp.components.ToggleControl,{label:window.wp.i18n.__("Transparent over Hero","modern-core"),checked:i,onChange:e=>r({transparentOnLoad:e})}),c&&window.wp.element.createElement(window.wp.components.ToggleControl,{label:window.wp.i18n.__("Auto-Hide on Scroll","modern-core"),checked:m,onChange:e=>r({autoHideOnScroll:e}),help:window.wp.i18n.__("Hides when scrolling down, reappears when scrolling up. (Requires Sticky Header to be active).","modern-core")}))),y&&window.wp.element.createElement(window.wp.components.Modal,{title:window.wp.i18n.__("Save as Preset","modern-core"),onRequestClose:()=>{u(!1),n("")}},window.wp.element.createElement(window.wp.components.TextControl,{label:window.wp.i18n.__("Preset Name","modern-core"),value:o,onChange:k,placeholder:window.wp.i18n.__("e.g. Black Friday Header","modern-core")}),d&&window.wp.element.createElement(window.wp.components.Notice,{status:d.includes("success")?"success":"error",isDismissible:!1},d),window.wp.element.createElement(window.wp.components.Button,{isPrimary:!0,onClick:C,style:{marginTop:"10px"}},window.wp.i18n.__("Save Preset","modern-core"))),window.wp.element.createElement("header",{...E},window.wp.element.createElement(window.wp.blockEditor.InnerBlocks,{template:[["core/paragraph",{align:"center",content:"Select a Preset Layout from the right sidebar, or start building manually!"}]],templateLock:!1})))}window.wp.blocks.registerBlockType(t.name,{apiVersion:3,title:t.title,category:"modern-core",icon:t.icon,attributes:t.attributes,edit:f,save:()=>window.wp.element.createElement(window.wp.blockEditor.InnerBlocks.Content,null)})})();
+(()=>{const e={name:"modern-core/advanced-header",title:"Header System",icon:"layout",attributes:{isSticky:{type:"boolean",default:!1}}};function o({attributes:r,setAttributes:n}){const{isSticky:t}=r,a=window.wp.blockEditor.useBlockProps({className:`modern-core-header-root ${t?"is-sticky":""}`,style:{background:"#ffffff",width:"100%"}}),i=[["core/group",{className:"mc-header-main-bar",layout:{type:"flex",flexWrap:"nowrap"}},[["core/group",{className:"mc-header-col-left",layout:{type:"flex",flexWrap:"nowrap"}},[["modern-core/hamburger",{iconColor:"#0f172a"}],["modern-core/logo",{brandName:"Modern Core ",alignment:"left"}]]],["core/group",{className:"mc-header-col-center",layout:{type:"flex"}},[["modern-core/search",{width:100,shape:"rounded"}]]],["core/group",{className:"mc-header-col-right",layout:{type:"flex",justifyContent:"right"}},[["modern-core/header-icons",{showSearch:!0,iconColor:"#0f172a"}]]]]]];return window.wp.element.createElement(window.wp.element.Fragment,null,window.wp.element.createElement(window.wp.blockEditor.InspectorControls,null,window.wp.element.createElement(window.wp.components.PanelBody,{title:window.wp.i18n.__("Header Settings","modern-core")},window.wp.element.createElement(window.wp.components.ToggleControl,{label:window.wp.i18n.__("Sticky Header","modern-core"),checked:t,onChange:c=>n({isSticky:c})}))),window.wp.element.createElement("header",{...a},window.wp.element.createElement("style",null,`
+        /* Editor Desktop Layout */
+        .modern-core-header-root .mc-header-main-bar {
+            display: grid !important;
+            grid-template-columns: 1fr minmax(200px, 600px) 1fr; 
+            gap: 30px;
+            align-items: center;
+            width: 100%;
+            position: relative !important;
+        }
+
+        .modern-core-header-root .mc-header-col-left {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 20px !important;
+            flex-wrap: nowrap !important;
+            min-width: 0 !important;
+        }
+
+        .modern-core-header-root .mc-header-col-center {
+            display: flex !important;
+            justify-content: center !important;
+            width: 100%;
+            min-width: 0 !important;
+        }
+
+        /* Prevent blowout without changing inner styles */
+        .modern-core-header-root .mc-header-col-center [data-type="modern-core/search"] {
+            width: 100% !important;
+            min-width: 0 !important;
+        }
+
+        .modern-core-header-root .mc-header-col-right {
+            display: flex !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+            min-width: 0 !important;
+        }
+
+        /* Editor Mobile Preview overrides */
+        @media (max-width: 992px) {
+            .modern-core-header-root .mc-header-main-bar {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+            }
+
+            .modern-core-header-root .mc-header-col-center {
+                display: none !important; 
+            }
+
+            .modern-core-header-root .mc-header-col-left {
+                flex: 0 0 auto !important;
+                position: static !important;
+            }
+
+            /* Absolutely center logo inside the main bar */
+            .modern-core-header-root .mc-header-col-left [data-type="modern-core/logo"] {
+                position: absolute !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: auto !important;
+                max-width: 50vw !important;
+                margin: 0 !important;
+                z-index: 10;
+            }
+
+            .modern-core-header-root .mc-header-col-right {
+                flex: 0 0 auto !important;
+            }
+        }
+    `),window.wp.element.createElement(window.wp.blockEditor.InnerBlocks,{template:i,templateLock:!1})))}window.wp.blocks.registerBlockType(e.name,{apiVersion:3,title:e.title,category:"modern-core",icon:e.icon,attributes:e.attributes,edit:o,save:()=>window.wp.element.createElement(window.wp.blockEditor.InnerBlocks.Content,null)})})();

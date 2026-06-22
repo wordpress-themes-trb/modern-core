@@ -2,7 +2,7 @@
 $placeholder = $attributes['placeholder'] ?? 'Search for products...';
 $shape = $attributes['shape'] ?? 'pill';
 $show_icon = $attributes['showIcon'] ?? true;
-$icon_position = $attributes['iconPosition'] ?? 'right';
+$icon_position = $attributes['iconPosition'] ?? 'left';
 $bg_color = $attributes['bgColor'] ?? '#f4f4f5';
 $text_color = $attributes['textColor'] ?? '#000000';
 $width = $attributes['width'] ?? 100;
