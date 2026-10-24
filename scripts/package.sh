@@ -15,7 +15,7 @@ python3 scripts/validate-templates.py
 # Files the theme needs at runtime. Sources (.jsx, .scss) are left out; the built
 # assets/dist files are what WordPress loads.
 mkdir -p "$STAGE/modern-core"
-for path in style.css functions.php theme.json screenshot.png readme.txt README.md \
+for path in style.css functions.php header.php footer.php theme.json screenshot.png readme.txt README.md \
             inc parts patterns templates woocommerce languages assets/dist assets/fonts assets/images; do
   [ -e "$path" ] && cp -R "$path" "$STAGE/modern-core/"
 done

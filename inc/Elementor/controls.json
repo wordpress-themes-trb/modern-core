@@ -1,0 +1,8340 @@
+{
+	"advanced-footer": {
+		"sections": [
+			{
+				"title": "Footer Behavior",
+				"controls": [
+					{
+						"attr": "enableReveal",
+						"kind": "switch",
+						"label": "Cinematic Reveal on Scroll"
+					}
+				]
+			},
+			{
+				"title": "Global Colors",
+				"controls": [
+					{
+						"attr": "footerBg",
+						"kind": "color",
+						"label": "Background Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"advanced-header": {
+		"sections": [
+			{
+				"title": "Header Settings",
+				"controls": [
+					{
+						"attr": "isSticky",
+						"kind": "switch",
+						"label": "Sticky Header"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"announcement-bar": {
+		"sections": [
+			{
+				"title": "Display Engine",
+				"controls": [
+					{
+						"attr": "displayMode",
+						"kind": "select",
+						"label": "Display Mode",
+						"options": [
+							{
+								"label": "Single Static Message",
+								"value": "static"
+							},
+							{
+								"label": "Crossfade Rotator",
+								"value": "rotate"
+							},
+							{
+								"label": "Infinite Marquee Ticker",
+								"value": "marquee"
+							}
+						]
+					},
+					{
+						"attr": "animationSpeed",
+						"kind": "number",
+						"label": "Animation Speed / Delay",
+						"min": 2,
+						"max": 30
+					}
+				]
+			},
+			{
+				"title": "Messages & Content",
+				"controls": [
+					{
+						"attr": "message1",
+						"kind": "text",
+						"label": "Message 1"
+					},
+					{
+						"attr": "message2",
+						"kind": "text",
+						"label": "Message 2",
+						"condition": {
+							"displayMode!": "static"
+						}
+					},
+					{
+						"attr": "message3",
+						"kind": "text",
+						"label": "Message 3",
+						"condition": {
+							"displayMode!": "static"
+						}
+					},
+					{
+						"attr": "couponCode",
+						"kind": "text",
+						"label": "Coupon Code (click to copy)"
+					}
+				]
+			},
+			{
+				"title": "Settings & Colors",
+				"controls": [
+					{
+						"attr": "barId",
+						"kind": "text",
+						"label": "Bar ID (for dismiss cookie)"
+					},
+					{
+						"attr": "isSticky",
+						"kind": "switch",
+						"label": "Sticky on Scroll"
+					},
+					{
+						"attr": "enableDismiss",
+						"kind": "switch",
+						"label": "Enable Dismiss (✕)"
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Background Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"back-in-stock": {
+		"sections": [
+			{
+				"title": "Copy & Form Architecture",
+				"controls": [
+					{
+						"attr": "heading",
+						"kind": "text",
+						"label": "Heading"
+					},
+					{
+						"attr": "message",
+						"kind": "textarea",
+						"label": "Explanation Message",
+						"rows": 2
+					},
+					{
+						"attr": "showName",
+						"kind": "switch",
+						"label": "Include First Name Field"
+					},
+					{
+						"attr": "btnText",
+						"kind": "text",
+						"label": "Button Text"
+					},
+					{
+						"attr": "privacyNote",
+						"kind": "text",
+						"label": "Privacy Note"
+					}
+				]
+			},
+			{
+				"title": "Success State",
+				"controls": [
+					{
+						"attr": "successHeading",
+						"kind": "text",
+						"label": "Success Heading"
+					},
+					{
+						"attr": "successMsg",
+						"kind": "text",
+						"label": "Success Message"
+					}
+				]
+			},
+			{
+				"title": "Automated Email Setup",
+				"controls": [
+					{
+						"attr": "emailSubject",
+						"kind": "text",
+						"label": "Email Subject"
+					},
+					{
+						"attr": "emailBody",
+						"kind": "textarea",
+						"label": "Email Body",
+						"rows": 4
+					}
+				]
+			},
+			{
+				"title": "Design & Colors",
+				"controls": [
+					{
+						"attr": "inputRadius",
+						"kind": "number",
+						"label": "Input/Button Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": ""
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Accent Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"bundle-upsell": {
+		"sections": [
+			{
+				"title": "Section Header",
+				"controls": [
+					{
+						"attr": "sectionTitle",
+						"kind": "text",
+						"label": "Title"
+					}
+				]
+			},
+			{
+				"title": "Bundle Configuration",
+				"controls": [
+					{
+						"attr": "sourceMode",
+						"kind": "select",
+						"label": "Data Source",
+						"options": [
+							{
+								"label": "Dynamic (WooCommerce Upsells)",
+								"value": "dynamic"
+							},
+							{
+								"label": "Manual Selection",
+								"value": "manual"
+							}
+						]
+					},
+					{
+						"attr": "manualIds",
+						"kind": "text",
+						"label": "Product IDs (Comma Separated)",
+						"condition": {
+							"sourceMode": "manual"
+						}
+					},
+					{
+						"attr": "displayMode",
+						"kind": "select",
+						"label": "Display Mode",
+						"options": [
+							{
+								"label": "Checkbox List (High Conversion)",
+								"value": "checkbox"
+							},
+							{
+								"label": "Visual Stack (Overlapping Images)",
+								"value": "stack"
+							},
+							{
+								"label": "Card Row (Horizontal)",
+								"value": "card"
+							}
+						]
+					},
+					{
+						"attr": "lockMainProduct",
+						"kind": "switch",
+						"label": "Lock Main Product"
+					}
+				]
+			},
+			{
+				"title": "Discount Engine",
+				"controls": [
+					{
+						"attr": "discountType",
+						"kind": "select",
+						"label": "Discount Type",
+						"options": [
+							{
+								"label": "Percentage (%)",
+								"value": "percent"
+							},
+							{
+								"label": "Fixed Amount ($)",
+								"value": "fixed"
+							},
+							{
+								"label": "No Discount",
+								"value": "none"
+							}
+						]
+					},
+					{
+						"attr": "discountValue",
+						"kind": "number",
+						"label": "Discount Value",
+						"min": 1,
+						"max": 100,
+						"condition": {
+							"discountType!": "none"
+						}
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent Color"
+					},
+					{
+						"attr": "badgeColor",
+						"kind": "color",
+						"label": "Savings Badge Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"cart-items": {
+		"sections": [
+			{
+				"title": "Product Item Styling",
+				"controls": [
+					{
+						"attr": "thumbSize",
+						"kind": "number",
+						"label": "Thumbnail Size (px)",
+						"min": 50,
+						"max": 120
+					},
+					{
+						"attr": "thumbRadius",
+						"kind": "number",
+						"label": "Thumbnail Border Radius (px)",
+						"min": 0,
+						"max": 50
+					},
+					{
+						"attr": "qtyStyle",
+						"kind": "select",
+						"label": "Quantity Selector Style",
+						"options": [
+							{
+								"label": "Plus / Minus Buttons",
+								"value": "plus-minus"
+							},
+							{
+								"label": "Compact Input",
+								"value": "input"
+							}
+						]
+					},
+					{
+						"attr": "removeStyle",
+						"kind": "select",
+						"label": "Remove Button Style",
+						"options": [
+							{
+								"label": "Text Link (Remove)",
+								"value": "text"
+							},
+							{
+								"label": "Trash Icon",
+								"value": "trash"
+							},
+							{
+								"label": "X Icon",
+								"value": "x"
+							}
+						]
+					},
+					{
+						"attr": "titleColor",
+						"kind": "color",
+						"label": "Product Title Color"
+					}
+				]
+			},
+			{
+				"title": "Shipping & Checkout",
+				"controls": [
+					{
+						"attr": "showFreeShipping",
+						"kind": "switch",
+						"label": "Enable Free Shipping Bar"
+					},
+					{
+						"attr": "shippingThreshold",
+						"kind": "number",
+						"label": "Free Shipping Threshold ($)",
+						"min": 10,
+						"max": 500,
+						"condition": {
+							"showFreeShipping": true
+						}
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent Color (Progress Bar)"
+					},
+					{
+						"attr": "checkoutBg",
+						"kind": "color",
+						"label": "Checkout Button Background"
+					},
+					{
+						"attr": "checkoutText",
+						"kind": "color",
+						"label": "Checkout Button Text"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"cart-page": {
+		"sections": [
+			{
+				"title": "Macro Layout",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Architecture",
+						"options": [
+							{
+								"label": "Two Column (65% / 35%)",
+								"value": "two-column"
+							},
+							{
+								"label": "Single Column (Stacked)",
+								"value": "stacked"
+							}
+						]
+					},
+					{
+						"attr": "widthMode",
+						"kind": "select",
+						"label": "Width Mode",
+						"options": [
+							{
+								"label": "Contained",
+								"value": "contained"
+							},
+							{
+								"label": "Wide",
+								"value": "wide"
+							},
+							{
+								"label": "Full Width",
+								"value": "fullwidth"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Table & Interactions",
+				"controls": [
+					{
+						"attr": "showHeaders",
+						"kind": "switch",
+						"label": "Show Table Column Headers"
+					},
+					{
+						"attr": "autoUpdate",
+						"kind": "switch",
+						"label": "Auto-Update on Quantity Change"
+					}
+				]
+			},
+			{
+				"title": "Summary Card Styling",
+				"controls": [
+					{
+						"attr": "summaryRadius",
+						"kind": "number",
+						"label": "Card Border Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "summaryBg",
+						"kind": "color",
+						"label": "Summary Background"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Checkout Button)"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Border & Separator Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"category-carousel": {
+		"sections": [
+			{
+				"title": "Data Routing",
+				"controls": [
+					{
+						"attr": "sourceMode",
+						"kind": "select",
+						"label": "Category Source",
+						"options": [
+							{
+								"label": "Top Categories (Dynamic)",
+								"value": "dynamic"
+							},
+							{
+								"label": "Manual Selection",
+								"value": "manual"
+							}
+						]
+					},
+					{
+						"attr": "catCount",
+						"kind": "number",
+						"label": "Total Categories to Show",
+						"min": 4,
+						"max": 16
+					}
+				]
+			},
+			{
+				"title": "Carousel Physics",
+				"controls": [
+					{
+						"attr": "colsDesktop",
+						"kind": "number",
+						"label": "Visible Desktop Tiles",
+						"min": 3,
+						"max": 8,
+						"step": 0.5
+					},
+					{
+						"attr": "colsTablet",
+						"kind": "number",
+						"label": "Visible Tablet Tiles",
+						"min": 2,
+						"max": 6,
+						"step": 0.5
+					},
+					{
+						"attr": "colsMobile",
+						"kind": "number",
+						"label": "Visible Mobile Tiles (Peek)",
+						"min": 1.5,
+						"max": 4.5,
+						"step": 0.1
+					},
+					{
+						"attr": "showArrows",
+						"kind": "switch",
+						"label": "Show Arrows (Desktop)"
+					},
+					{
+						"attr": "showDots",
+						"kind": "switch",
+						"label": "Show Dots"
+					},
+					{
+						"attr": "autoplay",
+						"kind": "switch",
+						"label": "Enable Autoplay"
+					}
+				]
+			},
+			{
+				"title": "Tile Geometry & Design",
+				"controls": [
+					{
+						"attr": "tileShape",
+						"kind": "select",
+						"label": "Tile Shape (Desktop)",
+						"options": [
+							{
+								"label": "Rounded Square",
+								"value": "rounded-square"
+							},
+							{
+								"label": "Circle",
+								"value": "circle"
+							},
+							{
+								"label": "Sharp Rectangle",
+								"value": "rectangle"
+							},
+							{
+								"label": "Vertical Pill",
+								"value": "pill"
+							}
+						]
+					},
+					{
+						"attr": "mobileMorphCircle",
+						"kind": "switch",
+						"label": "Morph to Circles on Mobile"
+					},
+					{
+						"attr": "labelPlacement",
+						"kind": "select",
+						"label": "Label Placement",
+						"options": [
+							{
+								"label": "Overlaid on Image",
+								"value": "overlay"
+							},
+							{
+								"label": "Below Image",
+								"value": "below"
+							}
+						]
+					},
+					{
+						"attr": "showCount",
+						"kind": "switch",
+						"label": "Show Product Count"
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Overlay Opacity (%)",
+						"min": 0,
+						"max": 90,
+						"condition": {
+							"labelPlacement": "overlay"
+						}
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Hover states)"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"category-grid": {
+		"sections": [
+			{
+				"title": "Data Source",
+				"controls": [
+					{
+						"attr": "sourceMode",
+						"kind": "select",
+						"label": "Category Source",
+						"options": [
+							{
+								"label": "Top Categories (Dynamic)",
+								"value": "dynamic"
+							},
+							{
+								"label": "Manual Selection",
+								"value": "manual"
+							}
+						]
+					},
+					{
+						"attr": "catCount",
+						"kind": "number",
+						"label": "Number of Categories",
+						"min": 2,
+						"max": 12,
+						"condition": {
+							"sourceMode": "dynamic"
+						}
+					}
+				]
+			},
+			{
+				"title": "Grid Architecture",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Uniform Grid",
+								"value": "grid"
+							},
+							{
+								"label": "Featured Grid (Bento)",
+								"value": "featured"
+							},
+							{
+								"label": "Horizontal Scroll",
+								"value": "scroll"
+							}
+						]
+					},
+					{
+						"attr": "featuredCatId",
+						"kind": "select",
+						"label": "",
+						"options": [
+							{
+								"label": "— First category (default) —",
+								"value": "0"
+							}
+						],
+						"condition": {
+							"layoutMode": "featured"
+						}
+					},
+					{
+						"attr": "colsDesktop",
+						"kind": "number",
+						"label": "Desktop Columns",
+						"min": 2,
+						"max": 6
+					},
+					{
+						"attr": "colsMobile",
+						"kind": "number",
+						"label": "Mobile Columns",
+						"min": 1,
+						"max": 3
+					}
+				]
+			},
+			{
+				"title": "Tile Design",
+				"controls": [
+					{
+						"attr": "labelPlacement",
+						"kind": "select",
+						"label": "Label Placement",
+						"options": [
+							{
+								"label": "Overlaid on Image",
+								"value": "overlay"
+							},
+							{
+								"label": "Below Image (Caption)",
+								"value": "below"
+							}
+						]
+					},
+					{
+						"attr": "textPosition",
+						"kind": "select",
+						"label": "Text Position",
+						"options": [
+							{
+								"label": "Bottom Left",
+								"value": "bottom-left"
+							},
+							{
+								"label": "Bottom Center",
+								"value": "bottom-center"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Top Left",
+								"value": "top-left"
+							}
+						],
+						"condition": {
+							"labelPlacement": "overlay"
+						}
+					},
+					{
+						"attr": "imageRatio",
+						"kind": "select",
+						"label": "Image Aspect Ratio",
+						"options": [
+							{
+								"label": "Portrait (3:4)",
+								"value": "3/4"
+							},
+							{
+								"label": "Square (1:1)",
+								"value": "1/1"
+							},
+							{
+								"label": "Landscape (16:9)",
+								"value": "16/9"
+							}
+						]
+					},
+					{
+						"attr": "showCount",
+						"kind": "switch",
+						"label": "Show Product Count"
+					},
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Tile Border Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Overlay Opacity (%)",
+						"min": 0,
+						"max": 90
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"checkout-page": {
+		"sections": [
+			{
+				"title": "Architecture & Flow",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Checkout Flow",
+						"options": [
+							{
+								"label": "Single Page (All Fields Visible)",
+								"value": "single"
+							},
+							{
+								"label": "Multi-Step (Contact -> Shipping -> Payment)",
+								"value": "multi"
+							}
+						]
+					},
+					{
+						"attr": "widthMode",
+						"kind": "select",
+						"label": "Width Mode",
+						"options": [
+							{
+								"label": "Contained",
+								"value": "contained"
+							},
+							{
+								"label": "Wide",
+								"value": "wide"
+							},
+							{
+								"label": "Full Width",
+								"value": "fullwidth"
+							}
+						]
+					},
+					{
+						"attr": "progressStyle",
+						"kind": "select",
+						"label": "Progress Indicator Style",
+						"options": [
+							{
+								"label": "Numbered Steps",
+								"value": "numbered"
+							},
+							{
+								"label": "Minimal Text",
+								"value": "text"
+							}
+						],
+						"condition": {
+							"layoutMode": "multi"
+						}
+					},
+					{
+						"attr": "animStyle",
+						"kind": "select",
+						"label": "Step Transition Animation",
+						"options": [
+							{
+								"label": "Slide Horizontal",
+								"value": "slide"
+							},
+							{
+								"label": "Fade",
+								"value": "fade"
+							},
+							{
+								"label": "Instant",
+								"value": "none"
+							}
+						],
+						"condition": {
+							"layoutMode": "multi"
+						}
+					}
+				]
+			},
+			{
+				"title": "Forms & Trust Elements",
+				"controls": [
+					{
+						"attr": "labelStyle",
+						"kind": "select",
+						"label": "Input Label Style",
+						"options": [
+							{
+								"label": "Labels Above Inputs",
+								"value": "above"
+							},
+							{
+								"label": "Floating Placeholder Labels",
+								"value": "floating"
+							}
+						]
+					},
+					{
+						"attr": "showTrustStrip",
+						"kind": "switch",
+						"label": "Show Security Strip"
+					},
+					{
+						"attr": "trustText",
+						"kind": "text",
+						"label": "Security Text",
+						"condition": {
+							"showTrustStrip": true
+						}
+					},
+					{
+						"attr": "inputRadius",
+						"kind": "number",
+						"label": "Input Border Radius",
+						"min": 0,
+						"max": 20
+					}
+				]
+			},
+			{
+				"title": "Order Summary Styling",
+				"controls": [
+					{
+						"attr": "summaryRadius",
+						"kind": "number",
+						"label": "Summary Border Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "summaryBg",
+						"kind": "color",
+						"label": "Summary Background"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Buttons)"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Border Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"column": {
+		"sections": [
+			{
+				"title": "Column Environment",
+				"controls": [
+					{
+						"attr": "padding",
+						"kind": "number",
+						"label": "Inner Padding (px)",
+						"min": 0,
+						"max": 100
+					},
+					{
+						"attr": "radius",
+						"kind": "number",
+						"label": "Border Radius (px)",
+						"min": 0,
+						"max": 40
+					},
+					{
+						"attr": "hideOnMobile",
+						"kind": "switch",
+						"label": "Hide Completely on Mobile"
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Background Color"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Border Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"columns-builder": {
+		"sections": [
+			{
+				"title": "Grid Architecture",
+				"controls": [
+					{
+						"attr": "layout",
+						"kind": "select",
+						"label": "Column Layout",
+						"options": [
+							{
+								"label": "50 / 50 (2 Cols)",
+								"value": "1fr 1fr"
+							},
+							{
+								"label": "33 / 66 (2 Cols)",
+								"value": "1fr 2fr"
+							},
+							{
+								"label": "66 / 33 (2 Cols)",
+								"value": "2fr 1fr"
+							},
+							{
+								"label": "25 / 75 (2 Cols)",
+								"value": "1fr 3fr"
+							},
+							{
+								"label": "33 / 33 / 33 (3 Cols)",
+								"value": "1fr 1fr 1fr"
+							},
+							{
+								"label": "25 / 50 / 25 (3 Cols)",
+								"value": "1fr 2fr 1fr"
+							},
+							{
+								"label": "25 / 25 / 25 / 25 (4 Cols)",
+								"value": "1fr 1fr 1fr 1fr"
+							}
+						]
+					},
+					{
+						"attr": "gap",
+						"kind": "number",
+						"label": "Gap Between Columns (px)",
+						"min": 0,
+						"max": 100
+					},
+					{
+						"attr": "vAlign",
+						"kind": "select",
+						"label": "Vertical Alignment",
+						"options": [
+							{
+								"label": "Top",
+								"value": "start"
+							},
+							{
+								"label": "Middle",
+								"value": "center"
+							},
+							{
+								"label": "Bottom",
+								"value": "end"
+							},
+							{
+								"label": "Stretch",
+								"value": "stretch"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Responsive & Dividers",
+				"controls": [
+					{
+						"attr": "mobileStack",
+						"kind": "select",
+						"label": "Mobile Behavior",
+						"options": [
+							{
+								"label": "Stack Vertically (1 Column)",
+								"value": "stack"
+							},
+							{
+								"label": "Keep Grid (Scroll/Shrink)",
+								"value": "keep"
+							}
+						]
+					},
+					{
+						"attr": "reverseMobile",
+						"kind": "switch",
+						"label": "Reverse Stacking Order",
+						"condition": {
+							"mobileStack": "stack"
+						}
+					},
+					{
+						"attr": "showDividers",
+						"kind": "switch",
+						"label": "Show Column Dividers"
+					},
+					{
+						"attr": "dividerColor",
+						"kind": "color",
+						"label": "",
+						"condition": {
+							"showDividers": true
+						}
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"compare-table": {
+		"sections": [
+			{
+				"title": "Data Routing",
+				"controls": [
+					{
+						"attr": "sourceMode",
+						"kind": "select",
+						"label": "Compare Data Source",
+						"options": [
+							{
+								"label": "Dynamic (Visitor Session)",
+								"value": "dynamic"
+							},
+							{
+								"label": "Static (Editorial Selection)",
+								"value": "static"
+							}
+						]
+					},
+					{
+						"attr": "staticProducts",
+						"kind": "text",
+						"label": "Product IDs (Comma Separated)",
+						"condition": {
+							"sourceMode": "static"
+						}
+					}
+				]
+			},
+			{
+				"title": "Matrix Architecture",
+				"controls": [
+					{
+						"attr": "maxColumns",
+						"kind": "number",
+						"label": "Max Columns (Products)",
+						"min": 2,
+						"max": 6
+					},
+					{
+						"attr": "labelWidth",
+						"kind": "number",
+						"label": "Row Label Column Width (%)",
+						"min": 15,
+						"max": 40
+					},
+					{
+						"attr": "isSticky",
+						"kind": "switch",
+						"label": "Enable Sticky Header"
+					},
+					{
+						"attr": "tableRadius",
+						"kind": "number",
+						"label": "Table Border Radius",
+						"min": 0,
+						"max": 24
+					}
+				]
+			},
+			{
+				"title": "Header Elements",
+				"controls": [
+					{
+						"attr": "showImage",
+						"kind": "switch",
+						"label": "Show Image"
+					},
+					{
+						"attr": "imageRatio",
+						"kind": "select",
+						"label": "Image Aspect Ratio",
+						"options": [
+							{
+								"label": "Square (1:1)",
+								"value": "1/1"
+							},
+							{
+								"label": "Portrait (3:4)",
+								"value": "3/4"
+							},
+							{
+								"label": "Landscape (16:9)",
+								"value": "16/9"
+							}
+						],
+						"condition": {
+							"showImage": true
+						}
+					},
+					{
+						"attr": "showPrice",
+						"kind": "switch",
+						"label": "Show Price"
+					},
+					{
+						"attr": "showRating",
+						"kind": "switch",
+						"label": "Show Rating"
+					},
+					{
+						"attr": "showAtc",
+						"kind": "switch",
+						"label": "Show Add to Cart"
+					}
+				]
+			},
+			{
+				"title": "Colors & Styling",
+				"controls": [
+					{
+						"attr": "alternateRows",
+						"kind": "switch",
+						"label": "Alternate Row Colors"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"content-tabs": {
+		"sections": [
+			{
+				"title": "Architecture & Animation",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Direction",
+						"options": [
+							{
+								"label": "Horizontal (Tabs Top)",
+								"value": "horizontal"
+							},
+							{
+								"label": "Vertical (Tabs Left)",
+								"value": "vertical"
+							}
+						]
+					},
+					{
+						"attr": "tabStyle",
+						"kind": "select",
+						"label": "Tab Nav Style",
+						"options": [
+							{
+								"label": "Editorial Underline",
+								"value": "underline"
+							},
+							{
+								"label": "Pill Buttons",
+								"value": "pill"
+							},
+							{
+								"label": "Boxed",
+								"value": "box"
+							}
+						]
+					},
+					{
+						"attr": "animStyle",
+						"kind": "select",
+						"label": "Switch Animation",
+						"options": [
+							{
+								"label": "Smooth Fade",
+								"value": "fade"
+							},
+							{
+								"label": "Slide Horizontal",
+								"value": "slide-h"
+							},
+							{
+								"label": "Slide Vertical",
+								"value": "slide-v"
+							},
+							{
+								"label": "Instant",
+								"value": "none"
+							}
+						]
+					},
+					{
+						"attr": "animDuration",
+						"kind": "number",
+						"label": "Animation Duration (ms)",
+						"min": 0,
+						"max": 1000,
+						"step": 50
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Active Accent Color"
+					},
+					{
+						"attr": "inactiveColor",
+						"kind": "color",
+						"label": "Inactive / Outline Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"cookie-consent": {
+		"sections": [
+			{
+				"title": "Placement & Compliance",
+				"controls": [
+					{
+						"attr": "placementStyle",
+						"kind": "select",
+						"label": "Placement Style",
+						"options": [
+							{
+								"label": "Bottom Bar (Slim)",
+								"value": "bar"
+							},
+							{
+								"label": "Floating Card (Bottom Left)",
+								"value": "card"
+							},
+							{
+								"label": "Centered Modal (Strict)",
+								"value": "modal"
+							}
+						]
+					},
+					{
+						"attr": "consentMode",
+						"kind": "select",
+						"label": "Consent Mode",
+						"options": [
+							{
+								"label": "Simple (Accept / Decline)",
+								"value": "simple"
+							},
+							{
+								"label": "Category Preferences",
+								"value": "category"
+							}
+						]
+					},
+					{
+						"attr": "showModalOverlay",
+						"kind": "switch",
+						"label": "Show Backdrop Overlay",
+						"condition": {
+							"placementStyle": "modal"
+						}
+					},
+					{
+						"attr": "cookieDays",
+						"kind": "number",
+						"label": "Cookie Expiration (Days)",
+						"min": 1,
+						"max": 365
+					}
+				]
+			},
+			{
+				"title": "Gate Mode",
+				"controls": [
+					{
+						"attr": "gateMode",
+						"kind": "switch",
+						"label": "Enable Gate Mode"
+					},
+					{
+						"attr": "gateModeStyle",
+						"kind": "select",
+						"label": "Gate Style",
+						"options": [
+							{
+								"label": "Blur page content",
+								"value": "blur"
+							},
+							{
+								"label": "Blackout (full block)",
+								"value": "blackout"
+							}
+						],
+						"condition": {
+							"gateMode": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Copy & Content",
+				"controls": [
+					{
+						"attr": "message",
+						"kind": "text",
+						"label": "Main Message"
+					},
+					{
+						"attr": "policyLink",
+						"kind": "text",
+						"label": "Privacy Policy URL"
+					},
+					{
+						"attr": "policyLinkText",
+						"kind": "text",
+						"label": "Privacy Policy Link Text"
+					},
+					{
+						"attr": "btnAccept",
+						"kind": "text",
+						"label": "Accept Button Text"
+					},
+					{
+						"attr": "btnDecline",
+						"kind": "text",
+						"label": "Decline Button Text"
+					},
+					{
+						"attr": "btnManage",
+						"kind": "text",
+						"label": "Manage Preferences Text",
+						"condition": {
+							"consentMode": "category"
+						}
+					}
+				]
+			},
+			{
+				"title": "Visual Design",
+				"controls": [
+					{
+						"attr": "shadowOpacity",
+						"kind": "number",
+						"label": "Shadow Opacity (%)",
+						"min": 0,
+						"max": 30
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"countdown": {
+		"sections": [
+			{
+				"title": "Layout & Animation",
+				"controls": [
+					{
+						"attr": "contentAlign",
+						"kind": "select",
+						"label": "Block Placement",
+						"options": [
+							{
+								"label": "Left Aligned",
+								"value": "flex-start"
+							},
+							{
+								"label": "Center Aligned",
+								"value": "center"
+							},
+							{
+								"label": "Right Aligned",
+								"value": "flex-end"
+							}
+						]
+					},
+					{
+						"attr": "widthMode",
+						"kind": "select",
+						"label": "Width Mode",
+						"options": [
+							{
+								"label": "Contained",
+								"value": "contained"
+							},
+							{
+								"label": "Wide",
+								"value": "wide"
+							},
+							{
+								"label": "Fullwidth",
+								"value": "fullwidth"
+							}
+						]
+					},
+					{
+						"attr": "aosAnimation",
+						"kind": "select",
+						"label": "AOS Animation",
+						"options": [
+							{
+								"label": "None",
+								"value": ""
+							},
+							{
+								"label": "Fade Up",
+								"value": "fade-up"
+							},
+							{
+								"label": "Fade Down",
+								"value": "fade-down"
+							},
+							{
+								"label": "Fade In",
+								"value": "fade"
+							},
+							{
+								"label": "Zoom In",
+								"value": "zoom-in"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Timer Settings",
+				"controls": [
+					{
+						"attr": "targetDate",
+						"kind": "text",
+						"label": "End Date & Time"
+					},
+					{
+						"attr": "styleMode",
+						"kind": "select",
+						"label": "Visual Style",
+						"options": [
+							{
+								"label": "Solid Boxed",
+								"value": "boxed"
+							},
+							{
+								"label": "Rounded Pill",
+								"value": "pill"
+							},
+							{
+								"label": "Minimal (No Box, Colons)",
+								"value": "minimal"
+							}
+						]
+					},
+					{
+						"attr": "boxRadius",
+						"kind": "number",
+						"label": "Box Border Radius",
+						"min": 0,
+						"max": 30
+					},
+					{
+						"attr": "digitSize",
+						"kind": "number",
+						"label": "Digit Size (px)",
+						"min": 16,
+						"max": 80
+					}
+				]
+			},
+			{
+				"title": "Expiration Action",
+				"controls": [
+					{
+						"attr": "expireAction",
+						"kind": "select",
+						"label": "When timer hits zero:",
+						"options": [
+							{
+								"label": "Stop at Zero (00:00)",
+								"value": "stop"
+							},
+							{
+								"label": "Hide Timer & Show Message",
+								"value": "message"
+							},
+							{
+								"label": "Redirect to URL",
+								"value": "redirect"
+							}
+						]
+					},
+					{
+						"attr": "expireMessage",
+						"kind": "text",
+						"label": "Expiration Message",
+						"condition": {
+							"expireAction": "message"
+						}
+					},
+					{
+						"attr": "expireUrl",
+						"kind": "text",
+						"label": "Redirect URL",
+						"condition": {
+							"expireAction": "redirect"
+						}
+					}
+				]
+			},
+			{
+				"title": "Labels & Colors",
+				"controls": [
+					{
+						"attr": "labelDays",
+						"kind": "text",
+						"label": ""
+					},
+					{
+						"attr": "labelHours",
+						"kind": "text",
+						"label": ""
+					},
+					{
+						"attr": "labelMins",
+						"kind": "text",
+						"label": ""
+					},
+					{
+						"attr": "labelSecs",
+						"kind": "text",
+						"label": ""
+					},
+					{
+						"attr": "digitColor",
+						"kind": "color",
+						"label": "Digit Color"
+					},
+					{
+						"attr": "labelColor",
+						"kind": "color",
+						"label": "Label Color"
+					},
+					{
+						"attr": "boxBg",
+						"kind": "color",
+						"label": "Box Background"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"countdown-banner": {
+		"sections": [
+			{
+				"title": "Banner Architecture",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Macro Layout",
+						"options": [
+							{
+								"label": "Centered Card (Elevated)",
+								"value": "card"
+							},
+							{
+								"label": "Split (Content Left, Timer Right)",
+								"value": "split"
+							},
+							{
+								"label": "Full-Width Strip",
+								"value": "strip"
+							}
+						]
+					},
+					{
+						"attr": "timerStyle",
+						"kind": "select",
+						"label": "Timer Style",
+						"options": [
+							{
+								"label": "Solid Boxed",
+								"value": "boxed"
+							},
+							{
+								"label": "Mechanical Flip",
+								"value": "flip"
+							},
+							{
+								"label": "Glowing Neon",
+								"value": "neon"
+							},
+							{
+								"label": "Minimal Text",
+								"value": "minimal"
+							}
+						]
+					},
+					{
+						"attr": "widthMode",
+						"kind": "select",
+						"label": "Width Mode",
+						"options": [
+							{
+								"label": "Contained",
+								"value": "contained"
+							},
+							{
+								"label": "Wide",
+								"value": "wide"
+							},
+							{
+								"label": "Fullwidth",
+								"value": "fullwidth"
+							}
+						]
+					},
+					{
+						"attr": "showDays",
+						"kind": "switch",
+						"label": "Show Days Unit"
+					}
+				]
+			},
+			{
+				"title": "Time & Actions",
+				"controls": [
+					{
+						"attr": "targetDate",
+						"kind": "text",
+						"label": "Target Date & Time"
+					},
+					{
+						"attr": "expireAction",
+						"kind": "select",
+						"label": "On Expiration:",
+						"options": [
+							{
+								"label": "Hide Entire Banner",
+								"value": "hide"
+							},
+							{
+								"label": "Show Custom Message",
+								"value": "message"
+							},
+							{
+								"label": "Redirect Page",
+								"value": "redirect"
+							},
+							{
+								"label": "Stop at Zeros",
+								"value": "stop"
+							}
+						]
+					},
+					{
+						"attr": "expireMessage",
+						"kind": "text",
+						"label": "Expiration Message",
+						"condition": {
+							"expireAction": "message"
+						}
+					},
+					{
+						"attr": "expireUrl",
+						"kind": "text",
+						"label": "Redirect URL",
+						"condition": {
+							"expireAction": "redirect"
+						}
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "bgMode",
+						"kind": "select",
+						"label": "Background Type",
+						"options": [
+							{
+								"label": "Vivid Gradient",
+								"value": "gradient"
+							},
+							{
+								"label": "Solid Color",
+								"value": "solid"
+							}
+						]
+					},
+					{
+						"attr": "color1",
+						"kind": "color",
+						"label": ""
+					},
+					{
+						"attr": "color2",
+						"kind": "color",
+						"label": "Gradient End",
+						"condition": {
+							"bgMode": "gradient"
+						}
+					},
+					{
+						"attr": "digitColor",
+						"kind": "color",
+						"label": "Digit Color"
+					},
+					{
+						"attr": "boxColor",
+						"kind": "color",
+						"label": "Box Background"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"exit-popup": {
+		"sections": [
+			{
+				"title": "Trigger & Suppression",
+				"controls": [
+					{
+						"attr": "triggerType",
+						"kind": "select",
+						"label": "Primary Trigger (Desktop)",
+						"options": [
+							{
+								"label": "Exit Intent (Mouse leaves top)",
+								"value": "exit"
+							},
+							{
+								"label": "Time Delay",
+								"value": "time"
+							},
+							{
+								"label": "Scroll Depth",
+								"value": "scroll"
+							}
+						]
+					},
+					{
+						"attr": "mobileFallback",
+						"kind": "number",
+						"label": "Mobile Fallback Trigger (Seconds)",
+						"min": 3,
+						"max": 60
+					},
+					{
+						"attr": "suppressionDays",
+						"kind": "number",
+						"label": "Suppression (Days)",
+						"min": 1,
+						"max": 30
+					}
+				]
+			},
+			{
+				"title": "Copy & Content",
+				"controls": [
+					{
+						"attr": "headline",
+						"kind": "text",
+						"label": "Headline"
+					},
+					{
+						"attr": "subhead",
+						"kind": "text",
+						"label": "Subheadline"
+					},
+					{
+						"attr": "offerHighlight",
+						"kind": "text",
+						"label": "Offer Highlight"
+					},
+					{
+						"attr": "ctaText",
+						"kind": "text",
+						"label": "Button Text"
+					},
+					{
+						"attr": "dismissText",
+						"kind": "text",
+						"label": "Dismiss Link Text"
+					},
+					{
+						"attr": "showEmail",
+						"kind": "switch",
+						"label": "Show Email Input"
+					},
+					{
+						"attr": "showCountdown",
+						"kind": "switch",
+						"label": "Show Fake Urgency Countdown"
+					}
+				]
+			},
+			{
+				"title": "Visual Design",
+				"controls": [
+					{
+						"attr": "animStyle",
+						"kind": "select",
+						"label": "Entrance Animation",
+						"options": [
+							{
+								"label": "Scale Up",
+								"value": "scale"
+							},
+							{
+								"label": "Fade In",
+								"value": "fade"
+							},
+							{
+								"label": "Slide Down",
+								"value": "slide"
+							}
+						]
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Overlay Opacity (%)",
+						"min": 0,
+						"max": 100
+					},
+					{
+						"attr": "overlayBlur",
+						"kind": "number",
+						"label": "Overlay Blur (px)",
+						"min": 0,
+						"max": 20
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Modal Background"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Accent Color (Button)"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"faq-accordion": {
+		"sections": [
+			{
+				"title": "Layout & Animation",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Design Style",
+						"options": [
+							{
+								"label": "Flush (Traditional borders)",
+								"value": "flush"
+							},
+							{
+								"label": "Elevated Card (Seamless)",
+								"value": "elevated"
+							},
+							{
+								"label": "Separated Blocks",
+								"value": "separated"
+							}
+						]
+					},
+					{
+						"attr": "widthMode",
+						"kind": "select",
+						"label": "Width Mode",
+						"options": [
+							{
+								"label": "Contained",
+								"value": "contained"
+							},
+							{
+								"label": "Wide",
+								"value": "wide"
+							},
+							{
+								"label": "Fullwidth",
+								"value": "fullwidth"
+							}
+						]
+					},
+					{
+						"attr": "aosAnimation",
+						"kind": "select",
+						"label": "AOS Animation",
+						"options": [
+							{
+								"label": "None",
+								"value": ""
+							},
+							{
+								"label": "Fade Up",
+								"value": "fade-up"
+							},
+							{
+								"label": "Fade Down",
+								"value": "fade-down"
+							},
+							{
+								"label": "Fade In",
+								"value": "fade"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Accordion Behavior",
+				"controls": [
+					{
+						"attr": "behavior",
+						"kind": "select",
+						"label": "Expand/Collapse Mode",
+						"options": [
+							{
+								"label": "Exclusive (One open at a time)",
+								"value": "exclusive"
+							},
+							{
+								"label": "Independent (Multiple can open)",
+								"value": "independent"
+							}
+						]
+					},
+					{
+						"attr": "openFirst",
+						"kind": "switch",
+						"label": "First Item Open by Default"
+					},
+					{
+						"attr": "animDuration",
+						"kind": "number",
+						"label": "Animation Duration (ms)",
+						"min": 100,
+						"max": 800,
+						"step": 50
+					}
+				]
+			},
+			{
+				"title": "Visual Design",
+				"controls": [
+					{
+						"attr": "iconStyle",
+						"kind": "select",
+						"label": "Icon Style",
+						"options": [
+							{
+								"label": "Rotating Chevron",
+								"value": "chevron"
+							},
+							{
+								"label": "Plus / Minus",
+								"value": "plus-minus"
+							}
+						]
+					},
+					{
+						"attr": "iconPosition",
+						"kind": "select",
+						"label": "Icon Position",
+						"options": [
+							{
+								"label": "Right Aligned",
+								"value": "right"
+							},
+							{
+								"label": "Left Aligned",
+								"value": "left"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "FAQ Content Data",
+				"controls": [
+					{
+						"repeater": "faqs"
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "questionBg",
+						"kind": "color",
+						"label": "Question Background"
+					},
+					{
+						"attr": "answerBg",
+						"kind": "color",
+						"label": "Answer Background"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Active Accent Color"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Border Color"
+					}
+				]
+			}
+		],
+		"repeaters": {
+			"faqs": {
+				"fields": [
+					{
+						"key": "question",
+						"kind": "text",
+						"label": "Question"
+					},
+					{
+						"key": "answer",
+						"kind": "textarea",
+						"label": "Answer",
+						"rows": 4
+					}
+				]
+			}
+		}
+	},
+	"featured-product": {
+		"sections": [
+			{
+				"title": "Architecture",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Side-by-Side (Split)",
+								"value": "side-by-side"
+							},
+							{
+								"label": "Stacked (Narrow)",
+								"value": "stacked"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Content Elements",
+				"controls": [
+					{
+						"attr": "preHeadline",
+						"kind": "text",
+						"label": "Pre-Headline Badge"
+					},
+					{
+						"attr": "showRating",
+						"kind": "switch",
+						"label": "Show Rating"
+					},
+					{
+						"attr": "showPrice",
+						"kind": "switch",
+						"label": "Show Price"
+					},
+					{
+						"attr": "showExcerpt",
+						"kind": "switch",
+						"label": "Show Description"
+					},
+					{
+						"attr": "showGallery",
+						"kind": "switch",
+						"label": "Show Image Gallery"
+					}
+				]
+			},
+			{
+				"title": "Commerce Actions",
+				"controls": [
+					{
+						"attr": "showQuantity",
+						"kind": "switch",
+						"label": "Show Quantity Selector"
+					},
+					{
+						"attr": "buttonStyle",
+						"kind": "select",
+						"label": "Add to Cart Style",
+						"options": [
+							{
+								"label": "Solid Fill",
+								"value": "solid"
+							},
+							{
+								"label": "Ghost Outline",
+								"value": "outline"
+							}
+						]
+					},
+					{
+						"attr": "showBuyNow",
+						"kind": "switch",
+						"label": "Enable 'Buy Now' Redirect"
+					},
+					{
+						"attr": "buyNowStyle",
+						"kind": "select",
+						"label": "Buy Now Style",
+						"options": [
+							{
+								"label": "Solid Fill",
+								"value": "solid"
+							},
+							{
+								"label": "Ghost Outline",
+								"value": "outline"
+							}
+						],
+						"condition": {
+							"showBuyNow": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "imageBg",
+						"kind": "color",
+						"label": ""
+					},
+					{
+						"attr": "contentBg",
+						"kind": "color",
+						"label": "Content Area Background"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"filter-sidebar": {
+		"sections": [
+			{
+				"title": "Placement & Architecture",
+				"controls": [
+					{
+						"attr": "placementMode",
+						"kind": "select",
+						"label": "Placement Mode",
+						"options": [
+							{
+								"label": "Sidebar Left (Inline)",
+								"value": "sidebar-left"
+							},
+							{
+								"label": "Sidebar Right (Inline)",
+								"value": "sidebar-right"
+							},
+							{
+								"label": "Horizontal Bar (Top)",
+								"value": "horizontal"
+							}
+						]
+					},
+					{
+						"attr": "showCounts",
+						"kind": "switch",
+						"label": "Show Product Counts"
+					},
+					{
+						"attr": "showActiveChips",
+						"kind": "switch",
+						"label": "Show Active Filter Chips"
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent Color"
+					},
+					{
+						"attr": "headingColor",
+						"kind": "color",
+						"label": "Heading Color"
+					},
+					{
+						"attr": "chipBgColor",
+						"kind": "color",
+						"label": "Active Chip Background"
+					},
+					{
+						"attr": "chipTextColor",
+						"kind": "color",
+						"label": "Active Chip Text"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"hamburger": {
+		"sections": [
+			{
+				"title": "Drawer Behavior",
+				"controls": [
+					{
+						"attr": "drawerType",
+						"kind": "select",
+						"label": "Opening Style",
+						"options": [
+							{
+								"label": "Slide in from Right",
+								"value": "slide-right"
+							},
+							{
+								"label": "Slide in from Left",
+								"value": "slide-left"
+							},
+							{
+								"label": "Fullscreen Overlay",
+								"value": "fullscreen"
+							}
+						]
+					},
+					{
+						"attr": "drawerWidth",
+						"kind": "number",
+						"label": "Drawer Width (px)",
+						"min": 250,
+						"max": 600,
+						"condition": {
+							"drawerType!": "fullscreen"
+						}
+					},
+					{
+						"attr": "overlayBlur",
+						"kind": "number",
+						"label": "Background Overlay Blur (px)",
+						"min": 0,
+						"max": 20
+					}
+				]
+			},
+			{
+				"title": "Colors & Styling",
+				"controls": [
+					{
+						"attr": "iconColor",
+						"kind": "color",
+						"label": "Icon Color"
+					},
+					{
+						"attr": "drawerBg",
+						"kind": "color",
+						"label": "Drawer Background"
+					},
+					{
+						"attr": "iconSize",
+						"kind": "number",
+						"label": "Icon Size (px)",
+						"min": 20,
+						"max": 50
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"header-icons": {
+		"sections": [
+			{
+				"title": "Icon Visibility",
+				"controls": [
+					{
+						"attr": "showSearch",
+						"kind": "switch",
+						"label": "Show Search"
+					},
+					{
+						"attr": "showWishlist",
+						"kind": "switch",
+						"label": "Show Wishlist"
+					},
+					{
+						"attr": "showAccount",
+						"kind": "switch",
+						"label": "Show Account"
+					},
+					{
+						"attr": "showCart",
+						"kind": "switch",
+						"label": "Show Cart"
+					},
+					{
+						"attr": "showCartBadge",
+						"kind": "switch",
+						"label": "Show Cart Item Badge",
+						"condition": {
+							"showCart": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Icon Styling",
+				"controls": [
+					{
+						"attr": "iconSize",
+						"kind": "number",
+						"label": "Icon Size (px)",
+						"min": 16,
+						"max": 40
+					},
+					{
+						"attr": "iconSpacing",
+						"kind": "number",
+						"label": "Spacing Between Icons (px)",
+						"min": 5,
+						"max": 50
+					},
+					{
+						"attr": "iconColor",
+						"kind": "color",
+						"label": "Icon Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"hero": {
+		"sections": [
+			{
+				"title": "Layout & Sizing",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Full Bleed (Centered)",
+								"value": "full-center"
+							},
+							{
+								"label": "Full Bleed (Left)",
+								"value": "full-left"
+							},
+							{
+								"label": "Split (Content Left)",
+								"value": "split-left"
+							}
+						]
+					},
+					{
+						"attr": "minHeight",
+						"kind": "number",
+						"label": "Minimum Height (vh)",
+						"min": 40,
+						"max": 100
+					},
+					{
+						"attr": "contentCard",
+						"kind": "switch",
+						"label": "Use Glassmorphism Content Card"
+					}
+				]
+			},
+			{
+				"title": "Background Engine",
+				"controls": [
+					{
+						"attr": "bgType",
+						"kind": "select",
+						"label": "Background Type",
+						"options": [
+							{
+								"label": "Solid Color",
+								"value": "solid"
+							},
+							{
+								"label": "Cinematic Gradient",
+								"value": "gradient"
+							},
+							{
+								"label": "Image",
+								"value": "image"
+							}
+						]
+					},
+					{
+						"attr": "bgImageUrl",
+						"kind": "media",
+						"label": "",
+						"condition": {
+							"bgType": "image"
+						}
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": ""
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Dark Overlay Opacity (%)",
+						"min": 0,
+						"max": 100
+					}
+				]
+			},
+			{
+				"title": "Cinematic Effects",
+				"controls": [
+					{
+						"attr": "enableKenBurns",
+						"kind": "switch",
+						"label": "Ken Burns Background Zoom"
+					},
+					{
+						"attr": "enableNoise",
+						"kind": "switch",
+						"label": "Film Grain / Noise Overlay"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"hero-layout": {
+		"sections": [
+			{
+				"title": "Architecture",
+				"controls": [
+					{
+						"attr": "layoutType",
+						"kind": "select",
+						"label": "Layout Type",
+						"options": [
+							{
+								"label": "Standard Split",
+								"value": "split"
+							},
+							{
+								"label": "Editorial Asymmetric",
+								"value": "asymmetric"
+							}
+						]
+					},
+					{
+						"attr": "contentSide",
+						"kind": "select",
+						"label": "Content Position",
+						"options": [
+							{
+								"label": "Content on Left",
+								"value": "left"
+							},
+							{
+								"label": "Content on Right",
+								"value": "right"
+							}
+						]
+					},
+					{
+						"attr": "splitRatio",
+						"kind": "select",
+						"label": "Split Ratio",
+						"options": [
+							{
+								"label": "30 / 70",
+								"value": "30-70"
+							},
+							{
+								"label": "40 / 60",
+								"value": "40-60"
+							},
+							{
+								"label": "50 / 50",
+								"value": "50-50"
+							},
+							{
+								"label": "60 / 40",
+								"value": "60-40"
+							},
+							{
+								"label": "70 / 30",
+								"value": "70-30"
+							}
+						],
+						"condition": {
+							"layoutType": "split"
+						}
+					},
+					{
+						"attr": "mobileStack",
+						"kind": "select",
+						"label": "Mobile Stacking Order",
+						"options": [
+							{
+								"label": "Content on Top",
+								"value": "content-first"
+							},
+							{
+								"label": "Media on Top",
+								"value": "media-first"
+							}
+						],
+						"condition": {
+							"layoutType": "split"
+						}
+					},
+					{
+						"attr": "dividerStyle",
+						"kind": "select",
+						"label": "Divider Style",
+						"options": [
+							{
+								"label": "Straight Cut",
+								"value": "straight"
+							},
+							{
+								"label": "Diagonal Slash",
+								"value": "diagonal"
+							},
+							{
+								"label": "Soft Wave",
+								"value": "wave"
+							}
+						],
+						"condition": {
+							"layoutType": "split"
+						}
+					},
+					{
+						"attr": "dividerColor",
+						"kind": "color",
+						"label": "",
+						"condition": {
+							"dividerStyle!": "straight",
+							"layoutType": "split"
+						}
+					},
+					{
+						"attr": "offsetX",
+						"kind": "number",
+						"label": "X-Axis Offset (%)",
+						"min": -50,
+						"max": 50,
+						"condition": {
+							"layoutType": "asymmetric"
+						}
+					},
+					{
+						"attr": "offsetY",
+						"kind": "number",
+						"label": "Y-Axis Offset (%)",
+						"min": -50,
+						"max": 50,
+						"condition": {
+							"layoutType": "asymmetric"
+						}
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"icon": {
+		"sections": [
+			{
+				"title": "Icon Library",
+				"controls": [
+					{
+						"attr": "iconName",
+						"kind": "select",
+						"label": "Select Icon"
+					},
+					{
+						"attr": "customSvg",
+						"kind": "textarea",
+						"label": "Raw SVG Code",
+						"rows": 6,
+						"condition": {
+							"iconName": "custom"
+						}
+					}
+				]
+			},
+			{
+				"title": "Presentation & Shape",
+				"controls": [
+					{
+						"attr": "presentation",
+						"kind": "select",
+						"label": "Display Style",
+						"options": [
+							{
+								"label": "Standalone (No Background)",
+								"value": "standalone"
+							},
+							{
+								"label": "Filled Badge",
+								"value": "filled"
+							},
+							{
+								"label": "Outlined Badge",
+								"value": "outlined"
+							}
+						]
+					},
+					{
+						"attr": "shape",
+						"kind": "select",
+						"label": "Badge Shape",
+						"options": [
+							{
+								"label": "Circle",
+								"value": "circle"
+							},
+							{
+								"label": "Rounded Square",
+								"value": "rounded"
+							},
+							{
+								"label": "Square",
+								"value": "square"
+							}
+						],
+						"condition": {
+							"presentation!": "standalone"
+						}
+					},
+					{
+						"attr": "iconSize",
+						"kind": "number",
+						"label": "Icon Size (px)",
+						"min": 16,
+						"max": 120
+					},
+					{
+						"attr": "bgPadding",
+						"kind": "number",
+						"label": "Background Padding (px)",
+						"min": 4,
+						"max": 40,
+						"condition": {
+							"presentation!": "standalone"
+						}
+					},
+					{
+						"attr": "borderWidth",
+						"kind": "number",
+						"label": "Border Thickness (px)",
+						"min": 1,
+						"max": 8,
+						"condition": {
+							"presentation": "outlined",
+							"presentation!": "standalone"
+						}
+					}
+				]
+			},
+			{
+				"title": "Text & Interactivity",
+				"controls": [
+					{
+						"attr": "text",
+						"kind": "text",
+						"label": "Optional Text Label"
+					},
+					{
+						"attr": "textPosition",
+						"kind": "select",
+						"label": "Text Position",
+						"options": [
+							{
+								"label": "Right of Icon",
+								"value": "right"
+							},
+							{
+								"label": "Left of Icon",
+								"value": "left"
+							},
+							{
+								"label": "Below Centered",
+								"value": "below"
+							}
+						],
+						"condition": {
+							"text": true
+						}
+					},
+					{
+						"attr": "link",
+						"kind": "text",
+						"label": "Link URL"
+					},
+					{
+						"attr": "hoverEffect",
+						"kind": "select",
+						"label": "Hover Effect",
+						"options": [
+							{
+								"label": "Scale Up",
+								"value": "scale"
+							},
+							{
+								"label": "Rotate Slightly",
+								"value": "rotate"
+							},
+							{
+								"label": "None",
+								"value": "none"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "iconColor",
+						"kind": "color",
+						"label": "Icon Color"
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Background Color",
+						"condition": {
+							"presentation": "filled"
+						}
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Border Color",
+						"condition": {
+							"presentation": "outlined"
+						}
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color",
+						"condition": {
+							"text": true
+						}
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"icon-feature-list": {
+		"sections": [
+			{
+				"title": "Architecture",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Horizontal Row (Grid)",
+								"value": "row"
+							},
+							{
+								"label": "Vertical List",
+								"value": "list"
+							},
+							{
+								"label": "Card Grid",
+								"value": "card"
+							}
+						]
+					},
+					{
+						"attr": "colsDesktop",
+						"kind": "number",
+						"label": "Columns (Desktop)",
+						"min": 1,
+						"max": 6,
+						"condition": {
+							"layoutMode!": "list"
+						}
+					},
+					{
+						"attr": "colsMobile",
+						"kind": "number",
+						"label": "Columns (Mobile)",
+						"min": 1,
+						"max": 3,
+						"condition": {
+							"layoutMode!": "list"
+						}
+					}
+				]
+			},
+			{
+				"title": "Icon Design",
+				"controls": [
+					{
+						"attr": "iconPosition",
+						"kind": "select",
+						"label": "Icon Position",
+						"options": [
+							{
+								"label": "Above Heading (Centered)",
+								"value": "top"
+							},
+							{
+								"label": "Left of Heading",
+								"value": "left-heading"
+							},
+							{
+								"label": "Left (Spans Heading & Text)",
+								"value": "left-span"
+							}
+						]
+					},
+					{
+						"attr": "iconStyle",
+						"kind": "select",
+						"label": "Icon Background Style",
+						"options": [
+							{
+								"label": "No Background",
+								"value": "none"
+							},
+							{
+								"label": "Solid Circle",
+								"value": "circle"
+							},
+							{
+								"label": "Rounded Square",
+								"value": "square"
+							},
+							{
+								"label": "Outlined Circle",
+								"value": "outline"
+							}
+						]
+					},
+					{
+						"attr": "iconSize",
+						"kind": "number",
+						"label": "Icon Size",
+						"min": 16,
+						"max": 80
+					}
+				]
+			},
+			{
+				"title": "Features Content",
+				"controls": [
+					{
+						"repeater": "features"
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Icons)"
+					},
+					{
+						"attr": "headingColor",
+						"kind": "color",
+						"label": "Heading Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Description Text"
+					},
+					{
+						"attr": "cardBg",
+						"kind": "color",
+						"label": "Card Background",
+						"condition": {
+							"layoutMode": "card"
+						}
+					}
+				]
+			}
+		],
+		"repeaters": {
+			"features": {
+				"fields": [
+					{
+						"key": "title",
+						"kind": "text",
+						"label": "Heading"
+					},
+					{
+						"key": "desc",
+						"kind": "text",
+						"label": "Description"
+					},
+					{
+						"key": "icon",
+						"kind": "select",
+						"label": "Default Icon",
+						"options": [
+							{
+								"label": "Truck",
+								"value": "truck"
+							},
+							{
+								"label": "Shield",
+								"value": "shield"
+							},
+							{
+								"label": "Refresh",
+								"value": "refresh"
+							},
+							{
+								"label": "Chat",
+								"value": "chat"
+							},
+							{
+								"label": "Star",
+								"value": "star"
+							}
+						]
+					},
+					{
+						"key": "image",
+						"kind": "media",
+						"label": ""
+					}
+				]
+			}
+		}
+	},
+	"live-sales-popup": {
+		"sections": [
+			{
+				"title": "Data Engine",
+				"controls": [
+					{
+						"attr": "dataSource",
+						"kind": "select",
+						"label": "Data Source",
+						"options": [
+							{
+								"label": "Dummy / Demo Data",
+								"value": "dummy"
+							},
+							{
+								"label": "Live WooCommerce Orders",
+								"value": "live"
+							}
+						]
+					},
+					{
+						"attr": "lookbackDays",
+						"kind": "number",
+						"label": "Lookback Window (Days)",
+						"min": 1,
+						"max": 30,
+						"condition": {
+							"dataSource": "live"
+						}
+					},
+					{
+						"attr": "maxOrders",
+						"kind": "number",
+						"label": "Max Notifications to Queue",
+						"min": 3,
+						"max": 20,
+						"condition": {
+							"dataSource": "live"
+						}
+					},
+					{
+						"attr": "privacyMode",
+						"kind": "select",
+						"label": "Customer Privacy Mode",
+						"options": [
+							{
+								"label": "First Name Only (e.g., Sarah)",
+								"value": "first_name"
+							},
+							{
+								"label": "Full Name (e.g., Sarah Jenkins)",
+								"value": "full_name"
+							},
+							{
+								"label": "Anonymous (e.g., A customer)",
+								"value": "anonymous"
+							}
+						],
+						"condition": {
+							"dataSource": "live"
+						}
+					}
+				]
+			},
+			{
+				"title": "Timing & Animation",
+				"controls": [
+					{
+						"attr": "position",
+						"kind": "select",
+						"label": "Screen Position",
+						"options": [
+							{
+								"label": "Bottom Left",
+								"value": "bottom-left"
+							},
+							{
+								"label": "Bottom Right",
+								"value": "bottom-right"
+							},
+							{
+								"label": "Top Left",
+								"value": "top-left"
+							},
+							{
+								"label": "Top Right",
+								"value": "top-right"
+							}
+						]
+					},
+					{
+						"attr": "animStyle",
+						"kind": "select",
+						"label": "Entrance Animation",
+						"options": [
+							{
+								"label": "Slide In",
+								"value": "slide"
+							},
+							{
+								"label": "Fade In",
+								"value": "fade"
+							},
+							{
+								"label": "Scale Up",
+								"value": "scale"
+							}
+						]
+					},
+					{
+						"attr": "durationMs",
+						"kind": "number",
+						"label": "Visible Duration (ms)",
+						"min": 2000,
+						"max": 10000,
+						"step": 500
+					},
+					{
+						"attr": "intervalMs",
+						"kind": "number",
+						"label": "Interval Between Popups (ms)",
+						"min": 1000,
+						"max": 15000,
+						"step": 500
+					}
+				]
+			},
+			{
+				"title": "Card Design",
+				"controls": [
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Border Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "shadowOpacity",
+						"kind": "number",
+						"label": "Shadow Opacity (%)",
+						"min": 0,
+						"max": 40
+					},
+					{
+						"attr": "cardBg",
+						"kind": "color",
+						"label": "Card Background"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Accent Color (Verified Icon)"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"logo": {
+		"sections": [
+			{
+				"title": "Logo Settings",
+				"controls": [
+					{
+						"attr": "alignment",
+						"kind": "select",
+						"label": "Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "right"
+							}
+						]
+					},
+					{
+						"attr": "logoType",
+						"kind": "select",
+						"label": "Logo Type",
+						"options": [
+							{
+								"label": "Text Only",
+								"value": "text"
+							},
+							{
+								"label": "Image Only",
+								"value": "image"
+							},
+							{
+								"label": "Image + Text",
+								"value": "both"
+							}
+						]
+					},
+					{
+						"attr": "brandName",
+						"kind": "text",
+						"label": "Brand Name"
+					},
+					{
+						"attr": "logoWidth",
+						"kind": "number",
+						"label": "Image Width (px)",
+						"min": 50,
+						"max": 400
+					},
+					{
+						"attr": "tagline",
+						"kind": "text",
+						"label": "Tagline (Optional)"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"lookbook": {
+		"sections": [
+			{
+				"title": "Settings",
+				"controls": [
+					{
+						"attr": "imageUrl",
+						"kind": "media",
+						"label": ""
+					}
+				]
+			},
+			{
+				"title": "Lookbook Configuration",
+				"controls": [
+					{
+						"attr": "imageHeight",
+						"kind": "number",
+						"label": "Canvas Height (vh)",
+						"min": 40,
+						"max": 100
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Dark Overlay Opacity (%)",
+						"min": 0,
+						"max": 100
+					}
+				]
+			},
+			{
+				"title": "Pin Settings",
+				"controls": [
+					{
+						"attr": "pinStyle",
+						"kind": "select",
+						"label": "Pin Visual Style",
+						"options": [
+							{
+								"label": "Pulsing Ring",
+								"value": "pulse"
+							},
+							{
+								"label": "Solid Plus Icon",
+								"value": "plus"
+							}
+						]
+					},
+					{
+						"attr": "pinColor",
+						"kind": "color",
+						"label": "Pin Core Color"
+					},
+					{
+						"attr": "pulseColor",
+						"kind": "color",
+						"label": "Pulse/Accent Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"marquee": {
+		"sections": [
+			{
+				"title": "Marquee Settings",
+				"controls": [
+					{
+						"attr": "text",
+						"kind": "text",
+						"label": "Announcement Text"
+					},
+					{
+						"attr": "isScrolling",
+						"kind": "switch",
+						"label": "Enable Scrolling"
+					},
+					{
+						"attr": "speed",
+						"kind": "number",
+						"label": "Animation Speed (Seconds)",
+						"min": 5,
+						"max": 40,
+						"condition": {
+							"isScrolling": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Background Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"mega-menu": {
+		"sections": [
+			{
+				"title": "Navigation Item",
+				"controls": [
+					{
+						"attr": "menuLabel",
+						"kind": "text",
+						"label": "Top-Level Label"
+					},
+					{
+						"attr": "menuLink",
+						"kind": "text",
+						"label": "Top-Level Link"
+					}
+				]
+			},
+			{
+				"title": "Panel Architecture",
+				"controls": [
+					{
+						"attr": "panelWidth",
+						"kind": "select",
+						"label": "Panel Width Behavior",
+						"options": [
+							{
+								"label": "Full Viewport Width (Edge to Edge)",
+								"value": "full"
+							},
+							{
+								"label": "Container Width (Aligned to Content)",
+								"value": "container"
+							},
+							{
+								"label": "Navigation Width (Dropdown style)",
+								"value": "nav"
+							}
+						]
+					},
+					{
+						"attr": "animStyle",
+						"kind": "select",
+						"label": "Entrance Animation",
+						"options": [
+							{
+								"label": "Smooth Slide Down",
+								"value": "slide"
+							},
+							{
+								"label": "Fade In",
+								"value": "fade"
+							},
+							{
+								"label": "Reveal (Expand Height)",
+								"value": "reveal"
+							}
+						]
+					},
+					{
+						"attr": "openDelay",
+						"kind": "number",
+						"label": "Open Delay (ms)",
+						"min": 0,
+						"max": 500,
+						"step": 50
+					},
+					{
+						"attr": "closeDelay",
+						"kind": "number",
+						"label": "Close Delay (ms)",
+						"min": 0,
+						"max": 1000,
+						"step": 50
+					}
+				]
+			},
+			{
+				"title": "Panel Styling",
+				"controls": [
+					{
+						"attr": "padding",
+						"kind": "text",
+						"label": "Internal Padding"
+					},
+					{
+						"attr": "panelRadius",
+						"kind": "number",
+						"label": "Border Radius (Bottom Corners)",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "shadowOpacity",
+						"kind": "number",
+						"label": "Shadow Opacity (%)",
+						"min": 0,
+						"max": 50
+					},
+					{
+						"attr": "panelBg",
+						"kind": "color",
+						"label": "Panel Background"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"mini-cart": {
+		"sections": [
+			{
+				"title": "Behavior & Triggers",
+				"controls": [
+					{
+						"attr": "autoOpen",
+						"kind": "switch",
+						"label": "Auto-Open on Add to Cart"
+					},
+					{
+						"attr": "openDelay",
+						"kind": "number",
+						"label": "Open Delay (ms)",
+						"min": 0,
+						"max": 2000,
+						"step": 100,
+						"condition": {
+							"autoOpen": true
+						}
+					},
+					{
+						"attr": "showUndo",
+						"kind": "switch",
+						"label": "Enable Undo on Remove"
+					},
+					{
+						"attr": "undoDuration",
+						"kind": "number",
+						"label": "Undo Display Duration (ms)",
+						"min": 2000,
+						"max": 8000,
+						"step": 500,
+						"condition": {
+							"showUndo": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Typography & Content",
+				"controls": [
+					{
+						"attr": "drawerTitle",
+						"kind": "text",
+						"label": "Drawer Title"
+					},
+					{
+						"attr": "emptyHeading",
+						"kind": "text",
+						"label": "Empty State Heading"
+					},
+					{
+						"attr": "emptyMessage",
+						"kind": "text",
+						"label": "Empty State Message"
+					},
+					{
+						"attr": "emptyBtnText",
+						"kind": "text",
+						"label": "Empty State Button"
+					},
+					{
+						"attr": "emptyBtnLink",
+						"kind": "text",
+						"label": "Empty Button URL"
+					}
+				]
+			},
+			{
+				"title": "Design Layout",
+				"controls": [
+					{
+						"attr": "drawerWidth",
+						"kind": "number",
+						"label": "Drawer Width (Desktop px)",
+						"min": 300,
+						"max": 600
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Overlay Opacity (%)",
+						"min": 10,
+						"max": 90
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Drawer Background"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Buttons)"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"mobile-sticky-bar": {
+		"sections": [
+			{
+				"title": "Contextual Page Modes",
+				"controls": [
+					{
+						"attr": "enableProductMode",
+						"kind": "switch",
+						"label": "Product Page Mode"
+					},
+					{
+						"attr": "enableCartMode",
+						"kind": "switch",
+						"label": "Cart Page Mode"
+					},
+					{
+						"attr": "checkoutBehavior",
+						"kind": "select",
+						"label": "Checkout Page Behavior",
+						"options": [
+							{
+								"label": "Hide Bar Entirely (Distraction Free)",
+								"value": "hide"
+							},
+							{
+								"label": "Show Order Summary Toggle",
+								"value": "summary"
+							},
+							{
+								"label": "Keep Standard Bar",
+								"value": "standard"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Search Overlay",
+				"controls": [
+					{
+						"attr": "searchHeading",
+						"kind": "text",
+						"label": "Trending Heading"
+					},
+					{
+						"attr": "searchTrending",
+						"kind": "text",
+						"label": "Trending Terms (Comma separated)"
+					}
+				]
+			},
+			{
+				"title": "Display Rules & Integration",
+				"controls": [
+					{
+						"attr": "autoHide",
+						"kind": "switch",
+						"label": "Auto-Hide on Scroll Down"
+					},
+					{
+						"attr": "showOnDesktop",
+						"kind": "switch",
+						"label": "Show on Desktop"
+					},
+					{
+						"attr": "blurIntensity",
+						"kind": "number",
+						"label": "Frosted Glass Blur (px)",
+						"min": 0,
+						"max": 30
+					},
+					{
+						"attr": "cartDrawerId",
+						"kind": "text",
+						"label": "Cart Drawer ID"
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Background Color"
+					},
+					{
+						"attr": "iconColor",
+						"kind": "color",
+						"label": "Inactive Icon Color"
+					},
+					{
+						"attr": "activeColor",
+						"kind": "color",
+						"label": "Active Icon Color"
+					},
+					{
+						"attr": "centerBtnBg",
+						"kind": "color",
+						"label": "Center Button Background"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"my-account": {
+		"sections": [
+			{
+				"title": "Architecture & Layout",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Sidebar Navigation (Vertical)",
+								"value": "sidebar"
+							},
+							{
+								"label": "Tab Navigation (Horizontal)",
+								"value": "tabs"
+							},
+							{
+								"label": "Card Dashboard (Grid Overview)",
+								"value": "cards"
+							}
+						]
+					},
+					{
+						"attr": "navWidth",
+						"kind": "number",
+						"label": "Sidebar Width (px)",
+						"min": 200,
+						"max": 400,
+						"condition": {
+							"layoutMode": "sidebar"
+						}
+					}
+				]
+			},
+			{
+				"title": "Dashboard Content",
+				"controls": [
+					{
+						"attr": "welcomeFormat",
+						"kind": "text",
+						"label": "Welcome Message Format"
+					},
+					{
+						"attr": "showRecentOrders",
+						"kind": "switch",
+						"label": "Show Recent Orders Summary"
+					},
+					{
+						"attr": "showWishlist",
+						"kind": "switch",
+						"label": "Show Wishlist Link/Summary"
+					}
+				]
+			},
+			{
+				"title": "Colors & Styling",
+				"controls": [
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Card & Field Border Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "navBg",
+						"kind": "color",
+						"label": "Navigation Background"
+					},
+					{
+						"attr": "contentBg",
+						"kind": "color",
+						"label": "Content Background"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Active State)"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Border Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"navigation": {
+		"sections": [
+			{
+				"title": "Mobile Settings",
+				"controls": [
+					{
+						"attr": "mobileMenuDisplay",
+						"kind": "select",
+						"label": "Mobile Menu Display",
+						"options": [
+							{
+								"label": "Always Expanded (Stacked Links)",
+								"value": "expanded"
+							},
+							{
+								"label": "Standard (Hamburger Icon)",
+								"value": "collapsed"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Typography & Spacing",
+				"controls": [
+					{
+						"attr": "fontSize",
+						"kind": "number",
+						"label": "Font Size (px)",
+						"min": 12,
+						"max": 24
+					},
+					{
+						"attr": "fontWeight",
+						"kind": "select",
+						"label": "Font Weight",
+						"options": [
+							{
+								"label": "Normal (400)",
+								"value": "400"
+							},
+							{
+								"label": "Medium (500)",
+								"value": "500"
+							},
+							{
+								"label": "Semibold (600)",
+								"value": "600"
+							},
+							{
+								"label": "Bold (700)",
+								"value": "700"
+							}
+						]
+					},
+					{
+						"attr": "itemSpacing",
+						"kind": "number",
+						"label": "Spacing Between Links (px)",
+						"min": 10,
+						"max": 60
+					}
+				]
+			},
+			{
+				"title": "Colors & Hover Effects",
+				"controls": [
+					{
+						"attr": "hoverEffect",
+						"kind": "select",
+						"label": "Hover Effect",
+						"options": [
+							{
+								"label": "Animated Underline",
+								"value": "underline"
+							},
+							{
+								"label": "Color Shift",
+								"value": "color"
+							},
+							{
+								"label": "None",
+								"value": "none"
+							}
+						]
+					},
+					{
+						"attr": "linkColor",
+						"kind": "color",
+						"label": "Link Color"
+					},
+					{
+						"attr": "hoverColor",
+						"kind": "color",
+						"label": "Hover Color",
+						"condition": {
+							"hoverEffect!": "none"
+						}
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"newsletter": {
+		"sections": [
+			{
+				"title": "Display & Triggers",
+				"controls": [
+					{
+						"attr": "displayMode",
+						"kind": "select",
+						"label": "Display Mode",
+						"options": [
+							{
+								"label": "Inline Section (Standard)",
+								"value": "inline"
+							},
+							{
+								"label": "Modal Popup",
+								"value": "popup"
+							},
+							{
+								"label": "Bottom Slide-in",
+								"value": "slide"
+							},
+							{
+								"label": "Sticky Bar",
+								"value": "sticky"
+							}
+						]
+					},
+					{
+						"attr": "triggerType",
+						"kind": "select",
+						"label": "Trigger Event",
+						"options": [
+							{
+								"label": "Time on Page",
+								"value": "time"
+							},
+							{
+								"label": "Scroll Depth",
+								"value": "scroll"
+							},
+							{
+								"label": "Exit Intent (Desktop only)",
+								"value": "exit"
+							}
+						],
+						"condition": {
+							"displayMode!": "inline"
+						}
+					},
+					{
+						"attr": "triggerValue",
+						"kind": "number",
+						"label": "Delay (Seconds)",
+						"min": 0,
+						"max": 60,
+						"condition": {
+							"triggerType": "time",
+							"displayMode!": "inline"
+						}
+					}
+				]
+			},
+			{
+				"title": "Form Architecture",
+				"controls": [
+					{
+						"attr": "layout",
+						"kind": "select",
+						"label": "Layout",
+						"options": [
+							{
+								"label": "Side-by-Side Split",
+								"value": "split"
+							},
+							{
+								"label": "Centered Stack",
+								"value": "stack"
+							}
+						]
+					},
+					{
+						"attr": "showName",
+						"kind": "switch",
+						"label": "Include First Name Field"
+					},
+					{
+						"attr": "inputRadius",
+						"kind": "number",
+						"label": "Input/Button Radius",
+						"min": 0,
+						"max": 50
+					}
+				]
+			},
+			{
+				"title": "Copy & Messaging",
+				"controls": [
+					{
+						"attr": "heading",
+						"kind": "text",
+						"label": "Heading"
+					},
+					{
+						"attr": "subhead",
+						"kind": "text",
+						"label": "Subheadline"
+					},
+					{
+						"attr": "btnText",
+						"kind": "text",
+						"label": "Button Text"
+					},
+					{
+						"attr": "privacyText",
+						"kind": "text",
+						"label": "Privacy Note"
+					},
+					{
+						"attr": "successMsg",
+						"kind": "text",
+						"label": "Success Message"
+					}
+				]
+			},
+			{
+				"title": "Integrations & Colors",
+				"controls": [
+					{
+						"attr": "provider",
+						"kind": "select",
+						"label": "Email Service Provider",
+						"options": [
+							{
+								"label": "Klaviyo",
+								"value": "klaviyo"
+							},
+							{
+								"label": "Mailchimp",
+								"value": "mailchimp"
+							},
+							{
+								"label": "ConvertKit",
+								"value": "convertkit"
+							},
+							{
+								"label": "WordPress Native",
+								"value": "native"
+							}
+						]
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": ""
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Button & Accent"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"off-canvas": {
+		"sections": [
+			{
+				"title": "Engine & Physics",
+				"controls": [
+					{
+						"attr": "panelId",
+						"kind": "text",
+						"label": "Unique Panel ID"
+					},
+					{
+						"attr": "direction",
+						"kind": "select",
+						"label": "Slide Direction",
+						"options": [
+							{
+								"label": "Slide from Right",
+								"value": "right"
+							},
+							{
+								"label": "Slide from Left",
+								"value": "left"
+							},
+							{
+								"label": "Slide from Top (Curtain)",
+								"value": "top"
+							},
+							{
+								"label": "Slide from Bottom",
+								"value": "bottom"
+							}
+						]
+					},
+					{
+						"attr": "animationMode",
+						"kind": "select",
+						"label": "Interaction Physics",
+						"options": [
+							{
+								"label": "Overlay (Slides over site)",
+								"value": "overlay"
+							},
+							{
+								"label": "Push (Pushes site aside)",
+								"value": "push"
+							},
+							{
+								"label": "Reveal (Site slides to reveal it)",
+								"value": "reveal"
+							}
+						]
+					},
+					{
+						"attr": "panelWidth",
+						"kind": "number",
+						"label": "Panel Width (px)",
+						"min": 280,
+						"max": 800
+					}
+				]
+			},
+			{
+				"title": "Automatic Triggers",
+				"controls": [
+					{
+						"attr": "triggerExit",
+						"kind": "switch",
+						"label": "Exit Intent (Desktop)"
+					},
+					{
+						"attr": "triggerDelay",
+						"kind": "number",
+						"label": "Time Delay (Seconds)",
+						"min": 0,
+						"max": 60
+					},
+					{
+						"attr": "triggerScroll",
+						"kind": "number",
+						"label": "Scroll Depth (%)",
+						"min": 0,
+						"max": 100
+					},
+					{
+						"attr": "sessionMemory",
+						"kind": "switch",
+						"label": "Use Session Memory"
+					}
+				]
+			},
+			{
+				"title": "Design & Colors",
+				"controls": [
+					{
+						"attr": "headerText",
+						"kind": "text",
+						"label": "Header Title"
+					},
+					{
+						"attr": "overlayBlur",
+						"kind": "number",
+						"label": "Background Blur (px)",
+						"min": 0,
+						"max": 30
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Overlay Opacity (%)",
+						"min": 0,
+						"max": 100
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Background Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"order-confirmation": {
+		"sections": [
+			{
+				"title": "Celebration & Copy",
+				"controls": [
+					{
+						"attr": "animType",
+						"kind": "select",
+						"label": "Success Animation",
+						"options": [
+							{
+								"label": "Animated Checkmark",
+								"value": "checkmark"
+							},
+							{
+								"label": "Confetti Burst",
+								"value": "confetti"
+							},
+							{
+								"label": "None",
+								"value": "none"
+							}
+						]
+					},
+					{
+						"attr": "headline",
+						"kind": "text",
+						"label": "Headline"
+					},
+					{
+						"attr": "message",
+						"kind": "textarea",
+						"label": "Confirmation Message",
+						"rows": 3
+					}
+				]
+			},
+			{
+				"title": "Layout & Elements",
+				"controls": [
+					{
+						"attr": "showTimeline",
+						"kind": "switch",
+						"label": "Show Fulfillment Timeline"
+					},
+					{
+						"attr": "showCrossSells",
+						"kind": "switch",
+						"label": "Show Post-Purchase Cross-sells"
+					},
+					{
+						"attr": "showReferral",
+						"kind": "switch",
+						"label": "Show Referral Section"
+					},
+					{
+						"attr": "referralText",
+						"kind": "text",
+						"label": "Referral Offer Text",
+						"condition": {
+							"showReferral": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Styling",
+				"controls": [
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Card Border Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "cardBg",
+						"kind": "color",
+						"label": "Card Background"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Success / Accent Color"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Border Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"pagination": {
+		"sections": [
+			{
+				"title": "Navigation Philosophy",
+				"controls": [
+					{
+						"attr": "mode",
+						"kind": "select",
+						"label": "Pagination Mode",
+						"options": [
+							{
+								"label": "Numbered Pages (Standard)",
+								"value": "numbers"
+							},
+							{
+								"label": "AJAX Load More Button",
+								"value": "load-more"
+							},
+							{
+								"label": "AJAX Infinite Scroll",
+								"value": "infinite"
+							}
+						]
+					},
+					{
+						"attr": "alignment",
+						"kind": "select",
+						"label": "Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "flex-start"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "flex-end"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Number Controls",
+				"controls": [
+					{
+						"attr": "prevNextStyle",
+						"kind": "select",
+						"label": "Prev/Next Style",
+						"options": [
+							{
+								"label": "Text & Icon",
+								"value": "both"
+							},
+							{
+								"label": "Text Only",
+								"value": "text"
+							},
+							{
+								"label": "Icon Only",
+								"value": "icon"
+							}
+						],
+						"condition": {
+							"mode": "numbers"
+						}
+					}
+				]
+			},
+			{
+				"title": "AJAX Controls",
+				"controls": [
+					{
+						"attr": "loadMoreText",
+						"kind": "text",
+						"label": "Button Text",
+						"condition": {
+							"mode": "load-more"
+						}
+					},
+					{
+						"attr": "loadingText",
+						"kind": "text",
+						"label": "Loading State Text"
+					}
+				]
+			},
+			{
+				"title": "Design & Colors",
+				"controls": [
+					{
+						"attr": "buttonRadius",
+						"kind": "number",
+						"label": "Button Border Radius",
+						"min": 0,
+						"max": 50
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Active Page)"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Border Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"payment-icons": {
+		"sections": [
+			{
+				"title": "Typography & Label",
+				"controls": [
+					{
+						"attr": "showLabel",
+						"kind": "switch",
+						"label": "Show Label Text"
+					},
+					{
+						"attr": "labelText",
+						"kind": "text",
+						"label": "Label Text",
+						"condition": {
+							"showLabel": true
+						}
+					},
+					{
+						"attr": "labelColor",
+						"kind": "color",
+						"label": "Label Color",
+						"condition": {
+							"showLabel": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Layout & Style",
+				"controls": [
+					{
+						"attr": "badgeStyle",
+						"kind": "select",
+						"label": "Visual Style Variant",
+						"options": [
+							{
+								"label": "Official Brand Colors",
+								"value": "color"
+							},
+							{
+								"label": "Monochrome Dark",
+								"value": "mono-dark"
+							},
+							{
+								"label": "Monochrome Light",
+								"value": "mono-light"
+							}
+						]
+					},
+					{
+						"attr": "alignment",
+						"kind": "select",
+						"label": "Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "right"
+							}
+						]
+					},
+					{
+						"attr": "iconHeight",
+						"kind": "number",
+						"label": "Icon Height (px)",
+						"min": 16,
+						"max": 64
+					},
+					{
+						"attr": "gap",
+						"kind": "number",
+						"label": "Gap Between Icons (px)",
+						"min": 4,
+						"max": 40
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"posts-grid": {
+		"sections": [
+			{
+				"title": "Section Header",
+				"controls": [
+					{
+						"attr": "sectionTitle",
+						"kind": "text",
+						"label": "Title"
+					},
+					{
+						"attr": "sectionLink",
+						"kind": "text",
+						"label": "View All Link (URL)"
+					}
+				]
+			},
+			{
+				"title": "Query Engine",
+				"controls": [
+					{
+						"attr": "postType",
+						"kind": "select",
+						"label": "Post Type",
+						"options": [
+							{
+								"label": "Standard Blog Posts",
+								"value": "post"
+							},
+							{
+								"label": "Custom Post Types",
+								"value": "custom"
+							}
+						]
+					},
+					{
+						"attr": "queryCount",
+						"kind": "number",
+						"label": "Number of Posts",
+						"min": 1,
+						"max": 12
+					}
+				]
+			},
+			{
+				"title": "Layout Architecture",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Standard Grid",
+								"value": "grid"
+							},
+							{
+								"label": "Featured Magazine (First post large)",
+								"value": "featured"
+							},
+							{
+								"label": "Vertical List",
+								"value": "list"
+							}
+						]
+					},
+					{
+						"attr": "colsDesktop",
+						"kind": "number",
+						"label": "Desktop Columns",
+						"min": 2,
+						"max": 4,
+						"condition": {
+							"layoutMode!": "list"
+						}
+					},
+					{
+						"attr": "imageRatio",
+						"kind": "select",
+						"label": "Image Aspect Ratio",
+						"options": [
+							{
+								"label": "Landscape (16:9)",
+								"value": "16/9"
+							},
+							{
+								"label": "Standard (4:3)",
+								"value": "4/3"
+							},
+							{
+								"label": "Square (1:1)",
+								"value": "1/1"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Card Elements",
+				"controls": [
+					{
+						"attr": "showCategory",
+						"kind": "switch",
+						"label": "Show Category Pill"
+					},
+					{
+						"attr": "showDate",
+						"kind": "switch",
+						"label": "Show Date"
+					},
+					{
+						"attr": "showAuthor",
+						"kind": "switch",
+						"label": "Show Author"
+					},
+					{
+						"attr": "showExcerpt",
+						"kind": "switch",
+						"label": "Show Excerpt"
+					},
+					{
+						"attr": "showReadTime",
+						"kind": "switch",
+						"label": "Show Read Time"
+					},
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Card Border Radius",
+						"min": 0,
+						"max": 24
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": ""
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Pills & Links)"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"pricing-table": {
+		"sections": [
+			{
+				"title": "Architecture & Toggles",
+				"controls": [
+					{
+						"attr": "showToggle",
+						"kind": "switch",
+						"label": "Show Monthly/Annual Toggle"
+					},
+					{
+						"attr": "discountLabel",
+						"kind": "text",
+						"label": "Discount Label",
+						"condition": {
+							"showToggle": true
+						}
+					},
+					{
+						"attr": "showOriginalPrice",
+						"kind": "switch",
+						"label": "Show Original Price Strikethrough"
+					},
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Card Border Radius",
+						"min": 0,
+						"max": 24
+					}
+				]
+			},
+			{
+				"title": "Minimalist Colors",
+				"controls": [
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Buttons & Badges)"
+					},
+					{
+						"attr": "bgBase",
+						"kind": "color",
+						"label": "Standard Card Background"
+					},
+					{
+						"attr": "bgFeatured",
+						"kind": "color",
+						"label": "Featured Card Background"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					}
+				]
+			},
+			{
+				"title": "Tiers Management",
+				"controls": [
+					{
+						"repeater": "tiers"
+					}
+				]
+			}
+		],
+		"repeaters": {
+			"tiers": {
+				"fields": [
+					{
+						"key": "isFeatured",
+						"kind": "switch",
+						"label": "Featured / Elevated Tier"
+					},
+					{
+						"key": "name",
+						"kind": "text",
+						"label": "Tier Name"
+					},
+					{
+						"key": "badge",
+						"kind": "text",
+						"label": "Badge (e.g., Most Popular)"
+					},
+					{
+						"key": "priceMonthly",
+						"kind": "text",
+						"label": "Monthly $"
+					},
+					{
+						"key": "priceAnnual",
+						"kind": "text",
+						"label": "Annual $"
+					},
+					{
+						"key": "priceAnnualOriginal",
+						"kind": "text",
+						"label": "Orig. Annual $"
+					},
+					{
+						"key": "button",
+						"kind": "text",
+						"label": "Button Text"
+					}
+				]
+			}
+		}
+	},
+	"product-card": {
+		"sections": [
+			{
+				"title": "Data Routing",
+				"controls": [
+					{
+						"attr": "sourceMode",
+						"kind": "select",
+						"label": "Product Data Source",
+						"options": [
+							{
+								"label": "Dynamic (WooCommerce)",
+								"value": "dynamic"
+							},
+							{
+								"label": "Manual (Custom Content)",
+								"value": "manual"
+							}
+						]
+					},
+					{
+						"attr": "manualImage",
+						"kind": "media",
+						"label": ""
+					},
+					{
+						"attr": "manualTitle",
+						"kind": "text",
+						"label": "Title"
+					},
+					{
+						"attr": "manualPrice",
+						"kind": "text",
+						"label": "Price"
+					},
+					{
+						"attr": "manualDesc",
+						"kind": "textarea",
+						"label": "Short Description",
+						"rows": 4
+					}
+				]
+			},
+			{
+				"title": "Architecture & Layout",
+				"controls": [
+					{
+						"attr": "orientation",
+						"kind": "select",
+						"label": "Orientation",
+						"options": [
+							{
+								"label": "Vertical (Standard)",
+								"value": "vertical"
+							},
+							{
+								"label": "Horizontal (Editorial)",
+								"value": "horizontal"
+							}
+						]
+					},
+					{
+						"attr": "imageRatio",
+						"kind": "select",
+						"label": "Image Aspect Ratio",
+						"options": [
+							{
+								"label": "Portrait (3:4)",
+								"value": "3/4"
+							},
+							{
+								"label": "Square (1:1)",
+								"value": "1/1"
+							},
+							{
+								"label": "Landscape (16:9)",
+								"value": "16/9"
+							}
+						]
+					},
+					{
+						"attr": "hoverLift",
+						"kind": "switch",
+						"label": "Hover Scale & Shadow Lift"
+					},
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Card Border Radius",
+						"min": 0,
+						"max": 24
+					}
+				]
+			},
+			{
+				"title": "Visibility Toggles",
+				"controls": [
+					{
+						"attr": "showCategory",
+						"kind": "switch",
+						"label": "Show Category Label"
+					},
+					{
+						"attr": "showRating",
+						"kind": "switch",
+						"label": "Show Star Rating"
+					},
+					{
+						"attr": "showDesc",
+						"kind": "switch",
+						"label": "Show Excerpt / Description"
+					},
+					{
+						"attr": "showWishlist",
+						"kind": "switch",
+						"label": "Show Wishlist Icon"
+					},
+					{
+						"attr": "atcStyle",
+						"kind": "select",
+						"label": "Add to Cart Style",
+						"options": [
+							{
+								"label": "Solid Fill",
+								"value": "solid"
+							},
+							{
+								"label": "Ghost Outline",
+								"value": "outline"
+							},
+							{
+								"label": "Text Link",
+								"value": "text"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "cardBg",
+						"kind": "color",
+						"label": "Card Background"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"product-carousel": {
+		"sections": [
+			{
+				"title": "Section Header",
+				"controls": [
+					{
+						"attr": "sectionTitle",
+						"kind": "text",
+						"label": "Title"
+					},
+					{
+						"attr": "sectionSubtitle",
+						"kind": "text",
+						"label": "Subtitle"
+					},
+					{
+						"attr": "viewAllText",
+						"kind": "text",
+						"label": "View All Text"
+					},
+					{
+						"attr": "viewAllLink",
+						"kind": "text",
+						"label": "View All URL"
+					}
+				]
+			},
+			{
+				"title": "Carousel Physics",
+				"controls": [
+					{
+						"attr": "colsDesktop",
+						"kind": "number",
+						"label": "Visible Desktop Cards",
+						"min": 2,
+						"max": 6,
+						"step": 0.5
+					},
+					{
+						"attr": "colsTablet",
+						"kind": "number",
+						"label": "Visible Tablet Cards",
+						"min": 1,
+						"max": 4,
+						"step": 0.5
+					},
+					{
+						"attr": "colsMobile",
+						"kind": "number",
+						"label": "Visible Mobile Cards (Peek)",
+						"min": 1,
+						"max": 3,
+						"step": 0.1
+					},
+					{
+						"attr": "showArrows",
+						"kind": "switch",
+						"label": "Show Arrows"
+					},
+					{
+						"attr": "showDots",
+						"kind": "switch",
+						"label": "Show Dots"
+					},
+					{
+						"attr": "autoplay",
+						"kind": "switch",
+						"label": "Enable Autoplay"
+					},
+					{
+						"attr": "delay",
+						"kind": "number",
+						"label": "Autoplay Delay (ms)",
+						"min": 2000,
+						"max": 8000,
+						"step": 500,
+						"condition": {
+							"autoplay": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Card Design & Query",
+				"controls": [
+					{
+						"attr": "productCount",
+						"kind": "number",
+						"label": "Total Products to Query",
+						"min": 4,
+						"max": 24
+					},
+					{
+						"attr": "imageRatio",
+						"kind": "select",
+						"label": "Image Ratio",
+						"options": [
+							{
+								"label": "Portrait (3:4)",
+								"value": "3/4"
+							},
+							{
+								"label": "Square (1:1)",
+								"value": "1/1"
+							}
+						]
+					},
+					{
+						"attr": "cardHoverLift",
+						"kind": "switch",
+						"label": "Hover Card Lift"
+					},
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Card Border Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": ""
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"product-filters": {
+		"sections": [
+			{
+				"title": "Filter Modules",
+				"controls": [
+					{
+						"attr": "showPriceFilter",
+						"kind": "switch",
+						"label": "Enable Price Slider"
+					},
+					{
+						"attr": "showColorFilter",
+						"kind": "switch",
+						"label": "Enable Color Swatches"
+					},
+					{
+						"attr": "showStatusFilter",
+						"kind": "switch",
+						"label": "Enable Stock/Sale Toggles"
+					},
+					{
+						"attr": "showRatingFilter",
+						"kind": "switch",
+						"label": "Enable Rating Filter"
+					}
+				]
+			},
+			{
+				"title": "Module Customization",
+				"controls": [
+					{
+						"attr": "maxPrice",
+						"kind": "number",
+						"label": "Max Price Limit ($)",
+						"min": 50,
+						"max": 1000,
+						"condition": {
+							"showPriceFilter": true
+						}
+					},
+					{
+						"attr": "swatchShape",
+						"kind": "select",
+						"label": "Swatch Shape",
+						"options": [
+							{
+								"label": "Circular Circle",
+								"value": "circle"
+							},
+							{
+								"label": "Soft Square",
+								"value": "square"
+							}
+						],
+						"condition": {
+							"showColorFilter": true
+						}
+					},
+					{
+						"attr": "swatchSize",
+						"kind": "number",
+						"label": "Swatch Size (px)",
+						"min": 20,
+						"max": 48,
+						"condition": {
+							"showColorFilter": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Colors & Design",
+				"controls": [
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Interactive Accent Color"
+					},
+					{
+						"attr": "headingColor",
+						"kind": "color",
+						"label": "Group Heading Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"product-gallery": {
+		"sections": [
+			{
+				"title": "Gallery Layout",
+				"controls": [
+					{
+						"attr": "thumbPosition",
+						"kind": "select",
+						"label": "Thumbnail Position",
+						"options": [
+							{
+								"label": "Bottom Horizontal Strip",
+								"value": "bottom"
+							},
+							{
+								"label": "Left Vertical Strip",
+								"value": "left"
+							},
+							{
+								"label": "Dots Only (Minimal)",
+								"value": "dots"
+							}
+						]
+					},
+					{
+						"attr": "aspectRatio",
+						"kind": "select",
+						"label": "Main Image Aspect Ratio",
+						"options": [
+							{
+								"label": "Square (1:1)",
+								"value": "1/1"
+							},
+							{
+								"label": "Portrait (3:4)",
+								"value": "3/4"
+							},
+							{
+								"label": "Landscape (4:3)",
+								"value": "4/3"
+							},
+							{
+								"label": "Natural (Auto)",
+								"value": "auto"
+							}
+						]
+					},
+					{
+						"attr": "gap",
+						"kind": "number",
+						"label": "Gap Between Images (px)",
+						"min": 0,
+						"max": 40
+					}
+				]
+			},
+			{
+				"title": "Interactions & Features",
+				"controls": [
+					{
+						"attr": "enableZoom",
+						"kind": "switch",
+						"label": "Enable Hover Zoom"
+					},
+					{
+						"attr": "zoomLevel",
+						"kind": "number",
+						"label": "Zoom Magnification Level",
+						"min": 1.5,
+						"max": 4,
+						"step": 0.5,
+						"condition": {
+							"enableZoom": true
+						}
+					},
+					{
+						"attr": "enableLightbox",
+						"kind": "switch",
+						"label": "Enable Click-to-Fullscreen Lightbox"
+					}
+				]
+			},
+			{
+				"title": "Styling",
+				"controls": [
+					{
+						"attr": "radius",
+						"kind": "number",
+						"label": "Border Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "activeBorder",
+						"kind": "color",
+						"label": "Active Thumbnail Border"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"product-grid": {
+		"sections": [
+			{
+				"title": "Query Builder",
+				"controls": [
+					{
+						"attr": "inheritQuery",
+						"kind": "switch",
+						"label": "Use the page's products on shop pages"
+					},
+					{
+						"attr": "productCount",
+						"kind": "number",
+						"label": "Products to Show",
+						"min": 2,
+						"max": 24
+					},
+					{
+						"attr": "querySort",
+						"kind": "select",
+						"label": "Sort By",
+						"options": [
+							{
+								"label": "Newest arrivals",
+								"value": "date"
+							},
+							{
+								"label": "Best selling",
+								"value": "popularity"
+							},
+							{
+								"label": "Top rated",
+								"value": "rating"
+							},
+							{
+								"label": "On sale",
+								"value": "sale"
+							},
+							{
+								"label": "Featured",
+								"value": "featured"
+							},
+							{
+								"label": "Price: high to low",
+								"value": "price-desc"
+							},
+							{
+								"label": "Price: low to high",
+								"value": "price"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Grid Layout",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Macro Layout",
+						"options": [
+							{
+								"label": "Standard Grid",
+								"value": "grid"
+							},
+							{
+								"label": "List View",
+								"value": "list"
+							}
+						]
+					},
+					{
+						"attr": "columnsDesktop",
+						"kind": "number",
+						"label": "Columns (Desktop)",
+						"min": 2,
+						"max": 6
+					},
+					{
+						"attr": "columnsMobile",
+						"kind": "number",
+						"label": "Columns (Mobile)",
+						"min": 1,
+						"max": 3
+					}
+				]
+			},
+			{
+				"title": "Product Card Design",
+				"controls": [
+					{
+						"attr": "imageRatio",
+						"kind": "select",
+						"label": "Image Aspect Ratio",
+						"options": [
+							{
+								"label": "Portrait (3:4)",
+								"value": "3/4"
+							},
+							{
+								"label": "Square (1:1)",
+								"value": "1/1"
+							},
+							{
+								"label": "Landscape (16:9)",
+								"value": "16/9"
+							},
+							{
+								"label": "Uncropped (Auto)",
+								"value": "auto"
+							}
+						]
+					},
+					{
+						"attr": "imageHover",
+						"kind": "select",
+						"label": "Image Hover Effect",
+						"options": [
+							{
+								"label": "Cinematic Zoom",
+								"value": "zoom"
+							},
+							{
+								"label": "Second Image Swap",
+								"value": "swap"
+							},
+							{
+								"label": "None",
+								"value": "none"
+							}
+						]
+					},
+					{
+						"attr": "atcStyle",
+						"kind": "select",
+						"label": "Add to Cart Style",
+						"options": [
+							{
+								"label": "Solid Button",
+								"value": "solid"
+							},
+							{
+								"label": "Outlined Button",
+								"value": "outline"
+							},
+							{
+								"label": "Text Link",
+								"value": "text"
+							}
+						]
+					},
+					{
+						"attr": "atcPosition",
+						"kind": "select",
+						"label": "Add to Cart Position",
+						"options": [
+							{
+								"label": "Below Product Info",
+								"value": "below"
+							},
+							{
+								"label": "Overlay on Image Hover",
+								"value": "overlay"
+							}
+						]
+					},
+					{
+						"attr": "cardHoverLift",
+						"kind": "switch",
+						"label": "Hover Card Lift/Shadow"
+					},
+					{
+						"attr": "showRating",
+						"kind": "switch",
+						"label": "Show Star Rating"
+					},
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Card Border Radius",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent Color"
+					},
+					{
+						"attr": "cardBg",
+						"kind": "color",
+						"label": "Card Background"
+					}
+				]
+			},
+			{
+				"title": "Filtering & Pagination",
+				"controls": [
+					{
+						"attr": "showToolbar",
+						"kind": "switch",
+						"label": "Show Top Toolbar (Sort/Filter)"
+					},
+					{
+						"attr": "paginationType",
+						"kind": "select",
+						"label": "Pagination Style",
+						"options": [
+							{
+								"label": "Load More Button",
+								"value": "load-more"
+							},
+							{
+								"label": "Standard Page Numbers",
+								"value": "numbers"
+							},
+							{
+								"label": "Infinite Scroll",
+								"value": "infinite"
+							}
+						]
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"product-tabs": {
+		"sections": [
+			{
+				"title": "Section Header",
+				"controls": [
+					{
+						"attr": "sectionTitle",
+						"kind": "text",
+						"label": "Title"
+					},
+					{
+						"attr": "sectionSubtitle",
+						"kind": "text",
+						"label": "Subtitle"
+					}
+				]
+			},
+			{
+				"title": "Tabs Configuration",
+				"controls": [
+					{
+						"repeater": "tabsData"
+					}
+				]
+			},
+			{
+				"title": "Design & Animation",
+				"controls": [
+					{
+						"attr": "tabStyle",
+						"kind": "select",
+						"label": "Tab Style",
+						"options": [
+							{
+								"label": "Pill Buttons",
+								"value": "pill"
+							},
+							{
+								"label": "Minimal Underline",
+								"value": "underline"
+							},
+							{
+								"label": "Boxed",
+								"value": "box"
+							}
+						]
+					},
+					{
+						"attr": "tabAlignment",
+						"kind": "select",
+						"label": "Tab Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "flex-start"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "flex-end"
+							}
+						]
+					},
+					{
+						"attr": "animationStyle",
+						"kind": "select",
+						"label": "Switch Animation",
+						"options": [
+							{
+								"label": "Smooth Fade",
+								"value": "fade"
+							},
+							{
+								"label": "Slide Horizontal",
+								"value": "slide"
+							},
+							{
+								"label": "Scale Pop",
+								"value": "scale"
+							},
+							{
+								"label": "Instant",
+								"value": "none"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Minimalist Colors",
+				"controls": [
+					{
+						"attr": "colsDesktop",
+						"kind": "number",
+						"label": "Desktop Columns",
+						"min": 2,
+						"max": 6
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Active Brand Color"
+					},
+					{
+						"attr": "inactiveColor",
+						"kind": "color",
+						"label": "Inactive / Outline Color"
+					},
+					{
+						"attr": "cardBg",
+						"kind": "color",
+						"label": "Card Background"
+					}
+				]
+			}
+		],
+		"repeaters": {
+			"tabsData": {
+				"fields": [
+					{
+						"key": "label",
+						"kind": "text",
+						"label": "Tab Label"
+					},
+					{
+						"key": "query",
+						"kind": "select",
+						"label": "Query Source",
+						"options": [
+							{
+								"label": "Specific Category",
+								"value": "category"
+							},
+							{
+								"label": "Recent / New Arrivals",
+								"value": "recent"
+							},
+							{
+								"label": "Best Sellers",
+								"value": "popularity"
+							},
+							{
+								"label": "On Sale",
+								"value": "sale"
+							},
+							{
+								"label": "Top Rated",
+								"value": "rating"
+							}
+						]
+					},
+					{
+						"key": "count",
+						"kind": "number",
+						"label": "Product Count",
+						"min": 2,
+						"max": 16
+					}
+				]
+			}
+		}
+	},
+	"promo-banner": {
+		"sections": [
+			{
+				"title": "Banner Physics & Layout",
+				"controls": [
+					{
+						"attr": "bannerId",
+						"kind": "text",
+						"label": "Unique Banner ID"
+					},
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Full Width Strip",
+								"value": "full"
+							},
+							{
+								"label": "Contained Card",
+								"value": "contained"
+							},
+							{
+								"label": "Floating Elevated Card",
+								"value": "floating"
+							}
+						]
+					},
+					{
+						"attr": "isSticky",
+						"kind": "switch",
+						"label": "Sticky (Stays at top on scroll)"
+					},
+					{
+						"attr": "enableDismiss",
+						"kind": "switch",
+						"label": "Enable Dismiss Button (X)"
+					},
+					{
+						"attr": "attentionPulse",
+						"kind": "switch",
+						"label": "Attention Pulse Animation"
+					}
+				]
+			},
+			{
+				"title": "Background Engine",
+				"controls": [
+					{
+						"attr": "bgMode",
+						"kind": "select",
+						"label": "Background Style",
+						"options": [
+							{
+								"label": "Animated Gradient Shift",
+								"value": "animated-gradient"
+							},
+							{
+								"label": "Static Gradient",
+								"value": "gradient"
+							},
+							{
+								"label": "Solid Color",
+								"value": "solid"
+							}
+						]
+					},
+					{
+						"attr": "color1",
+						"kind": "color",
+						"label": "Primary Color"
+					},
+					{
+						"attr": "color2",
+						"kind": "color",
+						"label": "Secondary Color (Gradient)",
+						"condition": {
+							"bgMode!": "solid"
+						}
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"quick-view": {
+		"sections": [
+			{
+				"title": "Modal Architecture",
+				"controls": [
+					{
+						"attr": "modalWidth",
+						"kind": "number",
+						"label": "Modal Max Width (px)",
+						"min": 600,
+						"max": 1200,
+						"step": 50
+					},
+					{
+						"attr": "splitRatio",
+						"kind": "number",
+						"label": "Image Column Width (%)",
+						"min": 30,
+						"max": 70
+					},
+					{
+						"attr": "modalRadius",
+						"kind": "number",
+						"label": "Modal Border Radius",
+						"min": 0,
+						"max": 30
+					},
+					{
+						"attr": "animStyle",
+						"kind": "select",
+						"label": "Entrance Animation",
+						"options": [
+							{
+								"label": "Scale Up (Pop)",
+								"value": "scale"
+							},
+							{
+								"label": "Slide Up",
+								"value": "slide"
+							},
+							{
+								"label": "Fade Only",
+								"value": "fade"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Content Elements",
+				"controls": [
+					{
+						"attr": "showRating",
+						"kind": "switch",
+						"label": "Show Rating"
+					},
+					{
+						"attr": "showDesc",
+						"kind": "switch",
+						"label": "Show Short Description"
+					},
+					{
+						"attr": "showTrust",
+						"kind": "switch",
+						"label": "Show Trust Indicators"
+					}
+				]
+			},
+			{
+				"title": "Colors & Overlays",
+				"controls": [
+					{
+						"attr": "overlayBlur",
+						"kind": "number",
+						"label": "Background Blur (px)",
+						"min": 0,
+						"max": 30
+					},
+					{
+						"attr": "overlayColor",
+						"kind": "color",
+						"label": "Overlay Tint Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"recently-viewed": {
+		"sections": [
+			{
+				"title": "Section Header",
+				"controls": [
+					{
+						"attr": "sectionTitle",
+						"kind": "text",
+						"label": "Section Title"
+					}
+				]
+			},
+			{
+				"title": "Logic & Persistence",
+				"controls": [
+					{
+						"attr": "emptyBehavior",
+						"kind": "select",
+						"label": "If History is Empty:",
+						"options": [
+							{
+								"label": "Hide Section Entirely",
+								"value": "hide"
+							},
+							{
+								"label": "Show Fallback Products",
+								"value": "fallback"
+							}
+						]
+					},
+					{
+						"attr": "fallbackTitle",
+						"kind": "text",
+						"label": "Fallback Title",
+						"condition": {
+							"emptyBehavior": "fallback"
+						}
+					},
+					{
+						"attr": "fallbackQuery",
+						"kind": "select",
+						"label": "Fallback Query",
+						"options": [
+							{
+								"label": "Best Sellers",
+								"value": "popularity"
+							},
+							{
+								"label": "New Arrivals",
+								"value": "date"
+							},
+							{
+								"label": "On Sale",
+								"value": "sale"
+							}
+						],
+						"condition": {
+							"emptyBehavior": "fallback"
+						}
+					},
+					{
+						"attr": "maxProducts",
+						"kind": "number",
+						"label": "Max Products to Store",
+						"min": 4,
+						"max": 16
+					},
+					{
+						"attr": "storageDays",
+						"kind": "number",
+						"label": "Keep History For (Days)",
+						"min": 1,
+						"max": 30
+					}
+				]
+			},
+			{
+				"title": "Layout Architecture",
+				"controls": [
+					{
+						"attr": "displayMode",
+						"kind": "select",
+						"label": "Display Mode",
+						"options": [
+							{
+								"label": "Horizontal Carousel",
+								"value": "carousel"
+							},
+							{
+								"label": "Standard Grid",
+								"value": "grid"
+							}
+						]
+					},
+					{
+						"attr": "colsDesktop",
+						"kind": "number",
+						"label": "Columns (Desktop)",
+						"min": 2,
+						"max": 6
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": ""
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"reviews-summary": {
+		"sections": [
+			{
+				"title": "Architecture",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Orientation",
+						"options": [
+							{
+								"label": "Horizontal (Side by Side)",
+								"value": "horizontal"
+							},
+							{
+								"label": "Vertical (Stacked)",
+								"value": "vertical"
+							}
+						]
+					},
+					{
+						"attr": "countFormat",
+						"kind": "select",
+						"label": "Row Count Display",
+						"options": [
+							{
+								"label": "Show Percentage (%)",
+								"value": "percentage"
+							},
+							{
+								"label": "Show Absolute Number",
+								"value": "number"
+							}
+						]
+					},
+					{
+						"attr": "interactiveRows",
+						"kind": "switch",
+						"label": "Enable Clickable Filter Rows"
+					}
+				]
+			},
+			{
+				"title": "Visual Design",
+				"controls": [
+					{
+						"attr": "barHeight",
+						"kind": "number",
+						"label": "Bar Height (px)",
+						"min": 4,
+						"max": 20
+					},
+					{
+						"attr": "barRadius",
+						"kind": "number",
+						"label": "Bar Border Radius",
+						"min": 0,
+						"max": 10
+					},
+					{
+						"attr": "starColor",
+						"kind": "color",
+						"label": "Star & Fill Color"
+					},
+					{
+						"attr": "trackColor",
+						"kind": "color",
+						"label": "Bar Track Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"search": {
+		"sections": [
+			{
+				"title": "Search Settings",
+				"controls": [
+					{
+						"attr": "placeholder",
+						"kind": "text",
+						"label": "Placeholder Text"
+					},
+					{
+						"attr": "trendingTags",
+						"kind": "text",
+						"label": "Trending Search Tags (Comma separated)"
+					},
+					{
+						"attr": "shape",
+						"kind": "select",
+						"label": "Input Shape",
+						"options": [
+							{
+								"label": "Rounded Pill",
+								"value": "pill"
+							},
+							{
+								"label": "Soft Rectangle",
+								"value": "rounded"
+							},
+							{
+								"label": "Sharp Rectangle",
+								"value": "sharp"
+							}
+						]
+					},
+					{
+						"attr": "width",
+						"kind": "number",
+						"label": "Width (%)",
+						"min": 20,
+						"max": 100
+					}
+				]
+			},
+			{
+				"title": "Icon & Minimalist Colors",
+				"controls": [
+					{
+						"attr": "showIcon",
+						"kind": "switch",
+						"label": "Show Search Icon"
+					},
+					{
+						"attr": "iconPosition",
+						"kind": "select",
+						"label": "Icon Position",
+						"options": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Right",
+								"value": "right"
+							}
+						],
+						"condition": {
+							"showIcon": true
+						}
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Background Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"section-wrapper": {
+		"sections": [
+			{
+				"title": "Layout Engine",
+				"controls": [
+					{
+						"attr": "layoutStyle",
+						"kind": "select",
+						"label": "Content Arrangement",
+						"options": [
+							{
+								"label": "Standard Stack (Top to Bottom)",
+								"value": "standard"
+							},
+							{
+								"label": "Multi-Column Layout",
+								"value": "multi-column"
+							}
+						]
+					},
+					{
+						"attr": "columnCount",
+						"kind": "number",
+						"label": "Number of Columns",
+						"min": 1,
+						"max": 6,
+						"step": 1,
+						"condition": {
+							"layoutStyle": "multi-column"
+						}
+					},
+					{
+						"attr": "rowCount",
+						"kind": "number",
+						"label": "Number of Rows",
+						"min": 1,
+						"max": 6,
+						"step": 1,
+						"condition": {
+							"layoutStyle": "multi-column"
+						}
+					},
+					{
+						"attr": "columnGap",
+						"kind": "number",
+						"label": "Column Gap (Horizontal px)",
+						"min": 0,
+						"max": 100,
+						"step": 5,
+						"condition": {
+							"layoutStyle": "multi-column"
+						}
+					},
+					{
+						"attr": "rowGap",
+						"kind": "number",
+						"label": "Row Gap (Vertical px)",
+						"min": 0,
+						"max": 100,
+						"step": 5,
+						"condition": {
+							"layoutStyle": "multi-column"
+						}
+					},
+					{
+						"attr": "stackOnMobile",
+						"kind": "switch",
+						"label": "Stack Columns on Mobile",
+						"condition": {
+							"layoutStyle": "multi-column"
+						}
+					},
+					{
+						"attr": "contentWidth",
+						"kind": "select",
+						"label": "Inner Content Width",
+						"options": [
+							{
+								"label": "Contained (Centered Readable Area)",
+								"value": "contained"
+							},
+							{
+								"label": "Full Width (Stretches to edges)",
+								"value": "full"
+							}
+						]
+					},
+					{
+						"attr": "hideWhenEmpty",
+						"kind": "switch",
+						"label": "Hide when empty"
+					}
+				]
+			},
+			{
+				"title": "Spacing & Padding",
+				"controls": [
+					{
+						"attr": "paddingTopDesktop",
+						"kind": "number",
+						"label": "Top (px)",
+						"min": 0,
+						"max": 200,
+						"step": 10
+					},
+					{
+						"attr": "paddingBottomDesktop",
+						"kind": "number",
+						"label": "Bottom (px)",
+						"min": 0,
+						"max": 200,
+						"step": 10
+					},
+					{
+						"attr": "paddingLeftDesktop",
+						"kind": "number",
+						"label": "Left (px)",
+						"min": 0,
+						"max": 200,
+						"step": 10
+					},
+					{
+						"attr": "paddingRightDesktop",
+						"kind": "number",
+						"label": "Right (px)",
+						"min": 0,
+						"max": 200,
+						"step": 10
+					},
+					{
+						"attr": "paddingTopMobile",
+						"kind": "number",
+						"label": "Top (px)",
+						"min": 0,
+						"max": 120,
+						"step": 5
+					},
+					{
+						"attr": "paddingBottomMobile",
+						"kind": "number",
+						"label": "Bottom (px)",
+						"min": 0,
+						"max": 120,
+						"step": 5
+					},
+					{
+						"attr": "paddingLeftMobile",
+						"kind": "number",
+						"label": "Left (px)",
+						"min": 0,
+						"max": 120,
+						"step": 5
+					},
+					{
+						"attr": "paddingRightMobile",
+						"kind": "number",
+						"label": "Right (px)",
+						"min": 0,
+						"max": 120,
+						"step": 5
+					}
+				]
+			},
+			{
+				"title": "Background & Color",
+				"controls": [
+					{
+						"attr": "bgType",
+						"kind": "select",
+						"label": "Background Type",
+						"options": [
+							{
+								"label": "Transparent",
+								"value": "transparent"
+							},
+							{
+								"label": "Solid Color",
+								"value": "solid"
+							},
+							{
+								"label": "Image",
+								"value": "image"
+							}
+						]
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": ""
+					},
+					{
+						"attr": "bgImageUrl",
+						"kind": "media",
+						"label": "",
+						"condition": {
+							"bgType": "image"
+						}
+					},
+					{
+						"attr": "bgOverlayOpacity",
+						"kind": "number",
+						"label": "Overlay Opacity (%)",
+						"min": 0,
+						"max": 100,
+						"condition": {
+							"bgType": "image"
+						}
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color Mode"
+					}
+				]
+			},
+			{
+				"title": "Premium Dividers",
+				"controls": [
+					{
+						"attr": "topShape",
+						"kind": "select",
+						"label": "Top Edge Divider"
+					},
+					{
+						"attr": "bottomShape",
+						"kind": "select",
+						"label": "Bottom Edge Divider"
+					},
+					{
+						"attr": "shapeHeight",
+						"kind": "number",
+						"label": "Divider Height",
+						"min": 10,
+						"max": 150
+					},
+					{
+						"attr": "shapeColor",
+						"kind": "color",
+						"label": "Divider Color"
+					}
+				]
+			},
+			{
+				"title": "Container Effects",
+				"controls": [
+					{
+						"attr": "borderType",
+						"kind": "select",
+						"label": "Borders",
+						"options": [
+							{
+								"label": "None",
+								"value": "none"
+							},
+							{
+								"label": "Top & Bottom",
+								"value": "tb"
+							},
+							{
+								"label": "Top Only",
+								"value": "top"
+							},
+							{
+								"label": "Bottom Only",
+								"value": "bottom"
+							},
+							{
+								"label": "All Sides",
+								"value": "all"
+							}
+						]
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "",
+						"condition": {
+							"borderType!": "none"
+						}
+					},
+					{
+						"attr": "borderRadius",
+						"kind": "number",
+						"label": "Border Radius",
+						"min": 0,
+						"max": 50
+					},
+					{
+						"attr": "hasShadow",
+						"kind": "switch",
+						"label": "Container Shadow"
+					},
+					{
+						"attr": "overflowHidden",
+						"kind": "switch",
+						"label": "Overflow Hidden"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"shipping-partners": {
+		"sections": [
+			{
+				"title": "Typography & Label",
+				"controls": [
+					{
+						"attr": "showLabel",
+						"kind": "switch",
+						"label": "Show Label Text"
+					},
+					{
+						"attr": "labelText",
+						"kind": "text",
+						"label": "Label Text",
+						"condition": {
+							"showLabel": true
+						}
+					},
+					{
+						"attr": "labelColor",
+						"kind": "color",
+						"label": "Label Color",
+						"condition": {
+							"showLabel": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Layout & Style",
+				"controls": [
+					{
+						"attr": "badgeStyle",
+						"kind": "select",
+						"label": "Visual Style Variant",
+						"options": [
+							{
+								"label": "Official Brand Colors",
+								"value": "color"
+							},
+							{
+								"label": "Monochrome Dark",
+								"value": "mono-dark"
+							},
+							{
+								"label": "Monochrome Light",
+								"value": "mono-light"
+							}
+						]
+					},
+					{
+						"attr": "alignment",
+						"kind": "select",
+						"label": "Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "right"
+							}
+						]
+					},
+					{
+						"attr": "iconHeight",
+						"kind": "number",
+						"label": "Logo Height (px)",
+						"min": 16,
+						"max": 64
+					},
+					{
+						"attr": "gap",
+						"kind": "number",
+						"label": "Gap Between Logos (px)",
+						"min": 10,
+						"max": 60
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"shipping-progress": {
+		"sections": [
+			{
+				"title": "Logic & Messaging",
+				"controls": [
+					{
+						"attr": "threshold",
+						"kind": "number",
+						"label": "Free Shipping Threshold ($)",
+						"min": 10,
+						"max": 500
+					},
+					{
+						"attr": "msgPending",
+						"kind": "text",
+						"label": "Pending Message"
+					},
+					{
+						"attr": "msgSuccess",
+						"kind": "text",
+						"label": "Success Message"
+					}
+				]
+			},
+			{
+				"title": "Bar Architecture",
+				"controls": [
+					{
+						"attr": "barHeight",
+						"kind": "number",
+						"label": "Bar Height (px)",
+						"min": 4,
+						"max": 24
+					},
+					{
+						"attr": "barRadius",
+						"kind": "number",
+						"label": "Border Radius",
+						"min": 0,
+						"max": 12
+					},
+					{
+						"attr": "useGradient",
+						"kind": "switch",
+						"label": "Use Gradient Fill"
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Base Text Color"
+					},
+					{
+						"attr": "trackColor",
+						"kind": "color",
+						"label": "Track Background (Empty)"
+					},
+					{
+						"attr": "fillColor",
+						"kind": "color",
+						"label": "Fill Color (Progress)"
+					},
+					{
+						"attr": "successColor",
+						"kind": "color",
+						"label": "Success Color (100%)"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"shop-toolbar": {
+		"sections": [
+			{
+				"title": "Toolbar Elements",
+				"controls": [
+					{
+						"attr": "showCount",
+						"kind": "switch",
+						"label": "Show Product Count"
+					},
+					{
+						"attr": "showSort",
+						"kind": "switch",
+						"label": "Show Sort Dropdown"
+					},
+					{
+						"attr": "showViewToggles",
+						"kind": "switch",
+						"label": "Show Grid/List Toggles"
+					},
+					{
+						"attr": "showFilterTrigger",
+						"kind": "switch",
+						"label": "Show Filter Trigger (Mobile)"
+					}
+				]
+			},
+			{
+				"title": "Architecture & Colors",
+				"controls": [
+					{
+						"attr": "borderBottom",
+						"kind": "switch",
+						"label": "Show Bottom Border"
+					},
+					{
+						"attr": "paddingVert",
+						"kind": "number",
+						"label": "Vertical Padding (px)",
+						"min": 0,
+						"max": 40
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Active Elements)"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Border Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"single-product": {
+		"sections": [
+			{
+				"title": "Macro Layout",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Standard (Two Column)",
+								"value": "standard"
+							},
+							{
+								"label": "Cinematic (Overlay Panel)",
+								"value": "cinematic"
+							},
+							{
+								"label": "Full Width (Stacked)",
+								"value": "stacked"
+							}
+						]
+					},
+					{
+						"attr": "splitRatio",
+						"kind": "select",
+						"label": "Column Split (Gallery / Info)",
+						"options": [
+							{
+								"label": "50% / 50%",
+								"value": "50-50"
+							},
+							{
+								"label": "60% / 40%",
+								"value": "60-40"
+							},
+							{
+								"label": "40% / 60%",
+								"value": "40-60"
+							}
+						],
+						"condition": {
+							"layoutMode": "standard"
+						}
+					}
+				]
+			},
+			{
+				"title": "Gallery & Sticky Bar",
+				"controls": [
+					{
+						"attr": "imageRatio",
+						"kind": "select",
+						"label": "Main Image Ratio",
+						"options": [
+							{
+								"label": "Portrait (3:4)",
+								"value": "3/4"
+							},
+							{
+								"label": "Square (1:1)",
+								"value": "1/1"
+							},
+							{
+								"label": "Landscape (4:3)",
+								"value": "4/3"
+							}
+						]
+					},
+					{
+						"attr": "galleryThumbs",
+						"kind": "select",
+						"label": "Thumbnails Position",
+						"options": [
+							{
+								"label": "Bottom Strip",
+								"value": "bottom"
+							},
+							{
+								"label": "Left Side Strip",
+								"value": "left"
+							}
+						]
+					},
+					{
+						"attr": "enableStickyATC",
+						"kind": "switch",
+						"label": "Enable Sticky Add-to-Cart Bar"
+					}
+				]
+			},
+			{
+				"title": "Styling",
+				"controls": [
+					{
+						"attr": "panelRadius",
+						"kind": "number",
+						"label": "Panel Border Radius",
+						"min": 0,
+						"max": 30,
+						"condition": {
+							"layoutMode": "cinematic"
+						}
+					},
+					{
+						"attr": "panelBg",
+						"kind": "color",
+						"label": "Information Panel Background"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Buttons)"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"slide": {
+		"sections": [
+			{
+				"title": "Slide Background",
+				"controls": [
+					{
+						"attr": "bgImageUrl",
+						"kind": "media",
+						"label": ""
+					},
+					{
+						"attr": "bgColor",
+						"kind": "color",
+						"label": "Background Color"
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Dark Overlay Opacity (%)",
+						"min": 0,
+						"max": 100
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"slider": {
+		"sections": [
+			{
+				"title": "Slide Manager",
+				"controls": [
+					{
+						"repeater": "slides"
+					}
+				]
+			},
+			{
+				"title": "Slider Physics",
+				"controls": [
+					{
+						"attr": "transition",
+						"kind": "select",
+						"label": "Transition Style",
+						"options": [
+							{
+								"label": "Cinematic Fade",
+								"value": "fade"
+							},
+							{
+								"label": "Horizontal Slide",
+								"value": "slide"
+							}
+						]
+					},
+					{
+						"attr": "minHeight",
+						"kind": "number",
+						"label": "Height (vh)",
+						"min": 40,
+						"max": 100
+					}
+				]
+			},
+			{
+				"title": "Autoplay & Navigation",
+				"controls": [
+					{
+						"attr": "autoplay",
+						"kind": "switch",
+						"label": "Enable Autoplay"
+					},
+					{
+						"attr": "delay",
+						"kind": "number",
+						"label": "Slide Duration (ms)",
+						"min": 2000,
+						"max": 10000,
+						"step": 500,
+						"condition": {
+							"autoplay": true
+						}
+					},
+					{
+						"attr": "showArrows",
+						"kind": "switch",
+						"label": "Show Navigation Arrows"
+					},
+					{
+						"attr": "showDots",
+						"kind": "switch",
+						"label": "Show Dot Indicators"
+					}
+				]
+			}
+		],
+		"repeaters": {
+			"slides": {
+				"fields": [
+					{
+						"key": "subhead",
+						"kind": "text",
+						"label": "Subheading"
+					},
+					{
+						"key": "heading",
+						"kind": "text",
+						"label": "Main Heading"
+					},
+					{
+						"key": "btnText",
+						"kind": "text",
+						"label": "Button Text"
+					},
+					{
+						"key": "bgImage",
+						"kind": "media",
+						"label": ""
+					},
+					{
+						"key": "bgColor",
+						"kind": "color",
+						"label": "Background Color"
+					},
+					{
+						"key": "opacity",
+						"kind": "number",
+						"label": "Overlay Opacity (%)",
+						"min": 0,
+						"max": 100
+					}
+				]
+			}
+		}
+	},
+	"spacer-divider": {
+		"sections": [
+			{
+				"title": "Mode & Rhythm",
+				"controls": [
+					{
+						"attr": "mode",
+						"kind": "select",
+						"label": "Block Mode",
+						"options": [
+							{
+								"label": "Spacer (Invisible Breathing Room)",
+								"value": "spacer"
+							},
+							{
+								"label": "Divider (Visible Line / Break)",
+								"value": "divider"
+							}
+						]
+					},
+					{
+						"attr": "heightDesktop",
+						"kind": "number",
+						"label": "Desktop Height (px)",
+						"min": 0,
+						"max": 200,
+						"step": 5
+					},
+					{
+						"attr": "heightMobile",
+						"kind": "number",
+						"label": "Mobile Height (px)",
+						"min": 0,
+						"max": 150,
+						"step": 5
+					}
+				]
+			},
+			{
+				"title": "Divider Architecture",
+				"controls": [
+					{
+						"attr": "dividerStyle",
+						"kind": "select",
+						"label": "Line Style",
+						"options": [
+							{
+								"label": "Solid",
+								"value": "solid"
+							},
+							{
+								"label": "Dashed",
+								"value": "dashed"
+							},
+							{
+								"label": "Dotted",
+								"value": "dotted"
+							},
+							{
+								"label": "Double",
+								"value": "double"
+							},
+							{
+								"label": "Gradient Fade (Soft)",
+								"value": "gradient"
+							},
+							{
+								"label": "Wave (Organic)",
+								"value": "wave"
+							}
+						],
+						"condition": {
+							"mode": "divider"
+						}
+					},
+					{
+						"attr": "dividerWidth",
+						"kind": "number",
+						"label": "Line Width (%)",
+						"min": 10,
+						"max": 100,
+						"step": 5,
+						"condition": {
+							"mode": "divider"
+						}
+					},
+					{
+						"attr": "dividerAlign",
+						"kind": "select",
+						"label": "Line Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "right"
+							}
+						],
+						"condition": {
+							"mode": "divider"
+						}
+					},
+					{
+						"attr": "dividerThickness",
+						"kind": "number",
+						"label": "Line Thickness (px)",
+						"min": 1,
+						"max": 10,
+						"condition": {
+							"dividerStyle!": "wave",
+							"mode": "divider"
+						}
+					},
+					{
+						"attr": "dividerColor",
+						"kind": "color",
+						"label": "Divider Color",
+						"condition": {
+							"mode": "divider"
+						}
+					}
+				]
+			},
+			{
+				"title": "Center Element",
+				"controls": [
+					{
+						"attr": "centerElement",
+						"kind": "select",
+						"label": "Decoration",
+						"options": [
+							{
+								"label": "None",
+								"value": "none"
+							},
+							{
+								"label": "Diamond Shape",
+								"value": "diamond"
+							},
+							{
+								"label": "Custom Text / Symbol",
+								"value": "text"
+							}
+						],
+						"condition": {
+							"mode": "divider"
+						}
+					},
+					{
+						"attr": "centerText",
+						"kind": "text",
+						"label": "Center Text",
+						"condition": {
+							"centerElement": "text",
+							"mode": "divider"
+						}
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"split-banner": {
+		"sections": [
+			{
+				"title": "Layout & Ratio",
+				"controls": [
+					{
+						"attr": "mediaSide",
+						"kind": "select",
+						"label": "Visual Position",
+						"options": [
+							{
+								"label": "Image Left | Content Right",
+								"value": "left"
+							},
+							{
+								"label": "Content Left | Image Right",
+								"value": "right"
+							}
+						]
+					},
+					{
+						"attr": "mediaWidth",
+						"kind": "number",
+						"label": "Image Width (%)",
+						"min": 30,
+						"max": 70
+					},
+					{
+						"attr": "minHeight",
+						"kind": "number",
+						"label": "Minimum Height (px)",
+						"min": 400,
+						"max": 1000,
+						"step": 50
+					},
+					{
+						"attr": "dividerShape",
+						"kind": "select",
+						"label": "Divider Shape",
+						"options": [
+							{
+								"label": "Straight Cut",
+								"value": "straight"
+							},
+							{
+								"label": "15° Diagonal Slash",
+								"value": "diagonal"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Visual Zone (Image)",
+				"controls": [
+					{
+						"attr": "mediaUrl",
+						"kind": "media",
+						"label": ""
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Gradient Overlay Opacity (%)",
+						"min": 0,
+						"max": 100
+					}
+				]
+			},
+			{
+				"title": "Content Zone (Text)",
+				"controls": [
+					{
+						"attr": "vAlign",
+						"kind": "select",
+						"label": "Vertical Alignment",
+						"options": [
+							{
+								"label": "Top",
+								"value": "flex-start"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Bottom",
+								"value": "flex-end"
+							}
+						]
+					},
+					{
+						"attr": "mobileStack",
+						"kind": "select",
+						"label": "Mobile Stacking Order",
+						"options": [
+							{
+								"label": "Image on Top",
+								"value": "media-first"
+							},
+							{
+								"label": "Content on Top",
+								"value": "content-first"
+							}
+						]
+					},
+					{
+						"attr": "contentBg",
+						"kind": "color",
+						"label": "Content Background Color"
+					},
+					{
+						"attr": "contentColor",
+						"kind": "color",
+						"label": "Content Text Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"stats-counter": {
+		"sections": [
+			{
+				"title": "Architecture & Layout",
+				"controls": [
+					{
+						"attr": "colsDesktop",
+						"kind": "number",
+						"label": "Desktop Columns",
+						"min": 2,
+						"max": 6
+					},
+					{
+						"attr": "colsMobile",
+						"kind": "number",
+						"label": "Mobile Columns",
+						"min": 1,
+						"max": 3
+					},
+					{
+						"attr": "alignment",
+						"kind": "select",
+						"label": "Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "flex-start"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "flex-end"
+							}
+						]
+					},
+					{
+						"attr": "showDividers",
+						"kind": "switch",
+						"label": "Show Divider Lines"
+					}
+				]
+			},
+			{
+				"title": "Animation Rules",
+				"controls": [
+					{
+						"attr": "triggerOnce",
+						"kind": "switch",
+						"label": "Animate Once & Lock"
+					}
+				]
+			},
+			{
+				"title": "Data Management",
+				"controls": [
+					{
+						"repeater": "stats"
+					}
+				]
+			},
+			{
+				"title": "Typography & Minimalist Colors",
+				"controls": [
+					{
+						"attr": "useGradient",
+						"kind": "switch",
+						"label": "Apply Gradient to Numbers"
+					},
+					{
+						"attr": "color1",
+						"kind": "color",
+						"label": "",
+						"condition": {
+							"useGradient": true
+						}
+					},
+					{
+						"attr": "color2",
+						"kind": "color",
+						"label": "",
+						"condition": {
+							"useGradient": true
+						}
+					},
+					{
+						"attr": "numberColor",
+						"kind": "color",
+						"label": "Number Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text / Label Color"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Divider Color",
+						"condition": {
+							"showDividers": true
+						}
+					}
+				]
+			}
+		],
+		"repeaters": {
+			"stats": {
+				"fields": [
+					{
+						"key": "icon",
+						"kind": "select",
+						"label": "Icon Source",
+						"options": [
+							{
+								"label": "None",
+								"value": "none"
+							},
+							{
+								"label": "Users",
+								"value": "users"
+							},
+							{
+								"label": "Star",
+								"value": "star"
+							},
+							{
+								"label": "Award",
+								"value": "award"
+							},
+							{
+								"label": "Smile",
+								"value": "smile"
+							},
+							{
+								"label": "Custom Upload",
+								"value": "custom"
+							}
+						]
+					},
+					{
+						"key": "customIcon",
+						"kind": "media",
+						"label": ""
+					},
+					{
+						"key": "prefix",
+						"kind": "text",
+						"label": "Prefix (e.g. $)"
+					},
+					{
+						"key": "number",
+						"kind": "text",
+						"label": "Target Number (e.g. 50 or 4.9)"
+					},
+					{
+						"key": "suffix",
+						"kind": "text",
+						"label": "Suffix (e.g. % or K+)"
+					},
+					{
+						"key": "label",
+						"kind": "text",
+						"label": "Label below number"
+					},
+					{
+						"key": "duration",
+						"kind": "number",
+						"label": "Animation Duration (ms)",
+						"min": 500,
+						"max": 5000,
+						"step": 100
+					}
+				]
+			}
+		}
+	},
+	"stock-countdown": {
+		"sections": [
+			{
+				"title": "Scarcity Rules",
+				"controls": [
+					{
+						"attr": "displayMode",
+						"kind": "select",
+						"label": "Display Style",
+						"options": [
+							{
+								"label": "Progress Bar",
+								"value": "bar"
+							},
+							{
+								"label": "Bold Number",
+								"value": "number"
+							},
+							{
+								"label": "Text Statement",
+								"value": "text"
+							}
+						]
+					},
+					{
+						"attr": "maxStock",
+						"kind": "number",
+						"label": "Baseline Total Stock",
+						"min": 10,
+						"max": 500
+					},
+					{
+						"attr": "showThreshold",
+						"kind": "number",
+						"label": "Visibility Threshold",
+						"min": 1,
+						"max": 100
+					}
+				]
+			},
+			{
+				"title": "Status Thresholds",
+				"controls": [
+					{
+						"attr": "cautionThreshold",
+						"kind": "number",
+						"label": "Caution Threshold (Amber)",
+						"min": 1
+					},
+					{
+						"attr": "urgentThreshold",
+						"kind": "number",
+						"label": "Urgent Threshold (Red)",
+						"min": 1
+					},
+					{
+						"attr": "enablePulse",
+						"kind": "switch",
+						"label": "Pulse Animation on Urgent"
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "neutralColor",
+						"kind": "color",
+						"label": "Neutral Color"
+					},
+					{
+						"attr": "cautionColor",
+						"kind": "color",
+						"label": "Caution Color"
+					},
+					{
+						"attr": "urgentColor",
+						"kind": "color",
+						"label": "Urgent Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "trackColor",
+						"kind": "color",
+						"label": "Bar Track Color",
+						"condition": {
+							"displayMode": "bar"
+						}
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"tab-pane": {
+		"sections": [
+			{
+				"title": "Tab Identity",
+				"controls": [
+					{
+						"attr": "tabTitle",
+						"kind": "text",
+						"label": "Tab Label"
+					},
+					{
+						"attr": "tabIcon",
+						"kind": "select",
+						"label": "Tab Icon",
+						"options": [
+							{
+								"label": "None",
+								"value": ""
+							},
+							{
+								"label": "Star",
+								"value": "star"
+							},
+							{
+								"label": "Info",
+								"value": "info"
+							},
+							{
+								"label": "List",
+								"value": "list"
+							}
+						]
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"testimonials": {
+		"sections": [
+			{
+				"title": "Section Header",
+				"controls": [
+					{
+						"attr": "sectionTitle",
+						"kind": "text",
+						"label": "Section Title"
+					},
+					{
+						"attr": "showAggregate",
+						"kind": "switch",
+						"label": "Show Aggregate Rating"
+					},
+					{
+						"attr": "aggregateScore",
+						"kind": "text",
+						"label": "Aggregate Score",
+						"condition": {
+							"showAggregate": true
+						}
+					},
+					{
+						"attr": "aggregateCount",
+						"kind": "text",
+						"label": "Total Review Count",
+						"condition": {
+							"showAggregate": true
+						}
+					}
+				]
+			},
+			{
+				"title": "Architecture & Design",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Standard Grid",
+								"value": "grid"
+							},
+							{
+								"label": "Masonry (Staggered)",
+								"value": "masonry"
+							},
+							{
+								"label": "Horizontal Carousel",
+								"value": "carousel"
+							},
+							{
+								"label": "Featured Single",
+								"value": "single"
+							}
+						]
+					},
+					{
+						"attr": "colsDesktop",
+						"kind": "number",
+						"label": "Desktop Columns",
+						"min": 1,
+						"max": 5,
+						"condition": {
+							"layoutMode!": "single"
+						}
+					},
+					{
+						"attr": "showAvatar",
+						"kind": "switch",
+						"label": "Show Avatars"
+					},
+					{
+						"attr": "showRating",
+						"kind": "switch",
+						"label": "Show Star Ratings"
+					},
+					{
+						"attr": "cardRadius",
+						"kind": "number",
+						"label": "Card Border Radius",
+						"min": 0,
+						"max": 30
+					},
+					{
+						"attr": "shadowOpacity",
+						"kind": "number",
+						"label": "Shadow Opacity (%)",
+						"min": 0,
+						"max": 30
+					}
+				]
+			},
+			{
+				"title": "Review Data Management",
+				"controls": [
+					{
+						"repeater": "testimonials"
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "cardBg",
+						"kind": "color",
+						"label": "Card Background"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					},
+					{
+						"attr": "starColor",
+						"kind": "color",
+						"label": "Star Color"
+					}
+				]
+			}
+		],
+		"repeaters": {
+			"testimonials": {
+				"fields": [
+					{
+						"key": "name",
+						"kind": "text",
+						"label": "Customer Name"
+					},
+					{
+						"key": "title",
+						"kind": "text",
+						"label": "Title / Location"
+					},
+					{
+						"key": "quote",
+						"kind": "textarea",
+						"label": "Quote",
+						"rows": 4
+					},
+					{
+						"key": "rating",
+						"kind": "number",
+						"label": "Star Rating",
+						"min": 1,
+						"max": 5
+					},
+					{
+						"key": "avatar",
+						"kind": "media",
+						"label": ""
+					}
+				]
+			}
+		}
+	},
+	"trust-badges": {
+		"sections": [
+			{
+				"title": "Visual Style",
+				"controls": [
+					{
+						"attr": "badgeStyle",
+						"kind": "select",
+						"label": "Badge Style",
+						"options": [
+							{
+								"label": "Monochrome Dark",
+								"value": "mono-dark"
+							},
+							{
+								"label": "Monochrome Light",
+								"value": "mono-light"
+							},
+							{
+								"label": "Filled Colors",
+								"value": "filled"
+							}
+						]
+					},
+					{
+						"attr": "alignment",
+						"kind": "select",
+						"label": "Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "flex-start"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "flex-end"
+							}
+						]
+					},
+					{
+						"attr": "badgeSize",
+						"kind": "number",
+						"label": "Icon Size",
+						"min": 24,
+						"max": 80
+					},
+					{
+						"attr": "gap",
+						"kind": "number",
+						"label": "Gap Between Badges",
+						"min": 10,
+						"max": 60
+					}
+				]
+			},
+			{
+				"title": "Mobile Behavior",
+				"controls": [
+					{
+						"attr": "mobileBehavior",
+						"kind": "select",
+						"label": "Mobile Layout",
+						"options": [
+							{
+								"label": "Wrap to Multiple Rows",
+								"value": "wrap"
+							},
+							{
+								"label": "Single Horizontal Scrollable Row",
+								"value": "scroll"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Badges Library",
+				"controls": [
+					{
+						"repeater": "badges"
+					}
+				]
+			}
+		],
+		"repeaters": {
+			"badges": {
+				"fields": [
+					{
+						"key": "type",
+						"kind": "select",
+						"label": "Badge Type",
+						"options": [
+							{
+								"label": "SSL Secure",
+								"value": "ssl"
+							},
+							{
+								"label": "Money Back Guarantee",
+								"value": "guarantee"
+							},
+							{
+								"label": "Free Shipping",
+								"value": "shipping"
+							},
+							{
+								"label": "Secure Payment",
+								"value": "payment"
+							},
+							{
+								"label": "Free Returns",
+								"value": "returns"
+							},
+							{
+								"label": "Custom Image Upload",
+								"value": "custom"
+							}
+						]
+					},
+					{
+						"key": "customImage",
+						"kind": "media",
+						"label": ""
+					},
+					{
+						"key": "text",
+						"kind": "text",
+						"label": "Badge Text"
+					},
+					{
+						"key": "showText",
+						"kind": "switch",
+						"label": "Show Text Below Icon"
+					}
+				]
+			}
+		}
+	},
+	"trust-strip": {
+		"sections": [
+			{
+				"title": "Trust Signals (Labels)",
+				"controls": [
+					{
+						"attr": "item1",
+						"kind": "text",
+						"label": "Signal 1 (Shipping)"
+					},
+					{
+						"attr": "item2",
+						"kind": "text",
+						"label": "Signal 2 (Returns)"
+					},
+					{
+						"attr": "item3",
+						"kind": "text",
+						"label": "Signal 3 (Security)"
+					},
+					{
+						"attr": "item4",
+						"kind": "text",
+						"label": "Signal 4 (Support)"
+					}
+				]
+			},
+			{
+				"title": "Design & Layout",
+				"controls": [
+					{
+						"attr": "alignment",
+						"kind": "select",
+						"label": "Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "right"
+							}
+						]
+					},
+					{
+						"attr": "showDividers",
+						"kind": "switch",
+						"label": "Show Separator Lines"
+					},
+					{
+						"attr": "gap",
+						"kind": "number",
+						"label": "Gap Between Items (px)",
+						"min": 10,
+						"max": 60
+					},
+					{
+						"attr": "iconSize",
+						"kind": "number",
+						"label": "Icon Size (px)",
+						"min": 12,
+						"max": 32
+					},
+					{
+						"attr": "fontSize",
+						"kind": "number",
+						"label": "Text Size (px)",
+						"min": 10,
+						"max": 18
+					}
+				]
+			},
+			{
+				"title": "Colors",
+				"controls": [
+					{
+						"attr": "iconColor",
+						"kind": "color",
+						"label": "Icon Color"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Text Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"variation-picker": {
+		"sections": [
+			{
+				"title": "Swatch Architecture (Colors/Images)",
+				"controls": [
+					{
+						"attr": "swatchShape",
+						"kind": "select",
+						"label": "Swatch Shape",
+						"options": [
+							{
+								"label": "Circle",
+								"value": "circle"
+							},
+							{
+								"label": "Square",
+								"value": "square"
+							},
+							{
+								"label": "Rounded Square",
+								"value": "rounded"
+							}
+						]
+					},
+					{
+						"attr": "swatchSize",
+						"kind": "number",
+						"label": "Swatch Size (px)",
+						"min": 20,
+						"max": 60
+					}
+				]
+			},
+			{
+				"title": "Button Architecture (Text/Sizes)",
+				"controls": [
+					{
+						"attr": "btnRadius",
+						"kind": "number",
+						"label": "Button Border Radius (px)",
+						"min": 0,
+						"max": 24
+					},
+					{
+						"attr": "disabledStyle",
+						"kind": "select",
+						"label": "Disabled / Out of Stock Style",
+						"options": [
+							{
+								"label": "Diagonal Strikethrough",
+								"value": "strikethrough"
+							},
+							{
+								"label": "Faded / Greyed Out",
+								"value": "faded"
+							},
+							{
+								"label": "Hidden entirely",
+								"value": "hidden"
+							}
+						]
+					}
+				]
+			},
+			{
+				"title": "Labels & Layout",
+				"controls": [
+					{
+						"attr": "showLiveLabel",
+						"kind": "switch",
+						"label": "Show Live Selection in Label"
+					},
+					{
+						"attr": "gap",
+						"kind": "number",
+						"label": "Gap Between Items (px)",
+						"min": 4,
+						"max": 24
+					}
+				]
+			},
+			{
+				"title": "Styling",
+				"controls": [
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": "Brand Accent (Active Glow)"
+					},
+					{
+						"attr": "textColor",
+						"kind": "color",
+						"label": "Base Text Color"
+					},
+					{
+						"attr": "borderColor",
+						"kind": "color",
+						"label": "Inactive Border Color"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"video-hero": {
+		"sections": [
+			{
+				"title": "Settings",
+				"controls": [
+					{
+						"attr": "videoUrl",
+						"kind": "media",
+						"label": ""
+					}
+				]
+			},
+			{
+				"title": "Video Source",
+				"controls": [
+					{
+						"attr": "posterUrl",
+						"kind": "media",
+						"label": ""
+					}
+				]
+			},
+			{
+				"title": "Mobile Behavior",
+				"controls": [
+					{
+						"attr": "mobileBehavior",
+						"kind": "select",
+						"label": "On Mobile Devices",
+						"options": [
+							{
+								"label": "Play Same Video",
+								"value": "play"
+							},
+							{
+								"label": "Play Mobile-Optimized Video",
+								"value": "video"
+							},
+							{
+								"label": "Show Static Fallback Image",
+								"value": "image"
+							}
+						]
+					},
+					{
+						"attr": "mobileVideoUrl",
+						"kind": "media",
+						"label": "",
+						"condition": {
+							"mobileBehavior": "video"
+						}
+					},
+					{
+						"attr": "mobilePosterUrl",
+						"kind": "media",
+						"label": ""
+					}
+				]
+			},
+			{
+				"title": "Playback & UI",
+				"controls": [
+					{
+						"attr": "playbackSpeed",
+						"kind": "number",
+						"label": "Playback Speed",
+						"min": 0.25,
+						"max": 2,
+						"step": 0.25
+					},
+					{
+						"attr": "showMuteToggle",
+						"kind": "switch",
+						"label": "Show Sound Toggle (Unmute)"
+					},
+					{
+						"attr": "showPlayToggle",
+						"kind": "switch",
+						"label": "Show Play/Pause Toggle"
+					}
+				]
+			},
+			{
+				"title": "Layout & Overlay",
+				"controls": [
+					{
+						"attr": "contentAlign",
+						"kind": "select",
+						"label": "Content Alignment",
+						"options": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Center",
+								"value": "center"
+							},
+							{
+								"label": "Right",
+								"value": "right"
+							}
+						]
+					},
+					{
+						"attr": "minHeight",
+						"kind": "number",
+						"label": "Min Height (vh)",
+						"min": 40,
+						"max": 100
+					},
+					{
+						"attr": "overlayType",
+						"kind": "select",
+						"label": "Overlay Type",
+						"options": [
+							{
+								"label": "Bottom Third Gradient (Text Protection)",
+								"value": "bottom-gradient"
+							},
+							{
+								"label": "Solid Color Overlay",
+								"value": "solid"
+							},
+							{
+								"label": "No Overlay",
+								"value": "none"
+							}
+						]
+					},
+					{
+						"attr": "overlayColor",
+						"kind": "color",
+						"label": "Overlay Color",
+						"condition": {
+							"overlayType!": "none"
+						}
+					},
+					{
+						"attr": "overlayOpacity",
+						"kind": "number",
+						"label": "Opacity (%)",
+						"min": 0,
+						"max": 100,
+						"condition": {
+							"overlayType!": "none"
+						}
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	},
+	"wishlist": {
+		"sections": [
+			{
+				"title": "Display Architecture",
+				"controls": [
+					{
+						"attr": "layoutMode",
+						"kind": "select",
+						"label": "Layout Mode",
+						"options": [
+							{
+								"label": "Standard Grid",
+								"value": "grid"
+							},
+							{
+								"label": "Horizontal List",
+								"value": "list"
+							},
+							{
+								"label": "Compact Table",
+								"value": "table"
+							}
+						]
+					},
+					{
+						"attr": "gridCols",
+						"kind": "number",
+						"label": "Grid Columns",
+						"min": 2,
+						"max": 6,
+						"condition": {
+							"layoutMode": "grid"
+						}
+					}
+				]
+			},
+			{
+				"title": "Item Intelligence",
+				"controls": [
+					{
+						"attr": "showStock",
+						"kind": "switch",
+						"label": "Flag Out of Stock Items"
+					},
+					{
+						"attr": "showPriceDrop",
+						"kind": "switch",
+						"label": "Flag Price Drops"
+					},
+					{
+						"attr": "showShare",
+						"kind": "switch",
+						"label": "Enable Social Sharing"
+					},
+					{
+						"attr": "accentColor",
+						"kind": "color",
+						"label": ""
+					}
+				]
+			},
+			{
+				"title": "Empty State Design",
+				"controls": [
+					{
+						"attr": "emptyHeading",
+						"kind": "text",
+						"label": "Heading"
+					},
+					{
+						"attr": "emptyMessage",
+						"kind": "text",
+						"label": "Message"
+					},
+					{
+						"attr": "emptyButton",
+						"kind": "text",
+						"label": "Button Text"
+					},
+					{
+						"attr": "emptyLink",
+						"kind": "text",
+						"label": "Button Link"
+					}
+				]
+			}
+		],
+		"repeaters": {}
+	}
+}

@@ -69,6 +69,7 @@ class ThemeLoader {
             'ajax'          => new \ModernCore\Store\AjaxEndpoints(),
             'newsletter'    => new \ModernCore\Store\Newsletter(),
             'back_in_stock' => new \ModernCore\Store\BackInStock(),
+            'elementor'     => new \ModernCore\Elementor\ElementorIntegration(),
         ];
         foreach ( $services as $name => $service ) {
             $this->container->register( $name, $service );

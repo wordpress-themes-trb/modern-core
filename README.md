@@ -30,13 +30,24 @@ Shop features that work out of the box:
 - **Back in stock** waitlists email everyone automatically when a product or variation is restocked.
 - **Live search** suggests products from the WooCommerce Store API as you type.
 
+## Elementor
+
+The theme works with Elementor (and Elementor Pro) without extra plugins:
+
+- **Theme blocks as widgets.** Every theme block (product grids and carousels, hero, FAQ, pricing, testimonials, trust badges, cart, checkout, wishlist, compare and more) appears in Elementor's panel under **Modern Core** and **Modern Core Shop**. Each widget has the same settings as the block's sidebar and renders through the block's own `render.php`, so a widget and its block always look the same.
+- **Pages built with Elementor** automatically use the full-width template inside the store header and footer. Pick another template in the page settings to override this. Elementor's own **Canvas** and **Full Width** templates work too (`header.php` and `footer.php` print the theme header and footer).
+- **Elementor Pro Theme Builder** headers and footers replace the theme's when you publish them.
+- **Global colours and fonts.** On first use, the theme's palette, fonts and 1200px content width are copied into Elementor's site settings, unless you have already set them. The theme's fonts appear under **Theme fonts** in Elementor's font list and are served locally, not from Google.
+
+Widget settings come from `inc/Elementor/controls.json`, which `npm run build` generates from each block's `edit.jsx` (`scripts/build-elementor-map.mjs`). A new block becomes a widget automatically.
+
 ## Development
 
 ```bash
 npm install          # build tools
-npm run build        # compile blocks, CSS and JS into assets/dist/
+npm run build        # compile blocks, CSS and JS into assets/dist/ and refresh the Elementor control map
 npm run dev          # watch mode
-npm run validate     # check every block in templates/ and parts/ against its block.json
+npm run validate     # check every block in templates/, parts/ and patterns/ against its block.json
 npm run package      # build + validate + create modern-core.zip
 composer install     # PHPUnit / PHPCS (development only)
 ```

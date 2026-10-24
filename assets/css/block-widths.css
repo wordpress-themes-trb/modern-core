@@ -98,3 +98,18 @@ header .mc-block.width-wide,
     padding-left: 0;
     padding-right: 0;
 }
+
+/* Inside Elementor the widget's column sets the width, so theme blocks just
+   fill it (no width box, no side padding, no full-width breakout). */
+.elementor-element .mc-block.width-contained,
+.elementor-element .mc-block.width-wide,
+.elementor-element .mc-block.width-fullwidth,
+.wp-block-post-content .elementor-element .mc-block.width-fullwidth {
+    width: auto;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    left: auto;
+    padding-left: 0;
+    padding-right: 0;
+}

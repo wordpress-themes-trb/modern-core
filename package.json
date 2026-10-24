@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite build --watch --mode development",
-    "build": "vite build --mode production",
+    "build": "vite build --mode production && node scripts/build-elementor-map.mjs",
     "lint:js": "eslint \"blocks/**/*.{js,jsx}\" \"assets/src/js/**/*.js\"",
     "lint:scss": "stylelint \"**/*.scss\"",
     "format": "prettier --write \"**/*.{js,jsx,scss,json,php}\"",

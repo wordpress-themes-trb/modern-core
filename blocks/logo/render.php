@@ -38,9 +38,12 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				'fetchpriority' => 'high',
 				'loading'       => 'eager',
 			);
-			echo $media_id
-				? wp_get_attachment_image( $media_id, 'medium', false, $img_attrs ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core image markup.
-				: sprintf( '<img src="%1$s" alt="%2$s" style="%3$s">', esc_url( $media_url ), esc_attr( $img_attrs['alt'] ), esc_attr( $img_attrs['style'] ) );
+			// Library image first; the saved URL if the attachment is gone.
+			$img_html = $media_id ? wp_get_attachment_image( $media_id, 'medium', false, $img_attrs ) : '';
+			if ( '' === $img_html && $media_url ) {
+				$img_html = sprintf( '<img src="%1$s" alt="%2$s" style="%3$s">', esc_url( $media_url ), esc_attr( $img_attrs['alt'] ), esc_attr( $img_attrs['style'] ) );
+			}
+			echo $img_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core image markup or escaped above.
 			?>
 		<?php endif; ?>
 		<?php if ( $show_text ) : ?>
