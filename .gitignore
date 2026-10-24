@@ -1,1 +1,6 @@
-node_modules
+node_modules/
+vendor/
+*.zip
+.DS_Store
+.env
+*.log

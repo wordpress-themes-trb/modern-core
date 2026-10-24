@@ -7,19 +7,15 @@
  */
 ?>
 
-<!-- wp:modern-core/hero-layout {"minHeight":"60vh","overlayOpacity":40} /-->
-
 <!-- wp:spacer {"height":"64px"} -->
 <div style="height:64px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:modern-core/section-wrapper {"className":"width-contained"} -->
+<!-- wp:modern-core/section-wrapper -->
 
 <!-- wp:group {"layout":{"type":"constrained","contentSize":"720px"}} -->
-<div class="wp-block-group">
-
-<!-- wp:heading {"textAlign":"center","level":2,"fontSize":"x-large"} -->
-<h2 class="wp-block-heading has-text-align-center">Our Story</h2>
+<div class="wp-block-group"><!-- wp:heading {"textAlign":"center","level":2,"fontSize":"x-large"} -->
+<h2 class="wp-block-heading has-text-align-center has-x-large-font-size">Our Story</h2>
 <!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"24px"} -->
@@ -39,12 +35,10 @@
 <!-- /wp:spacer -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-<!-- wp:button {"borderRadius":0} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Meet the Team</a></div>
-<!-- /wp:button -->
-<!-- /wp:buttons -->
-
-</div>
+<div class="wp-block-buttons"><!-- wp:button {"style":{"border":{"radius":"0px"}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( home_url( "/contact-us/" ) ); ?>" style="border-radius:0px">Get in touch</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:group -->
 
 <!-- /wp:modern-core/section-wrapper -->
@@ -53,22 +47,14 @@
 <div style="height:64px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:modern-core/stats-counter {"columns":4,"animateOnScroll":true} /-->
+<!-- wp:modern-core/stats-counter {"colsDesktop":4,"triggerOnce":true} /-->
 
 <!-- wp:spacer {"height":"64px"} -->
 <div style="height:64px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:modern-core/section-wrapper {"className":"width-contained"} -->
+<!-- wp:modern-core/section-wrapper -->
 
-<!-- wp:heading {"textAlign":"center","level":2,"fontSize":"x-large"} -->
-<h2 class="wp-block-heading has-text-align-center">What Our Customers Say</h2>
-<!-- /wp:heading -->
-
-<!-- wp:spacer {"height":"32px"} -->
-<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
-<!-- /wp:spacer -->
-
-<!-- wp:modern-core/testimonials {"layout":"grid","columns":3,"showRating":true} /-->
+<!-- wp:modern-core/testimonials {"showRating":true,"layoutMode":"grid","colsDesktop":3} /-->
 
 <!-- /wp:modern-core/section-wrapper -->

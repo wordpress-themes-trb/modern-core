@@ -1,44 +1,36 @@
 <?php
+/**
+ * Translations.
+ *
+ * @package ModernCore\I18n
+ */
 
 declare(strict_types=1);
 
 namespace ModernCore\I18n;
 
+use ModernCore\Core\HooksManager;
+
 /**
- * Class Translations
- *
- * Handles localization, text domain loading, and RTL stylesheet support.
+ * Loads the theme text domain from languages/.
  */
 class Translations {
-    /**
-     * Theme text domain.
-     */
-    public const TEXT_DOMAIN = 'modern-core';
 
-    /**
-     * Registers the i18n hooks.
-     */
-    public function register(): void {
-        add_action('after_setup_theme', [$this, 'loadTextDomain']);
-        add_action('wp_enqueue_scripts', [$this, 'enforceRtlStyles'], 20);
-    }
+	public const TEXT_DOMAIN = 'modern-core';
 
-    /**
-     * Loads the theme's translated strings.
-     */
-    public function loadTextDomain(): void {
-        load_theme_textdomain(
-            self::TEXT_DOMAIN,
-            get_template_directory() . '/languages'
-        );
-    }
+	/**
+	 * Attach hooks.
+	 *
+	 * @param HooksManager $hooks Hooks manager.
+	 */
+	public function register_hooks( HooksManager $hooks ): void {
+		$hooks->add_action( 'after_setup_theme', $this, 'load_text_domain' );
+	}
 
-    /**
-     * Flips stylesheet dependencies if an RTL language is active.
-     */
-    public function enforceRtlStyles(): void {
-        if (is_rtl()) {
-            wp_style_add_data('modern-core-style', 'rtl', 'replace');
-        }
-    }
+	/**
+	 * Load translations.
+	 */
+	public function load_text_domain(): void {
+		load_theme_textdomain( self::TEXT_DOMAIN, MODERN_CORE_DIR . '/languages' );
+	}
 }

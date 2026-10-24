@@ -1,639 +1,79 @@
-<!-- wp:template-part {"slug":"header","theme":"modern-core","tagName":"header"} /-->
-<!-- ============================================================
-     SECTION 1 — ANNOUNCEMENT BAR
-     ============================================================ -->
-<!-- wp:modern-core/announcement-bar {
-  "mode":"rotating",
-  "messages":[
-    {"text":"Free global shipping on orders over $75","link":"","linkText":""},
-    {"text":"New Autumn / Winter collection is here","link":"/shop","linkText":"Shop Now"},
-    {"text":"Use code WELCOME10 for 10% off your first order","link":"","linkText":""}
-  ],
-  "transition":"fade",
-  "interval":4000,
-  "dismissible":true,
-  "cookieDays":7,
-  "bgColor":"#0f172a",
-  "textColor":"#f8fafc",
-  "fontSize":13,
-  "height":44
-} /-->
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"div"} /-->
 
-<!-- ============================================================
-     SECTION 2 — HERO BANNER (fullwidth by default)
-     ============================================================ -->
-<!-- wp:modern-core/hero {
-  "widthMode":"fullwidth",
-  "layout":"fullbleed",
-  "height":"vh-90",
-  "minHeight":600,
-  "bgType":"image",
-  "bgImageUrl":"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000&auto=format&fit=crop",
-  "bgImageFocalX":50,
-  "bgImageFocalY":30,
-  "bgOverlayType":"gradient",
-  "bgOverlayColor":"#0f172a",
-  "bgOverlayOpacity":50,
-  "bgOverlayDirection":"to-bottom",
-  "fetchPriority":"high",
-  "contentAlign":"center",
-  "contentVAlign":"center",
-  "contentMaxWidth":760,
-  "showPrehead":true,
-  "preheadText":"Autumn / Winter 2025",
-  "preheadStyle":"pill",
-  "preheadBg":"rgba(255,255,255,0.12)",
-  "preheadColor":"#ffffff",
-  "headline":"Dress for the\nSeason Ahead",
-  "headlineSize":72,
-  "headlineWeight":800,
-  "headlineColor":"#ffffff",
-  "accentWord":"Season",
-  "accentStyle":"underline-draw",
-  "accentColor":"#e2b57a",
-  "subhead":"A curated selection of minimal, elevated essentials for the modern wardrobe.",
-  "subheadSize":18,
-  "subheadColor":"rgba(255,255,255,0.80)",
-  "showBtnPrimary":true,
-  "btnPrimaryText":"Shop Women",
-  "btnPrimaryUrl":"/product-category/women",
-  "btnPrimaryBg":"#ffffff",
-  "btnPrimaryColor":"#0f172a",
-  "btnPrimaryRadius":50,
-  "showBtnSecondary":true,
-  "btnSecondaryText":"Shop Men",
-  "btnSecondaryUrl":"/product-category/men",
-  "btnSecondaryStyle":"outline",
-  "btnSecondaryBorderColor":"#ffffff",
-  "btnSecondaryColor":"#ffffff",
-  "btnSecondaryRadius":50,
-  "showScrollIndicator":true,
-  "scrollIndicatorStyle":"chevron",
-  "scrollIndicatorColor":"rgba(255,255,255,0.5)",
-  "animType":"sequence",
-  "animDuration":600,
-  "animStagger":150,
-  "kenburnEffect":true,
-  "kenburnDirection":"zoom-in",
-  "kenburnDuration":20000
-} /-->
-
-<!-- ============================================================
-     SECTION 3 — VALUE PROPOSITION STRIP (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":36,
-  "paddingBottom":36,
-  "bgType":"solid",
-  "bgColor":"#f8fafc",
-  "borderBottom":true,
-  "borderBottomColor":"#e2e8f0",
-  "borderBottomWidth":1
-} -->
-<!-- wp:modern-core/icon-feature-list {
-  "widthMode":"contained",
-  "layout":"row",
-  "alignment":"center",
-  "iconStyle":"outline",
-  "iconSize":28,
-  "iconColor":"#0f172a",
-  "iconBg":"none",
-  "headingSize":14,
-  "headingWeight":600,
-  "headingColor":"#0f172a",
-  "descSize":12,
-  "descColor":"#64748b",
-  "gap":60,
-  "items":[
-    {"icon":"truck","heading":"Free Global Shipping","desc":"On all orders over $75"},
-    {"icon":"refresh","heading":"30-Day Easy Returns","desc":"Hassle-free return policy"},
-    {"icon":"shield-check","heading":"Secure Checkout","desc":"256-bit SSL encryption"},
-    {"icon":"headset","heading":"24/7 Priority Support","desc":"We are always here to help"}
-  ]
-} /-->
-<!-- /wp:modern-core/section-wrapper -->
-
-<!-- ============================================================
-     SECTION 4 — CATEGORY GRID (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":100,
-  "paddingBottom":80
-} -->
-<!-- wp:heading {"level":2,"textAlign":"center"} -->
-<h2 class="wp-block-heading has-text-align-center">Shop by Category</h2>
-<!-- /wp:heading -->
-<!-- wp:modern-core/spacer-divider {
-  "widthMode":"contained",
-  "mode":"spacer",
-  "heightDesktop":48,
-  "heightMobile":24
-} /-->
-<!-- wp:modern-core/category-grid {
-  "widthMode":"contained",
-  "source":"auto",
-  "maxCategories":6,
-  "layout":"featured",
-  "columnsDesktop":3,
-  "columnsMobile":2,
-  "gap":20,
-  "aspectRatio":"3/4",
-  "labelPosition":"bottom-left",
-  "labelSize":18,
-  "labelWeight":700,
-  "labelColor":"#ffffff",
-  "overlayType":"gradient",
-  "overlayColor":"#0f172a",
-  "overlayOpacity":40,
-  "hoverEffect":"zoom",
-  "hoverOverlayOpacity":55,
-  "tileRadius":8
-} /-->
-<!-- /wp:modern-core/section-wrapper -->
-
-<!-- ============================================================
-     SECTION 5 — NEW ARRIVALS PRODUCT CAROUSEL (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":60,
-  "paddingBottom":80
-} -->
-<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
-<div class="wp-block-group">
-<!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">New Arrivals</h2>
-<!-- /wp:heading -->
-<!-- wp:buttons {"layout":{"type":"flex"}} -->
-<div class="wp-block-buttons">
-<!-- wp:button {"className":"is-style-link"} -->
-<div class="wp-block-button is-style-link"><a class="wp-block-button__link wp-element-button" href="/shop?orderby=date">View all</a></div>
-<!-- /wp:button -->
-</div>
-<!-- /wp:buttons -->
-</div>
-<!-- /wp:group -->
-<!-- wp:modern-core/spacer-divider {
-  "widthMode":"contained",
-  "mode":"spacer",
-  "heightDesktop":32,
-  "heightMobile":16
-} /-->
-<!-- wp:modern-core/product-carousel {
-  "widthMode":"contained",
-  "queryType":"recent",
-  "productCount":10,
-  "columnsDesktop":4,
-  "columnsTablet":3,
-  "columnsMobile":2,
-  "peekAmount":40,
-  "gap":20,
-  "cardImageRatio":"3/4",
-  "cardImageHover":"zoom",
-  "cardBg":"#ffffff",
-  "cardRadius":8,
-  "cardShadow":false,
-  "cardHoverShadow":true,
-  "showCategory":false,
-  "showName":true,
-  "nameSize":15,
-  "nameWeight":600,
-  "nameColor":"#0f172a",
-  "showRating":true,
-  "showPrice":true,
-  "priceSize":15,
-  "salePriceColor":"#dc2626",
-  "showATC":true,
-  "atcStyle":"solid",
-  "atcText":"Add to cart",
-  "atcBg":"#0f172a",
-  "atcColor":"#ffffff",
-  "atcRadius":6,
-  "showWishlist":true,
-  "arrowStyle":"circle",
-  "arrowPosition":"outside",
-  "dotStyle":"circle",
-  "autoplay":false,
-  "snapBehavior":"card"
-} /-->
-<!-- /wp:modern-core/section-wrapper -->
-
-<!-- ============================================================
-     SECTION 6 — PROMOTIONAL SPLIT BANNER (fullwidth by default)
-     ============================================================ -->
-<!-- wp:modern-core/split-banner {
-  "widthMode":"fullwidth",
-  "ratio":"50-50",
-  "imageSide":"left",
-  "imageUrl":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1400&auto=format&fit=crop",
-  "imageFocalX":50,
-  "imageFocalY":40,
-  "imageOverlayOpacity":15,
-  "dividerStyle":"diagonal",
-  "dividerAngle":6,
-  "contentBg":"#0f172a",
-  "contentPaddingTop":80,
-  "contentPaddingBottom":80,
-  "contentPaddingLeft":80,
-  "contentPaddingRight":80,
-  "contentVAlign":"center",
-  "showPrehead":true,
-  "preheadText":"Limited Edition",
-  "preheadStyle":"pill",
-  "preheadBg":"rgba(255,255,255,0.10)",
-  "preheadColor":"#e2b57a",
-  "headline":"The Signature\nPiece",
-  "headlineSize":52,
-  "headlineWeight":800,
-  "headlineColor":"#ffffff",
-  "subhead":"Handcrafted from sustainable materials. Designed to last a lifetime.",
-  "subheadColor":"rgba(255,255,255,0.70)",
-  "showBtnPrimary":true,
-  "btnPrimaryText":"Shop the Collection",
-  "btnPrimaryUrl":"/product-category/signature",
-  "btnPrimaryBg":"#e2b57a",
-  "btnPrimaryColor":"#0f172a",
-  "btnPrimaryRadius":50,
-  "minHeight":560,
-  "mobileImagePosition":"top"
-} /-->
-
-<!-- ============================================================
-     SECTION 7 — BESTSELLERS CAROUSEL (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":80,
-  "paddingBottom":80
-} -->
-<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
-<div class="wp-block-group">
-<!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Bestsellers</h2>
-<!-- /wp:heading -->
-<!-- wp:buttons {"layout":{"type":"flex"}} -->
-<div class="wp-block-buttons">
-<!-- wp:button {"className":"is-style-link"} -->
-<div class="wp-block-button is-style-link"><a class="wp-block-button__link wp-element-button" href="/shop?orderby=popularity">View all</a></div>
-<!-- /wp:button -->
-</div>
-<!-- /wp:buttons -->
-</div>
-<!-- /wp:group -->
-<!-- wp:modern-core/spacer-divider {
-  "widthMode":"contained",
-  "mode":"spacer",
-  "heightDesktop":32,
-  "heightMobile":16
-} /-->
-<!-- wp:modern-core/product-carousel {
-  "widthMode":"contained",
-  "queryType":"bestselling",
-  "productCount":10,
-  "columnsDesktop":4,
-  "columnsTablet":3,
-  "columnsMobile":2,
-  "peekAmount":40,
-  "gap":20,
-  "cardImageRatio":"3/4",
-  "cardImageHover":"swap",
-  "cardBg":"#ffffff",
-  "cardRadius":8,
-  "showBestsellerBadge":true,
-  "bestsellerBadgeText":"Bestseller",
-  "bestsellerBadgeBg":"#0f172a",
-  "bestsellerBadgeColor":"#ffffff",
-  "showName":true,
-  "showRating":true,
-  "showPrice":true,
-  "showATC":true,
-  "atcStyle":"solid",
-  "atcBg":"#0f172a",
-  "atcColor":"#ffffff",
-  "atcRadius":6,
-  "showWishlist":true,
-  "arrowStyle":"circle",
-  "dotStyle":"circle",
-  "autoplay":false
-} /-->
-<!-- /wp:modern-core/section-wrapper -->
-
-<!-- ============================================================
-     SECTION 8 — LOOKBOOK (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":80,
-  "paddingBottom":80
-} -->
-<!-- wp:heading {"level":2,"textAlign":"center"} -->
-<h2 class="wp-block-heading has-text-align-center">The Look</h2>
-<!-- /wp:heading -->
-<!-- wp:modern-core/spacer-divider {
-  "widthMode":"contained",
-  "mode":"spacer",
-  "heightDesktop":48,
-  "heightMobile":24
-} /-->
-<!-- wp:modern-core/lookbook {
-  "widthMode":"contained",
-  "imageUrl":"https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2000&auto=format&fit=crop",
-  "aspectRatio":"16/7",
-  "imageFocalX":50,
-  "imageFocalY":30,
-  "overlayOpacity":10,
-  "pinStyle":"pulse-ring",
-  "pinColor":"#ffffff",
-  "pinSize":20,
-  "cardBg":"#ffffff",
-  "cardRadius":10,
-  "cardShadow":true,
-  "cardWidth":260,
-  "cardAnimType":"scale-up",
-  "imageRadius":8,
-  "pins":[]
-} /-->
-<!-- /wp:modern-core/section-wrapper -->
-
-<!-- ============================================================
-     SECTION 9 — COUNTDOWN / SALE BANNER (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":80,
-  "paddingBottom":80,
-  "bgType":"solid",
-  "bgColor":"#0f172a"
-} -->
-<!-- wp:modern-core/countdown-banner {
-  "widthMode":"contained",
-  "layout":"two-col",
-  "targetDate":"2025-12-31T23:59:59",
-  "timezone":"UTC",
-  "headline":"End of Season Sale",
-  "subhead":"Up to 50% off selected styles. While stocks last.",
-  "showPrehead":true,
-  "preheadText":"Limited Time",
-  "headlineColor":"#ffffff",
-  "subheadColor":"rgba(255,255,255,0.70)",
-  "timerStyle":"boxed",
-  "digitFont":"inherit",
-  "digitSize":52,
-  "digitWeight":800,
-  "digitColor":"#ffffff",
-  "boxBg":"rgba(255,255,255,0.08)",
-  "boxBorderColor":"rgba(255,255,255,0.15)",
-  "boxRadius":8,
-  "unitLabelColor":"rgba(255,255,255,0.50)",
-  "unitLabelSize":11,
-  "showDays":true,
-  "showHours":true,
-  "showMinutes":true,
-  "showSeconds":true,
-  "showBtn":true,
-  "btnText":"Shop the Sale",
-  "btnUrl":"/sale",
-  "btnBg":"#e2b57a",
-  "btnColor":"#0f172a",
-  "btnRadius":50,
-  "onZeroBehavior":"message",
-  "zeroMessage":"The sale has ended. Check back soon."
-} /-->
-<!-- /wp:modern-core/section-wrapper -->
-
-<!-- ============================================================
-     SECTION 10 — ON SALE CAROUSEL (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":80,
-  "paddingBottom":80
-} -->
-<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
-<div class="wp-block-group">
-<!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">On Sale</h2>
-<!-- /wp:heading -->
-<!-- wp:buttons {"layout":{"type":"flex"}} -->
-<div class="wp-block-buttons">
-<!-- wp:button {"className":"is-style-link"} -->
-<div class="wp-block-button is-style-link"><a class="wp-block-button__link wp-element-button" href="/sale">View all sale items</a></div>
-<!-- /wp:button -->
-</div>
-<!-- /wp:buttons -->
-</div>
-<!-- /wp:group -->
-<!-- wp:modern-core/spacer-divider {
-  "widthMode":"contained",
-  "mode":"spacer",
-  "heightDesktop":32,
-  "heightMobile":16
-} /-->
-<!-- wp:modern-core/product-carousel {
-  "widthMode":"contained",
-  "queryType":"on-sale",
-  "productCount":10,
-  "columnsDesktop":4,
-  "columnsTablet":3,
-  "columnsMobile":2,
-  "peekAmount":40,
-  "gap":20,
-  "cardImageRatio":"3/4",
-  "cardImageHover":"zoom",
-  "saleBadgeStyle":"pill",
-  "saleBadgeBg":"#dc2626",
-  "saleBadgeColor":"#ffffff",
-  "saleBadgeFormat":"percentage",
-  "showName":true,
-  "showRating":true,
-  "showPrice":true,
-  "salePriceColor":"#dc2626",
-  "showATC":true,
-  "atcBg":"#0f172a",
-  "atcColor":"#ffffff",
-  "atcRadius":6,
-  "arrowStyle":"circle",
-  "dotStyle":"circle",
-  "autoplay":false
-} /-->
-<!-- /wp:modern-core/section-wrapper -->
-
-<!-- ============================================================
-     SECTION 11 — TESTIMONIALS (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":100,
-  "paddingBottom":100,
-  "bgType":"solid",
-  "bgColor":"#f8fafc"
-} -->
-<!-- wp:heading {"level":2,"textAlign":"center"} -->
-<h2 class="wp-block-heading has-text-align-center">What Our Customers Say</h2>
-<!-- /wp:heading -->
-<!-- wp:paragraph {"align":"center"} -->
-<p class="has-text-align-center">Trusted by over 50,000 happy customers worldwide</p>
+<!-- wp:group {"tagName":"main","layout":{"type":"default"}} -->
+<main class="wp-block-group"><!-- wp:modern-core/hero {"layoutMode":"full-center","minHeight":82,"bgType":"gradient","bgColor":"#0f172a","overlayOpacity":30,"enableKenBurns":false,"enableNoise":true,"contentCard":false} -->
+<!-- wp:group {"className":"mc-hero-content-wrapper mc-stagger-group","layout":{"type":"constrained","contentSize":"780px"}} -->
+<div class="wp-block-group mc-hero-content-wrapper mc-stagger-group"><!-- wp:paragraph {"align":"center","className":"mc-stagger-item","style":{"typography":{"fontSize":"12px","letterSpacing":"0.2em","textTransform":"uppercase"},"color":{"text":"#e2b57a"},"spacing":{"margin":{"bottom":"20px"}}}} -->
+<p class="has-text-align-center mc-stagger-item has-text-color" style="color:#e2b57a;margin-bottom:20px;font-size:12px;letter-spacing:0.2em;text-transform:uppercase">Autumn / Winter collection</p>
 <!-- /wp:paragraph -->
-<!-- wp:modern-core/spacer-divider {
-  "widthMode":"contained",
-  "mode":"spacer",
-  "heightDesktop":56,
-  "heightMobile":28
-} /-->
-<!-- wp:modern-core/testimonials {
-  "widthMode":"contained",
-  "layout":"masonry",
-  "columnsDesktop":3,
-  "columnsTablet":2,
-  "columnsMobile":1,
-  "gap":24,
-  "cardBg":"#ffffff",
-  "cardRadius":12,
-  "cardShadow":true,
-  "cardShadowColor":"rgba(0,0,0,0.06)",
-  "cardPadding":28,
-  "showQuoteGlyph":true,
-  "quoteGlyphColor":"#e2b57a",
-  "quoteGlyphSize":40,
-  "quoteSize":15,
-  "quoteColor":"#334155",
-  "quoteLineHeight":1.7,
-  "nameSize":14,
-  "nameWeight":600,
-  "nameColor":"#0f172a",
-  "roleSize":12,
-  "roleColor":"#94a3b8",
-  "avatarShape":"circle",
-  "avatarSize":44,
-  "starColor":"#f59e0b",
-  "starSize":14,
-  "showVerifiedBadge":true,
-  "verifiedText":"Verified Buyer"
-} /-->
-<!-- /wp:modern-core/section-wrapper -->
 
-<!-- ============================================================
-     SECTION 12 — STATS COUNTER (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":80,
-  "paddingBottom":80
-} -->
-<!-- wp:modern-core/stats-counter {
-  "widthMode":"contained",
-  "columnsDesktop":4,
-  "columnsMobile":2,
-  "gap":40,
-  "alignment":"center",
-  "showDividers":true,
-  "dividerColor":"#e2e8f0",
-  "countDuration":2000,
-  "countEasing":"ease-out",
-  "triggerOnScroll":true,
-  "numberSize":52,
-  "numberWeight":800,
-  "numberColor":"#0f172a",
-  "suffixSize":32,
-  "suffixWeight":800,
-  "suffixColor":"#e2b57a",
-  "labelSize":14,
-  "labelColor":"#64748b",
-  "items":[
-    {"number":50000,"suffix":"K+","prefix":"","label":"Happy Customers"},
-    {"number":4.9,"suffix":"","prefix":"","label":"Average Rating","decimals":1},
-    {"number":12,"suffix":"+","prefix":"","label":"Years in Business"},
-    {"number":99,"suffix":"%","prefix":"","label":"Satisfaction Rate"}
-  ]
-} /-->
-<!-- /wp:modern-core/section-wrapper -->
-
-<!-- ============================================================
-     SECTION 13 — BLOG POSTS GRID (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":80,
-  "paddingBottom":80,
-  "hideWhenEmpty":true
-} -->
-<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center"}} -->
-<div class="wp-block-group">
-<!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">From the Blog</h2>
+<!-- wp:heading {"textAlign":"center","level":1,"className":"mc-stagger-item","style":{"typography":{"fontSize":"clamp(44px, 7vw, 88px)","lineHeight":"1.05","fontWeight":"700"},"color":{"text":"#ffffff"}},"fontFamily":"secondary"} -->
+<h1 class="wp-block-heading has-text-align-center mc-stagger-item has-text-color has-secondary-font-family" style="color:#ffffff;font-size:clamp(44px, 7vw, 88px);font-weight:700;line-height:1.05">Dress for the <em>season</em> ahead</h1>
 <!-- /wp:heading -->
-<!-- wp:buttons {"layout":{"type":"flex"}} -->
-<div class="wp-block-buttons">
-<!-- wp:button {"className":"is-style-link"} -->
-<div class="wp-block-button is-style-link"><a class="wp-block-button__link wp-element-button" href="/blog">View all articles</a></div>
+
+<!-- wp:paragraph {"align":"center","className":"mc-stagger-item","style":{"typography":{"fontSize":"18px","lineHeight":"1.6"},"color":{"text":"#cbd5e1"},"spacing":{"margin":{"top":"20px","bottom":"36px"}}}} -->
+<p class="has-text-align-center mc-stagger-item has-text-color" style="color:#cbd5e1;margin-top:20px;margin-bottom:36px;font-size:18px;line-height:1.6">Layered knits, tailored outerwear and everyday essentials, made in small batches to last for years.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons {"className":"mc-stagger-item","layout":{"type":"flex","justifyContent":"center"}} -->
+<div class="wp-block-buttons mc-stagger-item"><!-- wp:button {"style":{"color":{"background":"#ffffff","text":"#0f172a"},"border":{"radius":"50px"}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-text-color has-background wp-element-button" href="/product-category/women/" style="border-radius:50px;color:#0f172a;background-color:#ffffff">Shop women</a></div>
 <!-- /wp:button -->
-</div>
-<!-- /wp:buttons -->
-</div>
+
+<!-- wp:button {"className":"is-style-outline","style":{"color":{"text":"#ffffff"},"border":{"radius":"50px"}}} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-text-color wp-element-button" href="/product-category/men/" style="border-radius:50px;color:#ffffff">Shop men</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:group -->
-<!-- wp:modern-core/spacer-divider {
-  "widthMode":"contained",
-  "mode":"spacer",
-  "heightDesktop":32,
-  "heightMobile":16
-} /-->
-<!-- wp:modern-core/posts-grid {"sectionTitle":"From the Blog","sectionLink":"/blog","queryCount":3,"columnsDesktop":3,"columnsTablet":2,"columnsMobile":1,"imageRatio":"16/9","cardRadius":8,"showCategory":true,"showDate":true,"showExcerpt":true,"showReadTime":true,"readMoreText":"Read more","hideWhenNoPosts":true} /-->
+<!-- /wp:modern-core/hero -->
+
+<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTopDesktop":18,"paddingTopMobile":14,"paddingBottomDesktop":18,"paddingBottomMobile":14,"borderType":"bottom","borderColor":"#e2e8f0"} -->
+<!-- wp:modern-core/trust-strip {"item1":"Free shipping over $150","item2":"30-day returns","item3":"Secure checkout","item4":"Made to last","iconSize":16,"fontSize":13,"gap":32,"showDividers":true,"textColor":"#0f172a","iconColor":"#b8864f","alignment":"center"} /-->
 <!-- /wp:modern-core/section-wrapper -->
 
-<!-- ============================================================
-     SECTION 14 — NEWSLETTER CAPTURE (background wrapper kept)
-     ============================================================ -->
-<!-- wp:modern-core/section-wrapper {
-  "wrapperWidth":"full",
-  "contentWidth":"contained",
-  "paddingTop":100,
-  "paddingBottom":100,
-  "bgType":"solid",
-  "bgColor":"#0f172a"
-} -->
-<!-- wp:modern-core/newsletter {
-  "widthMode":"contained",
-  "layout":"two-col",
-  "headline":"Join the Club",
-  "headlineSize":40,
-  "headlineWeight":800,
-  "headlineColor":"#ffffff",
-  "subhead":"Subscribe for 10% off your first order, plus early access to new arrivals and exclusive member offers.",
-  "subheadColor":"rgba(255,255,255,0.65)",
-  "inputPlaceholder":"Your email address",
-  "inputBg":"rgba(255,255,255,0.08)",
-  "inputBorderColor":"rgba(255,255,255,0.15)",
-  "inputTextColor":"#ffffff",
-  "inputRadius":50,
-  "inputFocusBorderColor":"#e2b57a",
-  "btnText":"Subscribe",
-  "btnBg":"#e2b57a",
-  "btnColor":"#0f172a",
-  "btnRadius":50,
-  "btnHoverBg":"#d4a56a",
-  "showPrivacyNote":true,
-  "privacyText":"We respect your privacy. Unsubscribe at any time.",
-  "privacyColor":"rgba(255,255,255,0.40)",
-  "successMessage":"You are in! Check your inbox for your discount code.",
-  "successIcon":"check-circle",
-  "errorMessage":"Something went wrong. Please try again.",
-  "integrations":{"platform":"mailchimp","listId":""}
-} /-->
+<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTopDesktop":88,"paddingTopMobile":48,"paddingBottomDesktop":40,"paddingBottomMobile":24} -->
+<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"bottom","flexWrap":"wrap"},"style":{"spacing":{"margin":{"bottom":"32px"}}}} -->
+<div class="wp-block-group" style="margin-bottom:32px"><!-- wp:heading {"style":{"typography":{"fontSize":"clamp(28px, 3vw, 40px)"}},"fontFamily":"secondary"} -->
+<h2 class="wp-block-heading has-secondary-font-family" style="font-size:clamp(28px, 3vw, 40px)">Shop by category</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","fontWeight":"600"}}} -->
+<p style="font-size:14px;font-weight:600"><a href="/shop/">View all products →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:modern-core/category-grid {"sourceMode":"dynamic","catCount":3,"layoutMode":"grid","colsDesktop":3,"colsMobile":1,"imageRatio":"4/5","labelPlacement":"overlay","textPosition":"bottom-left","showCount":true,"hoverEffect":"zoom-darken","cardRadius":8,"overlayOpacity":30,"accentColor":"#0f172a","textColor":"#ffffff"} /-->
 <!-- /wp:modern-core/section-wrapper -->
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
-<!-- wp:template-part {"slug":"footer","theme":"modern-core","tagName":"footer","className":"site-footer"} /-->
+<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTopDesktop":24,"paddingTopMobile":8,"paddingBottomDesktop":72,"paddingBottomMobile":40} -->
+<!-- wp:modern-core/product-carousel {"sectionTitle":"New arrivals","sectionSubtitle":"Just landed","viewAllText":"Shop new in →","viewAllLink":"/product-category/new-in/","productCount":10,"querySort":"date","colsDesktop":4,"colsTablet":2.5,"colsMobile":1.4,"imageRatio":"3/4","cardBg":"#ffffff","cardRadius":8,"cardHoverLift":true,"showRating":true,"atcPosition":"below","showArrows":true,"showDots":false,"autoplay":false,"accentColor":"#0f172a"} /-->
+<!-- /wp:modern-core/section-wrapper -->
+
+<!-- wp:pattern {"slug":"modern-core/home-story"} /-->
+
+<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTopDesktop":72,"paddingTopMobile":40,"paddingBottomDesktop":72,"paddingBottomMobile":40} -->
+<!-- wp:modern-core/product-tabs {"sectionTitle":"Shop the edit","sectionSubtitle":"Picked for the season","tabStyle":"pill","tabAlignment":"center","animationStyle":"fade","tabsData":[{"label":"New arrivals","query":"recent","count":8},{"label":"Best sellers","query":"popularity","count":8},{"label":"On sale","query":"sale","count":8},{"label":"Top rated","query":"rating","count":8}],"colsDesktop":4,"colsMobile":2,"imageRatio":"3/4","cardBg":"#ffffff","cardRadius":8,"accentColor":"#0f172a","inactiveColor":"#64748b"} /-->
+<!-- /wp:modern-core/section-wrapper -->
+
+<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","bgType":"solid","bgColor":"#f8fafc","paddingTopDesktop":72,"paddingTopMobile":40,"paddingBottomDesktop":72,"paddingBottomMobile":40} -->
+<!-- wp:modern-core/featured-product {"productId":0,"layoutMode":"side-by-side","preHeadline":"Customer favourite","showRating":true,"showPrice":true,"showExcerpt":true,"showGallery":true,"imageBg":"#ffffff","contentBg":"#f8fafc","textColor":"#0f172a","accentColor":"#0f172a","buttonStyle":"solid"} /-->
+<!-- /wp:modern-core/section-wrapper -->
+
+<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTopDesktop":72,"paddingTopMobile":40,"paddingBottomDesktop":40,"paddingBottomMobile":24} -->
+<!-- wp:modern-core/icon-feature-list {"layoutMode":"row","colsDesktop":4,"colsMobile":1,"iconPosition":"top","iconStyle":"outline","iconSize":28,"headingColor":"#0f172a","textColor":"#64748b","accentColor":"#b8864f","cardBg":"#ffffff","features":[{"title":"Free shipping","desc":"On every order over $150","icon":"truck","image":"","link":""},{"title":"Easy returns","desc":"30 days to change your mind","icon":"refresh","image":"","link":""},{"title":"Secure checkout","desc":"Encrypted payments, every time","icon":"shield","image":"","link":""},{"title":"Real people","desc":"Help from our studio team, 7 days a week","icon":"chat","image":"","link":""}]} /-->
+<!-- /wp:modern-core/section-wrapper -->
+
+<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTopDesktop":40,"paddingTopMobile":24,"paddingBottomDesktop":72,"paddingBottomMobile":40} -->
+<!-- wp:modern-core/testimonials {"layoutMode":"grid","sectionTitle":"What our customers say","showAggregate":false,"aggregateScore":"4.8","aggregateCount":"1,200","colsDesktop":3,"colsMobile":1,"showAvatar":true,"showRating":true,"cardBg":"#ffffff","cardRadius":12,"shadowOpacity":5,"textColor":"#0f172a","starColor":"#f59e0b"} /-->
+<!-- /wp:modern-core/section-wrapper -->
+
+<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","bgType":"solid","bgColor":"#f8fafc","paddingTopDesktop":72,"paddingTopMobile":40,"paddingBottomDesktop":72,"paddingBottomMobile":40,"hideWhenEmpty":true} -->
+<!-- wp:modern-core/posts-grid {"sectionTitle":"From the journal","sectionLink":"/journal/","queryCount":3,"postType":"post","layoutMode":"grid","colsDesktop":3,"imageRatio":"4/3","showCategory":false,"showDate":true,"showAuthor":false,"showExcerpt":true,"showReadTime":true,"excerptLength":18,"cardRadius":8,"accentColor":"#0f172a","textColor":"#64748b"} /-->
+<!-- /wp:modern-core/section-wrapper -->
+
+<!-- wp:modern-core/newsletter {"displayMode":"inline","layout":"split","heading":"Join the list","subhead":"New arrivals, restocks and early access to the sale. No spam, ever.","btnText":"Subscribe","showName":false,"privacyText":"Unsubscribe at any time.","successMsg":"Thanks for joining! Check your inbox.","bgColor":"#0f172a","textColor":"#f8fafc","accentColor":"#e2b57a","inputRadius":6} /-->
+
+<!-- wp:modern-core/quick-view {"modalWidth":900,"modalRadius":12,"overlayColor":"rgba(15, 23, 42, 0.75)","overlayBlur":6,"animStyle":"scale","splitRatio":50,"showRating":true,"showDesc":true,"showTrust":true,"accentColor":"#0f172a"} /--></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"div"} /-->

@@ -7,16 +7,16 @@
  */
 ?>
 
-<!-- wp:modern-core/trust-badges {"layout":"horizontal","position":"top"} /-->
+<!-- wp:modern-core/trust-badges /-->
 
 <!-- wp:spacer {"height":"32px"} -->
 <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:modern-core/section-wrapper {"className":"width-contained"} -->
+<!-- wp:modern-core/section-wrapper -->
 
 <!-- wp:heading {"level":1,"fontSize":"x-large"} -->
-<h1 class="wp-block-heading">Secure Checkout</h1>
+<h1 class="wp-block-heading has-x-large-font-size">Secure Checkout</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
@@ -35,4 +35,4 @@
 <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:modern-core/trust-badges {"layout":"horizontal","position":"bottom"} /-->
+<!-- wp:modern-core/trust-badges /-->

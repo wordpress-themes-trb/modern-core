@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/advanced-header",
+  "title": "Header System",
+  "category": "modern-core",
+  "icon": "layout",
+  "description": "A clean, stable FSE FSE wrapper for your header.",
+  "supports": {
+    "align": ["full", "wide"],
+    "layout": true,
+    "html": false,
+    "customClassName": true
+  },
+  "attributes": {
+    "isSticky": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-advanced-header-js",
+  "render": "file:./render.php"
+}

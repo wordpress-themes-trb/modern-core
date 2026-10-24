@@ -22,7 +22,7 @@ class ConfigurationEngine {
      */
     public function register_hooks( HooksManager $hooks_manager ): void {
         // Runs exactly once when the store admin activates the theme
-        add_action( 'after_switch_theme', [ $this, 'initialize_storefront_configuration' ] );
+        $hooks_manager->add_action( 'after_switch_theme', $this, 'initialize_storefront_configuration' );
     }
 
     /**
@@ -31,7 +31,13 @@ class ConfigurationEngine {
      * @return void
      */
     public function initialize_storefront_configuration(): void {
-        // 1. Force WordPress to route the root URL to a static front page (our front-page.html template)
+        // 1. Route the root URL to a static Home page (rendered by templates/front-page.html),
+        // unless the site already uses a static front page.
+        if ( 'page' === get_option( 'show_on_front' ) && get_post( (int) get_option( 'page_on_front' ) ) ) {
+            $this->create_woocommerce_pages();
+            $this->create_theme_pages();
+            return;
+        }
         update_option( 'show_on_front', 'page' );
 
         // Check if an actual page named "Home" exists; if not, safely create an empty page shell
@@ -47,16 +53,128 @@ class ConfigurationEngine {
             update_option( 'page_on_front', $home_page_id );
         }
 
-        // 2. Instruct WooCommerce to auto-create and link its mandatory functional shop pages
+        // With a static homepage, blog posts need their own page ("Journal").
+        if ( ! get_option( 'page_for_posts' ) ) {
+            $journal = get_page_by_path( 'journal' );
+            $journal_id = $journal ? $journal->ID : wp_insert_post( [
+                'post_title'  => __( 'Journal', 'modern-core' ),
+                'post_name'   => 'journal',
+                'post_status' => 'publish',
+                'post_type'   => 'page',
+            ] );
+            if ( $journal_id && ! is_wp_error( $journal_id ) ) {
+                update_option( 'page_for_posts', (int) $journal_id );
+            }
+        }
+
+        $this->create_woocommerce_pages();
+        $this->create_theme_pages();
+
+        // 3. Add two sample products, but only to an empty store, never to a live catalogue.
+        if ( class_exists( 'WooCommerce' ) && ! get_option( 'mc_sample_catalog_seeded' ) && ! $this->store_has_products() ) {
+            $this->seed_sample_woocommerce_products();
+        }
+    }
+
+    /**
+     * Whether the store already has products.
+     */
+    private function store_has_products(): bool {
+        $ids = get_posts(
+            [
+                'post_type'      => 'product',
+                'post_status'    => 'any',
+                'posts_per_page' => 1,
+                'fields'         => 'ids',
+            ]
+        );
+        return ! empty( $ids );
+    }
+
+    /**
+     * Create the Wishlist and Compare pages if they don't exist.
+     * They hold the theme's Wishlist and Compare Table blocks, so the store
+     * owner can edit their wording like any other page.
+     */
+    private function create_theme_pages(): void {
+        $section = static function ( string $heading, string $block ): string {
+            return '<!-- wp:modern-core/section-wrapper {"wrapperWidth":"full","contentWidth":"contained","paddingTopDesktop":56,"paddingTopMobile":32,"paddingBottomDesktop":80,"paddingBottomMobile":48} -->' . "\n"
+                . '<!-- wp:heading {"level":1} -->' . "\n" . '<h1 class="wp-block-heading">' . esc_html( $heading ) . '</h1>' . "\n" . '<!-- /wp:heading -->' . "\n\n"
+                . $block . "\n"
+                . '<!-- /wp:modern-core/section-wrapper -->';
+        };
+        $pages = [
+            'wishlist' => [
+                __( 'Wishlist', 'modern-core' ),
+                $section( __( 'Wishlist', 'modern-core' ), '<!-- wp:modern-core/wishlist {"layoutMode":"grid","gridCols":4,"accentColor":"#0f172a"} /-->' ),
+            ],
+            'compare'  => [
+                __( 'Compare products', 'modern-core' ),
+                $section( __( 'Compare products', 'modern-core' ), '<!-- wp:modern-core/compare-table {"sourceMode":"dynamic","maxColumns":4,"accentColor":"#0f172a"} /-->' ),
+            ],
+            // About and Contact start from the theme's patterns (linked from the footer).
+            // Sample stats and reviews stay in the pattern (for owners to fill in) but are
+            // left off the live page, so a new store never shows invented customer reviews.
+            'about'      => [ __( 'About us', 'modern-core' ), $this->pattern_content( 'modern-core/about-us', [ 'modern-core/stats-counter', 'modern-core/testimonials' ] ) ],
+            'contact-us' => [ __( 'Contact us', 'modern-core' ), $this->pattern_content( 'modern-core/contact-us' ) ],
+        ];
+        foreach ( $pages as $slug => [ $title, $content ] ) {
+            if ( get_page_by_path( $slug ) ) {
+                continue;
+            }
+            wp_insert_post(
+                [
+                    'post_title'    => $title,
+                    'post_name'     => $slug,
+                    'post_content'  => $content,
+                    'post_status'   => 'publish',
+                    'post_type'     => 'page',
+                    // Full-width template: the section above supplies its own width and heading.
+                    'page_template' => 'page-full-width',
+                ]
+            );
+        }
+    }
+
+    /**
+     * The block markup of a registered pattern, so the page is editable block by
+     * block. Falls back to a pattern reference if patterns aren't registered yet.
+     */
+    private function pattern_content( string $slug, array $exclude = [] ): string {
+        if ( ! did_action( 'init' ) || ! \WP_Block_Patterns_Registry::get_instance()->is_registered( $slug ) ) {
+            if ( function_exists( '_register_theme_block_patterns' ) ) {
+                _register_theme_block_patterns();
+            }
+        }
+        $pattern = \WP_Block_Patterns_Registry::get_instance()->get_registered( $slug );
+        if ( empty( $pattern['content'] ) ) {
+            return '<!-- wp:pattern {"slug":"' . esc_attr( $slug ) . '"} /-->';
+        }
+        if ( ! $exclude ) {
+            return $pattern['content'];
+        }
+        $blocks = array_filter(
+            parse_blocks( $pattern['content'] ),
+            static function ( $block ) use ( $exclude ) {
+                // Drop the excluded blocks, whether top-level or alone in a section wrapper.
+                $names = [ $block['blockName'] ];
+                foreach ( $block['innerBlocks'] as $inner ) {
+                    $names[] = $inner['blockName'];
+                }
+                return ! array_intersect( array_filter( $names ), $exclude ) && null !== $block['blockName'];
+            }
+        );
+        return serialize_blocks( array_values( $blocks ) );
+    }
+
+    /**
+     * Create any missing Shop, Cart, Checkout and My Account pages.
+     */
+    private function create_woocommerce_pages(): void {
         if ( class_exists( 'WC_Install' ) ) {
             // This safely creates missing pages for Shop, Cart, Checkout, and My Account,
             // mapping them directly to our page-cart.html, page-checkout.html, and page-account.html FSE structures
             \WC_Install::create_pages();
-        }
-
-        // 3. Optional: Trigger a safe indicator flag for demo product handling
-        if ( class_exists( 'WooCommerce' ) && ! get_option( 'mc_sample_catalog_seeded' ) ) {
-            $this->seed_sample_woocommerce_products();
         }
     }
 
@@ -71,8 +189,20 @@ class ConfigurationEngine {
             return;
         }
 
+        // Starter categories, so the homepage "Shop by category" section has something to show.
+        $category_ids = [];
+        foreach ( [ 'clothing' => __( 'Clothing', 'modern-core' ), 'accessories' => __( 'Accessories', 'modern-core' ) ] as $slug => $name ) {
+            $term = term_exists( $slug, 'product_cat' );
+            if ( ! $term ) {
+                $term = wp_insert_term( $name, 'product_cat', [ 'slug' => $slug ] );
+            }
+            $category_ids[ $slug ] = is_array( $term ) ? (int) $term['term_id'] : 0;
+        }
+
         // Create Sample Product 1: The Essential Tailored Blazer
         $product1 = new \WC_Product_Simple();
+        $product1->set_category_ids( array_filter( [ $category_ids['clothing'] ] ) );
+        $product1->set_featured( true );
         $product1->set_name( 'Essential Tailored Blazer' );
         $product1->set_status( 'publish' );
         $product1->set_catalog_visibility( 'visible' );
@@ -86,6 +216,8 @@ class ConfigurationEngine {
 
         // Create Sample Product 2: Classic Minimalist Leather Tote
         $product2 = new \WC_Product_Simple();
+        $product2->set_category_ids( array_filter( [ $category_ids['accessories'] ] ) );
+        $product2->set_short_description( 'A structured everyday tote in full-grain leather.' );
         $product2->set_name( 'Classic Minimalist Leather Tote' );
         $product2->set_status( 'publish' );
         $product2->set_catalog_visibility( 'visible' );

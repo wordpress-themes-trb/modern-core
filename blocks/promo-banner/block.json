@@ -1,0 +1,66 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/promo-banner",
+  "title": "Promo Banner",
+  "category": "modern-core",
+  "icon": "megaphone",
+  "description": "High-conversion promotional strip with animated gradients and sticky behavior.",
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "html": false
+  },
+  "attributes": {
+    "bannerId": {
+      "type": "string",
+      "default": "promo-1"
+    },
+    "layoutMode": {
+      "type": "string",
+      "default": "full"
+    },
+    "bgMode": {
+      "type": "string",
+      "default": "animated-gradient"
+    },
+    "color1": {
+      "type": "string",
+      "default": "#3b82f6"
+    },
+    "color2": {
+      "type": "string",
+      "default": "#8b5cf6"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "isSticky": {
+      "type": "boolean",
+      "default": false
+    },
+    "attentionPulse": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableDismiss": {
+      "type": "boolean",
+      "default": true
+    },
+    "widthMode": {
+      "type": "string",
+      "default": "fullwidth",
+      "enum": [
+        "contained",
+        "wide",
+        "fullwidth"
+      ]
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-promo-banner-js",
+  "render": "file:./render.php"
+}

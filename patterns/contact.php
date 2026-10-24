@@ -7,10 +7,10 @@
  */
 ?>
 
-<!-- wp:modern-core/section-wrapper {"className":"width-contained"} -->
+<!-- wp:modern-core/section-wrapper -->
 
 <!-- wp:heading {"textAlign":"center","level":1,"fontSize":"x-large"} -->
-<h1 class="wp-block-heading has-text-align-center">Get in Touch</h1>
+<h1 class="wp-block-heading has-text-align-center has-x-large-font-size">Get in Touch</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
@@ -22,11 +22,9 @@
 <!-- /wp:spacer -->
 
 <!-- wp:columns {"isStackedOnMobile":true,"style":{"spacing":{"blockGap":"64px"}}} -->
-
-<!-- wp:column {"width":"45%"} -->
-
-<!-- wp:heading {"level":3,"fontSize":"large"} -->
-<h3 class="wp-block-heading">Contact Information</h3>
+<div class="wp-block-columns"><!-- wp:column {"width":"45%"} -->
+<div class="wp-block-column" style="flex-basis:45%"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size">Contact Information</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -66,17 +64,15 @@
 <!-- /wp:spacer -->
 
 <!-- wp:buttons -->
-<!-- wp:button {"borderRadius":0} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Send Us a Message</a></div>
-<!-- /wp:button -->
-<!-- /wp:buttons -->
-
+<div class="wp-block-buttons"><!-- wp:button {"style":{"border":{"radius":"0px"}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="mailto:hello@moderncore.com" style="border-radius:0px">Send Us a Message</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"width":"55%"} -->
-
-<!-- wp:heading {"level":3,"fontSize":"large"} -->
-<h3 class="wp-block-heading">Frequently Asked Questions</h3>
+<div class="wp-block-column" style="flex-basis:55%"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size">Frequently Asked Questions</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -87,10 +83,8 @@
 <div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:modern-core/faq-accordion {"openFirstItem":true} /-->
-
-<!-- /wp:column -->
-
+<!-- wp:modern-core/faq-accordion {"openFirst":true} /--></div>
+<!-- /wp:column --></div>
 <!-- /wp:columns -->
 
 <!-- /wp:modern-core/section-wrapper -->

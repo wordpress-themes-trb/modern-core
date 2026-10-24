@@ -22,11 +22,10 @@ class DependencyManager {
      */
     public function register_hooks( HooksManager $hooks_manager ): void {
         // Enforce dependencies on the admin panel dashboard
-        add_action( 'admin_notices', [ $this, 'render_dependency_warnings' ] );
-        add_action( 'admin_init', [ $this, 'process_automatic_plugin_activation' ] );
+        $hooks_manager->add_action( 'admin_notices', $this, 'render_dependency_warnings' );
 
         // Prevent frontend breakage if WooCommerce is uninstalled/inactive
-        add_filter( 'template_include', [ $this, 'enforce_frontend_failsafe' ], 99 );
+        $hooks_manager->add_filter( 'template_include', $this, 'enforce_frontend_failsafe', 99 );
     }
 
     /**
@@ -71,14 +70,14 @@ class DependencyManager {
         ?>
         <div class="notice notice-error" style="border-left: 4px solid #ef4444; background: #ffffff; padding: 20px; margin-top: 20px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
             <h3 style="color: #0f172a; margin: 0 0 6px 0; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                <span style="color: #ef4444; font-size: 18px;">⚠️</span> Critical System Requirement Missing
+                <?php esc_html_e( 'Modern Core needs WooCommerce', 'modern-core' ); ?>
             </h3>
             <p style="margin: 0 0 14px 0; font-size: 14px; color: #64748b; line-height: 1.5;">
-                The <strong>ModernCore Engine</strong> requires WooCommerce to process custom block layouts, quick views, and shopping features. Your store templates will remain locked until this dependency is active.
+                <?php esc_html_e( 'The shop, product, cart and checkout templates are built on WooCommerce. Visitors see a "setup in progress" page until it is active.', 'modern-core' ); ?>
             </p>
             <p style="margin: 0;">
                 <a href="<?php echo esc_url( $action_url ); ?>" class="button button-primary" style="background: #ef4444; border-color: #dc2626; color: #fff; text-shadow: none; font-weight: 600; padding: 6px 18px; height: auto; border-radius: 4px;">
-                    <?php echo esc_html( $action_url ); ?><?php echo esc_html( $action_text ); ?>
+                    <?php echo esc_html( $action_text ); ?>
                 </a>
             </p>
         </div>
@@ -93,7 +92,7 @@ class DependencyManager {
      * @return string Filtered template path.
      */
     public function enforce_frontend_failsafe( string $template ): string {
-        if ( $this->is_woocommerce_active() ) {
+        if ( $this->is_woocommerce_active() || current_user_can( 'activate_plugins' ) ) {
             return $template;
         }
 
@@ -109,12 +108,5 @@ class DependencyManager {
             [ 'response' => 503 ]
         );
         exit;
-    }
-
-    /**
-     * Optional placeholder setup to handle automated backgrounds if needed.
-     */
-    public function process_automatic_plugin_activation(): void {
-        // Logic can expand here if automated asynchronous silent installation paths are introduced
     }
 }

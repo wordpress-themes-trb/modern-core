@@ -7,13 +7,11 @@
  */
 ?>
 
-<!-- wp:modern-core/section-wrapper {"className":"width-contained"} -->
+<!-- wp:modern-core/section-wrapper -->
 
-<!-- wp:group {"textAlign":"center","layout":{"type":"constrained","contentSize":"640px"}} -->
-<div class="wp-block-group">
-
-<!-- wp:heading {"textAlign":"center","level":1,"fontSize":"x-large"} -->
-<h1 class="wp-block-heading has-text-align-center">🎉 Thank You for Your Order!</h1>
+<!-- wp:group {"layout":{"type":"constrained","contentSize":"640px"}} -->
+<div class="wp-block-group"><!-- wp:heading {"textAlign":"center","level":1,"fontSize":"x-large"} -->
+<h1 class="wp-block-heading has-text-align-center has-x-large-font-size">🎉 Thank You for Your Order!</h1>
 <!-- /wp:heading -->
 
 <!-- wp:spacer {"height":"16px"} -->
@@ -22,16 +20,14 @@
 
 <!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
 <p class="has-text-align-center has-medium-font-size">Your order has been placed and is being prepared. You'll receive a confirmation email shortly with your tracking details.</p>
-<!-- /wp:paragraph -->
-
-</div>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:spacer {"height":"40px"} -->
 <div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:modern-core/order-confirmation {"showItems":true,"showShippingAddress":true,"showTotals":true} /-->
+<!-- wp:modern-core/order-confirmation /-->
 
 <!-- /wp:modern-core/section-wrapper -->
 
@@ -39,10 +35,10 @@
 <div style="height:56px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:modern-core/section-wrapper {"className":"width-contained"} -->
+<!-- wp:modern-core/section-wrapper -->
 
 <!-- wp:heading {"textAlign":"center","level":2,"fontSize":"large"} -->
-<h2 class="wp-block-heading has-text-align-center">Complete Your Collection</h2>
+<h2 class="wp-block-heading has-text-align-center has-large-font-size">Complete Your Collection</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center"} -->
@@ -53,6 +49,6 @@
 <div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
 
-<!-- wp:modern-core/bundle-upsell {"showDiscount":true,"layout":"horizontal"} /-->
+<!-- wp:modern-core/bundle-upsell {"sectionTitle":""} /-->
 
 <!-- /wp:modern-core/section-wrapper -->
