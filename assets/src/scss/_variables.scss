@@ -1,43 +1,24 @@
 // ==========================================================================
-// SCSS Variables Map
+// SCSS variables mapped to theme.json presets
 // ==========================================================================
-// This file acts as a bridge. It consumes the CSS Custom Properties generated
-// automatically by WordPress from our theme.json, allowing us to use familiar
-// SCSS variables in our custom blocks and WooCommerce overrides.
+// Values are CSS custom properties WordPress generates from theme.json, so
+// changing a colour in the Site Editor updates everything that uses these.
 
-// Colors
-$color-primary: var(--wp--preset--color--primary);
-$color-secondary: var(--wp--preset--color--secondary);
-$color-accent: var(--wp--preset--color--accent);
-$color-neutral: var(--wp--preset--color--neutral);
-$color-success: var(--wp--preset--color--success);
-$color-warning: var(--wp--preset--color--warning);
-$color-error: var(--wp--preset--color--error);
+// Colours (slugs from theme.json settings.color.palette)
+$color-base: var(--wp--preset--color--base, #ffffff);
+$color-contrast: var(--wp--preset--color--contrast, #0f172a);
+$color-accent: var(--wp--preset--color--accent, #e2b57a);
+$color-neutral-light: var(--wp--preset--color--neutral-light, #f8fafc);
+$color-border: var(--wp--preset--color--neutral-border, #e2e8f0);
+$color-muted: var(--wp--preset--color--neutral-text, #64748b);
+$color-error: var(--wp--preset--color--error, #ef4444);
+$color-success: var(--wp--preset--color--success, #10b981);
 
-// Typography (Fluid Values)
-$font-size-xs: var(--wp--preset--font-size--xs);
-$font-size-sm: var(--wp--preset--font-size--sm);
-$font-size-base: var(--wp--preset--font-size--base);
-$font-size-lg: var(--wp--preset--font-size--lg);
-$font-size-xl: var(--wp--preset--font-size--xl);
-$font-size-xxl: var(--wp--preset--font-size--xxl);
-$font-size-xxxl: var(--wp--preset--font-size--xxxl);
+// Type
+$font-sans: var(--wp--preset--font-family--primary);
+$font-serif: var(--wp--preset--font-family--secondary);
 
-// Spacing (Clamp Values)
-$space-xxs: var(--wp--preset--spacing--xxs);
-$space-xs: var(--wp--preset--spacing--xs);
-$space-sm: var(--wp--preset--spacing--sm);
-$space-md: var(--wp--preset--spacing--md);
-$space-lg: var(--wp--preset--spacing--lg);
-$space-xl: var(--wp--preset--spacing--xl);
-$space-xxl: var(--wp--preset--spacing--xxl);
-
-// Shadows
-$shadow-sm: var(--wp--preset--shadow--sm);
-$shadow-md: var(--wp--preset--shadow--md);
-$shadow-lg: var(--wp--preset--shadow--lg);
-
-// Layout Breakpoints (For media queries only, not managed by theme.json)
+// Breakpoints (media queries only)
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 $breakpoint-xl: 1280px;

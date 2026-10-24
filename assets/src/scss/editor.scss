@@ -1,11 +1,33 @@
-/**
- * Editor Theme Stylesheet
- * 
- * This file is enqueued exclusively in the Gutenberg editor. 
- * Use this to tweak editor-specific UI quirks.
- */
+// ==========================================================================
+// Editor-only styles (loaded in the block editor and Site Editor canvas)
+// ==========================================================================
 
 .editor-styles-wrapper {
-  // Ensure the editor canvas matches your theme's base behavior
   overflow-x: hidden;
+}
+
+// Footer: show the link columns side by side, as on the front end.
+.mc-footer-editor-links > .block-editor-inner-blocks > .block-editor-block-list__layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 32px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: inherit;
+  }
+}
+
+// The header shows both the inline menu and the hamburger while editing.
+.editor-styles-wrapper .mc-header-hamburger {
+  display: flex !important;
 }

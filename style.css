@@ -1,13 +1,14 @@
 /*
 Theme Name: Modern Core
-Theme URI: https://example.com/modern-core
+Theme URI: https://github.com/wordpress-themes-trb/modern-core
 Author: Modern Core Team
-Description: Enterprise-grade, high-performance WooCommerce theme built with Full Site Editing and a Service-Oriented Architecture.
+Description: WooCommerce block theme with 72 custom store blocks: product grids and carousels, filters, quick view, wishlist, compare, mini cart, cart, checkout and account pages, all editable in the Site Editor.
 Version: 1.0.0
-Requires at least: 6.4
-Tested up to: 6.5
+Requires at least: 6.6
+Tested up to: 7.1
 Requires PHP: 8.2
 Text Domain: modern-core
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: e-commerce, full-site-editing, block-patterns, block-styles, wide-blocks, custom-colors, editor-style, translation-ready
 */

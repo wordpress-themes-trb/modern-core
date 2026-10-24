@@ -1,0 +1,35 @@
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"div"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"64px","bottom":"96px"}}},"layout":{"type":"constrained","wideSize":"1200px"}} -->
+<main class="wp-block-group" style="padding-top:64px;padding-bottom:96px">
+
+<!-- wp:query-title {"type":"archive","showPrefix":false,"align":"wide"} /-->
+
+<!-- wp:term-description {"align":"wide"} /-->
+
+<!-- wp:query {"queryId":1,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"align":"wide"} -->
+<div class="wp-block-query alignwide"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3,"minimumColumnWidth":"280px"}} -->
+<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3","style":{"border":{"radius":"8px"}}} /-->
+
+<!-- wp:post-date {"style":{"typography":{"fontSize":"13px","textTransform":"uppercase","letterSpacing":"0.08em"}},"textColor":"neutral-text"} /-->
+
+<!-- wp:post-title {"level":2,"isLink":true,"style":{"typography":{"fontSize":"1.25rem"}}} /-->
+
+<!-- wp:post-excerpt {"excerptLength":22} /-->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:query-pagination-previous /-->
+<!-- wp:query-pagination-numbers /-->
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>Nothing has been published here yet.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"div"} /-->

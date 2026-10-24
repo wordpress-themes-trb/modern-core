@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/content-tabs",
+  "title": "Content Tabs",
+  "category": "modern-core",
+  "icon": "index-card",
+  "description": "Space-efficient content organizer with multiple distinct panes.",
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "attributes": {
+    "tabStyle": {
+      "type": "string",
+      "default": "underline"
+    },
+    "layoutMode": {
+      "type": "string",
+      "default": "horizontal"
+    },
+    "animStyle": {
+      "type": "string",
+      "default": "fade"
+    },
+    "animDuration": {
+      "type": "number",
+      "default": 300
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#0f172a"
+    },
+    "inactiveColor": {
+      "type": "string",
+      "default": "#94a3b8"
+    },
+    "widthMode": {
+      "type": "string",
+      "default": "contained",
+      "enum": [
+        "contained",
+        "wide",
+        "fullwidth"
+      ]
+    }
+  },
+  "editorScript": "modern-core-content-tabs-js",
+  "render": "file:./render.php",
+  "textdomain": "modern-core"
+}

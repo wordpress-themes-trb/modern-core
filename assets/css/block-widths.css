@@ -53,3 +53,63 @@
         padding-right: 16px;
     }
 }
+/* Inline blocks (logo, icons, search, payment badges, menus…) and anything
+   placed inside the header, footer, columns or a group sit in their parent's
+   layout: no width box, no extra side padding. */
+header .mc-block.width-contained,
+header .mc-block.width-wide,
+footer .mc-block.width-contained,
+footer .mc-block.width-wide,
+.wp-block-column > .mc-block,
+.wp-block-group > .mc-block.width-contained,
+.mc-block.wp-block-modern-core-logo,
+.mc-block.wp-block-modern-core-header-icons,
+.mc-block.wp-block-modern-core-search,
+.mc-block.wp-block-modern-core-payment-icons,
+.mc-block.wp-block-modern-core-mini-cart,
+.mc-block.wp-block-modern-core-hamburger {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+header .mc-block.width-contained,
+header .mc-block.width-wide,
+.mc-block.wp-block-modern-core-logo,
+.mc-block.wp-block-modern-core-header-icons,
+.mc-block.wp-block-modern-core-payment-icons {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Inside a container that already applies the site gutter (root padding),
+   don't add a second gutter. */
+.has-global-padding > .mc-block.width-contained,
+.has-global-padding > .mc-block.width-wide,
+.wp-block-post-content > .mc-block.width-contained,
+.wp-block-post-content > .mc-block.width-wide {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* A width box nested in another Modern Core block (e.g. inside a Section
+   wrapper) inherits the outer gutter instead of adding its own. */
+.mc-block .mc-block.width-contained,
+.mc-block .mc-block.width-wide {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Inside Elementor the widget's column sets the width, so theme blocks just
+   fill it (no width box, no side padding, no full-width breakout). */
+.elementor-element .mc-block.width-contained,
+.elementor-element .mc-block.width-wide,
+.elementor-element .mc-block.width-fullwidth,
+.wp-block-post-content .elementor-element .mc-block.width-fullwidth {
+    width: auto;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    left: auto;
+    padding-left: 0;
+    padding-right: 0;
+}

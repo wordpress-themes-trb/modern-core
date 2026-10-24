@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "modern-core/header-icons",
+  "title": "Header Icons",
+  "category": "modern-core",
+  "icon": "admin-users",
+  "description": "Customizable Search, Account, and Cart icons.",
+  "attributes": {
+    "showSearch": {
+      "type": "boolean",
+      "default": true
+    },
+    "showAccount": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCart": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCartBadge": {
+      "type": "boolean",
+      "default": true
+    },
+    "iconSize": {
+      "type": "number",
+      "default": 24
+    },
+    "iconSpacing": {
+      "type": "number",
+      "default": 20
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#0f172a"
+    },
+    "widthMode": {
+      "type": "string",
+      "default": "contained",
+      "enum": [
+        "contained",
+        "wide",
+        "fullwidth"
+      ]
+    },
+    "showWishlist": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "textdomain": "modern-core",
+  "editorScript": "modern-core-header-icons-js",
+  "render": "file:./render.php"
+}

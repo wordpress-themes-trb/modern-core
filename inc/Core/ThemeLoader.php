@@ -54,17 +54,35 @@ class ThemeLoader {
      * Register all theme services into the container.
      */
     private function register_services(): void {
-        // Core framework abstractions
-        $this->container->register( 'translations', new \ModernCore\I18n\Translations() );
-        $this->container->register( 'accessibility', new \ModernCore\Accessibility\A11yEnforcer() );
-        $this->container->register( 'blocks', new \ModernCore\Blocks\BlockManager() );
-$this->container->register( 'dependencies', new \ModernCore\Core\DependencyManager() );
-		$this->container->register( 'configuration', new \ModernCore\Core\ConfigurationEngine() );
+        $services = [
+            'setup'         => new ThemeSetup(),
+            'settings'      => new ThemeSettings(),
+            'editor'        => new EditorFeatures(),
+            'translations'  => new \ModernCore\I18n\Translations(),
+            'accessibility' => new \ModernCore\Accessibility\A11yEnforcer(),
+            'performance'   => new \ModernCore\Performance\Optimization(),
+            'cache'         => new \ModernCore\Performance\TransientCache(),
+            'blocks'        => new \ModernCore\Blocks\BlockManager(),
+            'dependencies'  => new DependencyManager(),
+            'configuration' => new ConfigurationEngine(),
+            'woocommerce'   => new \ModernCore\Woocommerce\WooCommerceIntegration(),
+            'ajax'          => new \ModernCore\Store\AjaxEndpoints(),
+            'newsletter'    => new \ModernCore\Store\Newsletter(),
+            'back_in_stock' => new \ModernCore\Store\BackInStock(),
+            'elementor'     => new \ModernCore\Elementor\ElementorIntegration(),
+        ];
+        foreach ( $services as $name => $service ) {
+            $this->container->register( $name, $service );
+        }
+    }
 
-        // Performance engines — font preload, deferred CSS, emoji stripping, product query caching.
-        $this->container->register( 'performance', new \ModernCore\Performance\Optimization() );
-        $this->container->register( 'transient_cache', new \ModernCore\Performance\TransientCache() );
-        
+    /**
+     * Access a registered service, e.g. the product cache from a block.
+     *
+     * @param string $name Service name.
+     */
+    public function get( string $name ): ?object {
+        return $this->container->get( $name );
     }
 
     /**
@@ -102,7 +120,8 @@ $this->container->register( 'dependencies', new \ModernCore\Core\DependencyManag
         // Fetch our front-page blueprint content directly to provide an unboxing template configuration
         $front_page_path = get_template_directory() . '/templates/front-page.html';
         if ( is_readable( $front_page_path ) ) {
-            $composition_data = file_get_contents( $front_page_path );
+            // Template parts (header/footer) belong to the template, not to a page pattern.
+            $composition_data = preg_replace( '/<!--\s+wp:template-part\b.*?\/-->\s*/s', '', (string) file_get_contents( $front_page_path ) );
             if ( ! empty( $composition_data ) ) {
                 register_block_pattern(
                     'modern-core/editorial-storefront',
@@ -129,15 +148,15 @@ $this->container->register( 'dependencies', new \ModernCore\Core\DependencyManag
         $dismiss_ajax = wp_nonce_url( add_query_arg( 'mc_dismiss_wizard', '1' ), 'mc_dismiss_action' );
 
         ?>
-        <div class="notice notice-info is-dismissible" style="background: #0f172a; color: #ffffff; border-left: 4px solid #e2b57a; padding: 24px; margin-top: 20px; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div class="notice notice-info" style="background: #0f172a; color: #ffffff; border-left: 4px solid #e2b57a; padding: 24px; margin-top: 20px; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
             <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
                 <div style="flex: 1; min-width: 300px;">
-                    <h2 style="color: #ffffff; margin: 0 0 8px 0; font-size: 20px; font-weight: 700; letter-spacing: -0.02em;">ModernCore Engine Activated</h2>
-                    <p style="margin: 0; font-size: 14px; color: #cbd5e1; line-height: 1.5;">All 55 custom eCommerce components and Full Site Editing blueprints are successfully loaded. Ready to run your storefront setup configurations.</p>
+                    <h2 style="color: #ffffff; margin: 0 0 8px 0; font-size: 20px; font-weight: 700; letter-spacing: -0.02em;"><?php esc_html_e( 'Modern Core is active', 'modern-core' ); ?></h2>
+                    <p style="margin: 0; font-size: 14px; color: #cbd5e1; line-height: 1.5;"><?php echo esc_html( sprintf( /* translators: %d: number of blocks */ __( '%d store blocks and full-site templates are ready. Open the Site Editor to customise your header, homepage and shop.', 'modern-core' ), count( glob( MODERN_CORE_DIR . '/blocks/*/block.json' ) ?: [] ) ) ); ?></p>
                 </div>
                 <div style="display: flex; gap: 12px; align-items: center;">
-                    <a href="<?php echo esc_url( $editor_route ); ?>" class="button button-primary" style="background: #e2b57a; color: #0f172a; border: none; text-shadow: none; font-weight: 600; padding: 8px 20px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(226,181,122,0.2);">Launch Visual Customizer</a>
-                    <a href="<?php echo esc_url( $dismiss_ajax ); ?>" class="button button-secondary" style="background: transparent; color: #94a3b8; border-color: rgba(255,255,255,0.15); padding: 8px 16px; height: auto; border-radius: 4px;">Skip Setup</a>
+                    <a href="<?php echo esc_url( $editor_route ); ?>" class="button button-primary" style="background: #e2b57a; color: #0f172a; border: none; text-shadow: none; font-weight: 600; padding: 8px 20px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(226,181,122,0.2);"><?php esc_html_e( 'Open Site Editor', 'modern-core' ); ?></a>
+                    <a href="<?php echo esc_url( $dismiss_ajax ); ?>" class="button button-secondary" style="background: transparent; color: #94a3b8; border-color: rgba(255,255,255,0.15); padding: 8px 16px; height: auto; border-radius: 4px;"><?php esc_html_e( 'Dismiss', 'modern-core' ); ?></a>
                 </div>
             </div>
         </div>
@@ -148,7 +167,7 @@ $this->container->register( 'dependencies', new \ModernCore\Core\DependencyManag
      * Intercepts dismissal request arguments to manage dashboard execution states.
      */
     public function process_onboarding_dismissal(): void {
-        if ( isset( $_GET['mc_dismiss_wizard'] ) && check_admin_referer( 'mc_dismiss_action', 'mc_dismiss_wizard' ) ) {
+        if ( isset( $_GET['mc_dismiss_wizard'] ) && current_user_can( 'manage_options' ) && check_admin_referer( 'mc_dismiss_action' ) ) {
             update_option( 'mc_onboarding_complete_flag', true );
             wp_redirect( remove_query_arg( [ 'mc_dismiss_wizard', '_wpnonce' ] ) );
             exit;

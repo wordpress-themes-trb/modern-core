@@ -1,43 +1,44 @@
 <?php
+/**
+ * Accessibility helpers.
+ *
+ * @package ModernCore\Accessibility
+ */
 
 declare(strict_types=1);
 
 namespace ModernCore\Accessibility;
 
+use ModernCore\Core\HooksManager;
+
 /**
- * Class A11yEnforcer
+ * Small accessibility fixes WordPress doesn't apply by default.
  *
- * Enforces strict WCAG 2.2 AA standards via PHP DOM injection.
+ * The skip link itself comes from WordPress core, which adds it to block
+ * themes automatically and points it at the template's <main> element.
  */
 class A11yEnforcer {
-    /**
-     * Registers the accessibility hooks.
-     */
-    public function register(): void {
-        add_filter('nav_menu_link_attributes', [$this, 'addAriaCurrentToActiveLinks'], 10, 2);
-        add_action('wp_body_open', [$this, 'injectSkipLink'], 5);
-    }
 
-    /**
-     * Injects aria-current attributes into active navigation items.
-     *
-     * @param array    $atts HTML attributes applied to the menu item's anchor element.
-     * @param \WP_Post $item The current menu item.
-     * @return array Modified attributes.
-     */
-    public function addAriaCurrentToActiveLinks(array $atts, \WP_Post $item): array {
-        if (isset($item->classes) && in_array('current-menu-item', $item->classes, true)) {
-            $atts['aria-current'] = 'page';
-        }
-        return $atts;
-    }
+	/**
+	 * Attach hooks.
+	 *
+	 * @param HooksManager $hooks Hooks manager.
+	 */
+	public function register_hooks( HooksManager $hooks ): void {
+		$hooks->add_filter( 'nav_menu_link_attributes', $this, 'add_aria_current', 10, 2 );
+	}
 
-    /**
-     * Injects a screen-reader-only skip link at the top of the DOM.
-     */
-    public function injectSkipLink(): void {
-        echo '<a class="skip-link screen-reader-text" href="#wp--skip-link--target">' . 
-             esc_html__('Skip to main content', 'modern-core') . 
-             '</a>';
-    }
+	/**
+	 * Mark the current menu item for screen readers.
+	 *
+	 * @param array<string, string> $atts Link attributes.
+	 * @param \WP_Post              $item Menu item.
+	 * @return array<string, string>
+	 */
+	public function add_aria_current( array $atts, $item ): array {
+		if ( isset( $item->classes ) && in_array( 'current-menu-item', (array) $item->classes, true ) ) {
+			$atts['aria-current'] = 'page';
+		}
+		return $atts;
+	}
 }
