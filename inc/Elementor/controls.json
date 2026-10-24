@@ -27,7 +27,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"advanced-header": {
 		"sections": [
@@ -42,7 +43,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"announcement-bar": {
 		"sections": [
@@ -139,7 +141,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"back-in-stock": {
 		"sections": [
@@ -233,7 +236,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"bundle-upsell": {
 		"sections": [
@@ -349,7 +353,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"cart-items": {
 		"sections": [
@@ -447,7 +452,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"cart-page": {
 		"sections": [
@@ -533,7 +539,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"category-carousel": {
 		"sections": [
@@ -687,7 +694,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"category-grid": {
 		"sections": [
@@ -873,7 +881,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"checkout-page": {
 		"sections": [
@@ -1024,7 +1033,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"column": {
 		"sections": [
@@ -1068,7 +1078,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"columns-builder": {
 		"sections": [
@@ -1184,7 +1195,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"compare-table": {
 		"sections": [
@@ -1305,7 +1317,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"content-tabs": {
 		"sections": [
@@ -1395,7 +1408,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"cookie-consent": {
 		"sections": [
@@ -1532,7 +1546,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"countdown": {
 		"sections": [
@@ -1730,7 +1745,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"countdown-banner": {
 		"sections": [
@@ -1898,7 +1914,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"exit-popup": {
 		"sections": [
@@ -2034,7 +2051,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"faq-accordion": {
 		"sections": [
@@ -2227,7 +2245,8 @@
 					}
 				]
 			}
-		}
+		},
+		"hasContent": false
 	},
 	"featured-product": {
 		"sections": [
@@ -2355,7 +2374,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"filter-sidebar": {
 		"sections": [
@@ -2419,7 +2439,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"hamburger": {
 		"sections": [
@@ -2487,7 +2508,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"header-icons": {
 		"sections": [
@@ -2549,7 +2571,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"hero": {
 		"sections": [
@@ -2649,7 +2672,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"hero-layout": {
 		"sections": [
@@ -2788,7 +2812,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"icon": {
 		"sections": [
@@ -2976,7 +3001,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"icon-feature-list": {
 		"sections": [
@@ -3162,7 +3188,8 @@
 					}
 				]
 			}
-		}
+		},
+		"hasContent": false
 	},
 	"live-sales-popup": {
 		"sections": [
@@ -3326,7 +3353,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"logo": {
 		"sections": [
@@ -3391,7 +3419,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"lookbook": {
 		"sections": [
@@ -3455,7 +3484,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"marquee": {
 		"sections": [
@@ -3500,7 +3530,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"mega-menu": {
 		"sections": [
@@ -3608,7 +3639,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"mini-cart": {
 		"sections": [
@@ -3714,7 +3746,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"mobile-sticky-bar": {
 		"sections": [
@@ -3820,7 +3853,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"my-account": {
 		"sections": [
@@ -3911,7 +3945,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"navigation": {
 		"sections": [
@@ -4015,7 +4050,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"newsletter": {
 		"sections": [
@@ -4186,7 +4222,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"off-canvas": {
 		"sections": [
@@ -4313,7 +4350,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"order-confirmation": {
 		"sections": [
@@ -4408,7 +4446,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"pagination": {
 		"sections": [
@@ -4528,7 +4567,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"payment-icons": {
 		"sections": [
@@ -4616,7 +4656,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"posts-grid": {
 		"sections": [
@@ -4768,7 +4809,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"pricing-table": {
 		"sections": [
@@ -4876,7 +4918,8 @@
 					}
 				]
 			}
-		}
+		},
+		"hasContent": false
 	},
 	"product-card": {
 		"sections": [
@@ -5037,7 +5080,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"product-carousel": {
 		"sections": [
@@ -5166,7 +5210,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"product-filters": {
 		"sections": [
@@ -5254,7 +5299,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"product-gallery": {
 		"sections": [
@@ -5356,7 +5402,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"product-grid": {
 		"sections": [
@@ -5584,7 +5631,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"product-tabs": {
 		"sections": [
@@ -5749,7 +5797,8 @@
 					}
 				]
 			}
-		}
+		},
+		"hasContent": false
 	},
 	"promo-banner": {
 		"sections": [
@@ -5840,7 +5889,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"quick-view": {
 		"sections": [
@@ -5933,7 +5983,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"recently-viewed": {
 		"sections": [
@@ -6044,7 +6095,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"reviews-summary": {
 		"sections": [
@@ -6123,7 +6175,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"search": {
 		"sections": [
@@ -6207,7 +6260,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"section-wrapper": {
 		"sections": [
@@ -6509,7 +6563,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"shipping-partners": {
 		"sections": [
@@ -6597,7 +6652,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"shipping-progress": {
 		"sections": [
@@ -6673,7 +6729,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"shop-toolbar": {
 		"sections": [
@@ -6735,7 +6792,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"single-product": {
 		"sections": [
@@ -6855,7 +6913,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"slide": {
 		"sections": [
@@ -6882,7 +6941,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"slider": {
 		"sections": [
@@ -6990,7 +7050,8 @@
 					}
 				]
 			}
-		}
+		},
+		"hasContent": false
 	},
 	"spacer-divider": {
 		"sections": [
@@ -7158,7 +7219,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"split-banner": {
 		"sections": [
@@ -7279,7 +7341,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"stats-counter": {
 		"sections": [
@@ -7458,7 +7521,8 @@
 					}
 				]
 			}
-		}
+		},
+		"hasContent": false
 	},
 	"stock-countdown": {
 		"sections": [
@@ -7556,7 +7620,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"tab-pane": {
 		"sections": [
@@ -7594,7 +7659,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"testimonials": {
 		"sections": [
@@ -7753,7 +7819,8 @@
 					}
 				]
 			}
-		}
+		},
+		"hasContent": false
 	},
 	"trust-badges": {
 		"sections": [
@@ -7894,7 +7961,8 @@
 					}
 				]
 			}
-		}
+		},
+		"hasContent": false
 	},
 	"trust-strip": {
 		"sections": [
@@ -7989,7 +8057,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"variation-picker": {
 		"sections": [
@@ -8093,7 +8162,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	},
 	"video-hero": {
 		"sections": [
@@ -8246,7 +8316,8 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": true
 	},
 	"wishlist": {
 		"sections": [
@@ -8335,6 +8406,7 @@
 				]
 			}
 		],
-		"repeaters": {}
+		"repeaters": {},
+		"hasContent": false
 	}
 }

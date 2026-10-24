@@ -298,7 +298,11 @@ function buildBlock(folder) {
 		},
 	});
 
-	return { sections: sections.filter((s) => s.controls.length), repeaters };
+	// Blocks whose render.php prints inner blocks get a rich-text "Content" field in Elementor.
+	const render = path.join(BLOCKS, folder, 'render.php');
+	const hasContent = fs.existsSync(render) && /echo\s+\$content\b/.test(fs.readFileSync(render, 'utf8'));
+
+	return { sections: sections.filter((s) => s.controls.length), repeaters, hasContent };
 }
 
 const map = {};

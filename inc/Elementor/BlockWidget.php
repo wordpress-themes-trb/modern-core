@@ -36,9 +36,24 @@ class BlockWidget extends Widget_Base {
 	private const SKIP = [ 'widthMode', 'mcAnimation', 'mcAnimDuration', 'mcAnimDelay', 'mcAnimOffset', 'className', 'style', 'lock', 'metadata', 'anchor', 'align' ];
 
 	/**
-	 * Blocks that print inner content; Elementor gets a rich-text field for it.
+	 * Starter content for blocks that wrap content, keyed by block. "dark"
+	 * blocks sit on a dark background, so their starter text is light.
 	 */
-	private const HAS_CONTENT = [ 'navigation', 'mega-menu', 'off-canvas', 'hamburger', 'video-hero', 'countdown-banner', 'promo-banner', 'advanced-footer' ];
+	private const STARTER = [
+		'hero'             => 'dark',
+		'video-hero'       => 'dark',
+		'promo-banner'     => 'dark',
+		'countdown-banner' => 'dark',
+		'split-banner'     => 'light',
+		'hero-layout'      => 'light',
+	];
+
+	/**
+	 * Content wrappers that give the block's CSS the element it styles.
+	 */
+	private const CONTENT_WRAPPER = [
+		'hero' => 'mc-hero-content-wrapper',
+	];
 
 	/**
 	 * Block folder name, e.g. "faq-accordion".
@@ -79,6 +94,20 @@ class BlockWidget extends Widget_Base {
 
 	/**
 	 * Sidebar map for this block.
+	 *
+	 * @return array{sections: array<int, array<string, mixed>>, repeaters: array<string, array<string, mixed>>}
+	 */
+	private function has_content(): bool {
+		$file = __DIR__ . '/controls.json';
+		static $map = null;
+		if ( null === $map ) {
+			$map = is_readable( $file ) ? (array) json_decode( (string) file_get_contents( $file ), true ) : [];
+		}
+		return ! empty( $map[ $this->mc_block ]['hasContent'] );
+	}
+
+	/**
+	 * Map entry for this block.
 	 *
 	 * @return array{sections: array<int, array<string, mixed>>, repeaters: array<string, array<string, mixed>>}
 	 */
@@ -208,7 +237,7 @@ class BlockWidget extends Widget_Base {
 					'tab'   => $this->is_style_section( $section, $controls ) ? Controls_Manager::TAB_STYLE : Controls_Manager::TAB_CONTENT,
 				]
 			);
-			if ( 1 === $count && in_array( $this->mc_block, self::HAS_CONTENT, true ) ) {
+			if ( 1 === $count && $this->has_content() ) {
 				$this->add_content_control();
 			}
 			foreach ( $controls as $c ) {
@@ -236,7 +265,7 @@ class BlockWidget extends Widget_Base {
 
 		// Attributes the sidebar map doesn't cover.
 		$rest = array_diff_key( $attrs, $done );
-		if ( $rest || ( 0 === $count && in_array( $this->mc_block, self::HAS_CONTENT, true ) ) ) {
+		if ( $rest || ( 0 === $count && $this->has_content() ) ) {
 			$this->start_controls_section(
 				'mc_section_more',
 				[
@@ -244,7 +273,7 @@ class BlockWidget extends Widget_Base {
 					'tab'   => Controls_Manager::TAB_CONTENT,
 				]
 			);
-			if ( 0 === $count && in_array( $this->mc_block, self::HAS_CONTENT, true ) ) {
+			if ( 0 === $count && $this->has_content() ) {
 				$this->add_content_control();
 			}
 			foreach ( $rest as $attr => $def ) {
@@ -285,9 +314,36 @@ class BlockWidget extends Widget_Base {
 			[
 				'label'       => esc_html__( 'Content', 'modern-core' ),
 				'type'        => Controls_Manager::WYSIWYG,
-				'default'     => '',
+				'default'     => self::starter_content( $this->mc_block ),
 				'description' => 'advanced-footer' === $this->mc_block ? esc_html__( 'Leave empty to use the built-in footer layout.', 'modern-core' ) : '',
 			]
+		);
+	}
+
+	/**
+	 * Starter heading, text and button for banner-style blocks.
+	 *
+	 * @param string $block Block folder.
+	 */
+	private static function starter_content( string $block ): string {
+		if ( ! isset( self::STARTER[ $block ] ) ) {
+			return '';
+		}
+		$dark    = 'dark' === self::STARTER[ $block ];
+		$heading = $dark ? 'color:#ffffff;' : '';
+		$text    = $dark ? 'color:#cbd5e1;' : 'opacity:.75;';
+		$button  = $dark ? 'background:#ffffff;color:#0f172a;' : 'background:#0f172a;color:#ffffff;';
+		$align   = in_array( $block, [ 'hero', 'video-hero', 'promo-banner', 'countdown-banner' ], true ) ? 'text-align:center;' : '';
+		return sprintf(
+			'<h2 style="%1$s%2$sfont-size:clamp(36px, 5vw, 64px);line-height:1.1;margin:0 0 16px;">%3$s</h2><p style="%4$s%2$smargin:0 0 28px;">%5$s</p><p style="%2$s"><a href="%6$s" style="%7$sdisplay:inline-block;padding:14px 32px;border-radius:50px;font-weight:600;text-decoration:none;">%8$s</a></p>',
+			$heading,
+			$align,
+			esc_html__( 'New season, new essentials', 'modern-core' ),
+			$text,
+			esc_html__( 'Considered pieces made in small batches to last for years.', 'modern-core' ),
+			esc_url( function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' ) ),
+			$button,
+			esc_html__( 'Shop now', 'modern-core' )
 		);
 	}
 
@@ -688,6 +744,9 @@ class BlockWidget extends Widget_Base {
 			}
 		}
 		$inner = (string) ( $settings['mc_inner_content'] ?? '' );
+		if ( '' !== trim( $inner ) && isset( self::CONTENT_WRAPPER[ $this->mc_block ] ) ) {
+			$inner = '<div class="' . esc_attr( self::CONTENT_WRAPPER[ $this->mc_block ] ) . '">' . $inner . '</div>';
+		}
 		$html  = render_block(
 			[
 				'blockName'    => 'modern-core/' . $this->mc_block,
